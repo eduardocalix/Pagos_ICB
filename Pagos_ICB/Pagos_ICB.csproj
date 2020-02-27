@@ -52,8 +52,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuarios.Designer.cs">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modulo\agregarAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modulo\agregarAlumno.Designer.cs">
+      <DependentUpon>agregarAlumno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,5 +91,41 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Querys\01Tabla.sql" />
+    <Content Include="Querys\02Restricciones.sql" />
+    <Content Include="Querys\03Funciones.sql" />
+    <Content Include="Querys\04Procedimientos.sql" />
+    <Content Include="Querys\05Insercion.sql" />
+    <Content Include="Resources\1486504314-check-list-item-item-list-to-do-ui-shopping_81331.png" />
+    <Content Include="Resources\1486505266-dish-food-dome-dish-kitchen-restaurant_81412.ico" />
+    <Content Include="Resources\agregar-editar-icono-6607-32.png" />
+    <Content Include="Resources\business_inventory_maintenance_product_box_boxes_2.ico" />
+    <Content Include="Resources\descarga %282%29.jpg" />
+    <Content Include="Resources\descarga.ico" />
+    <Content Include="Resources\Dinero.ico" />
+    <Content Include="Resources\Empleado.png" />
+    <Content Include="Resources\Exit.ico" />
+    <Content Include="Resources\expediente.ico" />
+    <Content Include="Resources\expediente.png" />
+    <Content Include="Resources\expediente1.png" />
+    <Content Include="Resources\images_1_.ico" />
+    <Content Include="Resources\inventario.png" />
+    <Content Include="Resources\Lisra.ico" />
+    <Content Include="Resources\Lisra.png" />
+    <Content Include="Resources\Listar.png" />
+    <Content Include="Resources\Logo Especialidades Las Marías #3.png" />
+    <Content Include="Resources\logo.jpg" />
+    <Content Include="Resources\LogoTenedor.ico" />
+    <Content Include="Resources\LogoTenedor.png" />
+    <Content Include="Resources\mod.ico" />
+    <Content Include="Resources\pez.png" />
+    <Content Include="Resources\pez1.png" />
+    <Content Include="Resources\pos-cash-register-icon-51178.ico" />
+    <Content Include="Resources\seh77.ico" />
+    <Content Include="Resources\Ventas.png" />
+    <Content Include="Resources\verde2.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
