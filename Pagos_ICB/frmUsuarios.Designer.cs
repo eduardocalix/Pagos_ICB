@@ -1,4 +1,4 @@
-﻿namespace Restaurante
+﻿namespace Pagos_ICB
 {
     partial class frmUsuarios
     {
@@ -38,30 +38,31 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.grpNuevoUsuario = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.picFoto = new System.Windows.Forms.PictureBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
-            this.btnAsignarRol = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.lblClave = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.picFoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgwUsuarios)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnlTitulo.SuspendLayout();
             this.grpNuevoUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // dgwUsuarios
@@ -85,7 +86,7 @@
             this.dgwUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgwUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgwUsuarios.EnableHeadersVisualStyles = false;
-            this.dgwUsuarios.Location = new System.Drawing.Point(44, 266);
+            this.dgwUsuarios.Location = new System.Drawing.Point(41, 265);
             this.dgwUsuarios.MultiSelect = false;
             this.dgwUsuarios.Name = "dgwUsuarios";
             this.dgwUsuarios.ReadOnly = true;
@@ -96,6 +97,7 @@
             this.dgwUsuarios.TabIndex = 18;
             this.dgwUsuarios.TabStop = false;
             this.dgwUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwUsuarios_CellClick);
+            this.dgwUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwUsuarios_CellContentClick_1);
             // 
             // panel1
             // 
@@ -166,6 +168,7 @@
             // 
             // pnlTitulo
             // 
+            this.pnlTitulo.Controls.Add(this.pictureBox1);
             this.pnlTitulo.Controls.Add(this.label2);
             this.pnlTitulo.Controls.Add(this.btnSalir);
             this.pnlTitulo.Location = new System.Drawing.Point(4, 3);
@@ -178,23 +181,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Britannic Bold", 25F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(125)))));
-            this.label2.Location = new System.Drawing.Point(89, 41);
+            this.label2.Location = new System.Drawing.Point(107, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(382, 37);
             this.label2.TabIndex = 18;
             this.label2.Text = "Información del Usuario";
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(561, 4);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(29, 29);
-            this.btnSalir.TabIndex = 7;
-            this.btnSalir.TabStop = false;
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
             // 
             // grpNuevoUsuario
             // 
@@ -202,13 +193,12 @@
             this.grpNuevoUsuario.Controls.Add(this.picFoto);
             this.grpNuevoUsuario.Controls.Add(this.txtApellido);
             this.grpNuevoUsuario.Controls.Add(this.lblApellido);
-            this.grpNuevoUsuario.Controls.Add(this.btnAsignarRol);
             this.grpNuevoUsuario.Controls.Add(this.txtNombre);
             this.grpNuevoUsuario.Controls.Add(this.txtClave);
             this.grpNuevoUsuario.Controls.Add(this.lblClave);
             this.grpNuevoUsuario.Controls.Add(this.lblNombre);
             this.grpNuevoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpNuevoUsuario.Location = new System.Drawing.Point(44, 96);
+            this.grpNuevoUsuario.Location = new System.Drawing.Point(42, 96);
             this.grpNuevoUsuario.Name = "grpNuevoUsuario";
             this.grpNuevoUsuario.Size = new System.Drawing.Size(431, 163);
             this.grpNuevoUsuario.TabIndex = 19;
@@ -219,22 +209,13 @@
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnCancelar.Location = new System.Drawing.Point(109, 122);
+            this.btnCancelar.Location = new System.Drawing.Point(160, 117);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(96, 26);
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // picFoto
-            // 
-            this.picFoto.Location = new System.Drawing.Point(320, 36);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(100, 102);
-            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFoto.TabIndex = 0;
-            this.picFoto.TabStop = false;
             // 
             // txtApellido
             // 
@@ -253,18 +234,6 @@
             this.lblApellido.Size = new System.Drawing.Size(58, 17);
             this.lblApellido.TabIndex = 13;
             this.lblApellido.Text = "Apellido";
-            // 
-            // btnAsignarRol
-            // 
-            this.btnAsignarRol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
-            this.btnAsignarRol.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAsignarRol.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnAsignarRol.Location = new System.Drawing.Point(211, 122);
-            this.btnAsignarRol.Name = "btnAsignarRol";
-            this.btnAsignarRol.Size = new System.Drawing.Size(96, 26);
-            this.btnAsignarRol.TabIndex = 12;
-            this.btnAsignarRol.Text = "Asignar Rol";
-            this.btnAsignarRol.UseVisualStyleBackColor = false;
             // 
             // txtNombre
             // 
@@ -301,15 +270,6 @@
             this.lblNombre.Size = new System.Drawing.Size(58, 17);
             this.lblNombre.TabIndex = 3;
             this.lblNombre.Text = "Nombre";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(-6, 458);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(636, 81);
-            this.pictureBox2.TabIndex = 17;
-            this.pictureBox2.TabStop = false;
             // 
             // panel2
             // 
@@ -378,11 +338,52 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Pagos_ICB.Properties.Resources.base1;
+            this.pictureBox2.Location = new System.Drawing.Point(-44, 480);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(690, 81);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources._60449414_2461514937213665_7592681166264598528_n;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 84);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(561, 4);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(29, 29);
+            this.btnSalir.TabIndex = 7;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
+            // 
+            // picFoto
+            // 
+            this.picFoto.Location = new System.Drawing.Point(320, 36);
+            this.picFoto.Name = "picFoto";
+            this.picFoto.Size = new System.Drawing.Size(100, 102);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFoto.TabIndex = 0;
+            this.picFoto.TabStop = false;
+            // 
             // frmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(616, 533);
+            this.ClientSize = new System.Drawing.Size(616, 523);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.dgwUsuarios);
             this.Controls.Add(this.panel2);
@@ -400,9 +401,10 @@
             this.pnlTitulo.PerformLayout();
             this.grpNuevoUsuario.ResumeLayout(false);
             this.grpNuevoUsuario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -424,7 +426,6 @@
         private System.Windows.Forms.PictureBox picFoto;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label lblApellido;
-        private System.Windows.Forms.Button btnAsignarRol;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Label lblClave;
@@ -434,5 +435,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

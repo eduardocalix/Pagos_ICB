@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace Restaurante
+namespace Pagos_ICB
 {
     public partial class frmUsuarios : Form
     {
@@ -39,7 +39,6 @@ namespace Restaurante
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
-            btnAsignarRol.Enabled = false;
             txtNombre.Enabled = true;
             txtApellido.Enabled = true;
             txtClave.Enabled = true;
@@ -69,7 +68,7 @@ namespace Restaurante
         {
             try
             {
-                Clases.Restaurante.AgregarUsuario(
+                Clases.ICB.AgregarUsuario(
                     txtNombre.Text,
                     txtApellido.Text,
                     txtClave.Text);
@@ -89,7 +88,7 @@ namespace Restaurante
             {
                 try
                 {
-                    Clases.Restaurante.ModificarUsuario(
+                    Clases.ICB.ModificarUsuario(
                         this.usuario,
                         txtNombre.Text,
                         txtApellido.Text,
@@ -126,7 +125,6 @@ namespace Restaurante
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
-            btnAsignarRol.Enabled = true;
         }
 
         private void dgwUsuariosEstilo(DataGridView dgw)
@@ -171,7 +169,7 @@ namespace Restaurante
             {
                 try
                 {
-                    Clases.Restaurante.EliminarUsuario1(this.usuario,0);
+                    Clases.ICB.EliminarUsuario1(this.usuario,0);
                 }
                 catch (SqlException ex)
                 {
@@ -195,6 +193,9 @@ namespace Restaurante
             ResetFormulario();
         }
 
-    
+        private void dgwUsuarios_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
