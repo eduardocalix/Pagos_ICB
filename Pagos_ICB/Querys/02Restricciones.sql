@@ -3,34 +3,24 @@ USE DBICB
 GO
 
 --DEFINICION DE LLAVES PRIMARIAS
-ALTER TABLE Acceso.Usuarios
+ALTER TABLE Acceso.Usuario
 	ADD CONSTRAINT PK_Acceso_Usuarios_id
-		PRIMARY KEY NONCLUSTERED(id);
-GO
-/*
-ALTER TABLE Acceso.Roles
-	ADD CONSTRAINT PK_Acceso_Roles_id
-		PRIMARY KEY NONCLUSTERED(id);
+		PRIMARY KEY NONCLUSTERED(idUsuario);
 GO
 
-ALTER TABLE Cuentas.Areas
-	ADD CONSTRAINT PK_Cuentas_Areas_id
-		PRIMARY KEY NONCLUSTERED (id)
-GO*/
-
-ALTER TABLE Cuentas.Grados
+ALTER TABLE Cuentas.Grado
 	ADD CONSTRAINT PK_Cuentas_Grados_id
 		PRIMARY KEY NONCLUSTERED (idGrado);
 GO
 
-ALTER TABLE Cuentas.Alumnos
+ALTER TABLE Cuentas.Alumno
 	ADD CONSTRAINT PK_Cuentas_Alumnos_id
-		PRIMARY KEY NONCLUSTERED (id);
+		PRIMARY KEY NONCLUSTERED (idAlumno);
 GO
 
-ALTER TABLE Cuentas.Pagos
+ALTER TABLE Cuentas.Pago
 	ADD CONSTRAINT PK_Cuentas_Pagos_id
-		PRIMARY KEY CLUSTERED (idPagos);
+		PRIMARY KEY CLUSTERED (idPago);
 GO 
 
 
@@ -39,8 +29,8 @@ ALTER TABLE Cuentas.Descuento
 		PRIMARY KEY CLUSTERED (idDescuento);
 GO
 
-ALTER TABLE Cuentas.tipoPago
-	ADD CONSTRAINT PK_Cuentas_tipoPago_idtipoPago
+ALTER TABLE Cuentas.TipoPago
+	ADD CONSTRAINT PK_Cuentas_tipoPago_idTipoPago
 		PRIMARY KEY CLUSTERED (idTipo);
 GO
 
@@ -50,88 +40,46 @@ ALTER TABLE Cuentas.Mora
 GO
 
 --DEFINICION DE LLAVES FORANEAS
-/*
-ALTER TABLE Acceso.Usuarios
-	ADD CONSTRAINT FK_Acceso_Roles_id$tiene$Acceso_Usuarios_id
-		FOREIGN KEY	(idRol)
-			REFERENCES Acceso.Roles(id);
-GO
 
 
-ALTER TABLE Cuentas.Grados
-	ADD CONSTRAINT FK_Cuentas_Grados_id$TieneUna$Cuentas_Areas_id
-		FOREIGN KEY (idArea)
-			REFERENCES Cuentas.Areas(id);
-GO*/
-
-
-ALTER TABLE Cuentas.Pagos
+ALTER TABLE Cuentas.Pago
 	ADD CONSTRAINT FK_Cuentas_Pagos_idTipo$TieneUna$Cuentas_TipoPago
 		FOREIGN KEY	(idTipo)
-			REFERENCES Cuentas.tipoPago(idTipo);
+			REFERENCES Cuentas.TipoPago(idTipo);
 GO
 
-ALTER TABLE Cuentas.Pagos
-	ADD CONSTRAINT FK_Cuentas_Pagos_idUsuario$TieneUn$Acceso_Usuarios_id
+ALTER TABLE Cuentas.Pago
+	ADD CONSTRAINT FK_Cuentas_Pago_idUsuario$TieneUn$Acceso_Usuario_idUsuario
 		FOREIGN KEY	(idUsuario)
-			REFERENCES Acceso.Usuarios(id);
+			REFERENCES Acceso.Usuario(idUsuario);
 GO
 
-ALTER TABLE Cuentas.Pagos
-	ADD CONSTRAINT FK_Cuentas_Alumnos_id$HacenMuchos$Pagos_id
+ALTER TABLE Cuentas.Pago
+	ADD CONSTRAINT FK_Cuentas_Alumno_id$HacenMuchos$Pagos_id
 		FOREIGN KEY (idAlumno)
-			REFERENCES Cuentas.Alumnos(id);
+			REFERENCES Cuentas.Alumno(idAlumno);
 GO
 
-ALTER TABLE	Cuentas.Pagos
-	ADD CONSTRAINT FK_Cuentas_Pagos_idDescuento$Tiene$Cuentas_Descuentos_idDescuento
+ALTER TABLE	Cuentas.Pago
+	ADD CONSTRAINT FK_Cuentas_Pago_idDescuento$Tiene$Cuentas_Descuentos_idDescuento
 		FOREIGN KEY (idDescuento)
 			REFERENCES Cuentas.Descuento(idDescuento);
 GO
 
-ALTER TABLE	Cuentas.Pagos
+ALTER TABLE	Cuentas.Pago
 	ADD CONSTRAINT FK_Cuentas_Pagos_idMora$TieneUn$Cuentas_Mora_idMora
 		FOREIGN KEY (idMora)
 			REFERENCES Cuentas.Mora(idMora);
 GO
 
-ALTER TABLE	Cuentas.tipoPago
-	ADD CONSTRAINT FK_Cuentas_TipoPago_idPago$sonEn$Cuentas_tipoPago_idTipo
+ALTER TABLE	Cuentas.TipoPago
+	ADD CONSTRAINT FK_Cuentas_TipoPago_idGrado$sonDe$Cuentas_Grado_idGrado
 		FOREIGN KEY (idGrado)
-			REFERENCES Cuentas.Grados(idGrado);
+			REFERENCES Cuentas.Grado(idGrado);
 GO
 
-/*
-ALTER TABLE Cuentas.Caja
-	ADD CONSTRAINT PK_Caja_id
-	PRIMARY KEY CLUSTERED (id)
-
---ALTER TABLE Cuentas.Caja
---	ADD CONSTRAINT FK_Caja$TieneUn$DetalleCaja
---	FOREIGN KEY (idDetalleCaja)
---	REFERENCES Cuentas.DetalleCaja(id)
---GO
-
-ALTER TABLE Cuentas.tipoPago
-	ADD CONSTRAINT FK_Cuentas_tipoPago_idtipoPago$TieneUn$Cuentas_Caja_id
-		FOREIGN KEY (idCaja)
-			REFERENCES Cuentas.Caja(id)
+ALTER TABLE	Cuentas.Alumno
+	ADD CONSTRAINT FK_Cuentas_Alumno_idGrado$estaEn$Cuentas_Grado_idGrado
+		FOREIGN KEY (idGrado)
+			REFERENCES Cuentas.Grado(idGrado);
 GO
-
-ALTER TABLE Cuentas.DetalleServicioPublico
-	ADD CONSTRAINT PK_DetalleServicioPublico_id
-	PRIMARY KEY CLUSTERED (id)
-
-ALTER TABLE Cuentas.ServicioPublico
-	ADD CONSTRAINT PK_ServicioPublico_id
-	PRIMARY KEY CLUSTERED (id)
-
-ALTER TABLE Cuentas.DetalleServicioPublico
-	ADD CONSTRAINT FK_DetalleServicioPublico$TieneUn$ServicioPublico
-	FOREIGN KEY (idServicioPublico)
-	REFERENCES Cuentas.ServicioPublico (id)
-
-ALTER TABLE Cuentas.OtrasSalidas
-	ADD CONSTRAINT PK_OtrasSalidas_id
-	PRIMARY KEY CLUSTERED (id)
-	*/

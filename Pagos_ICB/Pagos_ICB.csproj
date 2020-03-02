@@ -51,7 +51,14 @@
     <Compile Include="Clases\Excepcion.cs" />
     <Compile Include="Clases\ICB.cs" />
     <Compile Include="Clases\Mensaje.cs" />
+    <Compile Include="Clases\Mora.cs" />
     <Compile Include="Clases\Usuarios.cs" />
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMenuNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +70,18 @@
     </Compile>
     <Compile Include="frmAlumnos.designer.cs">
       <DependentUpon>frmAlumnos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMora.designer.cs">
+      <DependentUpon>frmMora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDescuento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDescuento.designer.cs">
+      <DependentUpon>frmDescuento.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -76,6 +95,12 @@
     <Compile Include="frmUsuarios.Designer.cs">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mesero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesero.designer.cs">
+      <DependentUpon>Mesero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modulo\agregarAlumno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,14 +109,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMenuNuevo.resx">
       <DependentUpon>frmMenuNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAlumnos.resx">
       <DependentUpon>frmAlumnos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMora.resx">
+      <DependentUpon>frmMora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDescuento.resx">
+      <DependentUpon>frmDescuento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUsuarios.resx">
       <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mesero.resx">
+      <DependentUpon>Mesero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

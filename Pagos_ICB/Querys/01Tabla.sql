@@ -30,69 +30,33 @@ GO
 
 	esta tabla es manejada solo por el administrador principal
 */
-IF OBJECT_ID('Acceso.Usuarios')	IS NOT NULL
-	DROP TABLE Acceso.Usuarios
+IF OBJECT_ID('Acceso.Usuario')	IS NOT NULL
+	DROP TABLE Acceso.Usuario
 ELSE
 	BEGIN
-		CREATE TABLE Acceso.Usuarios(
-			id  INT IDENTITY (1,1) NOT NULL, --index de los usuarios
+		CREATE TABLE Acceso.Usuario(
+			idUsuario  INT IDENTITY (1,1) NOT NULL, --index de los usuarios
 			nombre NVARCHAR(25) NOT NULL,	--primer nombre del usuario
 			apellido NVARCHAR(25) NOT NULL, --primer apellido del usuario
 			usuario NVARCHAR(26) NOT NULL,	--Primera letra del nombre en mayusculas más el apellido
 									--eje: Pedro Picapiedra (PPicapiedra)
 			clave NVARCHAR(20) NOT NULL, --clave de acceso
-			estado BIT DEFAULT 1 --El estado es por si está activo
+			estado INT DEFAULT 1 --El estado es por si está activo
 		);
 	END
 GO
 
 /*
-	esta tabla controlara los modulos que seran disponibles por cada departamento
-
-IF OBJECT_ID('Acceso.Roles')	IS NOT NULL
-	DROP TABLE Acceso.Roles
-ELSE
-	BEGIN
-		CREATE TABLE Acceso.Roles(
-			id INT IDENTITY (1,1) NOT NULL,
-			nombreRol NVARCHAR(20),
-			agregarUsuario BIT,
-			modificarUsuario BIT,
-			eliminarUsuario BIT,
-			consultarUsario BIT,
-			agregarProveedor BIT,
-			modificarProveedor BIT,
-			eliminarProveedor BIT,
-			consultarProveedor BIT,
-			agregarMesero BIT,
-			modificarMesero BIT,
-			eliminarMesero BIT,
-			consultarMesero BIT,
-			anularPagos BIT,
-			aperturaCaja BIT,
-			cierreCaja BIT
-			
-
-			/*
-				falta colorcar los campos de los modulos a los cuales tendra acceso
-			*/
-		);
-	END
-GO*/
-
-
-
-/*
 	Los alumnos cursan los Grados que 
 	van insertadas en esta tabla
 */
-IF OBJECT_ID('Cuentas.Grados')	IS NOT NULL
-	DROP TABLE Cuentas.Grados
+IF OBJECT_ID('Cuentas.Grado')	IS NOT NULL
+	DROP TABLE Cuentas.Grado
 ELSE
 	BEGIN
-		CREATE TABLE Cuentas.Grados(
+		CREATE TABLE Cuentas.Grado(
 			idGrado INT IDENTITY (1, 1) NOT NULL, --index del Grado
-			nombreGrado NVARCHAR(21) NOT NULL, --nombre del grado
+			nombreGrado NVARCHAR(30) NOT NULL, --nombre del grado
 			estado INT DEFAULT 1
 
 		);
@@ -103,17 +67,17 @@ GO
 /*
 	contiene la informacion de los alumnos matriculados
 */
-IF OBJECT_ID('Cuentas.Alumnos')	IS NOT NULL
-	DROP TABLE Cuentas.Alumnos
+IF OBJECT_ID('Cuentas.Alumno')	IS NOT NULL
+	DROP TABLE Cuentas.Alumno
 ELSE
 	BEGIN
-		CREATE TABLE Cuentas.Alumnos(
-			id INT IDENTITY(1,10) NOT NULL,		--index del alumno
-			identidad NVARCHAR(15) NOT NULL,	--identidad del alumno con formato (9999-9999-99999)	
+		CREATE TABLE Cuentas.Alumno(
+			idAlumno INT IDENTITY(1,10) NOT NULL,	--index del alumno
+			identidad NVARCHAR(15) NOT NULL,		--identidad del alumno con formato (9999-9999-99999)	
 			nombres NVARCHAR (25) NOT NULL,			--nombres 
-			apellidos NVARCHAR (25) NOT NULL,			--apellidos
+			apellidos NVARCHAR (25) NOT NULL,		--apellidos
 			idGrado INT NOT NULL, --es la relacion del alumno con el grado
-			beca BIT DEFAULT 0 , --Esta seccion identifica si es becado o no.
+			beca INT DEFAULT 0 , --Esta seccion identifica si es becado o no.
 			estado INT DEFAULT 1
 		);
 	END
@@ -129,19 +93,21 @@ IF OBJECT_ID('Cuentas.Descuento')	IS NOT NULL
 ELSE
 	BEGIN
 		CREATE TABLE Cuentas.Descuento(
-			idDescuento INT IDENTITY (1, 1) NOT NULL,					--index del pedido
-			valor DECIMAL (6,2) NOT NULL,						--identificador del mesero que atendera la mesa
+			idDescuento INT IDENTITY (1, 1) NOT NULL,		--index del pedido
+			nombreDescuento VARCHAR(30),					--nombre del descuento
+			valor DECIMAL (6,2) NOT NULL,					--identificador del mesero que atendera la mesa
 			estado INT DEFAULT 1
 		);
 	END
 GO
-
-IF OBJECT_ID('Cuentas.Pagos')	IS NOT NULL
-	DROP TABLE Cuentas.Pagos
+--Tabla Pagos es la tabla transaccional de la base
+IF OBJECT_ID('Cuentas.Pago')	IS NOT NULL
+	DROP TABLE Cuentas.Pago
 ELSE
 	BEGIN
-		CREATE TABLE Cuentas.Pagos(
-			idPagos INT IDENTITY(1,1) NOT NULL,
+		CREATE TABLE Cuentas.Pago(
+			idPago INT IDENTITY(1,1) NOT NULL,
+			recibo VARCHAR(15),
 			idAlumno INT NOT NULL,
 			idTipo INT NOT NULL,
 			idDescuento INT NOT NULL,
@@ -151,26 +117,27 @@ ELSE
 			PagoDos DECIMAL(6,2),
 			subTotal DECIMAL (8,2),
 			total DECIMAL (8,2)NOT NULL,
+			fechaPago DATE ,
 			estado INT DEFAULT 1,
 		);
 	END
 GO
-
-IF OBJECT_ID('Cuentas.tipoPago')	IS NOT NULL
-	DROP TABLE Cuentas.tipoPago
+/*Tabla Tipo de pago especifica el pago realizado*/
+IF OBJECT_ID('Cuentas.TipoPago')	IS NOT NULL
+	DROP TABLE Cuentas.TipoPago
 ELSE
 	BEGIN
-		CREATE TABLE Cuentas.tipoPago(
+		CREATE TABLE Cuentas.TipoPago(
 			idTipo INT IDENTITY (1,1) NOT NULL,
 			nombrePago NVARCHAR(20) NOT NULL,
 			idGrado INT NOT NULL,
-			Valor DECIMAL(6,2) NOT NULL,
-			estado int DEFAULT 1
-			
+			valor DECIMAL(6,2) NOT NULL,
+			estado INT DEFAULT 1		
 		);
 	END
 GO
-
+/*Tabla de mora es donde se añaden los 
+	cargos por demorar en los pagos*/
 IF OBJECT_ID('Cuentas.Mora')	IS NOT NULL
 	DROP TABLE Cuentas.Mora
 ELSE
@@ -178,9 +145,8 @@ ELSE
 		CREATE TABLE Cuentas.Mora(
 			idMora INT IDENTITY (1,1) NOT NULL,
 			nombreMora NVARCHAR(20) NOT NULL,
-			Valor DECIMAL(6,2) NOT NULL,
-			estado int DEFAULT 1
-
+			valor DECIMAL(6,2) NOT NULL,
+			estado INT DEFAULT 1
 		);
 	END
 GO

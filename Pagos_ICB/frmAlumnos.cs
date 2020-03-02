@@ -26,7 +26,7 @@ namespace Restaurante
         {
             try
             {
-                dgvProveedores.DataSource = Clases.Proveedores.GetDataView(1);
+                dgvAlumnos.DataSource = Clases.Proveedores.GetDataView(1);
             }
             catch (Exception ex)
             {
@@ -111,10 +111,10 @@ namespace Restaurante
             Clases.Proveedores proveedor = new Clases.Proveedores();
             proveedor.ObtenerProveedor(
                 Convert.ToInt32(
-                    dgvProveedores.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    dgvAlumnos.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
-            dgvProveedores.Select();
+            dgvAlumnos.Select();
             this.id = proveedor.Id;
             txtNombre.Text = proveedor.Nombre;
             txtTelefono.Text = proveedor.Telefono;
@@ -141,7 +141,7 @@ namespace Restaurante
             txtTelefono.Text = "";
             txtDireccion.Text = "";
             CargarDGWProveedor();
-            dgwProveedorEstilo(dgvProveedores);
+            dgwProveedorEstilo(dgvAlumnos);
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;

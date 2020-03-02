@@ -37,9 +37,12 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.pnlTitulo = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.grpNuevoUsuario = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.picFoto = new System.Windows.Forms.PictureBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.lblApellido = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -52,17 +55,14 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.picFoto = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgwUsuarios)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnlTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grpNuevoUsuario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // dgwUsuarios
@@ -176,6 +176,16 @@
             this.pnlTitulo.Size = new System.Drawing.Size(605, 87);
             this.pnlTitulo.TabIndex = 20;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources._60449414_2461514937213665_7592681166264598528_n;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(94, 84);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -186,6 +196,18 @@
             this.label2.Size = new System.Drawing.Size(382, 37);
             this.label2.TabIndex = 18;
             this.label2.Text = "Información del Usuario";
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(561, 4);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(29, 29);
+            this.btnSalir.TabIndex = 7;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
             // 
             // grpNuevoUsuario
             // 
@@ -208,14 +230,24 @@
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.Font = new System.Drawing.Font("Raleway Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnCancelar.Location = new System.Drawing.Point(160, 117);
+            this.btnCancelar.Location = new System.Drawing.Point(160, 123);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(96, 26);
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // picFoto
+            // 
+            this.picFoto.Location = new System.Drawing.Point(320, 23);
+            this.picFoto.Name = "picFoto";
+            this.picFoto.Size = new System.Drawing.Size(100, 102);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFoto.TabIndex = 0;
+            this.picFoto.TabStop = false;
             // 
             // txtApellido
             // 
@@ -228,10 +260,10 @@
             // lblApellido
             // 
             this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellido.Font = new System.Drawing.Font("Raleway Black", 11.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApellido.Location = new System.Drawing.Point(14, 57);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(58, 17);
+            this.lblApellido.Size = new System.Drawing.Size(78, 19);
             this.lblApellido.TabIndex = 13;
             this.lblApellido.Text = "Apellido";
             // 
@@ -254,20 +286,20 @@
             // lblClave
             // 
             this.lblClave.AutoSize = true;
-            this.lblClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClave.Font = new System.Drawing.Font("Raleway Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblClave.Location = new System.Drawing.Point(14, 88);
             this.lblClave.Name = "lblClave";
-            this.lblClave.Size = new System.Drawing.Size(43, 17);
+            this.lblClave.Size = new System.Drawing.Size(55, 19);
             this.lblClave.TabIndex = 4;
             this.lblClave.Text = "Clave";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Font = new System.Drawing.Font("Raleway Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.Location = new System.Drawing.Point(14, 27);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(58, 17);
+            this.lblNombre.Size = new System.Drawing.Size(73, 19);
             this.lblNombre.TabIndex = 3;
             this.lblNombre.Text = "Nombre";
             // 
@@ -286,7 +318,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Raleway Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.button1.Location = new System.Drawing.Point(15, 25);
             this.button1.Name = "button1";
@@ -300,7 +332,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Raleway Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.button2.Location = new System.Drawing.Point(15, 112);
             this.button2.Name = "button2";
@@ -314,7 +346,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("Raleway Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.button3.Location = new System.Drawing.Point(15, 83);
             this.button3.Name = "button3";
@@ -328,7 +360,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Font = new System.Drawing.Font("Raleway Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.button4.Location = new System.Drawing.Point(15, 54);
             this.button4.Name = "button4";
@@ -347,37 +379,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources._60449414_2461514937213665_7592681166264598528_n;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(94, 84);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
-            this.btnSalir.Location = new System.Drawing.Point(561, 4);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(29, 29);
-            this.btnSalir.TabIndex = 7;
-            this.btnSalir.TabStop = false;
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
-            // 
-            // picFoto
-            // 
-            this.picFoto.Location = new System.Drawing.Point(320, 36);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(100, 102);
-            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFoto.TabIndex = 0;
-            this.picFoto.TabStop = false;
             // 
             // frmUsuarios
             // 
@@ -399,12 +400,12 @@
             this.panel1.ResumeLayout(false);
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.grpNuevoUsuario.ResumeLayout(false);
             this.grpNuevoUsuario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
 
         }

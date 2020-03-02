@@ -43,15 +43,15 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.dgvProveedores = new System.Windows.Forms.DataGridView();
+            this.dgvAlumnos = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlBotones.SuspendLayout();
             this.grpProveedores.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -142,14 +142,14 @@
             this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(153, 14);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(210, 23);
+            this.txtId.Size = new System.Drawing.Size(266, 23);
             this.txtId.TabIndex = 4;
             // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(153, 43);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(210, 23);
+            this.txtNombre.Size = new System.Drawing.Size(266, 23);
             this.txtNombre.TabIndex = 5;
             // 
             // txtTelefono
@@ -157,15 +157,16 @@
             this.txtTelefono.Location = new System.Drawing.Point(153, 72);
             this.txtTelefono.Mask = "9999-9999";
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(169, 23);
+            this.txtTelefono.Size = new System.Drawing.Size(266, 23);
             this.txtTelefono.TabIndex = 6;
             // 
             // lblDireccion
             // 
             this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDireccion.Location = new System.Drawing.Point(12, 127);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(67, 17);
+            this.lblDireccion.Size = new System.Drawing.Size(65, 15);
             this.lblDireccion.TabIndex = 11;
             this.lblDireccion.Text = "Direccion";
             // 
@@ -180,38 +181,41 @@
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTelefono.Location = new System.Drawing.Point(12, 75);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(64, 17);
+            this.lblTelefono.Size = new System.Drawing.Size(62, 15);
             this.lblTelefono.TabIndex = 10;
             this.lblTelefono.Text = "Teléfono";
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblId.Location = new System.Drawing.Point(12, 17);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(52, 17);
+            this.lblId.Size = new System.Drawing.Size(51, 15);
             this.lblId.TabIndex = 8;
             this.lblId.Text = "Código";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.Location = new System.Drawing.Point(12, 46);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(58, 17);
+            this.lblNombre.Size = new System.Drawing.Size(58, 15);
             this.lblNombre.TabIndex = 9;
             this.lblNombre.Text = "Nombre";
             // 
-            // dgvProveedores
+            // dgvAlumnos
             // 
-            this.dgvProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProveedores.Location = new System.Drawing.Point(20, 268);
-            this.dgvProveedores.Name = "dgvProveedores";
-            this.dgvProveedores.Size = new System.Drawing.Size(606, 148);
-            this.dgvProveedores.TabIndex = 19;
-            this.dgvProveedores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedores_CellClick);
+            this.dgvAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAlumnos.Location = new System.Drawing.Point(20, 268);
+            this.dgvAlumnos.Name = "dgvAlumnos";
+            this.dgvAlumnos.Size = new System.Drawing.Size(606, 148);
+            this.dgvAlumnos.TabIndex = 19;
+            this.dgvAlumnos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedores_CellClick);
             // 
             // panel1
             // 
@@ -222,6 +226,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(606, 75);
             this.panel1.TabIndex = 22;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Pagos_ICB.Properties.Resources._60449414_2461514937213665_7592681166264598528_n;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(94, 84);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
             // 
             // label1
             // 
@@ -245,16 +259,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Pagos_ICB.Properties.Resources._60449414_2461514937213665_7592681166264598528_n;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(94, 84);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 20;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources.base1;
@@ -273,7 +277,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlBotones);
             this.Controls.Add(this.grpProveedores);
-            this.Controls.Add(this.dgvProveedores);
+            this.Controls.Add(this.dgvAlumnos);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmProveedores";
@@ -283,7 +287,7 @@
             this.pnlBotones.ResumeLayout(false);
             this.grpProveedores.ResumeLayout(false);
             this.grpProveedores.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProveedores)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -307,7 +311,7 @@
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.DataGridView dgvProveedores;
+        private System.Windows.Forms.DataGridView dgvAlumnos;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSalir;

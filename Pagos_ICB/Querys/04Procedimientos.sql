@@ -2,7 +2,7 @@ USE DBICB
 GO
 
 
---sin terminar
+--Procedimientos Almacenados para cada modulo
 --Modulo Usuarios
 CREATE PROCEDURE SP_BuscarUsuario
 (
@@ -11,7 +11,7 @@ CREATE PROCEDURE SP_BuscarUsuario
 AS
 BEGIN
     DECLARE @existe INT
-    SELECT @existe = COUNT(Acceso.Usuarios.usuario) FROM Acceso.Usuarios WHERE usuario = @usuario;
+    SELECT @existe = COUNT(Acceso.Usuario.usuario) FROM Acceso.Usuario WHERE usuario = @usuario;
     RETURN @existe;
 END
 GO
@@ -37,7 +37,7 @@ BEGIN
         BEGIN
             SET @usuario = UPPER(LEFT(@nombre, 1)) + Utilidad.NombrePropios(@apellido)
 
-            SELECT @existe = COUNT(Acceso.Usuarios.usuario) FROM Acceso.Usuarios WHERE usuario = @usuario;
+            SELECT @existe = COUNT(Acceso.Usuario.usuario) FROM Acceso.Usuario WHERE usuario = @usuario;
             IF (@existe > 0)
                 BEGIN
                     RAISERROR(N'Ya existe un usuario con el nombre  "%s %s"', 16, 1, @nombre, @apellido);
@@ -45,7 +45,7 @@ BEGIN
                 END     
             ELSE
                 BEGIN
-                    INSERT INTO Acceso.Usuarios(nombre, apellido, usuario, clave)
+                    INSERT INTO Acceso.Usuario(nombre, apellido, usuario, clave)
                         VALUES (    Utilidad.NombrePropios(@nombre),
                                     Utilidad.NombrePropios(@apellido), 
                                     @usuario, 
@@ -78,7 +78,7 @@ BEGIN
         BEGIN
             SET @usuario = UPPER(LEFT(@nombre, 1)) + Utilidad.NombrePropios(@apellido)
 
-            SELECT @existe = COUNT(Acceso.Usuarios.usuario) FROM Acceso.Usuarios WHERE usuario = @usuarioAnterior;
+            SELECT @existe = COUNT(Acceso.Usuario.usuario) FROM Acceso.Usuario WHERE usuario = @usuarioAnterior;
             IF (@existe = 0)
                 BEGIN
                     RAISERROR(N'No existe un usuario con el nombre  "%s %s"', 16, 1, @nombre, @apellido);
@@ -86,7 +86,7 @@ BEGIN
                 END     
             ELSE
                 BEGIN
-                    UPDATE Acceso.Usuarios
+                    UPDATE Acceso.Usuario
                         SET     nombre = Utilidad.NombrePropios(@nombre),
                                 apellido = Utilidad.NombrePropios(@apellido), 
                                 usuario =   @usuario, 
@@ -107,7 +107,7 @@ AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
-            SELECT @existe = COUNT(Acceso.Usuarios.usuario) FROM Acceso.Usuarios WHERE usuario = @usuario;
+            SELECT @existe = COUNT(Acceso.Usuario.usuario) FROM Acceso.Usuario WHERE usuario = @usuario;
             IF (@existe = 0)
                 BEGIN
                     RAISERROR(N'No existe un usuario con el nombre "', 16, 1);
@@ -115,7 +115,7 @@ BEGIN
                 END     
             ELSE
                 BEGIN
-                    UPDATE Acceso.Usuarios SET estado=@estado WHERE usuario = @usuario;
+                    UPDATE Acceso.Usuario SET estado=@estado WHERE usuario = @usuario;
                     RETURN 1
                 END
 END
@@ -129,7 +129,7 @@ BEGIN
     DECLARE @existe int;
     SET @existe = 0;
 
-            SELECT @existe = COUNT(Acceso.Usuarios.usuario) FROM Acceso.Usuarios WHERE usuario = @usuario;
+            SELECT @existe = COUNT(Acceso.Usuario.usuario) FROM Acceso.Usuario WHERE usuario = @usuario;
             IF (@existe = 0)
                 BEGIN
                     RAISERROR(N'No existe un usuario con el nombre "', 16, 1);
@@ -137,117 +137,111 @@ BEGIN
                 END     
             ELSE
                 BEGIN
-                    DELETE FROM Acceso.Usuarios WHERE usuario = @usuario;
+                    DELETE FROM Acceso.Usuario WHERE usuario = @usuario;
                     RETURN 1
                 END
 END
 GO
 ----------------------------------------------------------
---Modulo 
+--Modulo de los grados
 
-CREATE PROCEDURE SP_AgregarProveedor
+CREATE PROCEDURE SP_AgregarGrado
 (
-	@nombre NVARCHAR(100),
-	@telefono NVARCHAR(9),
-	@direccion NVARCHAR(300)
+	@nombreGrado NVARCHAR(30)
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Proveedores.idProveedor) FROM Cuentas.Proveedores WHERE nombre = @nombre;
+	SELECT @existe = COUNT(Cuentas.Grado.idGrado) FROM Cuentas.Grado WHERE nombreGrado = @nombreGrado;
 	IF (@existe > 0)
 		BEGIN
-			RAISERROR(N'Ya existe un proveedor con el nombre  "%s"', 16, 1, @nombre);
+			RAISERROR(N'Ya existe un Grado con el nombreGrado  "%s"', 16, 1, @nombreGrado);
 			RETURN 0			
 		END
 	ELSE
 		BEGIN
-			INSERT INTO Cuentas.Proveedores(nombre, telefono, direccion)
-				VALUES(@nombre, @telefono, @direccion)
+			INSERT INTO Cuentas.Grado(nombreGrado)
+				VALUES(@nombreGrado)
 			RETURN 1
 		END
 END
 GO
 
-CREATE PROCEDURE SP_ModificarProveedor
+CREATE PROCEDURE SP_ModificarGrado
 (
-	@idProveedor INT,
-	@nombre NVARCHAR(100),
-	@telefono NVARCHAR(9),
-	@direccion NVARCHAR(300)
+	@idGrado INT,
+	@nombreGrado NVARCHAR(30)
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
 
-	SELECT @existe = COUNT(Cuentas.Proveedores.idProveedor) FROM Cuentas.Proveedores WHERE idProveedor = @idProveedor;
+	SELECT @existe = COUNT(Cuentas.Grado.idGrado) FROM Cuentas.Grado WHERE idGrado = @idGrado;
 
 	IF (@existe = 0)
 		BEGIN
-			RAISERROR(N'No existe el proveedor con el id %d"', 16, 1, @idProveedor);
+			RAISERROR(N'No existe el Grado con el id %d"', 16, 1, @idGrado);
 			RETURN 0
 		END 	
 	ELSE
 		BEGIN
-			UPDATE Cuentas.Proveedores
-				SET 	nombre = @nombre,
-						telefono = @telefono,
-						direccion = @direccion
-					WHERE idProveedor = @idProveedor;
+			UPDATE Cuentas.Grado
+				SET 	nombreGrado = @nombreGrado
+					WHERE idGrado = @idGrado;
 			RETURN 1
 		END
 END
 GO
 
-CREATE PROCEDURE SP_EliminarProveedor1
+CREATE PROCEDURE SP_EliminarGrado1
 (
-	@idProveedor INT,
-	@estado BIT
+	@idGrado INT,
+	@estado INT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Proveedores.idProveedor) FROM Cuentas.Proveedores WHERE idProveedor = @idProveedor;
+		SELECT @existe = COUNT(Cuentas.Grado.idGrado) FROM Cuentas.Grado WHERE idGrado = @idGrado;
 		IF (@existe = 0)
 			BEGIN
-				RAISERROR(N'No existe el proveedor con el id %d"', 16, 1, @idProveedor);
+				RAISERROR(N'No existe el Grado con el id %d"', 16, 1, @idGrado);
 				RETURN 0
 			END 	
 		ELSE
 			BEGIN
-				UPDATE Cuentas.Proveedores SET estado=@estado	WHERE idProveedor = @idProveedor;
+				UPDATE Cuentas.Grado SET estado=@estado	WHERE idGrado = @idGrado;
 				RETURN 1
 			END
 END
 GO
 
-CREATE PROCEDURE SP_EliminarProveedor
+CREATE PROCEDURE SP_EliminarGrado
 (
-	@idProveedor INT
+	@idGrado INT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Proveedores.idProveedor) FROM Cuentas.Proveedores WHERE idProveedor = @idProveedor;
+		SELECT @existe = COUNT(Cuentas.Grado.idGrado) FROM Cuentas.Grado WHERE idGrado = @idGrado;
 		IF (@existe = 0)
 			BEGIN
-				RAISERROR(N'No existe el proveedor con el id %d"', 16, 1, @idProveedor);
+				RAISERROR(N'No existe el Grado con el id %d"', 16, 1, @idGrado);
 				RETURN 0
 			END 	
 		ELSE
 			BEGIN
-				DELETE FROM Cuentas.Proveedores	WHERE idProveedor = @idProveedor;
+				DELETE FROM Cuentas.Grado	WHERE idGrado = @idGrado;
 				RETURN 1
 			END
 END
 GO
 ----------------------------------------------------------------------------------------
 --Modulo Alumnos
-CREATE PROCEDURE SP_AgregarAlumnos
+CREATE PROCEDURE SP_AgregarAlumno
 (
 	@identidad NVARCHAR(15),
 	@nombres NVARCHAR(25),
@@ -259,7 +253,7 @@ BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
 
-	SELECT @existe = COUNT(Cuentas.Alumnos.identidad) FROM Cuentas.Alumnos WHERE identidad = @identidad;
+	SELECT @existe = COUNT(Cuentas.Alumno.identidad) FROM Cuentas.Alumno WHERE identidad = @identidad;
 	IF (@existe > 0)
 		BEGIN
 			RAISERROR(N'Ya existe Un Alumno con la identidad %s"', 16, 1, @identidad);
@@ -267,7 +261,7 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			INSERT INTO Cuentas.Alumnos(identidad, nombres, apellidos, idGrado)
+			INSERT INTO Cuentas.Alumno(identidad, nombres, apellidos, idGrado)
 				VALUES(	@identidad, @nombres, @apellidos, @idGrado)
 			RETURN 1
 		END
@@ -276,18 +270,18 @@ GO
 
 Create PROCEDURE SP_ModificarAlumno
 (	
-	@id INT,
+	@idAlumno INT,
 	@identidad NVARCHAR(15),
 	@nombres NVARCHAR(25),
 	@apellidos NVARCHAR(25),
 	@idGrado INT,
-	@beca BIT
+	@beca INT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Alumnos.identidad) FROM Cuentas.Alumnos WHERE identidad=@identidad;
+	SELECT @existe = COUNT(Cuentas.Alumno.identidad) FROM Cuentas.Alumno WHERE identidad=@identidad;
 	IF (@existe = 0)
 		BEGIN
 			RAISERROR(N'No existe el Alumno con la identidad %s"', 16, 1, @identidad);
@@ -295,7 +289,7 @@ BEGIN
 		END 	
 	ELSE
 		BEGIN
-			UPDATE Cuentas.Alumnos
+			UPDATE Cuentas.Alumno
 				SET 	
 						nombres = @nombres,
 						apellidos = @apellidos,
@@ -309,22 +303,22 @@ GO
 
 CREATE PROCEDURE SP_EliminarAlumno1
 (
-	@id INT,
-	@estado BIT
+	@idAlumno INT,
+	@estado INT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-			SELECT @existe = COUNT(Cuentas.Alumnos.id) FROM Cuentas.Alumnos WHERE id=@id;
+			SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE idAlumno=@idAlumno;
 		IF (@existe = 0)
 			BEGIN
-				RAISERROR(N'No existe el Alumno con el id %d"', 16, 1, @id);
+				RAISERROR(N'No existe el Alumno con el id %d"', 16, 1, @idAlumno);
 				RETURN 0
 			END 	
 		ELSE
 			BEGIN
-				UPDATE Cuentas.Alumnos SET estado=@estado	WHERE id=@id;
+				UPDATE Cuentas.Alumno SET estado=@estado	WHERE idAlumno=@idAlumno;
 				RETURN 1
 			END
 END
@@ -332,145 +326,384 @@ GO
 
 CREATE PROCEDURE SP_EliminarAlumno
 (
-	@id INT
+	@idAlumno INT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-			SELECT @existe = COUNT(Cuentas.Alumnos.id) FROM Cuentas.Alumnos WHERE id=@id;
+			SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE idAlumno=@idAlumno;
 		IF (@existe = 0)
 			BEGIN
-				RAISERROR(N'No existe el Alumno con el id %d"', 16, 1, @id);
+				RAISERROR(N'No existe el Alumno con el id %d"', 16, 1, @idAlumno);
 				RETURN 0
 			END 	
 		ELSE
 			BEGIN
-				DELETE FROM Cuentas.Alumnos	WHERE id=@id;
+				DELETE FROM Cuentas.Alumno	WHERE idAlumno=@idAlumno;
 				RETURN 1
 			END
 END
 GO
 -----------------------------------------------------------------------------------
---Modulo Insumos
 USE DBICB
 GO
-CREATE PROCEDURE SP_AgregarInsumo
+----------------------------------------------------------
+--Modulo de los Moras
+
+CREATE PROCEDURE SP_AgregarMora
 (
-    @nombre NVARCHAR(100),
-    @costo DECIMAL(4,2),
-	@cantidad INT,
-	@cantidadMinima INT,
-    @idTipoUnidad INT,
-    @descripcion NVARCHAR(200),
-    @idProveedor INT
+	@nombreMora NVARCHAR(30),
+	@valor DECIMAL(6,2)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+	SELECT @existe = COUNT(Cuentas.Mora.idMora) FROM Cuentas.Mora WHERE nombreMora = @nombreMora;
+	IF (@existe > 0)
+		BEGIN
+			RAISERROR(N'Ya existe un Mora con el nombreMora  "%s"', 16, 1, @nombreMora);
+			RETURN 0			
+		END
+	ELSE
+		BEGIN
+			INSERT INTO Cuentas.Mora(nombreMora,valor)
+				VALUES(@nombreMora,@valor)
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_ModificarMora
+(
+	@idMora INT,
+	@nombreMora NVARCHAR(30),
+	@valor DECIMAL(6,2)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+
+	SELECT @existe = COUNT(Cuentas.Mora.idMora) FROM Cuentas.Mora WHERE idMora = @idMora;
+
+	IF (@existe = 0)
+		BEGIN
+			RAISERROR(N'No existe el Mora con el id %d"', 16, 1, @idMora);
+			RETURN 0
+		END 	
+	ELSE
+		BEGIN
+			UPDATE Cuentas.Mora
+				SET 	nombreMora = @nombreMora,
+						valor = @valor
+					WHERE idMora = @idMora;
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarMora1
+(
+	@idMora INT,
+	@estado INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Mora.idMora) FROM Cuentas.Mora WHERE idMora = @idMora;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Mora con el id %d"', 16, 1, @idMora);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				UPDATE Cuentas.Mora SET estado=@estado	WHERE idMora = @idMora;
+				RETURN 1
+			END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarMora
+(
+	@idMora INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Mora.idMora) FROM Cuentas.Mora WHERE idMora = @idMora;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Mora con el id %d"', 16, 1, @idMora);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				DELETE FROM Cuentas.Mora	WHERE idMora = @idMora;
+				RETURN 1
+			END
+END
+GO
+----------------------------------------------------------
+--Modulo de los Descuentos
+
+CREATE PROCEDURE SP_AgregarDescuento
+(
+	@nombreDescuento NVARCHAR(30),
+	@valor DECIMAL(6,2)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+	SELECT @existe = COUNT(Cuentas.Descuento.idDescuento) FROM Cuentas.Descuento WHERE nombreDescuento = @nombreDescuento;
+	IF (@existe > 0)
+		BEGIN
+			RAISERROR(N'Ya existe un Descuento con el nombreDescuento  "%s"', 16, 1, @nombreDescuento);
+			RETURN 0			
+		END
+	ELSE
+		BEGIN
+			INSERT INTO Cuentas.Descuento(nombreDescuento,valor)
+				VALUES(@nombreDescuento,@valor)
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_ModificarDescuento
+(
+	@idDescuento INT,
+	@nombreDescuento NVARCHAR(30),
+	@valor DECIMAL(6,2)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+
+	SELECT @existe = COUNT(Cuentas.Descuento.idDescuento) FROM Cuentas.Descuento WHERE idDescuento = @idDescuento;
+
+	IF (@existe = 0)
+		BEGIN
+			RAISERROR(N'No existe el Descuento con el id %d"', 16, 1, @idDescuento);
+			RETURN 0
+		END 	
+	ELSE
+		BEGIN
+			UPDATE Cuentas.Descuento
+				SET 	nombreDescuento = @nombreDescuento,
+						valor = @valor
+					WHERE idDescuento = @idDescuento;
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarDescuento1
+(
+	@idDescuento INT,
+	@estado INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Descuento.idDescuento) FROM Cuentas.Descuento WHERE idDescuento = @idDescuento;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Descuento con el id %d"', 16, 1, @idDescuento);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				UPDATE Cuentas.Descuento SET estado=@estado	WHERE idDescuento = @idDescuento;
+				RETURN 1
+			END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarDescuento
+(
+	@idDescuento INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Descuento.idDescuento) FROM Cuentas.Descuento WHERE idDescuento = @idDescuento;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Descuento con el id %d"', 16, 1, @idDescuento);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				DELETE FROM Cuentas.Descuento	WHERE idDescuento = @idDescuento;
+				RETURN 1
+			END
+END
+GO
+
+-----------------------------------------------------
+--Tipo Pago
+CREATE PROCEDURE SP_AgregarTipoPago
+(
+    @nombrePago NVARCHAR(30),
+	@valor DECIMAL(6,2),
+    @idGrado INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
 
-    SELECT @existe = COUNT(Cuentas.Insumos.idInsumo) FROM Cuentas.Insumos WHERE nombre = @nombre;
+    SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE nombrePago = @nombrePago;
     IF (@existe > 0)
         BEGIN
-            RAISERROR(N'Ya existe un Insumo con el nombre %s"', 16, 1,@nombre);
+            RAISERROR(N'Ya existe un TipoPago con el nombrePago %s"', 16, 1,@nombrePago);
             RETURN 0
             
         END
     ELSE
         BEGIN
-            INSERT INTO Cuentas.Insumos(nombre, costo, cantidad,cantidadMinima,idTipoUnidad, descripcion, idProveedor)
-                VALUES(@nombre, @costo, @cantidad,@cantidadMinima,@idTipoUnidad, @descripcion, @idProveedor)
+            INSERT INTO Cuentas.TipoPago(nombrePago,valor, idGrado)
+                VALUES(@nombrePago, @valor, @idGrado)
             RETURN 1
         END
 END
 GO
 
-CREATE PROCEDURE SP_ModificarInsumo
+CREATE PROCEDURE SP_ModificarTipoPago
 (
-    @idInsumo INT,
-    @nombre NVARCHAR(100),
-    @costo DECIMAL(4,2),
-	@cantidad INT,
-	@cantidadMinima INT,
-    @idTipoUnidad INT,
-    @descripcion NVARCHAR(200),
-    @idProveedor INT
+    @idTipo INT,
+    @nombrePago NVARCHAR(100),
+    @valor DECIMAL(6,2),
+    @idGrado INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
 
-    SELECT @existe = COUNT(Cuentas.Insumos.IdInsumo) FROM Cuentas.Insumos WHERE IdInsumo = @idInsumo;
+    SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
 
     IF (@existe = 0)
         BEGIN
-            RAISERROR(N'No existe el insumo con el id %d"', 16, 1, @idInsumo);
+            RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipo);
             RETURN 0
         END     
     ELSE
         BEGIN
-            UPDATE Cuentas.Insumos
-                SET     nombre = @nombre,
-                        costo = @costo,
-						cantidad=@cantidad,
-						cantidadMinima=@cantidadMinima ,
-                        idTipoUnidad = @idTipoUnidad,
-                        descripcion = @descripcion,
-                        idProveedor = @idProveedor
-                    WHERE idInsumo = @idInsumo;
+            UPDATE Cuentas.TipoPago
+                SET     nombrePago = @nombrePago,
+                        valor = @valor,
+                        idGrado = @idGrado
+                    WHERE idTipo = @idTipo;
             RETURN 1
         END
 END
 GO
 
-CREATE PROCEDURE SP_EliminarInsumo1
+CREATE PROCEDURE SP_EliminarTipoPago1
 (
-    @idInsumo INT,
-	@estado BIT
+    @idTipo INT,
+	@estado INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
-        SELECT @existe = COUNT(Cuentas.Insumos.IdInsumo) FROM Cuentas.Insumos WHERE IdInsumo = @idInsumo;
+        SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
         IF (@existe = 0)
             BEGIN
-                RAISERROR(N'No existe el insumo con el id %d"', 16, 1, @idInsumo);
+                RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipo);
                 RETURN 0
             END     
         ELSE
             BEGIN
-                UPDATE Cuentas.Insumos SET estado=@estado WHERE idInsumo = @idInsumo;
+                UPDATE Cuentas.TipoPago SET estado=@estado WHERE idTipo = @idTipo;
                 RETURN 1
             END
 END
 GO
 
-CREATE PROCEDURE SP_EliminarInsumo
+CREATE PROCEDURE SP_EliminarTipoPago
 (
-    @idInsumo INT
+    @idTipo INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
-        SELECT @existe = COUNT(Cuentas.Insumos.IdInsumo) FROM Cuentas.Insumos WHERE IdInsumo = @idInsumo;
+        SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
         IF (@existe = 0)
             BEGIN
-                RAISERROR(N'No existe el insumo con el id %d"', 16, 1, @idInsumo);
+                RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipo);
                 RETURN 0
             END     
         ELSE
             BEGIN
-                DELETE FROM Cuentas.Insumos WHERE idInsumo = @idInsumo;
+                DELETE FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
                 RETURN 1
             END
 END
 GO
 --------------------------------------------------------------------------------------------
---Modulo Tipo de Unidad
+/*
+--------------------------------------------------------------------------------------
+--Modulo Pago
+CREATE PROCEDURE SP_AgregarPago
+(
+@idPedido INT,
+@idCaja INT,
+@idUsuario INT,
+@descuento DECIMAL(6,4),
+@exento DECIMAL(6,4),
+@isv15 DECIMAL(6,4),
+@isv18 DECIMAL(6,4),
+@total DECIMAL(8,4),
+@tipoPago INT,
+@subTotal DECIMAL(8,4)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+
+	SELECT @existe = COUNT(Cuentas.Pagos.idPedido) FROM Cuentas.Pagos WHERE idPedido=@idPedido;
+	IF (@existe > 0)
+		BEGIN
+			RAISERROR(N'Ya existe un pedido con el id "%d"', 16, 1,@idPedido);
+			RETURN 0
+			
+		END
+	ELSE
+		BEGIN
+			INSERT INTO Cuentas.Pagos
+			(
+			    idPedido,
+				idCaja,
+			    idUsuario,			    
+			    descuento,
+			    exento,
+			    iva15,
+			    iva18,
+			    total,
+				tipoPago,
+				subTotal
+			)
+			VALUES
+			(  @idPedido,@idCaja,@idUsuario,@descuento,@exento,@isv15,@isv18,@total,@tipoPago,@subTotal
+			    )
+			RETURN 1
+		END
+END
+GO--Modulo Tipo de Unidad
 CREATE PROCEDURE SP_InsertarTipoUnidad
 (
     @descripcion NVARCHAR(100)
@@ -483,7 +716,7 @@ BEGIN
     SELECT @existe = COUNT(Cuentas.TipoUnidad.idTipoUnidad) FROM Cuentas.TipoUnidad WHERE descripcion=@descripcion;
     IF (@existe > 0)
         BEGIN
-            RAISERROR(N'Ya existe un Tipo de Unidad con el nombre "%s"', 16, 1,@descripcion);
+            RAISERROR(N'Ya existe un Tipo de Unidad con el nombrePago "%s"', 16, 1,@descripcion);
             RETURN 0          
         END
     ELSE
@@ -577,7 +810,7 @@ BEGIN
 	SELECT @existe = COUNT(Cuentas.Mesas.estado) FROM Cuentas.Mesas WHERE estado=@estado;
 	IF (@existe > 0)
 		BEGIN
-			RAISERROR(N'Ya existe una area con el nombre "%s"', 16, 1,@estado);
+			RAISERROR(N'Ya existe una area con el nombrePago "%s"', 16, 1,@estado);
 			RETURN 0
 		END
 	ELSE
@@ -724,7 +957,7 @@ GO
 CREATE PROCEDURE SP_AgregarDetallePedido
 (
 	@idPedido INT,
-    @idInventario INT,
+    @idPago INT,
     @cantidad INT,
 	@subtotal DECIMAL
 )
@@ -733,12 +966,12 @@ BEGIN
             INSERT INTO Cuentas.DetallePedidos
             (
                 idPedido,
-                idInventario,
+                idPago,
                 cantidad,
 				subTotal
             )
             VALUES
-            ( @idPedido,@idInventario,@cantidad,@subtotal)
+            ( @idPedido,@idPago,@cantidad,@subtotal)
                 
             RETURN 1
         --END
@@ -792,466 +1025,139 @@ BEGIN
                 RETURN 1
             END
 END
-GO
---------------------------------------------------------------------------------------
---Modulo Factura
-CREATE PROCEDURE SP_AgregarFactura
-(
-@idPedido INT,
-@idCaja INT,
-@idUsuario INT,
-@descuento DECIMAL(6,4),
-@exento DECIMAL(6,4),
-@isv15 DECIMAL(6,4),
-@isv18 DECIMAL(6,4),
-@total DECIMAL(8,4),
-@tipoPago INT,
-@subTotal DECIMAL(8,4)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.Facturas.idPedido) FROM Cuentas.Facturas WHERE idPedido=@idPedido;
-	IF (@existe > 0)
-		BEGIN
-			RAISERROR(N'Ya existe un pedido con el id "%d"', 16, 1,@idPedido);
-			RETURN 0
-			
-		END
-	ELSE
-		BEGIN
-			INSERT INTO Cuentas.Facturas
-			(
-			    idPedido,
-				idCaja,
-			    idUsuario,			    
-			    descuento,
-			    exento,
-			    iva15,
-			    iva18,
-			    total,
-				tipoPago,
-				subTotal
-			)
-			VALUES
-			(  @idPedido,@idCaja,@idUsuario,@descuento,@exento,@isv15,@isv18,@total,@tipoPago,@subTotal
-			    )
-			RETURN 1
-		END
-END
-GO
+GO*/
 -------------------------------------------------------------------------------------------------------------------
---Modulo Inventario 
-CREATE PROCEDURE SP_AgregarInventario
+--Modulo Pago 
+CREATE PROCEDURE SP_AgregarPago
 (
-	@descripcion NVARCHAR(100),
-	@costo DECIMAL(8,2),
-	@precioVenta DECIMAL(8,2),
-	@cantidad DECIMAL(8,2),
-	@cantidadMinima DECIMAL(8,2),
-	@idCategoria INT,
-	@idTipoProducto INT,
-	@idProveedor INT
+	@recibo VARCHAR(15),
+	@idAlumno INT,
+	@idTipo INT,
+	@idDescuento INT,
+    @idMora INT,
+	@idUsuario INT,
+	@pagoUno DECIMAL(6,2),
+	@PagoDos DECIMAL(6,2),
+	@subTotal DECIMAL (8,2),
+	@total DECIMAL (8,2),
+	@fechaPago DATE 
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Inventario.idInventario) FROM Cuentas.Inventario WHERE descripcion = @descripcion;
+	SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE recibo = @recibo;
 	IF (@existe > 0)
 		BEGIN
-			RAISERROR(N'Ya existe un Insumo con el nombre %s"', 16, 1,@descripcion);
+			RAISERROR(N'Ya existe un Pago con el recibo %s"', 16, 1,@recibo);
 			RETURN 0
 		END
 	ELSE
 		BEGIN
-			INSERT INTO Cuentas.Inventario(descripcion, costo, precioVenta, cantidad,cantidadMinima,idCategoria, idTipoProducto, idProveedor)
-				VALUES(@descripcion, @costo, @precioVenta, @cantidad,@cantidadMinima,@idCategoria, @idTipoProducto, @idProveedor)
+			INSERT INTO Cuentas.Pago(recibo, idAlumno, idTipo, idDescuento, idMora,idUsuario,pagoUno, pagoDos,subTotal,total, fechaPago)
+				VALUES(@recibo,@idAlumno,@idTipo,@idDescuento,@idMora,@idUsuario,@pagoUno,@PagoDos,@subTotal,@total,@fechaPago)
 			RETURN 1
 		END
 END
 GO
 
-CREATE PROCEDURE SP_ModificarInventario
+CREATE PROCEDURE SP_ModificarPago
 (
-	@idInventario INT,
-	@descripcion NVARCHAR(100),
-	@costo DECIMAL(4,2),
-	@precioVenta DECIMAL(4,2),
-	@cantidad DECIMAL(4,2),
-	@cantidadMinima DECIMAL(4,2),
-	@idCategoria INT,
-	@idTipoProducto INT,
-	@idProveedor INT
+	@idPago INT,
+	@recibo VARCHAR(15),
+	@idAlumno INT,
+	@idTipo INT,
+	@idDescuento INT,
+    @idMora INT,
+	@idUsuario INT,
+	@pagoUno DECIMAL(6,2),
+	@PagoDos DECIMAL(6,2),
+	@subTotal DECIMAL (8,2),
+	@total DECIMAL (8,2),
+	@fechaPago DATE 
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
 
-	SELECT @existe = COUNT(Cuentas.Inventario.idInventario) FROM Cuentas.Inventario WHERE idInventario = @idInventario;
+	SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
 
 	IF (@existe = 0)
 		BEGIN
-			RAISERROR(N'No existe el Producto con el id %d"', 16, 1, @idInventario);
+			RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
 			RETURN 0
 		END 	
 	ELSE
 		BEGIN
-			UPDATE Cuentas.Inventario
-				SET 	descripcion = @descripcion,
-						costo = @costo,
-						precioVenta = @precioVenta,
-						cantidad = @cantidad,
-						cantidadMinima = @cantidadMinima,
-						idCategoria = @idCategoria,
-						idTipoProducto = @idTipoProducto,
-						idProveedor = @idProveedor
-					WHERE idInventario = @idInventario;
+			UPDATE Cuentas.Pago
+				SET 	recibo = @recibo,
+						idAlumno = @idAlumno,
+						idTipo = @idTipo,
+						idDescuento = @idDescuento,
+						idMora = @idMora,
+						idUsuario = @idUsuario,
+						pagoUno = @pagoUno,
+						pagoDos = @PagoDos,
+						subTotal = @subTotal,
+						total = @total,
+						fechaPago = @fechaPago
+					WHERE idPago = @idPago;
 			RETURN 1
 		END
 END
 GO
 
-CREATE PROCEDURE SP_EliminarInventario1
+CREATE PROCEDURE SP_EliminarPago1
 (
-	@idInventario INT,
+	@idPago INT,
 	@estado BIT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Inventario.idInventario) FROM Cuentas.Inventario WHERE idInventario = @idInventario;
+		SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
 		IF (@existe = 0)
 			BEGIN
-				RAISERROR(N'No existe el Producto con el id %d"', 16, 1, @idInventario);
+				RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
 				RETURN 0
 			END 	
 		ELSE
 			BEGIN
-				UPDATE Cuentas.Inventario SET estado=@estado WHERE idInventario = @idInventario;
+				UPDATE Cuentas.Pago SET estado=@estado WHERE idPago = @idPago;
 				RETURN 1
 			END
 END
 GO
 
-CREATE PROCEDURE SP_EliminarInventario
+CREATE PROCEDURE SP_EliminarPago
 (
-	@idInventario INT
+	@idPago INT
 )
 AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Inventario.idInventario) FROM Cuentas.Inventario WHERE idInventario = @idInventario;
+		SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
 		IF (@existe = 0)
 			BEGIN
-				RAISERROR(N'No existe el Producto con el id %d"', 16, 1, @idInventario);
+				RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
 				RETURN 0
 			END 	
 		ELSE
 			BEGIN
-				DELETE FROM Cuentas.Inventario WHERE idInventario = @idInventario;
+				DELETE FROM Cuentas.Pago WHERE idPago = @idPago;
 				RETURN 1
 			END
 END
 GO
 --------------------------------------------------------------------------------------------------------
--- Modulo insumo Producto
 
-
-CREATE PROCEDURE SP_AgregarInsumosProductos
-(
-	@idInsumo INT,
-	@idInventario INT,
-	@cantidad DECIMAL(8,2)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.InsumosProductos.idInsumoProducto) FROM Cuentas.InsumosProductos WHERE idInsumo = @idInsumo AND idInventario = @idInventario;
-	IF (@existe > 0)
-		BEGIN
-			RAISERROR(N'Ya existe ese Insumo', 16, 1);
-			RETURN 0
-			
-		END
-	ELSE
-		BEGIN
-			INSERT INTO Cuentas.InsumosProductos(idInsumo, idInventario,cantidad)
-				VALUES(@idInsumo, @idInventario,@cantidad)
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarInsumosProductos
-(
-	@idInsumoProducto INT,
-	@idInsumo INT,
-	@idInventario INT,
-	@cantidad DECIMAL(8,2)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.InsumosProductos.idInsumoProducto) FROM Cuentas.InsumosProductos WHERE idInsumoProducto = @idInsumoProducto;
-
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe el insumo en el producto con el id %d"', 16, 1, @idInsumoProducto);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			UPDATE Cuentas.InsumosProductos
-				SET 	idInsumo = @idInsumo,
-						idInventario = @idInventario,
-						cantidad = @cantidad
-					WHERE idInsumoProducto = @idInsumoProducto;
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarInsumosProductos
-(
-	@idInsumoProducto INT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.InsumosProductos.idInsumoProducto) FROM Cuentas.InsumosProductos WHERE idInsumoProducto = @idInsumoProducto;
-		IF (@existe = 0)
-			BEGIN
-				RAISERROR(N'No existe el insumo con el id %d"', 16, 1, @idInsumoProducto);
-				RETURN 0
-			END 	
-		ELSE
-			BEGIN
-				UPDATE Cuentas.InsumosProductos SET estado=0 WHERE idInsumoProducto = @idInsumoProducto;
-				RETURN 1
-			END
-END
-GO
--------------------------------------------------
---Modulo Categoria de Producto
-CREATE PROCEDURE SP_AgregarCategoriaProducto
-(
-	@descripcion NVARCHAR(100)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.CategoriaProducto.idCategoria) FROM Cuentas.CategoriaProducto WHERE descripcion=@descripcion;
-	IF (@existe > 0)
-		BEGIN
-			RAISERROR(N'Ya existe un Tipo de Unidad con el nombre "%s"', 16, 1,@descripcion);
-			RETURN 0
-			
-		END
-	ELSE
-		BEGIN
-			INSERT INTO Cuentas.CategoriaProducto(descripcion)
-				VALUES(@descripcion)
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarCategoriaProducto
-(
-	@idCategoriaProducto INT,
-	@descripcion NVARCHAR(100)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.CategoriaProducto.idCategoria) FROM Cuentas.CategoriaProducto WHERE idCategoria=@idCategoriaProducto;
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idCategoriaProducto);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			UPDATE Cuentas.CategoriaProducto
-				SET 	descripcion = @descripcion
-					WHERE idCategoria = @idCategoriaProducto;
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarCategoriaProducto1
-(
-	@idCategoriaProducto INT,
-	@estado BIT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.CategoriaProducto.idCategoria) FROM Cuentas.CategoriaProducto WHERE idCategoria=@idCategoriaProducto;
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idCategoriaProducto);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			UPDATE Cuentas.CategoriaProducto SET estado=@estado WHERE idCategoria = @idCategoriaProducto;
-			RETURN 1
-		END
-END
-GO
-CREATE PROCEDURE SP_EliminarCategoriaProducto
-(
-	@idCategoriaProducto INT
-
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.CategoriaProducto.idCategoria) FROM Cuentas.CategoriaProducto WHERE idCategoria=@idCategoriaProducto;
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idCategoriaProducto);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			DELETE FROM Cuentas.CategoriaProducto WHERE idCategoria = @idCategoriaProducto;
-			RETURN 1
-		END
-END
-GO
--- Modulo caja
--- INSERTAR datos en la APERTURA de CAJA
---CREATE PROCEDURE SP_Agregar_AperturaCaja
---(
---	@Apertura decimal(18,0),
---	@idDetalleCaja int
---)
---AS
---BEGIN
---	INSERT INTO Cuentas.Caja (apertura, idDetalleCaja, fecha)
---		VALUES (@Apertura, @idDetalleCaja, GETDATE())
---END
---GO
-
----- INSERTAR datos en el CIERRE de CAJA
---CREATE PROCEDURE SP_Agregar_CierreCaja
---(
---	@Cierre decimal(18,0),
---	@idDetalleCaja int,
---	@Dolares decimal(18,0),
---	@POS decimal(18,0),
---	@Fiveh int,
---	@Hundred int,
---	@Fifty int,
---	@Twenty int,
---	@Ten int,
---	@Five int,
---	@Two int,
---	@One int
---)
---AS
---BEGIN
---	INSERT INTO Cuentas.Caja (cierre, dolares, POS, quinientos, cien, cincuenta,
---								  veinte, diez, cinco, dos, uno, fecha, idDetalleCaja)
---		VALUES (@Cierre, @Dolares, @POS, @Fiveh, @Hundred, @Fifty, @Twenty, @Ten, 
---				@Five, @Two, @One, GETDATE(), @idDetalleCaja)
---END
---GO
----------------------------------------------------------
---Modulo Tipo de Producto
-CREATE PROCEDURE SP_InsertarTipoProducto
-(
-    @nombre NVARCHAR(100)
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-
-    SELECT @existe = COUNT(Cuentas.TipoProducto.idTipoProducto) FROM Cuentas.TipoProducto WHERE nombre=@nombre;
-    IF (@existe > 0)
-        BEGIN
-            RAISERROR(N'Ya existe un Tipo de Unidad con el nombre "%s"', 16, 1,@nombre);
-            RETURN 0          
-        END
-    ELSE
-        BEGIN
-            INSERT INTO Cuentas.TipoProducto(nombre)
-                VALUES(@nombre)
-            RETURN 1
-        END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarTipoProducto
-(
-    @idTipoProducto INT,
-    @nombre NVARCHAR(100)
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-    SELECT @existe = COUNT(Cuentas.TipoProducto.idTipoProducto) FROM Cuentas.TipoProducto WHERE idTipoProducto=@idTipoProducto;
-    IF (@existe = 0)
-        BEGIN
-            RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idTipoProducto);
-            RETURN 0
-        END     
-    ELSE
-        BEGIN
-            UPDATE Cuentas.TipoProducto
-                SET     nombre = @nombre
-                    WHERE idTipoProducto = @idTipoProducto;
-            RETURN 1
-        END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarTipoProducto
-(
-    @idTipoProducto INT
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-    SELECT @existe = COUNT(Cuentas.TipoProducto.idTipoProducto) FROM Cuentas.TipoProducto WHERE idTipoProducto=@idTipoProducto;
-    IF (@existe = 0)
-        BEGIN
-            RAISERROR(N'No existe ningún Tipo de Producto con el id "%d"', 16, 1, @idTipoProducto);
-            RETURN 0
-        END     
-    ELSE
-        BEGIN
-            UPDATE Cuentas.TipoProducto SET estado=0 WHERE idTipoProducto = @idTipoProducto;
-            RETURN 1
-        END
-END
-GO
 /*
 ----------------------------------------------------------------------------------------------------------------
---SP para actualizar el stock dela Tabla Inventario.Articulos 
-CREATE PROCEDURE Inventario.SPActualizarArticulos(
+--SP para actualizar el stock dela Tabla Pago.Articulos 
+CREATE PROCEDURE Pago.SPActualizarArticulos(
 	@CodigoArticulo VARCHAR(15),
 	@Stock INT
   )
@@ -1260,7 +1166,7 @@ BEGIN
 	DECLARE @Codigo INT
 	DECLARE @CodigoProducto VARCHAR(15) = @CodigoArticulo
 
-	EXEC @Codigo = Inventario.SPEstadoDelArticulo @CodigoProducto
+	EXEC @Codigo = Pago.SPEstadoDelArticulo @CodigoProducto
 	IF @Codigo = 1
 		PRINT 'Debe ingresar el codigo del Articulo'
 	ELSE
@@ -1274,24 +1180,24 @@ BEGIN
 					PRINT 'Producto encontrado'
 
 	DECLARE @Stock1 INT 
-	SELECT @Stock1 = Stock FROM Inventario.Articulos
+	SELECT @Stock1 = Stock FROM Pago.Articulos
 			WHERE Codigo = @CodigoProducto
 
-UPDATE Inventario.Articulos
+UPDATE Pago.Articulos
 SET Stock = @Stock1 + @Stock
-FROM Inventario.Articulos
+FROM Pago.Articulos
 WHERE Codigo = @CodigoProducto
 
 END
 --Probando con valores Incorrectos
-EXEC Inventario.SPActualizarArticulos '3 154141 194108';
+EXEC Pago.SPActualizarArticulos '3 154141 194108';
 --Probando Valores Correctos
-EXEC Inventario.SPActualizarArticulos '3 154141 194108',4;
+EXEC Pago.SPActualizarArticulos '3 154141 194108',4;
 GO
 ------------------------------------------------------------------------------------------------
 	-- Creación de un Stored Procedure que se encarga de ingresar
-	-- valores a la tabla Factura 
-CREATE PROCEDURE SP_sFacturas(
+	-- valores a la tabla Pago 
+CREATE PROCEDURE SP_sPagos(
 	@IdCliente CHAR(15)=NULL ,
 	@IdVendedor INT = NULL
 )
@@ -1310,7 +1216,7 @@ BEGIN
 		DECLARE @ImporteISV DECIMAL(10,2) = 0
 		DECLARE @Impuesto DECIMAL(10,2) = 0
 		DECLARE @Total DECIMAL(10,2) = 0
-		INSERT INTO Facturacion.Factura(IdVendedor,IdCliente, ImporteISV,Impuesto,Total )
+		INSERT INTO Pagocion.Pago(IdVendedor,IdCliente, ImporteISV,Impuesto,Total )
 				VALUES(@Vendedor,@Cliente,@ImporteISV,@Impuesto,@Total)
 			RETURN 1
 		END
@@ -1321,8 +1227,8 @@ GO
 
 ---------------------------------------------------------------------------------------
     -- Creación de un Stored Procedure que se encarga de ingresar
-	-- valores a la tabla Detalle Factura 
-CREATE PROCEDURE Facturacion.SPDetalleFacturas(
+	-- valores a la tabla Detalle Pago 
+CREATE PROCEDURE Pagocion.SPDetallePagos(
 	@CodigoArticulo VARCHAR (15) = NULL, 
 	@CantidadArticulo INT = NULL
 )
@@ -1335,14 +1241,14 @@ BEGIN
 		END
 	ELSE
 --Declaramos las variables a utilizar
-	DECLARE @NumeroFactura INT
+	DECLARE @NumeroPago INT
 	DECLARE @Codigo INT
 	DECLARE @CodigoArticulo1 VARCHAR(15) = @CodigoArticulo
 	DECLARE @PrecioUnitario DECIMAL (10,2)
 	DECLARE @SubTotal DECIMAL (10,2)
 
 -- Verificar Codigo de Producto
-	EXEC @Codigo = Inventario.SPEstadoDelArticulo @CodigoArticulo1
+	EXEC @Codigo = Pago.SPEstadoDelArticulo @CodigoArticulo1
 	IF @Codigo = 1
 		PRINT 'Debe ingresar el codigo del Articulo'
 	ELSE
@@ -1355,33 +1261,33 @@ BEGIN
 				IF @Codigo = 0
 					PRINT 'Producto encontrado'
 --BUSCANDO VALORES
-		SET @NumeroFactura = (SELECT MAX(Numero) FROM Facturacion.Factura)
-		SELECT @PrecioUnitario = PrecioVenta FROM Inventario.Articulos
+		SET @NumeroPago = (SELECT MAX(Numero) FROM Pagocion.Pago)
+		SELECT @PrecioUnitario = PrecioVenta FROM Pago.Articulos
 		WHERE Codigo = @CodigoArticulo
 		SET @SubTotal = @PrecioUnitario * @CantidadArticulo
 		DECLARE @Impuesto DECIMAL(10,2)
 		DECLARE @Importe DECIMAL(10,2)
 --Ejecutamos los Stored Procedure de calculo de impuesto e importe
-		EXEC Facturacion.SPCalculoImporte @CodigoArticulo,@SubTotal,@Importe OUTPUT
-		EXEC Facturacion.SPExcentoImpuesto @CodigoArticulo,@Importe,@Impuesto OUTPUT
---Insertamos los datos en la tabla Detalle Factura
-		INSERT INTO Facturacion.DetalleFactura(NumeroFactura,CodigoArticulo,CantidadArticulo,PrecioUnitario,Subtotal) 
-			VALUES (@NumeroFactura,@CodigoArticulo1,@CantidadArticulo,@PrecioUnitario,@SubTotal)
+		EXEC Pagocion.SPCalculoImporte @CodigoArticulo,@SubTotal,@Importe OUTPUT
+		EXEC Pagocion.SPExcentoImpuesto @CodigoArticulo,@Importe,@Impuesto OUTPUT
+--Insertamos los datos en la tabla Detalle Pago
+		INSERT INTO Pagocion.DetallePago(NumeroPago,CodigoArticulo,CantidadArticulo,PrecioUnitario,Subtotal) 
+			VALUES (@NumeroPago,@CodigoArticulo1,@CantidadArticulo,@PrecioUnitario,@SubTotal)
 		
-				IF ((SELECT Stock FROM Inventario.Articulos 
-					WHERE Codigo = @CodigoArticulo1)<=(SELECT CantidadMinima FROM Inventario.Articulos
+				IF ((SELECT Stock FROM Pago.Articulos 
+					WHERE Codigo = @CodigoArticulo1)<=(SELECT CantidadMinima FROM Pago.Articulos
 					WHERE Codigo = @CodigoArticulo1))
 				BEGIN
-					PRINT 'Se ha alcanzado el inventario minimo para el producto '+ @CodigoArticulo1 +'. Considere contactar a su proveedor.'
+					PRINT 'Se ha alcanzado el Pago minimo para el producto '+ @CodigoArticulo1 +'. Considere contactar a su Grado.'
 				END
---Actualizamos nuestro encabezado en la Tabla Factura para los campos
+--Actualizamos nuestro encabezado en la Tabla Pago para los campos
 --IMPUESTO,IMPORTEISV,TOTAL		
-		UPDATE Facturacion.Factura
+		UPDATE Pagocion.Pago
 		SET ImporteISV=@Importe,Impuesto = @Impuesto, Total = @SubTotal
-		FROM Facturacion.Factura
-		INNER JOIN Facturacion.DetalleFactura
-		ON @NumeroFactura=Numero
-		WHERE Numero= @NumeroFactura
+		FROM Pagocion.Pago
+		INNER JOIN Pagocion.DetallePago
+		ON @NumeroPago=Numero
+		WHERE Numero= @NumeroPago
 END
 GO
 */
