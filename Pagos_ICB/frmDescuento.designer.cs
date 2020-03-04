@@ -36,6 +36,8 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgvDescuento = new System.Windows.Forms.DataGridView();
             this.grpDescuento = new System.Windows.Forms.GroupBox();
+            this.txtValor = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblId = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtValor = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDescuento)).BeginInit();
             this.grpDescuento.SuspendLayout();
@@ -145,6 +145,22 @@
             this.grpDescuento.TabIndex = 37;
             this.grpDescuento.TabStop = false;
             // 
+            // txtValor
+            // 
+            this.txtValor.Location = new System.Drawing.Point(116, 95);
+            this.txtValor.Name = "txtValor";
+            this.txtValor.Size = new System.Drawing.Size(213, 22);
+            this.txtValor.TabIndex = 28;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 16);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Valor";
+            // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(116, 57);
@@ -157,7 +173,7 @@
             this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(116, 21);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(112, 22);
+            this.txtId.Size = new System.Drawing.Size(213, 22);
             this.txtId.TabIndex = 24;
             // 
             // lblId
@@ -219,22 +235,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
-            // 
-            // txtValor
-            // 
-            this.txtValor.Location = new System.Drawing.Point(116, 95);
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(213, 22);
-            this.txtValor.TabIndex = 28;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 16);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Valor";
             // 
             // frmDescuento
             // 

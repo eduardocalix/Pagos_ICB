@@ -10,27 +10,27 @@ using System.Windows.Forms;
 
 namespace Pagos_ICB
 {
-    public partial class frmMora : Form
+    public partial class frmGrado : Form
     {
-        public frmMora()
+        public frmGrado()
         {
             InitializeComponent();
         }
 
 
 
-        private void frmMora_Load(object sender, EventArgs e)
+        private void frmGrado_Load(object sender, EventArgs e)
         {
 
-            CargarDGWMora();
+            CargarDGWGrado();
             ResetFormulario();
         }
         private int id = 0;
-        private void CargarDGWMora()
+        private void CargarDGWGrado()
         {
             try
             {
-                dgvMora.DataSource = Clases.Mora.GetDataView(1);
+                dgvGrado.DataSource = Clases.Grado.GetDataView(1);
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace Pagos_ICB
             }
         }
 
-        private void dgwMoraEstilo(DataGridView dgw)
+        private void dgwGradoEstilo(DataGridView dgw)
         {
             dgw.DefaultCellStyle.BackColor = Color.LightBlue;
             dgw.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
@@ -51,11 +51,11 @@ namespace Pagos_ICB
         {
             try
             {
-                Clases.ICB.AgregarMora
+                Clases.ICB.AgregarGrado
                     (
-                        txtDescripcion.Text
+                        txtNombre.Text
                     );
-                CargarDGWMora();
+                CargarDGWGrado();
 
             }
             catch (Exception ex)
@@ -72,10 +72,10 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.ModificarMora
+                    Clases.ICB.ModificarGrado
                         (
                             this.id,
-                            txtDescripcion.Text
+                            txtNombre.Text
                         );
                     ResetFormulario();
                 }
@@ -88,19 +88,19 @@ namespace Pagos_ICB
             }
         }
 
-        private void dgvMora_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvGrado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Clases.Mora Mora = new Clases.Mora();
-            Mora.ObtenerMora(
+            Clases.Grado Grado = new Clases.Grado();
+            Grado.ObtenerGrado(
                 Convert.ToInt32(
-                    dgvMora.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    dgvGrado.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
-            dgvMora.Select();
-            this.id = Mora.Id;
+            dgvGrado.Select();
+            this.id = Grado.Id;
 
-            txtId.Text = Mora.Id.ToString();
-            txtDescripcion.Text = Mora.Descripcion;
+            txtId.Text = Grado.Id.ToString();
+            txtNombre.Text = Grado.Descripcion;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
@@ -112,18 +112,18 @@ namespace Pagos_ICB
         private void ResetFormulario()
         {
             txtId.Text = "";
-            txtDescripcion.Text = "";
-            CargarDGWMora();
-            dgwMoraEstilo(dgvMora);
+            txtNombre.Text = "";
+            CargarDGWGrado();
+            dgwGradoEstilo(dgvGrado);
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
 
-            txtDescripcion.Enabled = true;
+            txtNombre.Enabled = true;
             this.id = 0;
-            txtDescripcion.Focus();
+            txtNombre.Focus();
 
         }
 
@@ -134,12 +134,12 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtNombre.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarMora(this.id);
+                    Clases.ICB.EliminarGrado(this.id);
                 }
                 catch (Exception ex)
                 {
@@ -158,17 +158,7 @@ namespace Pagos_ICB
             this.Close();
         }
 
-        private void frmMora_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnNuevo_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSalir_Click_1(object sender, EventArgs e)
         {
 
         }

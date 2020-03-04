@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace Restaurante
+namespace Pagos_ICB
 {
-    public partial class frmProveedores : Form
+    public partial class frmAlumnos : Form
     {
-        public frmProveedores()
+        public frmAlumnos()
         {
             InitializeComponent();
         }
-        private void frmProveedores_Load(object sender, EventArgs e)
+        private void frmAlumnos_Load(object sender, EventArgs e)
         {
-            CargarDGWProveedor();
+            CargarDGWAlumno();
         }
         private int id = 0;
-        private void CargarDGWProveedor()
+        private void CargarDGWAlumno()
         {
             try
             {
-                dgvAlumnos.DataSource = Clases.Proveedores.GetDataView(1);
+                dgvAlumnos.DataSource = Clases.Alumnos.GetDataView(1);
             }
             catch (Exception ex)
             {
@@ -34,7 +34,7 @@ namespace Restaurante
             }
         }
 
-        private void dgwProveedorEstilo(DataGridView dgw)
+        private void dgwAlumnostilo(DataGridView dgw)
         {
             dgw.DefaultCellStyle.BackColor = Color.LightBlue;
             dgw.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
@@ -47,12 +47,12 @@ namespace Restaurante
         {
             try
             {
-                Clases.Restaurante.AgregarProveedor(
+                Clases.ICB.AgregarAlumno(
                     txtNombre.Text,
                     txtTelefono.Text,
                     txtDireccion.Text
                     );
-                CargarDGWProveedor();
+                CargarDGWAlumno();
             }
             catch (Exception ex)
             {
@@ -62,13 +62,13 @@ namespace Restaurante
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar al proveedor", "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de modificar al Alumno", "Modificar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
 
                 try
                 {
-                    Clases.Restaurante.ModificarProveedor(
+                    Clases.ICB.ModificarAlumno(
                    Convert.ToInt32(this.id),
                     txtNombre.Text,
                     txtTelefono.Text,
@@ -87,13 +87,13 @@ namespace Restaurante
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Proveedor" + txtNombre.Text, "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Alumno" + txtNombre.Text, "Modificar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
 
                 try
                 {
-                    Clases.Restaurante.EliminarProveedor(this.id);
+                    Clases.ICB.EliminarAlumno(this.id);
                 }
                 catch (Exception ex)
                 {
@@ -106,19 +106,19 @@ namespace Restaurante
             }
         }
 
-        private void dgvProveedores_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Clases.Proveedores proveedor = new Clases.Proveedores();
-            proveedor.ObtenerProveedor(
+            Clases.Alumnos Alumno = new Clases.Alumnos();
+            Alumno.ObtenerAlumno(
                 Convert.ToInt32(
                     dgvAlumnos.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
             dgvAlumnos.Select();
-            this.id = proveedor.Id;
-            txtNombre.Text = proveedor.Nombre;
-            txtTelefono.Text = proveedor.Telefono;
-            txtDireccion.Text = proveedor.Direccion;
+            this.id = Alumno.Id;
+            txtNombre.Text = Alumno.Nombre;
+            txtTelefono.Text = Alumno.Telefono;
+            txtDireccion.Text = Alumno.Direccion;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
@@ -126,7 +126,7 @@ namespace Restaurante
             btnEliminar.Enabled = true;
         }
 
-        private void dgvProveedores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvAlumnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
@@ -140,8 +140,8 @@ namespace Restaurante
             txtNombre.Text = "";
             txtTelefono.Text = "";
             txtDireccion.Text = "";
-            CargarDGWProveedor();
-            dgwProveedorEstilo(dgvAlumnos);
+            CargarDGWAlumno();
+            dgwAlumnostilo(dgvAlumnos);
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;
@@ -164,6 +164,9 @@ namespace Restaurante
             ResetFormulario();
         }
 
+        private void lblDireccion_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Restaurante
+﻿namespace Pagos_ICB
 {
-    partial class frmProveedores
+    partial class frmAlumnos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProveedores));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlumnos));
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.grpProveedores = new System.Windows.Forms.GroupBox();
+            this.txtIdentidad = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.MaskedTextBox();
-            this.lblDireccion = new System.Windows.Forms.Label();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.lblGrado = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -49,6 +50,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cbGrado = new System.Windows.Forms.ComboBox();
+            this.cbBeca = new System.Windows.Forms.ComboBox();
+            this.lblBeca = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
             this.grpProveedores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
@@ -122,100 +126,113 @@
             // 
             // grpProveedores
             // 
+            this.grpProveedores.Controls.Add(this.cbBeca);
+            this.grpProveedores.Controls.Add(this.lblBeca);
+            this.grpProveedores.Controls.Add(this.cbGrado);
+            this.grpProveedores.Controls.Add(this.txtIdentidad);
+            this.grpProveedores.Controls.Add(this.label2);
             this.grpProveedores.Controls.Add(this.txtId);
             this.grpProveedores.Controls.Add(this.txtNombre);
             this.grpProveedores.Controls.Add(this.txtTelefono);
-            this.grpProveedores.Controls.Add(this.lblDireccion);
-            this.grpProveedores.Controls.Add(this.txtDireccion);
+            this.grpProveedores.Controls.Add(this.lblGrado);
             this.grpProveedores.Controls.Add(this.lblTelefono);
             this.grpProveedores.Controls.Add(this.lblId);
             this.grpProveedores.Controls.Add(this.lblNombre);
             this.grpProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.grpProveedores.Location = new System.Drawing.Point(33, 88);
             this.grpProveedores.Name = "grpProveedores";
-            this.grpProveedores.Size = new System.Drawing.Size(430, 168);
+            this.grpProveedores.Size = new System.Drawing.Size(430, 208);
             this.grpProveedores.TabIndex = 20;
             this.grpProveedores.TabStop = false;
+            // 
+            // txtIdentidad
+            // 
+            this.txtIdentidad.Location = new System.Drawing.Point(153, 40);
+            this.txtIdentidad.Mask = "9999-9999-99999";
+            this.txtIdentidad.Name = "txtIdentidad";
+            this.txtIdentidad.Size = new System.Drawing.Size(266, 23);
+            this.txtIdentidad.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(28, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 15);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Identidad";
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(153, 14);
+            this.txtId.Location = new System.Drawing.Point(153, 12);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(266, 23);
             this.txtId.TabIndex = 4;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(153, 43);
+            this.txtNombre.Location = new System.Drawing.Point(153, 72);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(266, 23);
             this.txtNombre.TabIndex = 5;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(153, 72);
-            this.txtTelefono.Mask = "9999-9999";
+            this.txtTelefono.Location = new System.Drawing.Point(153, 108);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(266, 23);
             this.txtTelefono.TabIndex = 6;
             // 
-            // lblDireccion
+            // lblGrado
             // 
-            this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireccion.Location = new System.Drawing.Point(12, 127);
-            this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(65, 15);
-            this.lblDireccion.TabIndex = 11;
-            this.lblDireccion.Text = "Direccion";
-            // 
-            // txtDireccion
-            // 
-            this.txtDireccion.Location = new System.Drawing.Point(153, 104);
-            this.txtDireccion.Multiline = true;
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(266, 62);
-            this.txtDireccion.TabIndex = 7;
+            this.lblGrado.AutoSize = true;
+            this.lblGrado.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrado.Location = new System.Drawing.Point(29, 147);
+            this.lblGrado.Name = "lblGrado";
+            this.lblGrado.Size = new System.Drawing.Size(47, 15);
+            this.lblGrado.TabIndex = 11;
+            this.lblGrado.Text = "Grado";
+            this.lblGrado.Click += new System.EventHandler(this.lblDireccion_Click);
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.Location = new System.Drawing.Point(12, 75);
+            this.lblTelefono.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTelefono.Location = new System.Drawing.Point(29, 112);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(62, 15);
+            this.lblTelefono.Size = new System.Drawing.Size(70, 15);
             this.lblTelefono.TabIndex = 10;
-            this.lblTelefono.Text = "Teléfono";
+            this.lblTelefono.Text = "Apellidos";
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(12, 17);
+            this.lblId.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Location = new System.Drawing.Point(29, 16);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(51, 15);
+            this.lblId.Size = new System.Drawing.Size(53, 15);
             this.lblId.TabIndex = 8;
             this.lblId.Text = "Código";
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Raleway", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(12, 46);
+            this.lblNombre.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(29, 76);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(58, 15);
+            this.lblNombre.Size = new System.Drawing.Size(65, 15);
             this.lblNombre.TabIndex = 9;
-            this.lblNombre.Text = "Nombre";
+            this.lblNombre.Text = "Nombres";
             // 
             // dgvAlumnos
             // 
             this.dgvAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAlumnos.Location = new System.Drawing.Point(20, 268);
+            this.dgvAlumnos.Location = new System.Drawing.Point(20, 320);
             this.dgvAlumnos.Name = "dgvAlumnos";
-            this.dgvAlumnos.Size = new System.Drawing.Size(606, 148);
+            this.dgvAlumnos.Size = new System.Drawing.Size(606, 115);
             this.dgvAlumnos.TabIndex = 19;
-            this.dgvAlumnos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProveedores_CellClick);
             // 
             // panel1
             // 
@@ -269,7 +286,33 @@
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
-            // frmProveedores
+            // cbGrado
+            // 
+            this.cbGrado.FormattingEnabled = true;
+            this.cbGrado.Location = new System.Drawing.Point(153, 143);
+            this.cbGrado.Name = "cbGrado";
+            this.cbGrado.Size = new System.Drawing.Size(265, 24);
+            this.cbGrado.TabIndex = 24;
+            // 
+            // cbBeca
+            // 
+            this.cbBeca.FormattingEnabled = true;
+            this.cbBeca.Location = new System.Drawing.Point(153, 178);
+            this.cbBeca.Name = "cbBeca";
+            this.cbBeca.Size = new System.Drawing.Size(265, 24);
+            this.cbBeca.TabIndex = 26;
+            // 
+            // lblBeca
+            // 
+            this.lblBeca.AutoSize = true;
+            this.lblBeca.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeca.Location = new System.Drawing.Point(29, 182);
+            this.lblBeca.Name = "lblBeca";
+            this.lblBeca.Size = new System.Drawing.Size(40, 15);
+            this.lblBeca.TabIndex = 25;
+            this.lblBeca.Text = "Beca";
+            // 
+            // frmAlumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -280,10 +323,10 @@
             this.Controls.Add(this.dgvAlumnos);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmProveedores";
+            this.Name = "frmAlumnos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmProveedores";
-            this.Load += new System.EventHandler(this.frmProveedores_Load);
+            this.Load += new System.EventHandler(this.frmAlumnos_Load);
             this.pnlBotones.ResumeLayout(false);
             this.grpProveedores.ResumeLayout(false);
             this.grpProveedores.PerformLayout();
@@ -306,8 +349,7 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.MaskedTextBox txtTelefono;
-        private System.Windows.Forms.Label lblDireccion;
-        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label lblGrado;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblNombre;
@@ -317,5 +359,10 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.MaskedTextBox txtIdentidad;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbBeca;
+        private System.Windows.Forms.Label lblBeca;
+        private System.Windows.Forms.ComboBox cbGrado;
     }
 }

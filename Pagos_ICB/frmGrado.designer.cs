@@ -1,6 +1,6 @@
-﻿namespace Restaurante
+﻿namespace Pagos_ICB
 {
-    partial class Mesero
+    partial class frmGrado
     {
         /// <summary>
         /// Required designer variable.
@@ -28,27 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mesero));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGrado));
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.grpMesero = new System.Windows.Forms.GroupBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.dgvGrado = new System.Windows.Forms.DataGridView();
+            this.grpGrado = new System.Windows.Forms.GroupBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtIdentidad = new System.Windows.Forms.MaskedTextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.lblId = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.lblTelefono = new System.Windows.Forms.Label();
-            this.dgvMeseros = new System.Windows.Forms.DataGridView();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             this.pnlTitulo = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlBotones.SuspendLayout();
-            this.grpMesero.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMeseros)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGrado)).BeginInit();
+            this.grpGrado.SuspendLayout();
             this.pnlTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -59,10 +57,10 @@
             this.pnlBotones.Controls.Add(this.btnAgregar);
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
-            this.pnlBotones.Location = new System.Drawing.Point(391, 101);
+            this.pnlBotones.Location = new System.Drawing.Point(372, 85);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(102, 134);
-            this.pnlBotones.TabIndex = 34;
+            this.pnlBotones.Size = new System.Drawing.Size(102, 130);
+            this.pnlBotones.TabIndex = 39;
             // 
             // btnModificar
             // 
@@ -75,7 +73,6 @@
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnAgregar
             // 
@@ -88,7 +85,6 @@
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnEliminar
             // 
@@ -101,7 +97,6 @@
             this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnNuevo
             // 
@@ -114,149 +109,127 @@
             this.btnNuevo.TabIndex = 4;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click_1);
             // 
-            // grpMesero
+            // dgvGrado
             // 
-            this.grpMesero.Controls.Add(this.txtApellido);
-            this.grpMesero.Controls.Add(this.txtNombre);
-            this.grpMesero.Controls.Add(this.txtIdentidad);
-            this.grpMesero.Controls.Add(this.lblId);
-            this.grpMesero.Controls.Add(this.lblNombre);
-            this.grpMesero.Controls.Add(this.lblTelefono);
-            this.grpMesero.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpMesero.Location = new System.Drawing.Point(22, 88);
-            this.grpMesero.Name = "grpMesero";
-            this.grpMesero.Size = new System.Drawing.Size(352, 153);
-            this.grpMesero.TabIndex = 33;
-            this.grpMesero.TabStop = false;
+            this.dgvGrado.AllowUserToAddRows = false;
+            this.dgvGrado.AllowUserToDeleteRows = false;
+            this.dgvGrado.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvGrado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGrado.Location = new System.Drawing.Point(15, 221);
+            this.dgvGrado.Name = "dgvGrado";
+            this.dgvGrado.ReadOnly = true;
+            this.dgvGrado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvGrado.Size = new System.Drawing.Size(459, 123);
+            this.dgvGrado.TabIndex = 38;
             // 
-            // txtApellido
+            // grpGrado
             // 
-            this.txtApellido.Location = new System.Drawing.Point(121, 112);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(213, 22);
-            this.txtApellido.TabIndex = 3;
-            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
+            this.grpGrado.Controls.Add(this.txtNombre);
+            this.grpGrado.Controls.Add(this.txtId);
+            this.grpGrado.Controls.Add(this.lblId);
+            this.grpGrado.Controls.Add(this.lblDescripcion);
+            this.grpGrado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grpGrado.Location = new System.Drawing.Point(15, 85);
+            this.grpGrado.Name = "grpGrado";
+            this.grpGrado.Size = new System.Drawing.Size(340, 130);
+            this.grpGrado.TabIndex = 37;
+            this.grpGrado.TabStop = false;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(121, 69);
+            this.txtNombre.Location = new System.Drawing.Point(116, 60);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(213, 22);
-            this.txtNombre.TabIndex = 2;
-            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.txtNombre.TabIndex = 25;
             // 
-            // txtIdentidad
+            // txtId
             // 
-            this.txtIdentidad.Location = new System.Drawing.Point(121, 21);
-            this.txtIdentidad.Mask = "9999-9999-99999";
-            this.txtIdentidad.Name = "txtIdentidad";
-            this.txtIdentidad.Size = new System.Drawing.Size(213, 22);
-            this.txtIdentidad.TabIndex = 1;
-            this.txtIdentidad.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtIdentidad_MaskInputRejected);
+            this.txtId.Enabled = false;
+            this.txtId.Location = new System.Drawing.Point(116, 21);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(213, 22);
+            this.txtId.TabIndex = 24;
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(15, 24);
+            this.lblId.Location = new System.Drawing.Point(11, 24);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(64, 16);
-            this.lblId.TabIndex = 21;
-            this.lblId.Text = "Identidad";
+            this.lblId.Size = new System.Drawing.Size(19, 16);
+            this.lblId.TabIndex = 26;
+            this.lblId.Text = "Id";
             // 
-            // lblNombre
+            // lblDescripcion
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(16, 72);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(57, 16);
-            this.lblNombre.TabIndex = 22;
-            this.lblNombre.Text = "Nombre";
-            // 
-            // lblTelefono
-            // 
-            this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(16, 115);
-            this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(58, 16);
-            this.lblTelefono.TabIndex = 23;
-            this.lblTelefono.Text = "Apellido";
-            // 
-            // dgvMeseros
-            // 
-            this.dgvMeseros.AllowUserToAddRows = false;
-            this.dgvMeseros.AllowUserToDeleteRows = false;
-            this.dgvMeseros.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvMeseros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMeseros.Location = new System.Drawing.Point(22, 244);
-            this.dgvMeseros.Name = "dgvMeseros";
-            this.dgvMeseros.ReadOnly = true;
-            this.dgvMeseros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMeseros.Size = new System.Drawing.Size(490, 148);
-            this.dgvMeseros.TabIndex = 32;
-            this.dgvMeseros.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMeseros_CellClick);
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(11, 65);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(98, 16);
+            this.lblDescripcion.TabIndex = 27;
+            this.lblDescripcion.Text = "Nombre Grado";
             // 
             // pnlTitulo
             // 
-            this.pnlTitulo.Controls.Add(this.button1);
+            this.pnlTitulo.Controls.Add(this.btnSalir);
             this.pnlTitulo.Controls.Add(this.label1);
-            this.pnlTitulo.Location = new System.Drawing.Point(36, 3);
+            this.pnlTitulo.Location = new System.Drawing.Point(13, 0);
             this.pnlTitulo.Name = "pnlTitulo";
             this.pnlTitulo.Size = new System.Drawing.Size(479, 79);
-            this.pnlTitulo.TabIndex = 35;
+            this.pnlTitulo.TabIndex = 36;
             // 
-            // button1
+            // btnSalir
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(445, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 29);
-            this.button1.TabIndex = 32;
-            this.button1.TabStop = false;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(447, 3);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(29, 29);
+            this.btnSalir.TabIndex = 30;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Britannic Bold", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(44, 32);
+            this.label1.Location = new System.Drawing.Point(44, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(368, 37);
+            this.label1.Size = new System.Drawing.Size(352, 37);
             this.label1.TabIndex = 29;
-            this.label1.Text = "Información de Meseros";
+            this.label1.Text = "Información de Grados";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-99, 412);
+            this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources.base1;
+            this.pictureBox1.Location = new System.Drawing.Point(-31, 366);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(662, 79);
-            this.pictureBox1.TabIndex = 36;
+            this.pictureBox1.Size = new System.Drawing.Size(536, 90);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
-            // Mesero
+            // frmGrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 486);
+            this.ClientSize = new System.Drawing.Size(489, 414);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlBotones);
-            this.Controls.Add(this.grpMesero);
-            this.Controls.Add(this.dgvMeseros);
+            this.Controls.Add(this.dgvGrado);
+            this.Controls.Add(this.grpGrado);
             this.Controls.Add(this.pnlTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Mesero";
+            this.Name = "frmGrado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mesero";
-            this.Load += new System.EventHandler(this.Mesero_Load);
+            this.Text = "frmTipoProducto";
+            this.Load += new System.EventHandler(this.frmGrado_Load);
             this.pnlBotones.ResumeLayout(false);
-            this.grpMesero.ResumeLayout(false);
-            this.grpMesero.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMeseros)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGrado)).EndInit();
+            this.grpGrado.ResumeLayout(false);
+            this.grpGrado.PerformLayout();
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -272,16 +245,14 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.GroupBox grpMesero;
-        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.DataGridView dgvGrado;
+        private System.Windows.Forms.GroupBox grpGrado;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.MaskedTextBox txtIdentidad;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblTelefono;
-        private System.Windows.Forms.DataGridView dgvMeseros;
+        private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Panel pnlTitulo;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
     }
 }

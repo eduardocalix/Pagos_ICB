@@ -1,4 +1,4 @@
-﻿namespace Restaurante
+﻿namespace Pagos_ICB
 {
     partial class frmMenuNuevo
     {
@@ -32,20 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuNuevo));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.restaurante = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ControlMesas = new System.Windows.Forms.ToolStripMenuItem();
-            this.Pedido = new System.Windows.Forms.ToolStripMenuItem();
-            this.Caja = new System.Windows.Forms.ToolStripMenuItem();
-            this.Apertura = new System.Windows.Forms.ToolStripMenuItem();
             this.Pagos = new System.Windows.Forms.ToolStripMenuItem();
-            this.Resumen = new System.Windows.Forms.ToolStripMenuItem();
-            this.Cambio = new System.Windows.Forms.ToolStripMenuItem();
+            this.Descuentos = new System.Windows.Forms.ToolStripMenuItem();
+            this.Mora = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Productos = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Inventario = new System.Windows.Forms.ToolStripMenuItem();
-            this.Insumos = new System.Windows.Forms.ToolStripMenuItem();
-            this.Proveedores = new System.Windows.Forms.ToolStripMenuItem();
-            this.Categoria = new System.Windows.Forms.ToolStripMenuItem();
-            this.Tipo = new System.Windows.Forms.ToolStripMenuItem();
+            this.Alumnos = new System.Windows.Forms.ToolStripMenuItem();
+            this.Grados = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.Reportes = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,15 +48,15 @@
             this.pagosRealizadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.Seguridad = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Meseros = new System.Windows.Forms.ToolStripMenuItem();
             this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.Papelera = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Ayuda = new System.Windows.Forms.ToolStripDropDownButton();
             this.CerrarSesión = new System.Windows.Forms.ToolStripDropDownButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblFecha = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TiposDePago = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -93,9 +86,10 @@
             // restaurante
             // 
             this.restaurante.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ControlMesas,
-            this.Pedido,
-            this.Caja});
+            this.Pagos,
+            this.Descuentos,
+            this.Mora,
+            this.TiposDePago});
             this.restaurante.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.restaurante.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.restaurante.ImageTransparentColor = System.Drawing.Color.LemonChiffon;
@@ -104,60 +98,27 @@
             this.restaurante.Text = "Pagos";
             this.restaurante.ToolTipText = "Pagos";
             // 
-            // ControlMesas
-            // 
-            this.ControlMesas.BackColor = System.Drawing.SystemColors.Menu;
-            this.ControlMesas.Name = "ControlMesas";
-            this.ControlMesas.Size = new System.Drawing.Size(180, 22);
-            this.ControlMesas.Text = "Pagos";
-            this.ControlMesas.Click += new System.EventHandler(this.ControlMesas_Click);
-            // 
-            // Pedido
-            // 
-            this.Pedido.BackColor = System.Drawing.SystemColors.Menu;
-            this.Pedido.Name = "Pedido";
-            this.Pedido.Size = new System.Drawing.Size(180, 22);
-            this.Pedido.Text = "Descuentos";
-            this.Pedido.Click += new System.EventHandler(this.Pedido_Click);
-            // 
-            // Caja
-            // 
-            this.Caja.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Apertura,
-            this.Pagos,
-            this.Resumen,
-            this.Cambio});
-            this.Caja.Name = "Caja";
-            this.Caja.Size = new System.Drawing.Size(180, 22);
-            this.Caja.Text = "Mora";
-            // 
-            // Apertura
-            // 
-            this.Apertura.Name = "Apertura";
-            this.Apertura.Size = new System.Drawing.Size(180, 22);
-            this.Apertura.Text = "Apertura de caja";
-            this.Apertura.Click += new System.EventHandler(this.Apertura_Click);
-            // 
             // Pagos
             // 
+            this.Pagos.BackColor = System.Drawing.SystemColors.Menu;
             this.Pagos.Name = "Pagos";
             this.Pagos.Size = new System.Drawing.Size(180, 22);
-            this.Pagos.Text = "Pagos Caja";
-            this.Pagos.Click += new System.EventHandler(this.Pagos_Click);
+            this.Pagos.Text = "Registrar Pago";
             // 
-            // Resumen
+            // Descuentos
             // 
-            this.Resumen.Name = "Resumen";
-            this.Resumen.Size = new System.Drawing.Size(180, 22);
-            this.Resumen.Text = "Resumen Caja";
-            this.Resumen.Click += new System.EventHandler(this.Resumen_Click);
+            this.Descuentos.BackColor = System.Drawing.SystemColors.Menu;
+            this.Descuentos.Name = "Descuentos";
+            this.Descuentos.Size = new System.Drawing.Size(180, 22);
+            this.Descuentos.Text = "Descuentos";
+            this.Descuentos.Click += new System.EventHandler(this.Descuento_Click);
             // 
-            // Cambio
+            // Mora
             // 
-            this.Cambio.Name = "Cambio";
-            this.Cambio.Size = new System.Drawing.Size(180, 22);
-            this.Cambio.Text = "Cambio del Dolar";
-            this.Cambio.Click += new System.EventHandler(this.Cambio_Click);
+            this.Mora.Name = "Mora";
+            this.Mora.Size = new System.Drawing.Size(180, 22);
+            this.Mora.Text = "Mora";
+            this.Mora.Click += new System.EventHandler(this.Mora_Click);
             // 
             // toolStripSeparator1
             // 
@@ -167,11 +128,8 @@
             // Productos
             // 
             this.Productos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Inventario,
-            this.Insumos,
-            this.Proveedores,
-            this.Categoria,
-            this.Tipo});
+            this.Alumnos,
+            this.Grados});
             this.Productos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.Productos.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Productos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -182,45 +140,21 @@
             this.Productos.Text = "ICB";
             this.Productos.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             // 
-            // Inventario
+            // Alumnos
             // 
-            this.Inventario.BackColor = System.Drawing.SystemColors.Menu;
-            this.Inventario.Name = "Inventario";
-            this.Inventario.Size = new System.Drawing.Size(201, 22);
-            this.Inventario.Text = "Alumnos";
-            this.Inventario.Click += new System.EventHandler(this.Inventario_Click);
+            this.Alumnos.BackColor = System.Drawing.SystemColors.Menu;
+            this.Alumnos.Name = "Alumnos";
+            this.Alumnos.Size = new System.Drawing.Size(122, 22);
+            this.Alumnos.Text = "Alumnos";
+            this.Alumnos.Click += new System.EventHandler(this.Alumno_Click);
             // 
-            // Insumos
+            // Grados
             // 
-            this.Insumos.BackColor = System.Drawing.SystemColors.Menu;
-            this.Insumos.Name = "Insumos";
-            this.Insumos.Size = new System.Drawing.Size(201, 22);
-            this.Insumos.Text = "Grados";
-            this.Insumos.Click += new System.EventHandler(this.Insumos_Click);
-            // 
-            // Proveedores
-            // 
-            this.Proveedores.BackColor = System.Drawing.SystemColors.Menu;
-            this.Proveedores.Name = "Proveedores";
-            this.Proveedores.Size = new System.Drawing.Size(201, 22);
-            this.Proveedores.Text = "Proveedores";
-            this.Proveedores.Click += new System.EventHandler(this.Proveedores_Click);
-            // 
-            // Categoria
-            // 
-            this.Categoria.BackColor = System.Drawing.SystemColors.Menu;
-            this.Categoria.Name = "Categoria";
-            this.Categoria.Size = new System.Drawing.Size(201, 22);
-            this.Categoria.Text = "Categoria del Producto";
-            this.Categoria.Click += new System.EventHandler(this.Categoria_Click);
-            // 
-            // Tipo
-            // 
-            this.Tipo.BackColor = System.Drawing.SystemColors.Menu;
-            this.Tipo.Name = "Tipo";
-            this.Tipo.Size = new System.Drawing.Size(201, 22);
-            this.Tipo.Text = "Tipo de Unidad";
-            this.Tipo.Click += new System.EventHandler(this.Tipo_Click);
+            this.Grados.BackColor = System.Drawing.SystemColors.Menu;
+            this.Grados.Name = "Grados";
+            this.Grados.Size = new System.Drawing.Size(122, 22);
+            this.Grados.Text = "Grados";
+            this.Grados.Click += new System.EventHandler(this.Grado_Click);
             // 
             // toolStripSeparator3
             // 
@@ -251,7 +185,7 @@
             this.toolStripMenuItem9.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem9.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItem9.Text = "Ventas del dia";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
             // 
@@ -260,7 +194,7 @@
             this.toolStripMenuItem10.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem10.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItem10.Text = "Inventario";
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
@@ -269,20 +203,20 @@
             this.toolStripMenuItem11.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem11.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItem11.Text = "Insumos";
             // 
             // resumenMensualToolStripMenuItem
             // 
             this.resumenMensualToolStripMenuItem.Name = "resumenMensualToolStripMenuItem";
-            this.resumenMensualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resumenMensualToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.resumenMensualToolStripMenuItem.Text = "Resumen Mensual";
             this.resumenMensualToolStripMenuItem.Click += new System.EventHandler(this.resumenMensualToolStripMenuItem_Click);
             // 
             // pagosRealizadosToolStripMenuItem
             // 
             this.pagosRealizadosToolStripMenuItem.Name = "pagosRealizadosToolStripMenuItem";
-            this.pagosRealizadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pagosRealizadosToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.pagosRealizadosToolStripMenuItem.Text = "Pagos Realizados";
             // 
             // toolStripSeparator4
@@ -293,7 +227,6 @@
             // Seguridad
             // 
             this.Seguridad.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Meseros,
             this.Usuarios,
             this.Papelera});
             this.Seguridad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -305,14 +238,6 @@
             this.Seguridad.Size = new System.Drawing.Size(89, 22);
             this.Seguridad.Text = "Seguridad";
             this.Seguridad.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            // 
-            // Meseros
-            // 
-            this.Meseros.BackColor = System.Drawing.SystemColors.Menu;
-            this.Meseros.Name = "Meseros";
-            this.Meseros.Size = new System.Drawing.Size(191, 22);
-            this.Meseros.Text = "Meseros";
-            this.Meseros.Click += new System.EventHandler(this.Meseros_Click);
             // 
             // Usuarios
             // 
@@ -354,15 +279,6 @@
             this.CerrarSesión.Text = "Cerrar Sesión";
             this.CerrarSesión.Click += new System.EventHandler(this.CerrarSesión_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-14, 701);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1442, 86);
-            this.pictureBox1.TabIndex = 70;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblFecha
             // 
             this.lblFecha.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -377,6 +293,21 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-14, 701);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1442, 86);
+            this.pictureBox1.TabIndex = 70;
+            this.pictureBox1.TabStop = false;
+            // 
+            // TiposDePago
+            // 
+            this.TiposDePago.Name = "TiposDePago";
+            this.TiposDePago.Size = new System.Drawing.Size(180, 22);
+            this.TiposDePago.Text = "Tipos de Pago";
             // 
             // frmMenuNuevo
             // 
@@ -393,6 +324,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMenuNuevo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMenuNuevo_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -405,15 +337,12 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton restaurante;
-        private System.Windows.Forms.ToolStripMenuItem ControlMesas;
-        private System.Windows.Forms.ToolStripMenuItem Pedido;
+        private System.Windows.Forms.ToolStripMenuItem Pagos;
+        private System.Windows.Forms.ToolStripMenuItem Descuentos;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripDropDownButton Productos;
-        private System.Windows.Forms.ToolStripMenuItem Inventario;
-        private System.Windows.Forms.ToolStripMenuItem Insumos;
-        private System.Windows.Forms.ToolStripMenuItem Proveedores;
-        private System.Windows.Forms.ToolStripMenuItem Categoria;
-        private System.Windows.Forms.ToolStripMenuItem Tipo;
+        private System.Windows.Forms.ToolStripMenuItem Alumnos;
+        private System.Windows.Forms.ToolStripMenuItem Grados;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripDropDownButton Reportes;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
@@ -421,21 +350,17 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripDropDownButton Seguridad;
-        private System.Windows.Forms.ToolStripMenuItem Meseros;
         private System.Windows.Forms.ToolStripMenuItem Usuarios;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripDropDownButton Ayuda;
         private System.Windows.Forms.ToolStripDropDownButton CerrarSesión;
-        private System.Windows.Forms.ToolStripMenuItem Caja;
-        private System.Windows.Forms.ToolStripMenuItem Apertura;
-        private System.Windows.Forms.ToolStripMenuItem Pagos;
-        private System.Windows.Forms.ToolStripMenuItem Resumen;
-        private System.Windows.Forms.ToolStripMenuItem Cambio;
+        private System.Windows.Forms.ToolStripMenuItem Mora;
         private System.Windows.Forms.ToolStripMenuItem Papelera;
         private System.Windows.Forms.ToolStripMenuItem resumenMensualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagosRealizadosToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem TiposDePago;
     }
 }

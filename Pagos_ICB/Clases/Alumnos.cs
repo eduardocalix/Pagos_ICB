@@ -15,26 +15,33 @@ namespace Pagos_ICB.Clases
         public string Identidad { set; get; }
         public string Nombres { set; get; }
         public string Apellidos { set; get; }
+
+        public int Beca { set; get; }
+        public int IdGrado { set; get; }
         public int Estado { get; set; }
         //Se define un constructor
         public Alumnos() { }
         //Se define el destructor
         ~Alumnos() { }
         //Constructor para insertar un Alumnos
-        public Alumnos(string identidad, string nombres, string apellidos)
+        public Alumnos(string identidad, string nombres, string apellidos,int idGrado, int beca)
         {
             Identidad = identidad;
             Nombres = nombres;
             Apellidos = apellidos;
+            IdGrado = idGrado;
+            Beca = beca;
 
         }
         //Constructor para modificar un Alumnos
-        public Alumnos(int id, string identidad, string nombres, string apellidos)
+        public Alumnos(int id, string identidad, string nombres, string apellidos,int idGrado, int beca)
         {
             Id = id;
             Identidad = identidad;
             Nombres = nombres;
             Apellidos = apellidos;
+            IdGrado = idGrado;
+            Beca = beca;
         }
         //Constructor para eliminar un Alumnos
         public Alumnos(int id)
