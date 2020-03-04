@@ -11,7 +11,7 @@ namespace Pagos_ICB.Clases
     class Alumnos
     {
         //Se encapsulan las variables a usar
-        public int Id { set; get; }
+        public int IdAlumno { set; get; }
         public string Identidad { set; get; }
         public string Nombres { set; get; }
         public string Apellidos { set; get; }
@@ -34,9 +34,9 @@ namespace Pagos_ICB.Clases
 
         }
         //Constructor para modificar un Alumnos
-        public Alumnos(int id, string identidad, string nombres, string apellidos,int idGrado, int beca)
+        public Alumnos(int idAlumno, string identidad, string nombres, string apellidos,int idGrado, int beca)
         {
-            Id = id;
+            IdAlumno = idAlumno;
             Identidad = identidad;
             Nombres = nombres;
             Apellidos = apellidos;
@@ -44,21 +44,21 @@ namespace Pagos_ICB.Clases
             Beca = beca;
         }
         //Constructor para eliminar un Alumnos
-        public Alumnos(int id)
+        public Alumnos(int idAlumno)
         {
-            Id = id;
+            IdAlumno = idAlumno;
         }
 
-        public Alumnos(int id, int estado)
+        public Alumnos(int idAlumno, int estado)
         {
-            Id = id;
+            IdAlumno = idAlumno;
             Estado = estado;
         }
         //Funcion para llamar el store Procedure y asignar los parametros que insertaremos
         public void Agregar()
         {
             Clases.Conexión conexion = new Clases.Conexión();
-            SqlCommand cmd = new SqlCommand("SP_AgregarAlumnos", conexion.conexion);
+            SqlCommand cmd = new SqlCommand("SP_AgregarAlumno", conexion.conexion);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {
@@ -66,10 +66,14 @@ namespace Pagos_ICB.Clases
                 conexion.Abrir();
                 cmd.Parameters.Add(new SqlParameter("identidad", SqlDbType.NVarChar, 15));
                 cmd.Parameters["identidad"].Value = Identidad;
-                cmd.Parameters.Add(new SqlParameter("Nombres", SqlDbType.NVarChar, 25));
-                cmd.Parameters["Nombres"].Value = Nombres;
-                cmd.Parameters.Add(new SqlParameter("Apellidos", SqlDbType.NVarChar, 25));
-                cmd.Parameters["Apellidos"].Value = Apellidos;
+                cmd.Parameters.Add(new SqlParameter("nombres", SqlDbType.NVarChar, 25));
+                cmd.Parameters["nombres"].Value = Nombres;
+                cmd.Parameters.Add(new SqlParameter("apellidos", SqlDbType.NVarChar, 25));
+                cmd.Parameters["apellidos"].Value = Apellidos;
+                cmd.Parameters.Add(new SqlParameter("idGrado", SqlDbType.Int));
+                cmd.Parameters["idGrado"].Value = IdGrado;
+                cmd.Parameters.Add(new SqlParameter("beca", SqlDbType.Int));
+                cmd.Parameters["beca"].Value = Beca;
                 cmd.ExecuteNonQuery();
 
             }
@@ -88,19 +92,23 @@ namespace Pagos_ICB.Clases
         public void Modificar()
         {
             Clases.Conexión conexion = new Clases.Conexión();
-            SqlCommand cmd = new SqlCommand("SP_ModificarAlumnos", conexion.conexion);
+            SqlCommand cmd = new SqlCommand("SP_ModificarAlumno", conexion.conexion);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("id", SqlDbType.Int));
-                cmd.Parameters["id"].Value = Id;
+                cmd.Parameters.Add(new SqlParameter("idAlumno", SqlDbType.Int));
+                cmd.Parameters["idAlumno"].Value = IdAlumno;
                 cmd.Parameters.Add(new SqlParameter("identidad", SqlDbType.NVarChar, 15));
                 cmd.Parameters["identidad"].Value = Identidad;
-                cmd.Parameters.Add(new SqlParameter("Nombres", SqlDbType.NVarChar, 25));
-                cmd.Parameters["Nombres"].Value = Nombres;
-                cmd.Parameters.Add(new SqlParameter("Apellidos", SqlDbType.NVarChar, 25));
-                cmd.Parameters["Apellidos"].Value = Apellidos;
+                cmd.Parameters.Add(new SqlParameter("nombres", SqlDbType.NVarChar, 25));
+                cmd.Parameters["nombres"].Value = Nombres;
+                cmd.Parameters.Add(new SqlParameter("apellidos", SqlDbType.NVarChar, 25));
+                cmd.Parameters["apellidos"].Value = Apellidos;
+                cmd.Parameters.Add(new SqlParameter("idGrado", SqlDbType.Int));
+                cmd.Parameters["idGrado"].Value = IdGrado;
+                cmd.Parameters.Add(new SqlParameter("beca", SqlDbType.Int));
+                cmd.Parameters["beca"].Value = Beca;
                 cmd.ExecuteNonQuery();
 
             }
@@ -117,13 +125,13 @@ namespace Pagos_ICB.Clases
         public void Eliminar()
         {
             Clases.Conexión conexion = new Clases.Conexión();
-            SqlCommand cmd = new SqlCommand("SP_EliminarAlumnos", conexion.conexion);
+            SqlCommand cmd = new SqlCommand("SP_EliminarAlumno", conexion.conexion);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("id", SqlDbType.Int));
-                cmd.Parameters["id"].Value = Id;
+                cmd.Parameters.Add(new SqlParameter("idAlumno", SqlDbType.Int));
+                cmd.Parameters["idAlumno"].Value = IdAlumno;
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
@@ -145,7 +153,7 @@ namespace Pagos_ICB.Clases
             {
                 conexion.Abrir();
                 cmd.Parameters.Add(new SqlParameter("id", SqlDbType.Int));
-                cmd.Parameters["id"].Value = Id;
+                cmd.Parameters["id"].Value = IdAlumno;
                 cmd.Parameters.Add(new SqlParameter("estado", SqlDbType.Int));
                 cmd.Parameters["estado"].Value = Estado;
                 cmd.ExecuteNonQuery();
@@ -163,7 +171,7 @@ namespace Pagos_ICB.Clases
         public void ObtenerAlumnos(int id)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT id, identidad, Nombres, Apellidos FROM Restaurante.Alumnoss WHERE id = '" + id + "';";
+            string sql = @"SELECT id, identidad, nombres, apellidos,Beca, idGrado, nombreGrado FROM Cuentas.Alumno WHERE id = '" + id + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {
@@ -171,7 +179,7 @@ namespace Pagos_ICB.Clases
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Id = dr.GetInt32(0);
+                    IdAlumno = dr.GetInt32(0);
                     Identidad = dr.GetString(1);
                     Nombres = dr.GetString(2);
                     Apellidos = dr.GetString(3);
@@ -194,19 +202,19 @@ namespace Pagos_ICB.Clases
         {
             Clases.Conexión conexion = new Clases.Conexión();
             //Se traen todos los datos de la tabla Alumnoss y los almacena la variable sql
-            string sql = @"SELECT   Restaurante.Alumnoss.id          as Código,
-                                    Restaurante.Alumnoss.identidad   as Identidad,
-                                    Restaurante.Alumnoss.Nombres      as Alumnos, 
-                                    Restaurante.Alumnoss.Apellidos    as Apellidos
-                            FROM Restaurante.Alumnoss
+            string sql = @"SELECT   Cuentas.Alumnoss.id          as Código,
+                                    Cuentas.Alumnoss.identidad   as Identidad,
+                                    Cuentas.Alumnoss.Nombres      as Alumnos, 
+                                    Cuentas.Alumnoss.Apellidos    as Apellidos
+                            FROM Cuentas.Alumnoss
                             WHERE estado=" + estado + ";";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();
                 data.SelectCommand = new SqlCommand(sql, conexion.conexion);
                 System.Data.DataSet ds = new System.Data.DataSet();
-                data.Fill(ds, "Restaurante.Alumnoss");
-                DataTable dt = ds.Tables["Restaurante.Alumnoss"];
+                data.Fill(ds, "Cuentas.Alumnoss");
+                DataTable dt = ds.Tables["Cuentas.Alumnoss"];
                 DataView dv = new DataView(dt,
                     "",
                     "Código",
@@ -227,7 +235,7 @@ namespace Pagos_ICB.Clases
         public void ObteneAlumnosPorNombres(string Nombres)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT * FROM Restaurante.Alumnoss WHERE Nombres = '" + Nombres + "';";
+            string sql = @"SELECT * FROM Cuentas.Alumnoss WHERE Nombres = '" + Nombres + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {
@@ -235,7 +243,7 @@ namespace Pagos_ICB.Clases
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Id = dr.GetInt32(0);
+                    IdAlumno = dr.GetInt32(0);
                     Nombres = dr.GetString(2);
                 }
             }

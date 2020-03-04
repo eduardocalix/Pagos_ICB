@@ -77,7 +77,7 @@ ELSE
 			nombres NVARCHAR (25) NOT NULL,			--nombres 
 			apellidos NVARCHAR (25) NOT NULL,		--apellidos
 			idGrado INT NOT NULL, --es la relacion del alumno con el grado
-			beca INT DEFAULT 0 , --Esta seccion identifica si es becado o no.
+			beca INT, --Esta seccion identifica si es becado o no.
 			estado INT DEFAULT 1
 		);
 	END

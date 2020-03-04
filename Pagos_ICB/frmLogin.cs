@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Threading;
 
-namespace Restaurante
+namespace Pagos_ICB
 {
     public partial class frmLogin : Form
     {

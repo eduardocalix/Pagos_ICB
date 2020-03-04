@@ -38,7 +38,9 @@ namespace Pagos_ICB.Clases
             (
             string identidad,
             string nombre,
-            string apellido
+            string apellido,
+            int idGrado,
+            int beca
             )
         {
             try
@@ -47,7 +49,9 @@ namespace Pagos_ICB.Clases
                 Clases.Alumnos Alumnos = new Clases.Alumnos(
                     identidad,
                     nombre,
-                    apellido
+                    apellido,
+                    idGrado,
+                    beca
                     );
                 Alumnos.Agregar();
             }
@@ -61,7 +65,9 @@ namespace Pagos_ICB.Clases
             int id,
             string identidad,
             string nombre,
-            string apellido)
+            string apellido,
+              int idGrado,
+            int beca)
         {
             try
             {
@@ -70,7 +76,9 @@ namespace Pagos_ICB.Clases
                     id,
                     identidad,
                     nombre,
-                   apellido);
+                   apellido,
+                   idGrado,
+                    beca);
                 Alumnos.Modificar();
             }
             catch (Exception ex)

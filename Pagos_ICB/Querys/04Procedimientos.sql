@@ -246,7 +246,8 @@ CREATE PROCEDURE SP_AgregarAlumno
 	@identidad NVARCHAR(15),
 	@nombres NVARCHAR(25),
 	@apellidos NVARCHAR(25),
-	@idGrado INT
+	@idGrado INT,
+	@beca INT  
 )
 AS
 BEGIN
@@ -261,8 +262,8 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			INSERT INTO Cuentas.Alumno(identidad, nombres, apellidos, idGrado)
-				VALUES(	@identidad, @nombres, @apellidos, @idGrado)
+			INSERT INTO Cuentas.Alumno(identidad, nombres, apellidos, idGrado,beca)
+				VALUES(	@identidad, @nombres, @apellidos, @idGrado,@beca)
 			RETURN 1
 		END
 END
