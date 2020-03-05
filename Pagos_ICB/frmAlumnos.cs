@@ -56,7 +56,7 @@ namespace Pagos_ICB
                     txtNombre.Text,
                     txtApellido.Text,
                     grado.IdGrado,
-                    cbBeca.SelectedValue.ToString()
+                    cbBeca.SelectedItem.ToString()
                     
 
                     );
@@ -83,7 +83,7 @@ namespace Pagos_ICB
                     txtNombre.Text,
                     txtApellido.Text,
                     grado.IdGrado,
-                    cbBeca.SelectedValue.ToString()
+                    cbBeca.SelectedItem.ToString()
                         );
                     ResetFormulario();
 
@@ -98,7 +98,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Alumno" + txtNombre.Text, "Modificar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Alumno" + txtNombre.Text, "Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
 
@@ -119,24 +119,7 @@ namespace Pagos_ICB
 
         private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Clases.Alumnos Alumno = new Clases.Alumnos();
-            Alumno.ObtenerAlumnos(
-                Convert.ToInt32(
-                    dgvAlumnos.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                    )
-                );
-            dgvAlumnos.Select();
-            this.id = Alumno.IdAlumno;
-            txtIdentidad.Text = Alumno.Identidad;
-            txtNombre.Text = Alumno.Nombres;
-            txtApellido.Text = Alumno.Apellidos;
-            cbGrado.SelectedItem = Alumno.IdGrado; 
-            cbBeca.SelectedItem = Alumno.Beca;
-
-            btnNuevo.Enabled = true;
-            btnAgregar.Enabled = false;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
+            
         }
 
         private void dgvAlumnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -180,7 +163,30 @@ namespace Pagos_ICB
             cbGrado.ValueMember = "nombreGrado";
             cbGrado.DataSource = dt;
         }
-
+        private void CargarCMBGradosNombre(int id)
+        {
+            DataTable dt = new DataTable();
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = "select * FROM Cuentas.Grado Where idGrado = "+id+"; ";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            cbGrado.DisplayMember = "nombreGrado";
+            cbGrado.ValueMember = "nombreGrado";
+            cbGrado.DataSource = dt;
+        }
+        private void CargarCMBBeca(int id)
+        {
+            DataTable dt = new DataTable();
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = "select beca FROM Cuentas.Alumno Where idAlumno ="+id+";";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            cbBeca.DisplayMember = "beca";
+            cbBeca.ValueMember = "beca";
+            cbBeca.DataSource = dt;
+        }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -194,6 +200,29 @@ namespace Pagos_ICB
         private void lblDireccion_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvAlumnos_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            Clases.Alumnos Alumno = new Clases.Alumnos();
+            Alumno.ObtenerAlumnos(
+                Convert.ToInt32(
+                    dgvAlumnos.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    )
+                );
+            dgvAlumnos.Select();
+            this.id = Alumno.IdAlumno;
+            txtIdentidad.Text = Alumno.Identidad;
+            txtNombre.Text = Alumno.Nombres;
+            txtApellido.Text = Alumno.Apellidos;
+            cbGrado.SelectedItem = Alumno.IdGrado;
+            cbBeca.SelectedItem = Alumno.Beca;
+            CargarCMBBeca(this.id);
+            CargarCMBGradosNombre(Alumno.IdGrado);
+            btnNuevo.Enabled = true;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
         }
     }
 }

@@ -31,7 +31,7 @@ GO
 
 ALTER TABLE Cuentas.TipoPago
 	ADD CONSTRAINT PK_Cuentas_tipoPago_idTipoPago
-		PRIMARY KEY CLUSTERED (idTipo);
+		PRIMARY KEY CLUSTERED (idTipoPago);
 GO
 
 ALTER TABLE Cuentas.Mora
@@ -43,9 +43,9 @@ GO
 
 
 ALTER TABLE Cuentas.Pago
-	ADD CONSTRAINT FK_Cuentas_Pagos_idTipo$TieneUna$Cuentas_TipoPago
+	ADD CONSTRAINT FK_Cuentas_Pagos_idTipoPago$TieneUna$Cuentas_TipoPago
 		FOREIGN KEY	(idTipo)
-			REFERENCES Cuentas.TipoPago(idTipo);
+			REFERENCES Cuentas.TipoPago(idTipoPago);
 GO
 
 ALTER TABLE Cuentas.Pago

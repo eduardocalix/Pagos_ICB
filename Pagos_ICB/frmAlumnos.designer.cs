@@ -262,6 +262,7 @@
             this.dgvAlumnos.Name = "dgvAlumnos";
             this.dgvAlumnos.Size = new System.Drawing.Size(606, 115);
             this.dgvAlumnos.TabIndex = 19;
+            this.dgvAlumnos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_CellClick_1);
             // 
             // panel1
             // 

@@ -152,8 +152,8 @@ namespace Pagos_ICB.Clases
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("id", SqlDbType.Int));
-                cmd.Parameters["id"].Value = IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("idAlumno", SqlDbType.Int));
+                cmd.Parameters["idAlumno"].Value = IdAlumno;
                 cmd.Parameters.Add(new SqlParameter("estado", SqlDbType.Int));
                 cmd.Parameters["estado"].Value = Estado;
                 cmd.ExecuteNonQuery();
@@ -171,7 +171,7 @@ namespace Pagos_ICB.Clases
         public void ObtenerAlumnos(int id)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT idAlumno, identidad, nombres, apellidos,beca, idGrado, nombreGrado FROM Cuentas.Alumno WHERE id = '" + id + "';";
+            string sql = @"SELECT idAlumno, identidad, nombres, apellidos, idGrado,beca FROM Cuentas.Alumno WHERE idAlumno = '" + id + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {
@@ -183,13 +183,14 @@ namespace Pagos_ICB.Clases
                     Identidad = dr.GetString(1);
                     Nombres = dr.GetString(2);
                     Apellidos = dr.GetString(3);
+                    
                 }
             }
             catch (SqlException ex)
             {
                 throw new Clases.Excepcion(
                    String.Format("{0} \n\n{1}",
-                   "no podemos obtener la informacion del Alumnos", ex.Message), ex, "Clase_Alumnoss"); ;
+                   "no podemos obtener la informacion del Alumnos", ex.Message), ex, "Clase_Alumno"); ;
             }
             finally
             {
@@ -202,19 +203,22 @@ namespace Pagos_ICB.Clases
         {
             Clases.Conexión conexion = new Clases.Conexión();
             //Se traen todos los datos de la tabla Alumnoss y los almacena la variable sql
-            string sql = @"SELECT   Cuentas.Alumnoss.id          as Código,
-                                    Cuentas.Alumnoss.identidad   as Identidad,
-                                    Cuentas.Alumnoss.Nombres      as Alumnos, 
-                                    Cuentas.Alumnoss.Apellidos    as Apellidos
-                            FROM Cuentas.Alumnoss
-                            WHERE estado=" + estado + ";";
+            string sql = @"SELECT   Cuentas.Alumno.idAlumno    as Código,
+                                    Cuentas.Alumno.identidad   as Identidad,
+                                    Cuentas.Alumno.Nombres      as Alumnos, 
+                                    Cuentas.Alumno.Apellidos    as Apellidos,
+                                    Cuentas.Grado.nombreGrado   as Grado,
+                                    Cuentas.Alumno.beca         as Beca
+                            FROM Cuentas.Alumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado AND
+                             Cuentas.Alumno.estado=" + estado + ";";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();
                 data.SelectCommand = new SqlCommand(sql, conexion.conexion);
                 System.Data.DataSet ds = new System.Data.DataSet();
-                data.Fill(ds, "Cuentas.Alumnoss");
-                DataTable dt = ds.Tables["Cuentas.Alumnoss"];
+                data.Fill(ds, "Cuentas.Alumno");
+                DataTable dt = ds.Tables["Cuentas.Alumno"];
                 DataView dv = new DataView(dt,
                     "",
                     "Código",
@@ -235,7 +239,7 @@ namespace Pagos_ICB.Clases
         public void ObteneAlumnosPorNombres(string Nombres)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT * FROM Cuentas.Alumnoss WHERE Nombres = '" + Nombres + "';";
+            string sql = @"SELECT * FROM Cuentas.Alumno WHERE Nombres = '" + Nombres + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {

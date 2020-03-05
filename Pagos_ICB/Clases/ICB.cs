@@ -21,7 +21,7 @@ namespace Pagos_ICB.Clases
             string beca
             )
         {
-            if (identidad.Length != 15 || nombre.Length == 0 || apellido.Length == 0 || beca.Length==0)
+            if (identidad.Length != 15 || nombre.Length == 0 || apellido.Length == 0 || beca.Length == 0)
             {
                 throw new Clases.Excepcion
                     (
@@ -213,7 +213,7 @@ namespace Pagos_ICB.Clases
             decimal valor
             )
         {
-            if ( nombre.Length == 0 || valor >= 0)
+            if ( nombre.Length == 0 || valor < 0)
             {
                 throw new Clases.Excepcion
                     (
@@ -377,20 +377,20 @@ namespace Pagos_ICB.Clases
                 throw ex;
             }
         }
-        /*Modulo descuendo 2da capa*/
+        /*Modulo descuento 2da capa*/
         private static void ValidarDescuento
            (
            string nombre,
            decimal valor
            )
         {
-            if (nombre.Length == 0 || valor >= 0)
+            if (nombre.Length == 0 || valor < 0)
             {
                 throw new Clases.Excepcion
                     (
                     "Error al insertar el Descuento. \n\n" +
                     "Existen datos obligatorios que se necesitan para poder agregar el Descuento:\n" +
-                    "Nombre Descuento   : Pedro\n" +
+                    "Nombre Descuento   : 30 PORCIENTO\n" +
                     "Valor : 30%",
                     new Exception(),
                     "Clase_ICB"
@@ -458,6 +458,98 @@ namespace Pagos_ICB.Clases
             {
                 Clases.Descuento Descuento = new Clases.Descuento(id, estado);
                 Descuento.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /*Modulo TipoPago 2da capa*/
+        private static void ValidarTipoPago
+           (
+           string nombre,
+           int idGrado,
+           decimal valor
+           )
+        {
+            if (nombre.Length == 0 || valor >= 0)
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el TipoPago. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el TipoPago:\n" +
+                    "Nombre TipoPago   : Matricula\n" +
+                    "Valor : L.1000.00",
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarTipoPago
+            (
+
+            string nombreTipoPago,
+            int idGrado,
+            decimal valor
+            )
+        {
+            try
+            {
+                ValidarTipoPago(nombreTipoPago,idGrado, valor);
+                Clases.TipoPago TipoPago = new Clases.TipoPago(
+                    nombreTipoPago,
+                    idGrado,
+                    valor
+                    );
+                TipoPago.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarTipoPago(
+            int idTipoPago,
+            string nombreTipoPago,
+            int idGrado,
+            decimal valor)
+        {
+            try
+            {
+                ValidarTipoPago(nombreTipoPago,idGrado, valor);
+                Clases.TipoPago TipoPago = new Clases.TipoPago(
+                    idTipoPago,
+                    nombreTipoPago,
+                    idGrado,
+                   valor);
+                TipoPago.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarTipoPago(int idTipoPago)
+        {
+            try
+            {
+                Clases.TipoPago TipoPago = new Clases.TipoPago(idTipoPago);
+                TipoPago.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarTipoPago1(int id, int estado)
+        {
+            try
+            {
+                Clases.TipoPago TipoPago = new Clases.TipoPago(id, estado);
+                TipoPago.Eliminar1();
             }
             catch (Exception ex)
             {

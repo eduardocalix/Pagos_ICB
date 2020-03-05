@@ -73,6 +73,7 @@
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
             // 
             // btnAgregar
             // 
@@ -85,6 +86,7 @@
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
             // 
             // btnEliminar
             // 
@@ -95,8 +97,9 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 25);
             this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "Deshabilitar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
             // btnNuevo
             // 
@@ -123,6 +126,7 @@
             this.dgvGrado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrado.Size = new System.Drawing.Size(459, 123);
             this.dgvGrado.TabIndex = 38;
+            this.dgvGrado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrado_CellClick_1);
             // 
             // grpGrado
             // 
@@ -189,6 +193,7 @@
             this.btnSalir.TabIndex = 30;
             this.btnSalir.TabStop = false;
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
             // 
             // label1
             // 

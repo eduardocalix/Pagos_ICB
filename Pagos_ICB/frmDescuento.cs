@@ -54,7 +54,7 @@ namespace Pagos_ICB
                 Clases.ICB.AgregarDescuento
                     (
                         txtDescripcion.Text,
-                        Convert.ToDecimal( txtValor.Text)
+                        Convert.ToDecimal(txtValor.Text)
                     );
                 CargarDGWDescuento();
 
@@ -68,7 +68,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el tipo de unidad", "Modificar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el descuento", "Modificar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -137,7 +137,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el descuento" + txtDescripcion.Text, "Eliminar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try

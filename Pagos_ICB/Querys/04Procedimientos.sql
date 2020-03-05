@@ -554,7 +554,7 @@ GO
 --Tipo Pago
 CREATE PROCEDURE SP_AgregarTipoPago
 (
-    @nombrePago NVARCHAR(30),
+    @nombreTipoPago NVARCHAR(30),
 	@valor DECIMAL(6,2),
     @idGrado INT
 )
@@ -563,17 +563,17 @@ BEGIN
     DECLARE @existe int;
     SET @existe = 0;
 
-    SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE nombrePago = @nombrePago;
+    SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE nombreTipoPago = @nombreTipoPago;
     IF (@existe > 0)
         BEGIN
-            RAISERROR(N'Ya existe un TipoPago con el nombrePago %s"', 16, 1,@nombrePago);
+            RAISERROR(N'Ya existe un TipoPago con el nombreTipoPago %s"', 16, 1,@nombreTipoPago);
             RETURN 0
             
         END
     ELSE
         BEGIN
-            INSERT INTO Cuentas.TipoPago(nombrePago,valor, idGrado)
-                VALUES(@nombrePago, @valor, @idGrado)
+            INSERT INTO Cuentas.TipoPago(nombreTipoPago,valor, idGrado)
+                VALUES(@nombreTipoPago, @valor, @idGrado)
             RETURN 1
         END
 END
@@ -581,8 +581,8 @@ GO
 
 CREATE PROCEDURE SP_ModificarTipoPago
 (
-    @idTipo INT,
-    @nombrePago NVARCHAR(100),
+    @idTipoPago INT,
+    @nombreTipoPago NVARCHAR(100),
     @valor DECIMAL(6,2),
     @idGrado INT
 )
@@ -591,20 +591,20 @@ BEGIN
     DECLARE @existe int;
     SET @existe = 0;
 
-    SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
+    SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE idTipoPago = @idTipoPago;
 
     IF (@existe = 0)
         BEGIN
-            RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipo);
+            RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipoPago);
             RETURN 0
         END     
     ELSE
         BEGIN
             UPDATE Cuentas.TipoPago
-                SET     nombrePago = @nombrePago,
+                SET     nombreTipoPago = @nombreTipoPago,
                         valor = @valor,
                         idGrado = @idGrado
-                    WHERE idTipo = @idTipo;
+                    WHERE idTipoPago = @idTipoPago;
             RETURN 1
         END
 END
@@ -612,22 +612,22 @@ GO
 
 CREATE PROCEDURE SP_EliminarTipoPago1
 (
-    @idTipo INT,
+    @idTipoPago INT,
 	@estado INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
-        SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
+        SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE idTipoPago = @idTipoPago;
         IF (@existe = 0)
             BEGIN
-                RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipo);
+                RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipoPago);
                 RETURN 0
             END     
         ELSE
             BEGIN
-                UPDATE Cuentas.TipoPago SET estado=@estado WHERE idTipo = @idTipo;
+                UPDATE Cuentas.TipoPago SET estado=@estado WHERE idTipoPago = @idTipoPago;
                 RETURN 1
             END
 END
@@ -635,23 +635,141 @@ GO
 
 CREATE PROCEDURE SP_EliminarTipoPago
 (
-    @idTipo INT
+    @idTipoPago INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
-        SELECT @existe = COUNT(Cuentas.TipoPago.idTipo) FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
+        SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE idTipoPago = @idTipoPago;
         IF (@existe = 0)
             BEGIN
-                RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipo);
+                RAISERROR(N'No existe el TipoPago con el id %d"', 16, 1, @idTipoPago);
                 RETURN 0
             END     
         ELSE
             BEGIN
-                DELETE FROM Cuentas.TipoPago WHERE idTipo = @idTipo;
+                DELETE FROM Cuentas.TipoPago WHERE idTipoPago = @idTipoPago;
                 RETURN 1
             END
+END
+GO
+
+-------------------------------------------------------------------------------------------------------------------
+--Modulo Pago 
+CREATE PROCEDURE SP_AgregarPago
+(
+	@recibo VARCHAR(15),
+	@idAlumno INT,
+	@idTipoPago INT,
+	@idDescuento INT,
+    @idMora INT,
+	@idUsuario INT,
+	@total DECIMAL (8,2),
+	@fechaPago DATE 
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+	SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE recibo = @recibo;
+	IF (@existe > 0)
+		BEGIN
+			RAISERROR(N'Ya existe un Pago con el recibo %s"', 16, 1,@recibo);
+			RETURN 0
+		END
+	ELSE
+		BEGIN
+			INSERT INTO Cuentas.Pago(recibo, idAlumno, idTipoPago, idDescuento, idMora,idUsuario,total, fechaPago)
+				VALUES(@recibo,@idAlumno,@idTipoPago,@idDescuento,@idMora,@idUsuario,@total,@fechaPago)
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_ModificarPago
+(
+	@idPago INT,
+	@recibo VARCHAR(15),
+	@idAlumno INT,
+	@idTipoPago INT,
+	@idDescuento INT,
+    @idMora INT,
+	@idUsuario INT,
+	@total DECIMAL (8,2),
+	@fechaPago DATE 
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+
+	SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
+
+	IF (@existe = 0)
+		BEGIN
+			RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
+			RETURN 0
+		END 	
+	ELSE
+		BEGIN
+			UPDATE Cuentas.Pago
+				SET 	recibo = @recibo,
+						idAlumno = @idAlumno,
+						idTipoPago = @idTipoPago,
+						idDescuento = @idDescuento,
+						idMora = @idMora,
+						idUsuario = @idUsuario,
+						total = @total,
+						fechaPago = @fechaPago
+					WHERE idPago = @idPago;
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarPago1
+(
+	@idPago INT,
+	@estado BIT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				UPDATE Cuentas.Pago SET estado=@estado WHERE idPago = @idPago;
+				RETURN 1
+			END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarPago
+(
+	@idPago INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				DELETE FROM Cuentas.Pago WHERE idPago = @idPago;
+				RETURN 1
+			END
 END
 GO
 --------------------------------------------------------------------------------------------
@@ -1027,132 +1145,7 @@ BEGIN
             END
 END
 GO*/
--------------------------------------------------------------------------------------------------------------------
---Modulo Pago 
-CREATE PROCEDURE SP_AgregarPago
-(
-	@recibo VARCHAR(15),
-	@idAlumno INT,
-	@idTipo INT,
-	@idDescuento INT,
-    @idMora INT,
-	@idUsuario INT,
-	@pagoUno DECIMAL(6,2),
-	@PagoDos DECIMAL(6,2),
-	@subTotal DECIMAL (8,2),
-	@total DECIMAL (8,2),
-	@fechaPago DATE 
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE recibo = @recibo;
-	IF (@existe > 0)
-		BEGIN
-			RAISERROR(N'Ya existe un Pago con el recibo %s"', 16, 1,@recibo);
-			RETURN 0
-		END
-	ELSE
-		BEGIN
-			INSERT INTO Cuentas.Pago(recibo, idAlumno, idTipo, idDescuento, idMora,idUsuario,pagoUno, pagoDos,subTotal,total, fechaPago)
-				VALUES(@recibo,@idAlumno,@idTipo,@idDescuento,@idMora,@idUsuario,@pagoUno,@PagoDos,@subTotal,@total,@fechaPago)
-			RETURN 1
-		END
-END
-GO
 
-CREATE PROCEDURE SP_ModificarPago
-(
-	@idPago INT,
-	@recibo VARCHAR(15),
-	@idAlumno INT,
-	@idTipo INT,
-	@idDescuento INT,
-    @idMora INT,
-	@idUsuario INT,
-	@pagoUno DECIMAL(6,2),
-	@PagoDos DECIMAL(6,2),
-	@subTotal DECIMAL (8,2),
-	@total DECIMAL (8,2),
-	@fechaPago DATE 
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
-
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			UPDATE Cuentas.Pago
-				SET 	recibo = @recibo,
-						idAlumno = @idAlumno,
-						idTipo = @idTipo,
-						idDescuento = @idDescuento,
-						idMora = @idMora,
-						idUsuario = @idUsuario,
-						pagoUno = @pagoUno,
-						pagoDos = @PagoDos,
-						subTotal = @subTotal,
-						total = @total,
-						fechaPago = @fechaPago
-					WHERE idPago = @idPago;
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarPago1
-(
-	@idPago INT,
-	@estado BIT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
-		IF (@existe = 0)
-			BEGIN
-				RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
-				RETURN 0
-			END 	
-		ELSE
-			BEGIN
-				UPDATE Cuentas.Pago SET estado=@estado WHERE idPago = @idPago;
-				RETURN 1
-			END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarPago
-(
-	@idPago INT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago WHERE idPago = @idPago;
-		IF (@existe = 0)
-			BEGIN
-				RAISERROR(N'No existe el Pago con el id %d"', 16, 1, @idPago);
-				RETURN 0
-			END 	
-		ELSE
-			BEGIN
-				DELETE FROM Cuentas.Pago WHERE idPago = @idPago;
-				RETURN 1
-			END
-END
-GO
 --------------------------------------------------------------------------------------------------------
 
 /*
@@ -1291,7 +1284,7 @@ BEGIN
 		WHERE Numero= @NumeroPago
 END
 GO
-*/
+
 
 --Insertar Apertura de Caja
 CREATE PROCEDURE SP_Agregar_AperturaCaja
@@ -1397,4 +1390,4 @@ BEGIN
 	INSERT INTO Cuentas.ServicioPublico (Descripcion)
 		VALUES (@Descripcion)
 END
-GO
+GO*/

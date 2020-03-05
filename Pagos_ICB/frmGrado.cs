@@ -49,63 +49,16 @@ namespace Pagos_ICB
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Clases.ICB.AgregarGrado
-                    (
-                        txtNombre.Text
-                    );
-                CargarDGWGrado();
-
-            }
-            catch (Exception ex)
-            {
-
-                Clases.Mensaje.Advertencia(ex);
-            }
+           
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el tipo de unidad", "Modificar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (respuesta.ToString() == "Yes")
-            {
-                try
-                {
-                    Clases.ICB.ModificarGrado
-                        (
-                            this.id,
-                            txtNombre.Text
-                        );
-                    ResetFormulario();
-                }
-                catch (Exception ex)
-                {
-
-                    Clases.Mensaje.Advertencia(ex);
-                }
-
-            }
+         
         }
 
         private void dgvGrado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Clases.Grado Grado = new Clases.Grado();
-            Grado.ObtenerGrados(
-                Convert.ToInt32(
-                    dgvGrado.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                    )
-                );
-            dgvGrado.Select();
-            this.id = Grado.IdGrado;
-
-            txtId.Text = Grado.IdGrado.ToString();
-            txtNombre.Text = Grado.NombreGrado;
-
-            btnNuevo.Enabled = true;
-            btnAgregar.Enabled = false;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
 
         }
 
@@ -129,11 +82,92 @@ namespace Pagos_ICB
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            ResetFormulario();
+           
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnNuevo_Click_1(object sender, EventArgs e)
+        {
+            ResetFormulario();
+        }
+
+        private void btnAgregar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Clases.ICB.AgregarGrado
+                    (
+                        txtNombre.Text
+                    );
+                CargarDGWGrado();
+
+            }
+            catch (Exception ex)
+            {
+
+                Clases.Mensaje.Advertencia(ex);
+            }
+        }
+
+        private void btnModificar_Click_1(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el grado", "Modificar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.ModificarGrado
+                        (
+                            this.id,
+                            txtNombre.Text
+                        );
+                    ResetFormulario();
+                }
+                catch (Exception ex)
+                {
+
+                    Clases.Mensaje.Advertencia(ex);
+                }
+
+            }
+        }
+
+        private void btnSalir_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvGrado_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            Clases.Grado Grado = new Clases.Grado();
+            Grado.ObtenerGrados(
+                Convert.ToInt32(
+                    dgvGrado.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    )
+                );
+            dgvGrado.Select();
+            this.id = Grado.IdGrado;
+
+            txtId.Text = Grado.IdGrado.ToString();
+            txtNombre.Text = Grado.NombreGrado;
+
+            btnNuevo.Enabled = true;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+        }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtNombre.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -151,16 +185,6 @@ namespace Pagos_ICB
                 }
 
             }
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnNuevo_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

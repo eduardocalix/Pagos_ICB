@@ -107,17 +107,14 @@ ELSE
 	BEGIN
 		CREATE TABLE Cuentas.Pago(
 			idPago INT IDENTITY(1,1) NOT NULL,
-			recibo VARCHAR(15),
+			recibo VARCHAR(15) NOT NULL,
 			idAlumno INT NOT NULL,
 			idTipo INT NOT NULL,
-			idDescuento INT NOT NULL,
-			idMora INT NOT NULL,
+			idDescuento INT,
+			idMora INT,
 			idUsuario INT NOT NULL,
-			pagoUno DECIMAL(6,2),
-			PagoDos DECIMAL(6,2),
-			subTotal DECIMAL (8,2),
 			total DECIMAL (8,2)NOT NULL,
-			fechaPago DATE ,
+			fechaPago DATE NOT NULL,
 			estado INT DEFAULT 1,
 		);
 	END
@@ -128,8 +125,8 @@ IF OBJECT_ID('Cuentas.TipoPago')	IS NOT NULL
 ELSE
 	BEGIN
 		CREATE TABLE Cuentas.TipoPago(
-			idTipo INT IDENTITY (1,1) NOT NULL,
-			nombrePago NVARCHAR(20) NOT NULL,
+			idTipoPago INT IDENTITY (1,1) NOT NULL,
+			nombreTipoPago NVARCHAR(20) NOT NULL,
 			idGrado INT NOT NULL,
 			valor DECIMAL(6,2) NOT NULL,
 			estado INT DEFAULT 1		

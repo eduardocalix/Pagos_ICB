@@ -49,6 +49,96 @@ namespace Pagos_ICB
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void dgvMora_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void ResetFormulario()
+        {
+            txtId.Text = "";
+            txtDescripcion.Text = "";
+            txtValor.Text = "";
+            CargarDGWMora();
+            dgwMoraEstilo(dgvMora);
+
+            btnNuevo.Enabled = true;
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+
+            txtDescripcion.Enabled = true;
+            this.id = 0;
+            txtDescripcion.Focus();
+
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void frmMora_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNuevo_Click_1(object sender, EventArgs e)
+        {
+            ResetFormulario();
+        }
+
+        private void btnSalir_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click_2(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvMora_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            Clases.Mora Mora = new Clases.Mora();
+            Mora.ObtenerMoras(
+                Convert.ToInt32(
+                    dgvMora.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    )
+                );
+            dgvMora.Select();
+            this.id = Mora.IdMora;
+
+            txtId.Text = Mora.IdMora.ToString();
+            txtDescripcion.Text = Mora.NombreMora;
+            txtValor.Text = Mora.Valor.ToString();
+
+            btnNuevo.Enabled = true;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+        }
+
+        private void btnAgregar_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 Clases.ICB.AgregarMora
@@ -66,9 +156,9 @@ namespace Pagos_ICB
             }
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el tipo de unidad", "Modificar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de modificar la mora", "Modificar Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -90,54 +180,9 @@ namespace Pagos_ICB
             }
         }
 
-        private void dgvMora_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            Clases.Mora Mora = new Clases.Mora();
-            Mora.ObtenerMoras(
-                Convert.ToInt32(
-                    dgvMora.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                    )
-                );
-            dgvMora.Select();
-            this.id = Mora.IdMora;
-
-            txtId.Text = Mora.IdMora.ToString();
-            txtDescripcion.Text = Mora.NombreMora;
-            txtValor.Text = Mora.Valor.ToString();
-
-            btnNuevo.Enabled = true;
-            btnAgregar.Enabled = false;
-            btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;
-
-        }
-
-        private void ResetFormulario()
-        {
-            txtId.Text = "";
-            txtDescripcion.Text = "";
-            CargarDGWMora();
-            dgwMoraEstilo(dgvMora);
-
-            btnNuevo.Enabled = true;
-            btnAgregar.Enabled = true;
-            btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
-
-            txtDescripcion.Enabled = true;
-            this.id = 0;
-            txtDescripcion.Focus();
-
-        }
-
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-            ResetFormulario();
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de deshabilitar la mora" + txtDescripcion.Text, "Eliminar Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -154,31 +199,6 @@ namespace Pagos_ICB
                 }
 
             }
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void frmMora_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNuevo_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSalir_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSalir_Click_2(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

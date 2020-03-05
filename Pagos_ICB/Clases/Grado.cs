@@ -215,7 +215,7 @@ namespace Pagos_ICB.Clases
                 while (dr.Read())
                 {
                     IdGrado = dr.GetInt32(0);
-                    Nombres = dr.GetString(2);
+                    NombreGrado = dr.GetString(1);
                 }
             }
             catch (SqlException excepcion)

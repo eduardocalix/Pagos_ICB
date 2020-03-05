@@ -58,7 +58,7 @@ namespace Pagos_ICB.Clases
                 conexion.Abrir();
                 cmd.Parameters.Add(new SqlParameter("nombreDescuento", SqlDbType.NVarChar, 30));
                 cmd.Parameters["nombreDescuento"].Value = NombreDescuento;
-                cmd.Parameters.Add(new SqlParameter("valor", SqlDbType.Decimal));
+                cmd.Parameters.Add(new SqlParameter("valor", SqlDbType.Decimal,6));
                 cmd.Parameters["valor"].Value = Valor;
                 cmd.ExecuteNonQuery();
 
@@ -183,7 +183,7 @@ namespace Pagos_ICB.Clases
             //Se traen todos los datos de la tabla Descuentoss y los almacena la variable sql
             string sql = @"SELECT   Cuentas.Descuento.idDescuento       as Código,
                                     Cuentas.Descuento.nombreDescuento   as NombreDescuento,
-                                    Cuentas.Descuento.valor             as Valor, 
+                                    Cuentas.Descuento.valor             as Valor
                             FROM Cuentas.Descuento
                             WHERE estado=" + estado + ";";
             try

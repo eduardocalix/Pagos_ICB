@@ -168,7 +168,7 @@ namespace Pagos_ICB.Clases
             {
                 throw new Clases.Excepcion(
                    String.Format("{0} \n\n{1}",
-                   "no podemos obtener la informacion de la Mora", ex.Message), ex, "Clase_Moras"); ;
+                   "no podemos obtener la informacion de la Mora", ex.Message), ex, "Clase_Mora"); ;
             }
             finally
             {
@@ -183,7 +183,7 @@ namespace Pagos_ICB.Clases
             //Se traen todos los datos de la tabla Morass y los almacena la variable sql
             string sql = @"SELECT   Cuentas.Mora.idMora       as Código,
                                     Cuentas.Mora.nombreMora   as NombreMora,
-                                    Cuentas.Mora.valor        as Valor, 
+                                    Cuentas.Mora.valor        as Valor
                             FROM Cuentas.Mora
                             WHERE estado=" + estado + ";";
             try
@@ -222,7 +222,7 @@ namespace Pagos_ICB.Clases
                 while (dr.Read())
                 {
                     IdMora = dr.GetInt32(0);
-                    Nombres = dr.GetString(2);
+                    Nombres = dr.GetString(1);
                 }
             }
             catch (SqlException excepcion)
@@ -230,7 +230,7 @@ namespace Pagos_ICB.Clases
                 Exception ex = new Exception(
                    String.Format("{0} \n\n{1}",
                    "no podemos obtener la informacion del Mora", excepcion.Message));
-                ex.Source = "Clase_Moras";
+                ex.Source = "Clase_Mora";
                 throw ex;
             }
             finally
