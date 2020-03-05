@@ -35,7 +35,7 @@ namespace Pagos_ICB.Clases
             NombreMora = nombreMora;
             Valor = valor;
         }
-        //Constructor para eliminar un Mora
+        //Constructor para eliminar una Mora
         public Mora(int idMora)
         {
             IdMora = idMora;
@@ -168,7 +168,7 @@ namespace Pagos_ICB.Clases
             {
                 throw new Clases.Excepcion(
                    String.Format("{0} \n\n{1}",
-                   "no podemos obtener la informacion del Mora", ex.Message), ex, "Clase_Morass"); ;
+                   "no podemos obtener la informacion de la Mora", ex.Message), ex, "Clase_Moras"); ;
             }
             finally
             {
@@ -183,8 +183,8 @@ namespace Pagos_ICB.Clases
             //Se traen todos los datos de la tabla Morass y los almacena la variable sql
             string sql = @"SELECT   Cuentas.Mora.idMora       as Código,
                                     Cuentas.Mora.nombreMora   as NombreMora,
-                                    Cuentas.Mora.valor       as Valor, 
-                            FROM Cuentas.Moras
+                                    Cuentas.Mora.valor        as Valor, 
+                            FROM Cuentas.Mora
                             WHERE estado=" + estado + ";";
             try
             {

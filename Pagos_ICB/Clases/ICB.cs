@@ -12,23 +12,25 @@ namespace Pagos_ICB.Clases
 
         //Se establece el constructor de la clase ICB
         public ICB() { }
-        //Excepcion para modulo de Alumnos
+        //Excepcion para modulo de Alumnos 2da capa
         private static void ValidarAlumnos
             (
             string identidad,
             string nombre,
-            string apellido
+            string apellido,
+            string beca
             )
         {
-            if (identidad.Length != 15 || nombre.Length == 0 || apellido.Length == 0)
+            if (identidad.Length != 15 || nombre.Length == 0 || apellido.Length == 0 || beca.Length==0)
             {
                 throw new Clases.Excepcion
                     (
                     "Error al insertar el Alumnos. \n\n" +
-                    "Existen datos obligatorios que se necesitan para poder agregar a el Alumnos:\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el Alumnos:\n" +
                     "Identidad: 1234-1234-12345\n" +
                     "Nombre   : Pedro\n" +
-                    "Apellido : Picapiedra",
+                    "Apellido : Picapiedra"+
+                    "Beca : Si/No",
                     new Exception(),
                     "Clase_ICB"
                     );
@@ -40,12 +42,12 @@ namespace Pagos_ICB.Clases
             string nombre,
             string apellido,
             int idGrado,
-            int beca
+            string beca
             )
         {
             try
             {
-                ValidarAlumnos(identidad, nombre, apellido);
+                ValidarAlumnos(identidad, nombre, apellido,beca);
                 Clases.Alumnos Alumnos = new Clases.Alumnos(
                     identidad,
                     nombre,
@@ -62,18 +64,18 @@ namespace Pagos_ICB.Clases
         }
 
         public static void ModificarAlumnos(
-            int id,
+            int idAlumno,
             string identidad,
             string nombre,
             string apellido,
               int idGrado,
-            int beca)
+            string beca)
         {
             try
             {
-                ValidarAlumnos(identidad, nombre, apellido);
+                ValidarAlumnos(identidad, nombre, apellido,beca);
                 Clases.Alumnos Alumnos = new Clases.Alumnos(
-                    id,
+                    idAlumno,
                     identidad,
                     nombre,
                    apellido,
@@ -88,11 +90,11 @@ namespace Pagos_ICB.Clases
         }
 
 
-        public static void EliminarAlumnos(int id)
+        public static void EliminarAlumnos(int idAlumno)
         {
             try
             {
-                Clases.Alumnos Alumnos = new Clases.Alumnos(id);
+                Clases.Alumnos Alumnos = new Clases.Alumnos(idAlumno);
                 Alumnos.Eliminar();
             }
             catch (Exception ex)
@@ -113,19 +115,17 @@ namespace Pagos_ICB.Clases
             }
         }
 
+        /*Modulo Usuario 2da Capa*/
 
-
-        private static void ValidarUsuarios
-    (
-    string nombre,
-    string apellido,
-    string clave
-    )
+        private static void ValidarUsuarios(
+        string nombre,
+        string apellido,
+        string clave
+        )
         {
-            if (apellido.Length == 0 || nombre.Length == 0 || clave.Length == 0)
-            {
+            if (apellido.Length == 0 || nombre.Length == 0 || clave.Length == 0){
                 throw new Clases.Excepcion
-                    (
+                  (
                     "Error al insertar el usuario \n\n" +
                     "Existen datos obligatorios que se necesitan para poder agregar un usuario:\n" +
                     "Nombre   : Pedro\n" +
@@ -134,8 +134,8 @@ namespace Pagos_ICB.Clases
                     new Exception(),
                     "Clase_ICB"
                     );
-            }
         }
+    }
         public static void AgregarUsuario(
             string nombre,
             string apellido,
@@ -204,6 +204,264 @@ namespace Pagos_ICB.Clases
             {
 
                 throw es;
+            }
+        }
+        /*Modulo Mora 2da capa*/
+        private static void ValidarMora
+            (
+            string nombre,
+            decimal valor
+            )
+        {
+            if ( nombre.Length == 0 || valor >= 0)
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el Mora. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar la Mora:\n" +
+                    "Nombre Mora   : Pedro\n" +
+                    "Valor : 3%",
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarMora
+            (
+            
+            string nombreMora,
+            decimal valor
+            )
+        {
+            try
+            {
+                ValidarMora(nombreMora, valor);
+                Clases.Mora Mora = new Clases.Mora(
+                    nombreMora,
+                    valor
+                    );
+                Mora.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarMora(
+            int idMora,
+            string nombreMora,
+            decimal valor)
+        {
+            try
+            {
+                ValidarMora( nombreMora, valor);
+                Clases.Mora Mora = new Clases.Mora(
+                    idMora,
+                    nombreMora,
+                   valor);
+                Mora.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarMora(int idMora)
+        {
+            try
+            {
+                Clases.Mora Mora = new Clases.Mora(idMora);
+                Mora.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarMora1(int id, int estado)
+        {
+            try
+            {
+                Clases.Mora Mora = new Clases.Mora(id, estado);
+                Mora.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /*Modulo Grado 2da capa*/
+        private static void ValidarGrado
+           (
+           string nombre
+           )
+        {
+            if (nombre.Length == 0 )
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el Grado. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el Grado:\n" +
+                    "Nombre Grado   : Pedro\n" +
+                    "Valor : 30%",
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarGrado
+            (
+
+            string nombreGrado
+            )
+        {
+            try
+            {
+                ValidarGrado(nombreGrado);
+                Clases.Grado Grado = new Clases.Grado(
+                    nombreGrado
+                    );
+                Grado.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarGrado(
+            int idGrado,
+            string nombreGrado)
+        {
+            try
+            {
+                ValidarGrado(nombreGrado);
+                Clases.Grado Grado = new Clases.Grado(
+                    idGrado,
+                    nombreGrado
+                    );
+                Grado.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarGrado(int idGrado)
+        {
+            try
+            {
+                Clases.Grado Grado = new Clases.Grado(idGrado);
+                Grado.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarGrado1(int id, int estado)
+        {
+            try
+            {
+                Clases.Grado Grado = new Clases.Grado(id, estado);
+                Grado.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /*Modulo descuendo 2da capa*/
+        private static void ValidarDescuento
+           (
+           string nombre,
+           decimal valor
+           )
+        {
+            if (nombre.Length == 0 || valor >= 0)
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el Descuento. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el Descuento:\n" +
+                    "Nombre Descuento   : Pedro\n" +
+                    "Valor : 30%",
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarDescuento
+            (
+
+            string nombreDescuento,
+            decimal valor
+            )
+        {
+            try
+            {
+                ValidarDescuento(nombreDescuento, valor);
+                Clases.Descuento Descuento = new Clases.Descuento(
+                    nombreDescuento,
+                    valor
+                    );
+                Descuento.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarDescuento(
+            int idDescuento,
+            string nombreDescuento,
+            decimal valor)
+        {
+            try
+            {
+                ValidarDescuento(nombreDescuento, valor);
+                Clases.Descuento Descuento = new Clases.Descuento(
+                    idDescuento,
+                    nombreDescuento,
+                   valor);
+                Descuento.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarDescuento(int idDescuento)
+        {
+            try
+            {
+                Clases.Descuento Descuento = new Clases.Descuento(idDescuento);
+                Descuento.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarDescuento1(int id, int estado)
+        {
+            try
+            {
+                Clases.Descuento Descuento = new Clases.Descuento(id, estado);
+                Descuento.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

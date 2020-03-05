@@ -91,16 +91,16 @@ namespace Pagos_ICB
         private void dgvGrado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Clases.Grado Grado = new Clases.Grado();
-            Grado.ObtenerGrado(
+            Grado.ObtenerGrados(
                 Convert.ToInt32(
                     dgvGrado.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
             dgvGrado.Select();
-            this.id = Grado.Id;
+            this.id = Grado.IdGrado;
 
-            txtId.Text = Grado.Id.ToString();
-            txtNombre.Text = Grado.Descripcion;
+            txtId.Text = Grado.IdGrado.ToString();
+            txtNombre.Text = Grado.NombreGrado;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;

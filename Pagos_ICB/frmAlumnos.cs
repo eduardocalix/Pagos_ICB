@@ -20,6 +20,7 @@ namespace Pagos_ICB
         private void frmAlumnos_Load(object sender, EventArgs e)
         {
             CargarDGWAlumno();
+            CargarCMBGrados();
         }
         private int id = 0;
         private void CargarDGWAlumno()
@@ -40,17 +41,24 @@ namespace Pagos_ICB
             dgw.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
 
         }
-
+        
 
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            Clases.Grado grado = new Clases.Grado();
+            grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
+
             try
             {
-                Clases.ICB.AgregarAlumno(
+                Clases.ICB.AgregarAlumnos(
+                    txtIdentidad.Text,
                     txtNombre.Text,
-                    txtTelefono.Text,
-                    txtDireccion.Text
+                    txtApellido.Text,
+                    grado.IdGrado,
+                    cbBeca.SelectedValue.ToString()
+                    
+
                     );
                 CargarDGWAlumno();
             }
@@ -65,14 +73,17 @@ namespace Pagos_ICB
             DialogResult respuesta = MessageBox.Show("Está seguro de modificar al Alumno", "Modificar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
-
+                Clases.Grado grado = new Clases.Grado();
+                grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
                 try
                 {
-                    Clases.ICB.ModificarAlumno(
+                    Clases.ICB.ModificarAlumnos(
                    Convert.ToInt32(this.id),
+                     txtIdentidad.Text,
                     txtNombre.Text,
-                    txtTelefono.Text,
-                    txtDireccion.Text
+                    txtApellido.Text,
+                    grado.IdGrado,
+                    cbBeca.SelectedValue.ToString()
                         );
                     ResetFormulario();
 
@@ -93,7 +104,7 @@ namespace Pagos_ICB
 
                 try
                 {
-                    Clases.ICB.EliminarAlumno(this.id);
+                    Clases.ICB.EliminarAlumnos(this.id);
                 }
                 catch (Exception ex)
                 {
@@ -109,16 +120,18 @@ namespace Pagos_ICB
         private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Clases.Alumnos Alumno = new Clases.Alumnos();
-            Alumno.ObtenerAlumno(
+            Alumno.ObtenerAlumnos(
                 Convert.ToInt32(
                     dgvAlumnos.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
             dgvAlumnos.Select();
-            this.id = Alumno.Id;
-            txtNombre.Text = Alumno.Nombre;
-            txtTelefono.Text = Alumno.Telefono;
-            txtDireccion.Text = Alumno.Direccion;
+            this.id = Alumno.IdAlumno;
+            txtIdentidad.Text = Alumno.Identidad;
+            txtNombre.Text = Alumno.Nombres;
+            txtApellido.Text = Alumno.Apellidos;
+            cbGrado.SelectedItem = Alumno.IdGrado; 
+            cbBeca.SelectedItem = Alumno.Beca;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
@@ -138,8 +151,9 @@ namespace Pagos_ICB
         private void ResetFormulario()
         {
             txtNombre.Text = "";
-            txtTelefono.Text = "";
-            txtDireccion.Text = "";
+            txtApellido.Text = "";
+            txtIdentidad.Text = "";
+            cbBeca.SelectedValue = 1;
             CargarDGWAlumno();
             dgwAlumnostilo(dgvAlumnos);
 
@@ -149,11 +163,24 @@ namespace Pagos_ICB
             btnEliminar.Enabled = false;
 
             txtNombre.Enabled = true;
-            txtTelefono.Enabled = true;
-            txtDireccion.Enabled = true;
+            txtApellido.Enabled = true;
+            txtIdentidad.Enabled = true;
             this.id = 0;
             txtNombre.Focus();
         }
+        private void CargarCMBGrados()
+        {
+            DataTable dt = new DataTable();
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = "select * FROM Cuentas.Grado";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            cbGrado.DisplayMember = "nombreGrado";
+            cbGrado.ValueMember = "nombreGrado";
+            cbGrado.DataSource = dt;
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();

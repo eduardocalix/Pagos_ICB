@@ -247,7 +247,7 @@ CREATE PROCEDURE SP_AgregarAlumno
 	@nombres NVARCHAR(25),
 	@apellidos NVARCHAR(25),
 	@idGrado INT,
-	@beca INT  
+	@beca NVARCHAR(3) 
 )
 AS
 BEGIN
@@ -276,7 +276,7 @@ Create PROCEDURE SP_ModificarAlumno
 	@nombres NVARCHAR(25),
 	@apellidos NVARCHAR(25),
 	@idGrado INT,
-	@beca INT
+	@beca NVARCHAR(3)
 )
 AS
 BEGIN

@@ -100,7 +100,7 @@ namespace Pagos_ICB
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            Dolares();
+            
             LimpiarFormulario();
         }
 

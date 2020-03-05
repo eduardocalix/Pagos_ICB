@@ -10,7 +10,7 @@ namespace Pagos_ICB.Clases
 {
     class Usuarios
     {
-        public int id { get; set; }
+        public int idUsuario { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string usuario { get; set; }
@@ -48,7 +48,7 @@ namespace Pagos_ICB.Clases
         public void ObtenerUsuario(string usuarioRe)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT id, nombre, apellido, usuario, clave FROM Acceso.Usuarios WHERE usuario = '" + usuarioRe + "';";
+            string sql = @"SELECT idUsuario, nombre, apellido, usuario, clave FROM Acceso.Usuario WHERE usuario = '" + usuarioRe + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {
@@ -57,7 +57,7 @@ namespace Pagos_ICB.Clases
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    this.id = dr.GetInt32(0);
+                    this.idUsuario = dr.GetInt32(0);
                     this.nombre = dr.GetString(1);
                     this.apellido = dr.GetString(2);
                     this.usuario = dr.GetString(3);
@@ -85,7 +85,7 @@ namespace Pagos_ICB.Clases
         {
 
             Conexión conexion = new Conexión();
-            string sql = @"SELECT id FROM Acceso.Usuarios WHERE usuario = '" + usuarioRe + "';";
+            string sql = @"SELECT idUsuario FROM Acceso.Usuario WHERE usuario = '" + usuarioRe + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {
@@ -123,11 +123,11 @@ namespace Pagos_ICB.Clases
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("Nombre", SqlDbType.NVarChar, 25));
+                cmd.Parameters.Add(new SqlParameter("nombre", SqlDbType.NVarChar, 25));
                 cmd.Parameters["nombre"].Value = this.nombre;
-                cmd.Parameters.Add(new SqlParameter("Apellido", SqlDbType.NVarChar, 25));
+                cmd.Parameters.Add(new SqlParameter("apellido", SqlDbType.NVarChar, 25));
                 cmd.Parameters["apellido"].Value = this.apellido;
-                cmd.Parameters.Add(new SqlParameter("Clave", SqlDbType.NVarChar, 20));
+                cmd.Parameters.Add(new SqlParameter("clave", SqlDbType.NVarChar, 20));
                 cmd.Parameters["clave"].Value = this.clave;
                 cmd.ExecuteNonQuery();
 
@@ -150,13 +150,13 @@ namespace Pagos_ICB.Clases
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("UsuarioAnterior", SqlDbType.VarChar, 26));
+                cmd.Parameters.Add(new SqlParameter("usuarioAnterior", SqlDbType.VarChar, 26));
                 cmd.Parameters["usuarioAnterior"].Value = this.usuario;
-                cmd.Parameters.Add(new SqlParameter("Nombre", SqlDbType.NVarChar, 25));
+                cmd.Parameters.Add(new SqlParameter("nombre", SqlDbType.NVarChar, 25));
                 cmd.Parameters["nombre"].Value = this.nombre;
-                cmd.Parameters.Add(new SqlParameter("Apellido", SqlDbType.NVarChar, 25));
+                cmd.Parameters.Add(new SqlParameter("apellido", SqlDbType.NVarChar, 25));
                 cmd.Parameters["apellido"].Value = this.apellido;
-                cmd.Parameters.Add(new SqlParameter("Clave", SqlDbType.NVarChar, 20));
+                cmd.Parameters.Add(new SqlParameter("clave", SqlDbType.NVarChar, 20));
                 cmd.Parameters["clave"].Value = this.clave;
                 cmd.ExecuteNonQuery();
 
@@ -179,7 +179,7 @@ namespace Pagos_ICB.Clases
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("Usuario", SqlDbType.VarChar, 26));
+                cmd.Parameters.Add(new SqlParameter("usuario", SqlDbType.VarChar, 26));
                 cmd.Parameters["usuario"].Value = this.usuario;
                 cmd.Parameters.Add(new SqlParameter("estado", SqlDbType.Int));
                 cmd.Parameters["estado"].Value = Estado;
@@ -203,7 +203,7 @@ namespace Pagos_ICB.Clases
             try
             {
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("Usuario", SqlDbType.VarChar, 26));
+                cmd.Parameters.Add(new SqlParameter("usuario", SqlDbType.VarChar, 26));
                 cmd.Parameters["usuario"].Value = this.usuario;
                 cmd.ExecuteNonQuery();
 
@@ -221,19 +221,19 @@ namespace Pagos_ICB.Clases
         public static DataView GetDataView(int estado)
         {
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = @"SELECT   Acceso.Usuarios.id          as Código,
-                                    Acceso.Usuarios.nombre      as Nombre, 
-                                    Acceso.Usuarios.apellido    as Apellido, 
-                                    Acceso.Usuarios.usuario     as Usuario
-                            FROM Acceso.Usuarios
+            string sql = @"SELECT   Acceso.Usuario.idUsuario   as Código,
+                                    Acceso.Usuario.nombre      as Nombre, 
+                                    Acceso.Usuario.apellido    as Apellido, 
+                                    Acceso.Usuario.usuario     as Usuario
+                            FROM Acceso.Usuario
                             WHERE estado=" + estado + ";";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();
                 data.SelectCommand = new SqlCommand(sql, conexion.conexion);
                 System.Data.DataSet ds = new System.Data.DataSet();
-                data.Fill(ds, "Acceso.Usuarios");
-                DataTable dt = ds.Tables["Acceso.Usuarios"];
+                data.Fill(ds, "Acceso.Usuario");
+                DataTable dt = ds.Tables["Acceso.Usuario"];
                 DataView dv = new DataView(dt,
                     "",
                     "Código",
@@ -253,7 +253,7 @@ namespace Pagos_ICB.Clases
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select usuario FROM Acceso.Usuarios";
+            string sql = "select usuario FROM Acceso.Usuario";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);

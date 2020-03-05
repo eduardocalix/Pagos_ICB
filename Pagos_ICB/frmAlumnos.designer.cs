@@ -35,11 +35,14 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.grpProveedores = new System.Windows.Forms.GroupBox();
+            this.cbBeca = new System.Windows.Forms.ComboBox();
+            this.lblBeca = new System.Windows.Forms.Label();
+            this.cbGrado = new System.Windows.Forms.ComboBox();
             this.txtIdentidad = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtTelefono = new System.Windows.Forms.MaskedTextBox();
+            this.txtApellido = new System.Windows.Forms.MaskedTextBox();
             this.lblGrado = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
@@ -50,9 +53,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbGrado = new System.Windows.Forms.ComboBox();
-            this.cbBeca = new System.Windows.Forms.ComboBox();
-            this.lblBeca = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
             this.grpProveedores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
@@ -107,7 +107,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 25);
             this.btnEliminar.TabIndex = 2;
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "Deshabilitar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
@@ -133,7 +133,7 @@
             this.grpProveedores.Controls.Add(this.label2);
             this.grpProveedores.Controls.Add(this.txtId);
             this.grpProveedores.Controls.Add(this.txtNombre);
-            this.grpProveedores.Controls.Add(this.txtTelefono);
+            this.grpProveedores.Controls.Add(this.txtApellido);
             this.grpProveedores.Controls.Add(this.lblGrado);
             this.grpProveedores.Controls.Add(this.lblTelefono);
             this.grpProveedores.Controls.Add(this.lblId);
@@ -144,6 +144,35 @@
             this.grpProveedores.Size = new System.Drawing.Size(430, 208);
             this.grpProveedores.TabIndex = 20;
             this.grpProveedores.TabStop = false;
+            // 
+            // cbBeca
+            // 
+            this.cbBeca.FormattingEnabled = true;
+            this.cbBeca.Items.AddRange(new object[] {
+            "Si",
+            "No"});
+            this.cbBeca.Location = new System.Drawing.Point(153, 178);
+            this.cbBeca.Name = "cbBeca";
+            this.cbBeca.Size = new System.Drawing.Size(265, 24);
+            this.cbBeca.TabIndex = 26;
+            // 
+            // lblBeca
+            // 
+            this.lblBeca.AutoSize = true;
+            this.lblBeca.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeca.Location = new System.Drawing.Point(29, 182);
+            this.lblBeca.Name = "lblBeca";
+            this.lblBeca.Size = new System.Drawing.Size(40, 15);
+            this.lblBeca.TabIndex = 25;
+            this.lblBeca.Text = "Beca";
+            // 
+            // cbGrado
+            // 
+            this.cbGrado.FormattingEnabled = true;
+            this.cbGrado.Location = new System.Drawing.Point(153, 143);
+            this.cbGrado.Name = "cbGrado";
+            this.cbGrado.Size = new System.Drawing.Size(265, 24);
+            this.cbGrado.TabIndex = 24;
             // 
             // txtIdentidad
             // 
@@ -178,12 +207,12 @@
             this.txtNombre.Size = new System.Drawing.Size(266, 23);
             this.txtNombre.TabIndex = 5;
             // 
-            // txtTelefono
+            // txtApellido
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(153, 108);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(266, 23);
-            this.txtTelefono.TabIndex = 6;
+            this.txtApellido.Location = new System.Drawing.Point(153, 108);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(266, 23);
+            this.txtApellido.TabIndex = 6;
             // 
             // lblGrado
             // 
@@ -286,32 +315,6 @@
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
-            // cbGrado
-            // 
-            this.cbGrado.FormattingEnabled = true;
-            this.cbGrado.Location = new System.Drawing.Point(153, 143);
-            this.cbGrado.Name = "cbGrado";
-            this.cbGrado.Size = new System.Drawing.Size(265, 24);
-            this.cbGrado.TabIndex = 24;
-            // 
-            // cbBeca
-            // 
-            this.cbBeca.FormattingEnabled = true;
-            this.cbBeca.Location = new System.Drawing.Point(153, 178);
-            this.cbBeca.Name = "cbBeca";
-            this.cbBeca.Size = new System.Drawing.Size(265, 24);
-            this.cbBeca.TabIndex = 26;
-            // 
-            // lblBeca
-            // 
-            this.lblBeca.AutoSize = true;
-            this.lblBeca.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeca.Location = new System.Drawing.Point(29, 182);
-            this.lblBeca.Name = "lblBeca";
-            this.lblBeca.Size = new System.Drawing.Size(40, 15);
-            this.lblBeca.TabIndex = 25;
-            this.lblBeca.Text = "Beca";
-            // 
             // frmAlumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,7 +351,7 @@
         private System.Windows.Forms.GroupBox grpProveedores;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.MaskedTextBox txtTelefono;
+        private System.Windows.Forms.MaskedTextBox txtApellido;
         private System.Windows.Forms.Label lblGrado;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblId;

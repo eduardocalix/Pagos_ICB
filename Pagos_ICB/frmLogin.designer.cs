@@ -1,4 +1,4 @@
-﻿namespace Restaurante
+﻿namespace Pagos_ICB
 {
     partial class frmLogin
     {

@@ -31,6 +31,7 @@ namespace Pagos_ICB
 
         private void ventana_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*
             if (ventana.SelectedIndex == 0)
             {
                 try
@@ -129,13 +130,14 @@ namespace Pagos_ICB
                         }
                     }
                 }
-            }
+            }*/
         }
                
     
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al usuario " + this.usuario, "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -152,11 +154,12 @@ namespace Pagos_ICB
                     this.usuario = null;
                     ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al usuario " + this.usuario, "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -173,10 +176,11 @@ namespace Pagos_ICB
                     this.usuario = null;
                     ResetFormulario();
                 }
-            }
+            }*/
         }
         public void ResetFormulario()
         {
+            /*
             if (ventana.SelectedIndex == 0)
             {
                 
@@ -254,12 +258,13 @@ namespace Pagos_ICB
                         }
                     }
                 }
-            }
+            }*/
         }
 
 
         private void dgvTodo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            /*
             if (e.RowIndex != -1)
             {
 
@@ -388,11 +393,12 @@ namespace Pagos_ICB
                         }
                     }
                 }
-            }
+            }*/
         }
 
   private void button1_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Mesero " + txtNombre.Text, " Eliminar Mesero", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -408,11 +414,12 @@ namespace Pagos_ICB
                 {
                    ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Mesero " + txtNombre.Text, " Eliminar Mesero", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -428,11 +435,12 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult respuesta = MessageBox.Show("Está seguro de restaurar el Insumo", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -450,12 +458,12 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }
+            }*/
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de Eliminar el Insumo", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           /* DialogResult respuesta = MessageBox.Show("Está seguro de Eliminar el Insumo", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -472,12 +480,12 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }
+            }*/
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Proveedor" + txtNombre.Text, "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            /*DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Proveedor" + txtNombre.Text, "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
 
@@ -493,11 +501,12 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            /*
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Proveedor" + txtNombre.Text, "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -514,11 +523,11 @@ namespace Pagos_ICB
                 {
                    ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void button6_Click(object sender, EventArgs e)
-        {
+        {/*
             DialogResult respuesta = MessageBox.Show("Está seguro de Restaurar el Inventario", "Eliminar Inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -535,11 +544,11 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }
+            }*/
         }
 
         private void button7_Click(object sender, EventArgs e)
-        {
+        {/*
             DialogResult respuesta = MessageBox.Show("Está seguro de Eliminar el Inventario", "Eliminar Inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -556,11 +565,11 @@ namespace Pagos_ICB
                    ResetFormulario();
                 }
 
-            }
+            }*/
         }
 
         private void button12_Click(object sender, EventArgs e)
-        {
+        {/*
             DialogResult respuesta = MessageBox.Show("Está seguro de restaurar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -577,11 +586,11 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }
+            }*/
         }
 
         private void button13_Click(object sender, EventArgs e)
-        {
+        {/*
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -598,11 +607,11 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }
+            }*/
         }
 
         private void button10_Click(object sender, EventArgs e)
-        {
+        {/*
             DialogResult respuesta = MessageBox.Show("Está seguro de restaurar la categoria del Producto" + txtDescripcion.Text, "Eliminar la categoria Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -618,11 +627,11 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void button11_Click(object sender, EventArgs e)
-        {
+        {/*
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar la categoria del Producto" + txtDescripcion.Text, "Eliminar la categoria Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -638,7 +647,7 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }
+            }*/
         }
 
         private void frmPapelera_Load(object sender, EventArgs e)

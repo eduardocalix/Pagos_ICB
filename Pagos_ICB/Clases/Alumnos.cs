@@ -16,7 +16,7 @@ namespace Pagos_ICB.Clases
         public string Nombres { set; get; }
         public string Apellidos { set; get; }
 
-        public int Beca { set; get; }
+        public string Beca { set; get; }
         public int IdGrado { set; get; }
         public int Estado { get; set; }
         //Se define un constructor
@@ -24,7 +24,7 @@ namespace Pagos_ICB.Clases
         //Se define el destructor
         ~Alumnos() { }
         //Constructor para insertar un Alumnos
-        public Alumnos(string identidad, string nombres, string apellidos,int idGrado, int beca)
+        public Alumnos(string identidad, string nombres, string apellidos,int idGrado, string beca)
         {
             Identidad = identidad;
             Nombres = nombres;
@@ -34,7 +34,7 @@ namespace Pagos_ICB.Clases
 
         }
         //Constructor para modificar un Alumnos
-        public Alumnos(int idAlumno, string identidad, string nombres, string apellidos,int idGrado, int beca)
+        public Alumnos(int idAlumno, string identidad, string nombres, string apellidos,int idGrado, string beca)
         {
             IdAlumno = idAlumno;
             Identidad = identidad;
@@ -72,7 +72,7 @@ namespace Pagos_ICB.Clases
                 cmd.Parameters["apellidos"].Value = Apellidos;
                 cmd.Parameters.Add(new SqlParameter("idGrado", SqlDbType.Int));
                 cmd.Parameters["idGrado"].Value = IdGrado;
-                cmd.Parameters.Add(new SqlParameter("beca", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("beca", SqlDbType.NVarChar,3));
                 cmd.Parameters["beca"].Value = Beca;
                 cmd.ExecuteNonQuery();
 
@@ -107,7 +107,7 @@ namespace Pagos_ICB.Clases
                 cmd.Parameters["apellidos"].Value = Apellidos;
                 cmd.Parameters.Add(new SqlParameter("idGrado", SqlDbType.Int));
                 cmd.Parameters["idGrado"].Value = IdGrado;
-                cmd.Parameters.Add(new SqlParameter("beca", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("beca", SqlDbType.NVarChar, 3));
                 cmd.Parameters["beca"].Value = Beca;
                 cmd.ExecuteNonQuery();
 
@@ -171,7 +171,7 @@ namespace Pagos_ICB.Clases
         public void ObtenerAlumnos(int id)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT id, identidad, nombres, apellidos,Beca, idGrado, nombreGrado FROM Cuentas.Alumno WHERE id = '" + id + "';";
+            string sql = @"SELECT idAlumno, identidad, nombres, apellidos,beca, idGrado, nombreGrado FROM Cuentas.Alumno WHERE id = '" + id + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {

@@ -53,7 +53,8 @@ namespace Pagos_ICB
             {
                 Clases.ICB.AgregarMora
                     (
-                        txtDescripcion.Text
+                        txtDescripcion.Text,
+                        Convert.ToDecimal(txtValor.Text)
                     );
                 CargarDGWMora();
 
@@ -75,7 +76,8 @@ namespace Pagos_ICB
                     Clases.ICB.ModificarMora
                         (
                             this.id,
-                            txtDescripcion.Text
+                            txtDescripcion.Text,
+                            Convert.ToDecimal(txtValor.Text)
                         );
                     ResetFormulario();
                 }
@@ -91,16 +93,17 @@ namespace Pagos_ICB
         private void dgvMora_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Clases.Mora Mora = new Clases.Mora();
-            Mora.ObtenerMora(
+            Mora.ObtenerMoras(
                 Convert.ToInt32(
                     dgvMora.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
             dgvMora.Select();
-            this.id = Mora.Id;
+            this.id = Mora.IdMora;
 
-            txtId.Text = Mora.Id.ToString();
-            txtDescripcion.Text = Mora.Descripcion;
+            txtId.Text = Mora.IdMora.ToString();
+            txtDescripcion.Text = Mora.NombreMora;
+            txtValor.Text = Mora.Valor.ToString();
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
@@ -155,7 +158,7 @@ namespace Pagos_ICB
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
         }
 
         private void frmMora_Load_1(object sender, EventArgs e)
@@ -171,6 +174,11 @@ namespace Pagos_ICB
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSalir_Click_2(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

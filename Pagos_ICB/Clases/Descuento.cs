@@ -168,7 +168,7 @@ namespace Pagos_ICB.Clases
             {
                 throw new Clases.Excepcion(
                    String.Format("{0} \n\n{1}",
-                   "no podemos obtener la informacion del Descuento", ex.Message), ex, "Clase_Descuentoss"); ;
+                   "no podemos obtener la informacion del Descuento", ex.Message), ex, "Clase_Descuentos"); ;
             }
             finally
             {
@@ -183,8 +183,8 @@ namespace Pagos_ICB.Clases
             //Se traen todos los datos de la tabla Descuentoss y los almacena la variable sql
             string sql = @"SELECT   Cuentas.Descuento.idDescuento       as Código,
                                     Cuentas.Descuento.nombreDescuento   as NombreDescuento,
-                                    Cuentas.Descuento.valor       as Valor, 
-                            FROM Cuentas.Descuentos
+                                    Cuentas.Descuento.valor             as Valor, 
+                            FROM Cuentas.Descuento
                             WHERE estado=" + estado + ";";
             try
             {
@@ -230,7 +230,7 @@ namespace Pagos_ICB.Clases
                 Exception ex = new Exception(
                    String.Format("{0} \n\n{1}",
                    "no podemos obtener la informacion del Descuento", excepcion.Message));
-                ex.Source = "Clase_Descuentos";
+                ex.Source = "Clase_Descuento";
                 throw ex;
             }
             finally

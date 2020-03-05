@@ -51,9 +51,10 @@ namespace Pagos_ICB
         {
             try
             {
-                Clases.Restaurante.AgregarDescuento
+                Clases.ICB.AgregarDescuento
                     (
-                        txtDescripcion.Text
+                        txtDescripcion.Text,
+                        Convert.ToDecimal( txtValor.Text)
                     );
                 CargarDGWDescuento();
 
@@ -72,10 +73,11 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.Restaurante.ModificarDescuento
+                    Clases.ICB.ModificarDescuento
                         (
                             this.id,
-                            txtDescripcion.Text
+                            txtDescripcion.Text,
+                            Convert.ToDecimal(txtValor.Text)
                         );
                     ResetFormulario();
                 }
@@ -91,16 +93,16 @@ namespace Pagos_ICB
         private void dgvDescuento_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Clases.Descuento Descuento = new Clases.Descuento();
-            Descuento.ObtenerDescuento(
+            Descuento.ObtenerDescuentos(
                 Convert.ToInt32(
                     dgvDescuento.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
             dgvDescuento.Select();
-            this.id = Descuento.Id;
+            this.id = Descuento.IdDescuento;
 
-            txtId.Text = Descuento.Id.ToString();
-            txtDescripcion.Text = Descuento.Descripcion;
+            txtId.Text = Descuento.IdDescuento.ToString();
+            txtDescripcion.Text = Descuento.NombreDescuento;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
@@ -113,6 +115,7 @@ namespace Pagos_ICB
         {
             txtId.Text = "";
             txtDescripcion.Text = "";
+            txtValor.Text = "";
             CargarDGWDescuento();
             dgwDescuentoEstilo(dgvDescuento);
 
@@ -139,7 +142,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.Restaurante.EliminarDescuento(this.id);
+                    Clases.ICB.EliminarDescuento(this.id);
                 }
                 catch (Exception ex)
                 {
