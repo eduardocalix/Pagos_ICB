@@ -467,12 +467,12 @@ namespace Pagos_ICB.Clases
         /*Modulo TipoPago 2da capa*/
         private static void ValidarTipoPago
            (
-           string nombre,
+           int nombre,
            int idGrado,
            decimal valor
            )
         {
-            if (nombre.Length == 0 || valor < 0|| idGrado < 0)
+            if (nombre < 0 || valor < 0|| idGrado < 0)
             {
                 throw new Clases.Excepcion
                     (
@@ -489,7 +489,7 @@ namespace Pagos_ICB.Clases
         public static void AgregarTipoPago
             (
 
-            string nombreTipoPago,
+            int nombreTipoPago,
             int idGrado,
             decimal valor
             )
@@ -512,7 +512,7 @@ namespace Pagos_ICB.Clases
 
         public static void ModificarTipoPago(
             int idTipoPago,
-            string nombreTipoPago,
+            int nombreTipoPago,
             int idGrado,
             decimal valor)
         {

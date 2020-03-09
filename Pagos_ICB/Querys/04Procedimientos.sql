@@ -554,7 +554,7 @@ GO
 --Tipo Pago
 CREATE PROCEDURE SP_AgregarTipoPago
 (
-    @nombreTipoPago NVARCHAR(30),
+    @idNombreTipoPago INT,
 	@valor DECIMAL(6,2),
     @idGrado INT
 )
@@ -563,17 +563,17 @@ BEGIN
     DECLARE @existe int;
     SET @existe = 0;
 
-    SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE nombreTipoPago = @nombreTipoPago;
+    SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE idNombreTipoPago = @idNombreTipoPago;
     IF (@existe > 0)
         BEGIN
-            RAISERROR(N'Ya existe un TipoPago con el nombreTipoPago %s"', 16, 1,@nombreTipoPago);
+            RAISERROR(N'Ya existe un TipoPago con el idTipoPago %s"', 16, 1,@idNombreTipoPago);
             RETURN 0
             
         END
     ELSE
         BEGIN
-            INSERT INTO Cuentas.TipoPago(nombreTipoPago,valor, idGrado)
-                VALUES(@nombreTipoPago, @valor, @idGrado)
+            INSERT INTO Cuentas.TipoPago(idNombreTipoPago,valor, idGrado)
+                VALUES(@idNombreTipoPago, @valor, @idGrado)
             RETURN 1
         END
 END
@@ -582,7 +582,7 @@ GO
 CREATE PROCEDURE SP_ModificarTipoPago
 (
     @idTipoPago INT,
-    @nombreTipoPago NVARCHAR(100),
+    @idNombreTipoPago INT,
     @valor DECIMAL(6,2),
     @idGrado INT
 )
@@ -601,7 +601,7 @@ BEGIN
     ELSE
         BEGIN
             UPDATE Cuentas.TipoPago
-                SET     nombreTipoPago = @nombreTipoPago,
+                SET     idNombreTipoPago = @idNombreTipoPago,
                         valor = @valor,
                         idGrado = @idGrado
                     WHERE idTipoPago = @idTipoPago;
@@ -777,7 +777,7 @@ GO
 
 -----------------------------------------------------
 --Nombre de Tipo Pago
-CREATE PROCEDURE SP_AgregarTipoPago
+CREATE PROCEDURE SP_AgregarNombreTipoPago
 (
     @nombreTipoPago NVARCHAR(30)
 )
@@ -795,8 +795,8 @@ BEGIN
         END
     ELSE
         BEGIN
-            INSERT INTO Cuentas.NombreTipoPago(nombreTipoPago,valor,idGrado)
-                VALUES(@nombreTipoPago, @valor, @idGrado)
+            INSERT INTO Cuentas.NombreTipoPago(nombreTipoPago)
+                VALUES(@nombreTipoPago)
             RETURN 1
         END
 END

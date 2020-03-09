@@ -7,30 +7,39 @@ GO
 EXEC SP_InsertarUsuario 'eduardo','calix','nose', 1
 --Agregar Categorias 
 
-EXEC SP_AgregarCategoriaProducto 'Licores'
-EXEC SP_AgregarCategoriaProducto 'Bebidas'
-EXEC SP_AgregarCategoriaProducto 'Comidas'
+EXEC SP_AgregarGrado 'PREKINDER'
+EXEC SP_AgregarGrado 'KINDER'
+EXEC SP_AgregarGrado 'PREPARATORIA'
+EXEC SP_AgregarGrado 'PRIMERO'
+EXEC SP_AgregarGrado 'SEGUNDO'
+EXEC SP_AgregarGrado 'TERCERO'
+EXEC SP_AgregarGrado 'CUARTO'
+EXEC SP_AgregarGrado 'QUINTO'
+EXEC SP_AgregarGrado 'SEXTO'
+EXEC SP_AgregarGrado 'SEPTIMO'
+EXEC SP_AgregarGrado 'OCTAVO'
+EXEC SP_AgregarGrado 'NOVENO'
+EXEC SP_AgregarGrado 'DECIMO'
+EXEC SP_AgregarGrado 'UNDECIMO'
 --Agregar Tipo productos
-EXEC SP_InsertarTipoProducto 'Elaborado'
-EXEC SP_InsertarTipoProducto 'Artificial'
+--EXEC SP_InsertarTipoProducto 'Elaborado'
+--EXEC SP_InsertarTipoProducto 'Artificial'
 --EXEC SP_InsertarTipoProducto 'Dieciocho'
 --Agregar NombreTipoPagos
-EXEC SP_AgregarNombreTipoPago 'Matricula'
-EXEC SP_AgregarNombreTipoPago 'Bolsa'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 3'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 4'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 5'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 6'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 7'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 8'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 9'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 10'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 11'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 12'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 13'
-EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 14'
+EXEC SP_AgregarNombreTipoPago 'MATRICULA'
+EXEC SP_AgregarNombreTipoPago 'BOLSA ESCOLAR'
+EXEC SP_AgregarNombreTipoPago 'SEPTIEMBRE'
+EXEC SP_AgregarNombreTipoPago 'OCTUBRE'
+EXEC SP_AgregarNombreTipoPago 'NOVIEMBRE'
+EXEC SP_AgregarNombreTipoPago 'DICIEMBRE'
+EXEC SP_AgregarNombreTipoPago 'ENERO'
+EXEC SP_AgregarNombreTipoPago 'FEBRERO'
+EXEC SP_AgregarNombreTipoPago 'MARZO'
+EXEC SP_AgregarNombreTipoPago 'ABRIL'
+EXEC SP_AgregarNombreTipoPago 'MAYO'
+EXEC SP_AgregarNombreTipoPago 'JUNIO'
 
-
+/*
 --SP_AgregarMesero(identidad,nombre, apellido)
 EXEC SP_AgregarMesero '1111-1111-11111','Pedro','Picapiedra'
 --SP_AgregarProveedor(nombre,telefono,direccion)
@@ -58,7 +67,7 @@ VALUES
 ('Agua'),('Luz'),('Gas'),('Otro')
 
     
-	GO
+	GO*/
 --SP_AgregarPedido(fecha, idNombreTipoPago, RTN, NombreCliente, idMesero)
 --EXEC SP_AgregarPedido '28/11/2018', 5, '03181998011792', 'Norman', 1
 ----SP_AgregarDetallePedido(idPedido, idInventario, cantidad)

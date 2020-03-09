@@ -25,6 +25,7 @@ namespace Pagos_ICB
 
             CargarDGWTipoPago();
             CargarCMBGrados();
+            CargarCMBNombre();
             ResetFormulario();
         }
         private int id = 0;
@@ -66,7 +67,7 @@ namespace Pagos_ICB
         private void ResetFormulario()
         {
             txtId.Text = "";
-            txtDescripcion.Text = "";
+          
             txtValor.Text = "";
             CargarDGWTipoPago();
             dgwTipoPagoEstilo(dgvTipoPago);
@@ -76,9 +77,9 @@ namespace Pagos_ICB
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
 
-            txtDescripcion.Enabled = true;
+            //txtDescripcion.Enabled = true;
             this.id = 0;
-            txtDescripcion.Focus();
+            cbNombre.Focus();
 
         }
 
@@ -103,6 +104,18 @@ namespace Pagos_ICB
             cbGrado.ValueMember = "nombreGrado";
             cbGrado.DataSource = dt;
         }
+        private void CargarCMBNombre()
+        {
+            DataTable dt = new DataTable();
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = "select * FROM Cuentas.NombreTipoPago";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            cbNombre.DisplayMember = "nombreTipoPago";
+            cbNombre.ValueMember = "nombreTipoPago";
+            cbNombre.DataSource = dt;
+        }
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -120,9 +133,11 @@ namespace Pagos_ICB
             {
                 Clases.Grado grado = new Clases.Grado();
                 grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
+                Clases.TipoPago tipo = new Clases.TipoPago();
+                tipo.ObteneNombreTipoPagosPorNombres(cbNombre.SelectedValue.ToString());
                 Clases.ICB.AgregarTipoPago
                     (
-                        txtDescripcion.Text,
+                        tipo.IdNombreTipoPago,
                         grado.IdGrado,
                         Convert.ToDecimal(txtValor.Text)
                     );
@@ -145,10 +160,12 @@ namespace Pagos_ICB
                 {
                     Clases.Grado grado = new Clases.Grado();
                     grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
+                    Clases.TipoPago tipo = new Clases.TipoPago();
+                    tipo.ObteneNombreTipoPagosPorNombres(cbNombre.SelectedValue.ToString());
                     Clases.ICB.ModificarTipoPago
                         (
                             this.id,
-                            txtDescripcion.Text,
+                            tipo.IdNombreTipoPago,
                             grado.IdGrado,
                             Convert.ToDecimal(txtValor.Text)
                         );
@@ -165,7 +182,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el TipoPago" + txtDescripcion.Text, "Eliminar TipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el TipoPago" , "Eliminar TipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -196,7 +213,7 @@ namespace Pagos_ICB
             this.id = TipoPago.IdTipoPago;
 
             txtId.Text = TipoPago.IdTipoPago.ToString();
-            txtDescripcion.Text = TipoPago.NombreTipoPago;
+            cbNombre.SelectedIndex = TipoPago.IdNombreTipoPago-1;
             cbGrado.SelectedIndex = TipoPago.IdGrado - 1;
 
             btnNuevo.Enabled = true;

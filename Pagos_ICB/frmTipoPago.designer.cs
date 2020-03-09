@@ -38,7 +38,6 @@
             this.grpTipoPago = new System.Windows.Forms.GroupBox();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblId = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbGrado = new System.Windows.Forms.ComboBox();
             this.lblGrado = new System.Windows.Forms.Label();
+            this.cbNombre = new System.Windows.Forms.ComboBox();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipoPago)).BeginInit();
             this.grpTipoPago.SuspendLayout();
@@ -134,11 +134,11 @@
             // 
             // grpTipoPago
             // 
+            this.grpTipoPago.Controls.Add(this.cbNombre);
             this.grpTipoPago.Controls.Add(this.cbGrado);
             this.grpTipoPago.Controls.Add(this.lblGrado);
             this.grpTipoPago.Controls.Add(this.txtValor);
             this.grpTipoPago.Controls.Add(this.label2);
-            this.grpTipoPago.Controls.Add(this.txtDescripcion);
             this.grpTipoPago.Controls.Add(this.txtId);
             this.grpTipoPago.Controls.Add(this.lblId);
             this.grpTipoPago.Controls.Add(this.lblDescripcion);
@@ -166,13 +166,6 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "Valor";
             // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Location = new System.Drawing.Point(116, 57);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(213, 22);
-            this.txtDescripcion.TabIndex = 25;
-            // 
             // txtId
             // 
             this.txtId.Enabled = false;
@@ -197,9 +190,9 @@
             this.lblDescripcion.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescripcion.Location = new System.Drawing.Point(11, 60);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(84, 15);
+            this.lblDescripcion.Size = new System.Drawing.Size(93, 15);
             this.lblDescripcion.TabIndex = 27;
-            this.lblDescripcion.Text = "Descripción";
+            this.lblDescripcion.Text = "Nombre Pago";
             // 
             // pnlTitulo
             // 
@@ -260,6 +253,14 @@
             this.lblGrado.TabIndex = 31;
             this.lblGrado.Text = "Grado";
             // 
+            // cbNombre
+            // 
+            this.cbNombre.FormattingEnabled = true;
+            this.cbNombre.Location = new System.Drawing.Point(116, 56);
+            this.cbNombre.Name = "cbNombre";
+            this.cbNombre.Size = new System.Drawing.Size(213, 24);
+            this.cbNombre.TabIndex = 32;
+            // 
             // frmTipoPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,7 +297,6 @@
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.DataGridView dgvTipoPago;
         private System.Windows.Forms.GroupBox grpTipoPago;
-        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblDescripcion;
@@ -307,5 +307,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbGrado;
         private System.Windows.Forms.Label lblGrado;
+        private System.Windows.Forms.ComboBox cbNombre;
     }
 }
