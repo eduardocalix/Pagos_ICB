@@ -101,5 +101,11 @@ namespace Pagos_ICB
             frmMora mora = new frmMora();
             mora.ShowDialog();
         }
+
+        private void TiposDePago_Click(object sender, EventArgs e)
+        {
+            frmTipoPago tipoPago = new frmTipoPago();
+            tipoPago.ShowDialog();
+        }
     }
 }

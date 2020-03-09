@@ -33,6 +33,10 @@ ALTER TABLE Cuentas.TipoPago
 	ADD CONSTRAINT PK_Cuentas_tipoPago_idTipoPago
 		PRIMARY KEY CLUSTERED (idTipoPago);
 GO
+ALTER TABLE Cuentas.NombreTipoPago
+	ADD CONSTRAINT PK_Cuentas_nombreTipoPago_idNombreTipoPago
+		PRIMARY KEY CLUSTERED (idNombreTipoPago);
+GO
 
 ALTER TABLE Cuentas.Mora
 	ADD CONSTRAINT PK_Cuentas_Mora_idMora
@@ -76,6 +80,11 @@ ALTER TABLE	Cuentas.TipoPago
 	ADD CONSTRAINT FK_Cuentas_TipoPago_idGrado$sonDe$Cuentas_Grado_idGrado
 		FOREIGN KEY (idGrado)
 			REFERENCES Cuentas.Grado(idGrado);
+GO
+ALTER TABLE	Cuentas.TipoPago
+	ADD CONSTRAINT FK_Cuentas_TipoPago_idNombreTipoPago$sonDe$Cuentas_NombreTipoPago_id
+		FOREIGN KEY (idNombreTipoPago)
+			REFERENCES Cuentas.NombreTipoPago(idNombreTipoPago);
 GO
 
 ALTER TABLE	Cuentas.Alumno

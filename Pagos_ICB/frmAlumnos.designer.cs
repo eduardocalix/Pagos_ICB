@@ -80,7 +80,7 @@
             this.btnModificar.Location = new System.Drawing.Point(22, 76);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 25);
-            this.btnModificar.TabIndex = 1;
+            this.btnModificar.TabIndex = 8;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -93,7 +93,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(22, 47);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 25);
-            this.btnAgregar.TabIndex = 0;
+            this.btnAgregar.TabIndex = 7;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -106,7 +106,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(22, 105);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 25);
-            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Deshabilitar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -119,7 +119,7 @@
             this.btnNuevo.Location = new System.Drawing.Point(22, 18);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 25);
-            this.btnNuevo.TabIndex = 3;
+            this.btnNuevo.TabIndex = 6;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
@@ -154,7 +154,8 @@
             this.cbBeca.Location = new System.Drawing.Point(153, 178);
             this.cbBeca.Name = "cbBeca";
             this.cbBeca.Size = new System.Drawing.Size(265, 24);
-            this.cbBeca.TabIndex = 26;
+            this.cbBeca.TabIndex = 5;
+            this.cbBeca.SelectedIndexChanged += new System.EventHandler(this.cbBeca_SelectedIndexChanged);
             // 
             // lblBeca
             // 
@@ -172,7 +173,7 @@
             this.cbGrado.Location = new System.Drawing.Point(153, 143);
             this.cbGrado.Name = "cbGrado";
             this.cbGrado.Size = new System.Drawing.Size(265, 24);
-            this.cbGrado.TabIndex = 24;
+            this.cbGrado.TabIndex = 4;
             // 
             // txtIdentidad
             // 
@@ -180,7 +181,7 @@
             this.txtIdentidad.Mask = "9999-9999-99999";
             this.txtIdentidad.Name = "txtIdentidad";
             this.txtIdentidad.Size = new System.Drawing.Size(266, 23);
-            this.txtIdentidad.TabIndex = 22;
+            this.txtIdentidad.TabIndex = 1;
             // 
             // label2
             // 
@@ -205,14 +206,14 @@
             this.txtNombre.Location = new System.Drawing.Point(153, 72);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(266, 23);
-            this.txtNombre.TabIndex = 5;
+            this.txtNombre.TabIndex = 2;
             // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(153, 108);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(266, 23);
-            this.txtApellido.TabIndex = 6;
+            this.txtApellido.TabIndex = 3;
             // 
             // lblGrado
             // 

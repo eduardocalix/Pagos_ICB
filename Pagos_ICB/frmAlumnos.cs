@@ -23,6 +23,7 @@ namespace Pagos_ICB
             CargarCMBGrados();
         }
         private int id = 0;
+        private int idGrado = 0;
         private void CargarDGWAlumno()
         {
             try
@@ -136,7 +137,7 @@ namespace Pagos_ICB
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtIdentidad.Text = "";
-            cbBeca.SelectedValue = 1;
+            cbBeca.SelectedIndex = 1;
             CargarDGWAlumno();
             dgwAlumnostilo(dgvAlumnos);
 
@@ -149,7 +150,7 @@ namespace Pagos_ICB
             txtApellido.Enabled = true;
             txtIdentidad.Enabled = true;
             this.id = 0;
-            txtNombre.Focus();
+            txtIdentidad.Focus();
         }
         private void CargarCMBGrados()
         {
@@ -163,18 +164,18 @@ namespace Pagos_ICB
             cbGrado.ValueMember = "nombreGrado";
             cbGrado.DataSource = dt;
         }
-        private void CargarCMBGradosNombre(int id)
+        /*private void CargarCMBGradosNombre(int id)
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Grado Where idGrado = "+id+"; ";
+            string sql = "select * FROM Cuentas.Grado Where idGrado = "+id+";";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             cbGrado.DisplayMember = "nombreGrado";
             cbGrado.ValueMember = "nombreGrado";
             cbGrado.DataSource = dt;
-        }
+        }*/
         private void CargarCMBBeca(int id)
         {
             DataTable dt = new DataTable();
@@ -182,10 +183,16 @@ namespace Pagos_ICB
             string sql = "select beca FROM Cuentas.Alumno Where idAlumno ="+id+";";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            cbBeca.DisplayMember = "beca";
-            cbBeca.ValueMember = "beca";
-            cbBeca.DataSource = dt;
+            //da.Fill(dt);
+            MessageBox.Show(cmd.ToString());
+
+           // cbBeca.DisplayMember = "beca";
+
+           // cbBeca.ValueMember = "beca";
+            //cbBeca.DataSource = dt;
+            MessageBox.Show(dt.ToString());
+
+
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -215,14 +222,31 @@ namespace Pagos_ICB
             txtIdentidad.Text = Alumno.Identidad;
             txtNombre.Text = Alumno.Nombres;
             txtApellido.Text = Alumno.Apellidos;
-            cbGrado.SelectedItem = Alumno.IdGrado;
-            cbBeca.SelectedItem = Alumno.Beca;
-            CargarCMBBeca(this.id);
-            CargarCMBGradosNombre(Alumno.IdGrado);
+            if (Alumno.Beca=="Si")
+            {
+                cbBeca.SelectedIndex = 0;
+            }
+            else
+            {
+                cbBeca.SelectedIndex = 1;
+            }
+            cbGrado.SelectedIndex = Alumno.IdGrado - 1;
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
+        }
+
+        private void cbBeca_SelectedIndexChanged(object sender, EventArgs e)
+        {/*
+            if (cbBeca.Text=="No")
+            {
+                cbBeca.Items.Add("Si");
+            }
+            else
+            {
+                cbBeca.Items.Add("No");
+            }*/
         }
     }
 }

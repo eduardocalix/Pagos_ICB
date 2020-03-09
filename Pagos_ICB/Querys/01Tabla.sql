@@ -126,9 +126,21 @@ ELSE
 	BEGIN
 		CREATE TABLE Cuentas.TipoPago(
 			idTipoPago INT IDENTITY (1,1) NOT NULL,
-			nombreTipoPago NVARCHAR(20) NOT NULL,
+			idNombreTipoPago INT NOT NULL,
 			idGrado INT NOT NULL,
 			valor DECIMAL(6,2) NOT NULL,
+			estado INT DEFAULT 1		
+		);
+	END
+GO
+/*Tabla el nombre del Tipo de pago especifica el pago a realizar*/
+IF OBJECT_ID('Cuentas.NombreTipoPago')	IS NOT NULL
+	DROP TABLE Cuentas.NombreTipoPago
+ELSE
+	BEGIN
+		CREATE TABLE Cuentas.NombreTipoPago(
+			idNombreTipoPago INT IDENTITY (1,1) NOT NULL,
+			nombreTipoPago NVARCHAR(20) NOT NULL,
 			estado INT DEFAULT 1		
 		);
 	END

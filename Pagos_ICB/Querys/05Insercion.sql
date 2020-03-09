@@ -1,54 +1,7 @@
-USE DBRestauranteMarias
+USE DBICB
 GO
 --Insercion de los principales datos
 --Agregando Roles
-insert into Acceso.Roles
-	(
-		nombreRol, 
-		agregarUsuario,
-		modificarUsuario, 
-		eliminarUsuario,
-		consultarUsario,
-		agregarProveedor,
-		modificarProveedor,
-		eliminarProveedor,
-		consultarProveedor,
-		agregarMesero,
-		modificarMesero,
-		eliminarMesero,
-		consultarMesero,
-		anularFactura,
-		aperturaCaja,
-		cierreCaja  
-		)
-	VALUES
-		(	'Administrador',
-			1, 1, 1,1,1,1,1,1,1,1,1,1,1,1,1
-			);
-GO
-INSERT INTO Acceso.Roles
-	(
-		nombreRol, 
-		agregarUsuario,
-		modificarUsuario, 
-		eliminarUsuario,
-		consultarUsario,
-		agregarProveedor,
-		modificarProveedor,
-		eliminarProveedor,
-		consultarProveedor,
-		agregarMesero,
-		modificarMesero,
-		eliminarMesero,
-		consultarMesero,
-		anularFactura,
-		aperturaCaja,
-		cierreCaja  
-		)
-	VALUES
-		(	'Usuario',
-			0, 0, 0,0,1,1,1,1,0,0,0,1,0,0,0
-			);
 
 --SP_InsertarUsuario(nombre, apellido, usuario, clave, tipoArea)
 EXEC SP_InsertarUsuario 'eduardo','calix','nose', 1
@@ -61,58 +14,22 @@ EXEC SP_AgregarCategoriaProducto 'Comidas'
 EXEC SP_InsertarTipoProducto 'Elaborado'
 EXEC SP_InsertarTipoProducto 'Artificial'
 --EXEC SP_InsertarTipoProducto 'Dieciocho'
---Agregar mesas
-EXEC SP_AgregarMesa 'Mesa 1'
-EXEC SP_AgregarMesa 'Mesa 2'
-EXEC SP_AgregarMesa 'Mesa 3'
-EXEC SP_AgregarMesa 'Mesa 4'
-EXEC SP_AgregarMesa 'Mesa 5'
-EXEC SP_AgregarMesa 'Mesa 6'
-EXEC SP_AgregarMesa 'Mesa 7'
-EXEC SP_AgregarMesa 'Mesa 8'
-EXEC SP_AgregarMesa 'Mesa 9'
-EXEC SP_AgregarMesa 'Mesa 10'
-EXEC SP_AgregarMesa 'Mesa 11'
-EXEC SP_AgregarMesa 'Mesa 12'
-EXEC SP_AgregarMesa 'Mesa 13'
-EXEC SP_AgregarMesa 'Mesa 14'
-EXEC SP_AgregarMesa 'Mesa 15'
-EXEC SP_AgregarMesa 'Mesa 16'
-EXEC SP_AgregarMesa 'Mesa 17'
-EXEC SP_AgregarMesa 'Mesa 18'
-EXEC SP_AgregarMesa 'Mesa 19'
-EXEC SP_AgregarMesa 'Mesa 20'
-EXEC SP_AgregarMesa 'Mesa 21'
-EXEC SP_AgregarMesa 'Mesa 22'
-EXEC SP_AgregarMesa 'Mesa 23'
-EXEC SP_AgregarMesa 'Mesa 24'
-EXEC SP_AgregarMesa 'Mesa 25'
-EXEC SP_AgregarMesa 'Mesa 26'
-EXEC SP_AgregarMesa 'Mesa 27'
-EXEC SP_AgregarMesa 'Mesa 28'
-EXEC SP_AgregarMesa 'Mesa 29'
-EXEC SP_AgregarMesa 'Mesa 30'
-EXEC SP_AgregarMesa 'Mesa 31'
-EXEC SP_AgregarMesa 'Mesa 32'
-EXEC SP_AgregarMesa 'Mesa 33'
-EXEC SP_AgregarMesa 'Mesa 34'
-EXEC SP_AgregarMesa 'Mesa 35'
-EXEC SP_AgregarMesa 'Mesa 36'
-EXEC SP_AgregarMesa 'Mesa 37'
-EXEC SP_AgregarMesa 'Mesa 38'
-EXEC SP_AgregarMesa 'Mesa 39'
-EXEC SP_AgregarMesa 'Mesa 40'
-EXEC SP_AgregarMesa 'Mesa 41'
-EXEC SP_AgregarMesa 'Mesa 42'
-EXEC SP_AgregarMesa 'Mesa 43'
-EXEC SP_AgregarMesa 'Mesa 44'
-EXEC SP_AgregarMesa 'Mesa 45'
-EXEC SP_AgregarMesa 'Mesa 46'
-EXEC SP_AgregarMesa 'Mesa 47'
-EXEC SP_AgregarMesa 'Mesa 48'
-EXEC SP_AgregarMesa 'Mesa 49'
-EXEC SP_AgregarMesa 'Mesa 50'
-EXEC SP_AgregarMesa 'Mesa 51'
+--Agregar NombreTipoPagos
+EXEC SP_AgregarNombreTipoPago 'Matricula'
+EXEC SP_AgregarNombreTipoPago 'Bolsa'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 3'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 4'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 5'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 6'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 7'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 8'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 9'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 10'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 11'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 12'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 13'
+EXEC SP_AgregarNombreTipoPago 'NombreTipoPago 14'
+
 
 --SP_AgregarMesero(identidad,nombre, apellido)
 EXEC SP_AgregarMesero '1111-1111-11111','Pedro','Picapiedra'
@@ -142,7 +59,7 @@ VALUES
 
     
 	GO
---SP_AgregarPedido(fecha, idMesa, RTN, NombreCliente, idMesero)
+--SP_AgregarPedido(fecha, idNombreTipoPago, RTN, NombreCliente, idMesero)
 --EXEC SP_AgregarPedido '28/11/2018', 5, '03181998011792', 'Norman', 1
 ----SP_AgregarDetallePedido(idPedido, idInventario, cantidad)
 --EXEC SP_AgregarDetallePedido 1, 1, 2

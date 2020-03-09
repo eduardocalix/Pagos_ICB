@@ -472,13 +472,14 @@ namespace Pagos_ICB.Clases
            decimal valor
            )
         {
-            if (nombre.Length == 0 || valor >= 0)
+            if (nombre.Length == 0 || valor < 0|| idGrado < 0)
             {
                 throw new Clases.Excepcion
                     (
                     "Error al insertar el TipoPago. \n\n" +
                     "Existen datos obligatorios que se necesitan para poder agregar el TipoPago:\n" +
                     "Nombre TipoPago   : Matricula\n" +
+                    "Grado : Primero\n"+
                     "Valor : L.1000.00",
                     new Exception(),
                     "Clase_ICB"

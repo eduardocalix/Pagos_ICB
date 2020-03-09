@@ -102,29 +102,30 @@
             // 
             this.Pagos.BackColor = System.Drawing.SystemColors.Menu;
             this.Pagos.Name = "Pagos";
-            this.Pagos.Size = new System.Drawing.Size(155, 22);
+            this.Pagos.Size = new System.Drawing.Size(180, 22);
             this.Pagos.Text = "Registrar Pago";
             // 
             // Descuentos
             // 
             this.Descuentos.BackColor = System.Drawing.SystemColors.Menu;
             this.Descuentos.Name = "Descuentos";
-            this.Descuentos.Size = new System.Drawing.Size(155, 22);
+            this.Descuentos.Size = new System.Drawing.Size(180, 22);
             this.Descuentos.Text = "Descuentos";
             this.Descuentos.Click += new System.EventHandler(this.Descuento_Click);
             // 
             // Mora
             // 
             this.Mora.Name = "Mora";
-            this.Mora.Size = new System.Drawing.Size(155, 22);
+            this.Mora.Size = new System.Drawing.Size(180, 22);
             this.Mora.Text = "Mora";
             this.Mora.Click += new System.EventHandler(this.Mora_Click);
             // 
             // TiposDePago
             // 
             this.TiposDePago.Name = "TiposDePago";
-            this.TiposDePago.Size = new System.Drawing.Size(155, 22);
+            this.TiposDePago.Size = new System.Drawing.Size(180, 22);
             this.TiposDePago.Text = "Tipos de Pago";
+            this.TiposDePago.Click += new System.EventHandler(this.TiposDePago_Click);
             // 
             // toolStripSeparator1
             // 

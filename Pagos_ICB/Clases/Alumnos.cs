@@ -183,6 +183,8 @@ namespace Pagos_ICB.Clases
                     Identidad = dr.GetString(1);
                     Nombres = dr.GetString(2);
                     Apellidos = dr.GetString(3);
+                    IdGrado = dr.GetInt32(4);
+                    Beca = dr.GetString(5);
                     
                 }
             }

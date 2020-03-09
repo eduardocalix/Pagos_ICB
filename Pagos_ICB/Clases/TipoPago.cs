@@ -13,7 +13,6 @@ namespace Pagos_ICB.Clases
         //Se encapsulan las variables a usar
         public int IdTipoPago { set; get; }
         public string NombreTipoPago { set; get; }
-
         public decimal Valor { set; get; }
         public int IdGrado { set; get; }
         public int Estado { get; set; }
@@ -25,6 +24,7 @@ namespace Pagos_ICB.Clases
         public TipoPago(string nombreTipoPago, int idGrado, decimal valor)
         {
             NombreTipoPago = nombreTipoPago;
+            IdGrado = idGrado;
             Valor = valor;
 
         }
@@ -33,6 +33,8 @@ namespace Pagos_ICB.Clases
         {
             IdTipoPago = idTipoPago;
             NombreTipoPago = nombreTipoPago;
+            IdGrado = idGrado;
+            IdGrado = idGrado;
             Valor = valor;
         }
         //Constructor para eliminar un TipoPago
@@ -56,7 +58,7 @@ namespace Pagos_ICB.Clases
             {
                 //Se abre la conexion
                 conexion.Abrir();
-                cmd.Parameters.Add(new SqlParameter("nombreTipoPago", SqlDbType.NVarChar, 30));
+                cmd.Parameters.Add(new SqlParameter("nombreTipoPago", SqlDbType.NVarChar, 20));
                 cmd.Parameters["nombreTipoPago"].Value = NombreTipoPago;
                 cmd.Parameters.Add(new SqlParameter("idGrado", SqlDbType.Int));
                 cmd.Parameters["idGrado"].Value = IdGrado;
@@ -68,7 +70,7 @@ namespace Pagos_ICB.Clases
             catch (SqlException ex)
             {
                 //Cuando ocurre un error se llama la clase excepcion que dira que fue cerca de TipoPagoss donde ocurrio ese error
-                throw new Clases.Excepcion(ex.Message, ex, "Clase_TipoPagos");
+                throw new Clases.Excepcion(ex.Message, ex, "Clase_TipoPago");
             }
             finally
             {
@@ -87,7 +89,7 @@ namespace Pagos_ICB.Clases
                 conexion.Abrir();
                 cmd.Parameters.Add(new SqlParameter("idTipoPago", SqlDbType.Int));
                 cmd.Parameters["idTipoPago"].Value = IdTipoPago;
-                cmd.Parameters.Add(new SqlParameter("nombreTipoPago", SqlDbType.NVarChar, 30));
+                cmd.Parameters.Add(new SqlParameter("nombreTipoPago", SqlDbType.NVarChar, 20));
                 cmd.Parameters["nombreTipoPago"].Value = NombreTipoPago;
                 cmd.Parameters.Add(new SqlParameter("idGrado", SqlDbType.Int));
                 cmd.Parameters["idGrado"].Value = IdGrado;
@@ -165,7 +167,7 @@ namespace Pagos_ICB.Clases
                 {
                     IdTipoPago = dr.GetInt32(0);
                     NombreTipoPago = dr.GetString(1);
-                    IdGrado = dr.GetInt16(2);
+                    IdGrado = dr.GetInt32(2);
                     Valor = dr.GetDecimal(3);
                 }
             }
@@ -173,7 +175,7 @@ namespace Pagos_ICB.Clases
             {
                 throw new Clases.Excepcion(
                    String.Format("{0} \n\n{1}",
-                   "no podemos obtener la informacion del TipoPago", ex.Message), ex, "Clase_TipoPagos"); ;
+                   "no podemos obtener la informacion del TipoPago", ex.Message), ex, "Clase_TipoPago"); ;
             }
             finally
             {
@@ -186,10 +188,10 @@ namespace Pagos_ICB.Clases
         {
             Clases.Conexión conexion = new Clases.Conexión();
             //Se traen todos los datos de la tabla TipoPagoss y los almacena la variable sql
-            string sql = @"SELECT   Cuentas.TipoPago.idTipoPago       as Código,
-                                    Cuentas.TipoPago.nombreTipoPago   as NombreTipoPago,
+            string sql = @"SELECT   Cuentas.TipoPago.idTipoPago        as Código,
+                                    Cuentas.TipoPago.nombreTipoPago    as NombreTipoPago,
                                     Cuentas.TipoPago.idGrado           as Grado, 
-                                    Cuentas.TipoPago.valor             as Valor, 
+                                    Cuentas.TipoPago.valor             as Valor
                             FROM Cuentas.TipoPago
                             WHERE estado=" + estado + ";";
             try
@@ -228,7 +230,7 @@ namespace Pagos_ICB.Clases
                 while (dr.Read())
                 {
                     IdTipoPago = dr.GetInt32(0);
-                    Nombres = dr.GetString(2);
+                    Nombres = dr.GetString(1);
                 }
             }
             catch (SqlException excepcion)

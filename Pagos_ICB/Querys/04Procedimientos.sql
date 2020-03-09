@@ -772,6 +772,107 @@ BEGIN
 			END
 END
 GO
+
+
+
+-----------------------------------------------------
+--Nombre de Tipo Pago
+CREATE PROCEDURE SP_AgregarTipoPago
+(
+    @nombreTipoPago NVARCHAR(30)
+)
+AS
+BEGIN
+    DECLARE @existe int;
+    SET @existe = 0;
+
+    SELECT @existe = COUNT(Cuentas.NombreTipoPago.idNombreTipoPago) FROM Cuentas.NombreTipoPago WHERE nombreTipoPago = @nombreTipoPago;
+    IF (@existe > 0)
+        BEGIN
+            RAISERROR(N'Ya existe un NombreTipoPago con el nombreTipoPago %s"', 16, 1,@nombreTipoPago);
+            RETURN 0
+            
+        END
+    ELSE
+        BEGIN
+            INSERT INTO Cuentas.NombreTipoPago(nombreTipoPago,valor,idGrado)
+                VALUES(@nombreTipoPago, @valor, @idGrado)
+            RETURN 1
+        END
+END
+GO
+
+CREATE PROCEDURE SP_ModificarNombreTipoPago
+(
+    @idNombreTipoPago INT,
+    @nombreTipoPago NVARCHAR(30)
+)
+AS
+BEGIN
+    DECLARE @existe int;
+    SET @existe = 0;
+
+    SELECT @existe = COUNT(Cuentas.NombreTipoPago.idNombreTipoPago) FROM Cuentas.NombreTipoPago WHERE idNombreTipoPago = @idNombreTipoPago;
+
+    IF (@existe = 0)
+        BEGIN
+            RAISERROR(N'No existe el NombreTipoPago con el id %d"', 16, 1, @idNombreTipoPago);
+            RETURN 0
+        END     
+    ELSE
+        BEGIN
+            UPDATE Cuentas.NombreTipoPago
+                SET     nombreTipoPago = @nombreTipoPago
+                    WHERE idNombreTipoPago = @idNombreTipoPago;
+            RETURN 1
+        END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarNombreTipoPago1
+(
+    @idNombreTipoPago INT,
+	@estado INT
+)
+AS
+BEGIN
+    DECLARE @existe int;
+    SET @existe = 0;
+        SELECT @existe = COUNT(Cuentas.NombreTipoPago.idNombreTipoPago) FROM Cuentas.NombreTipoPago WHERE idNombreTipoPago = @idNombreTipoPago;
+        IF (@existe = 0)
+            BEGIN
+                RAISERROR(N'No existe el NombreTipoPago con el id %d"', 16, 1, @idNombreTipoPago);
+                RETURN 0
+            END     
+        ELSE
+            BEGIN
+                UPDATE Cuentas.NombreTipoPago SET estado=@estado WHERE idNombreTipoPago = @idNombreTipoPago;
+                RETURN 1
+            END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarNombreTipoPago
+(
+    @idNombreTipoPago INT
+)
+AS
+BEGIN
+    DECLARE @existe int;
+    SET @existe = 0;
+        SELECT @existe = COUNT(Cuentas.NombreTipoPago.idNombreTipoPago) FROM Cuentas.NombreTipoPago WHERE idNombreTipoPago = @idNombreTipoPago;
+        IF (@existe = 0)
+            BEGIN
+                RAISERROR(N'No existe el NombreTipoPago con el id %d"', 16, 1, @idNombreTipoPago);
+                RETURN 0
+            END     
+        ELSE
+            BEGIN
+                DELETE FROM Cuentas.NombreTipoPago WHERE idNombreTipoPago = @idNombreTipoPago;
+                RETURN 1
+            END
+END
+GO
 --------------------------------------------------------------------------------------------
 /*
 --------------------------------------------------------------------------------------
