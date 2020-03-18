@@ -4,7 +4,7 @@ GO
 --Agregando Roles
 
 --SP_InsertarUsuario(nombre, apellido, usuario, clave, tipoArea)
-EXEC SP_InsertarUsuario 'eduardo','calix','nose', 1
+EXEC SP_InsertarUsuario 'eduardo','calix','nose'
 --Agregar Categorias 
 
 EXEC SP_AgregarGrado 'PREKINDER'

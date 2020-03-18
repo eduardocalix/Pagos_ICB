@@ -76,7 +76,8 @@ namespace Pagos_ICB
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
-
+            cbNombre.Enabled = true;
+            cbGrado.Enabled = true;
             //txtDescripcion.Enabled = true;
             this.id = 0;
             cbNombre.Focus();
@@ -215,6 +216,9 @@ namespace Pagos_ICB
             txtId.Text = TipoPago.IdTipoPago.ToString();
             cbNombre.SelectedIndex = TipoPago.IdNombreTipoPago-1;
             cbGrado.SelectedIndex = TipoPago.IdGrado - 1;
+            txtValor.Text = TipoPago.Valor.ToString();
+            cbGrado.Enabled = false;
+            cbNombre.Enabled = false;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;

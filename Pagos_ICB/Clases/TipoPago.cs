@@ -188,12 +188,15 @@ namespace Pagos_ICB.Clases
         {
             Clases.Conexión conexion = new Clases.Conexión();
             //Se traen todos los datos de la tabla TipoPagoss y los almacena la variable sql
-            string sql = @"SELECT   Cuentas.TipoPago.idTipoPago        as Código,
-                                    Cuentas.TipoPago.idNombreTipoPago    as NombreTipoPago,
-                                    Cuentas.TipoPago.idGrado           as Grado, 
-                                    Cuentas.TipoPago.valor             as Valor
-                            FROM Cuentas.TipoPago
-                            WHERE estado=" + estado + ";";
+            string sql = @"SELECT   Cuentas.TipoPago.idTipoPago                 as Código,
+                                    Cuentas.NombreTipoPago.NombreTipoPago       as NombreTipoPago,
+                                    Cuentas.Grado.nombreGrado                   as Grado, 
+                                    Cuentas.TipoPago.valor                      as Valor
+                            FROM Cuentas.TipoPago INNER JOIN Cuentas.Grado 
+							ON Cuentas.TipoPago.idGrado = Cuentas.Grado.idGrado 
+                            INNER JOIN Cuentas.NombreTipoPago 
+							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+                            AND Cuentas.TipoPago.estado =" + estado + ";";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();
@@ -259,7 +262,7 @@ namespace Pagos_ICB.Clases
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    IdTipoPago = dr.GetInt32(0);
+                    IdNombreTipoPago = dr.GetInt32(0);
                     NombreTipoPago = dr.GetString(1);
                 }
             }

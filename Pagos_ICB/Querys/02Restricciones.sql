@@ -20,31 +20,47 @@ GO
 
 ALTER TABLE Cuentas.Pago
 	ADD CONSTRAINT PK_Cuentas_Pagos_id
-		PRIMARY KEY CLUSTERED (idPago);
+		PRIMARY KEY  NONCLUSTERED(idPago);
 GO 
 
 
 ALTER TABLE Cuentas.Descuento
 	ADD CONSTRAINT PK_Cuentas_Descuento_idDescuento
-		PRIMARY KEY CLUSTERED (idDescuento);
+		PRIMARY KEY  NONCLUSTERED (idDescuento);
 GO
 
 ALTER TABLE Cuentas.TipoPago
-	ADD CONSTRAINT PK_Cuentas_tipoPago_idTipoPago
-		PRIMARY KEY CLUSTERED (idTipoPago);
+	ADD CONSTRAINT PK_Cuentas_TipoPago_idTipoPago
+		PRIMARY KEY  NONCLUSTERED (idTipoPago);
 GO
 ALTER TABLE Cuentas.NombreTipoPago
 	ADD CONSTRAINT PK_Cuentas_nombreTipoPago_idNombreTipoPago
-		PRIMARY KEY CLUSTERED (idNombreTipoPago);
+		PRIMARY KEY  NONCLUSTERED (idNombreTipoPago);
 GO
 
 ALTER TABLE Cuentas.Mora
 	ADD CONSTRAINT PK_Cuentas_Mora_idMora
-		PRIMARY KEY CLUSTERED(idMora);
+		PRIMARY KEY NONCLUSTERED(idMora);
 GO
 
 --DEFINICION DE LLAVES FORANEAS
+ALTER TABLE	Cuentas.Alumno
+	ADD CONSTRAINT FK_Cuentas_Alumno_idGrado$estaEn$Cuentas_Grado_idGrado
+		FOREIGN KEY (idGrado)
+			REFERENCES Cuentas.Grado(idGrado);
+GO
 
+ALTER TABLE	Cuentas.TipoPago
+	ADD CONSTRAINT FK_Cuentas_TipoPago_idGrado$sonDe$Cuentas_Grado_idGrado
+		FOREIGN KEY (idGrado)
+			REFERENCES Cuentas.Grado(idGrado);
+GO
+
+ALTER TABLE	Cuentas.TipoPago
+	ADD CONSTRAINT FK_Cuentas_TipoPago_idNombreTipoPago$sonDe$Cuentas_NombreTipoPago_id
+		FOREIGN KEY (idNombreTipoPago)
+			REFERENCES Cuentas.NombreTipoPago(idNombreTipoPago);
+GO
 
 ALTER TABLE Cuentas.Pago
 	ADD CONSTRAINT FK_Cuentas_Pagos_idTipoPago$TieneUna$Cuentas_TipoPago
@@ -74,21 +90,4 @@ ALTER TABLE	Cuentas.Pago
 	ADD CONSTRAINT FK_Cuentas_Pagos_idMora$TieneUn$Cuentas_Mora_idMora
 		FOREIGN KEY (idMora)
 			REFERENCES Cuentas.Mora(idMora);
-GO
-
-ALTER TABLE	Cuentas.TipoPago
-	ADD CONSTRAINT FK_Cuentas_TipoPago_idGrado$sonDe$Cuentas_Grado_idGrado
-		FOREIGN KEY (idGrado)
-			REFERENCES Cuentas.Grado(idGrado);
-GO
-ALTER TABLE	Cuentas.TipoPago
-	ADD CONSTRAINT FK_Cuentas_TipoPago_idNombreTipoPago$sonDe$Cuentas_NombreTipoPago_id
-		FOREIGN KEY (idNombreTipoPago)
-			REFERENCES Cuentas.NombreTipoPago(idNombreTipoPago);
-GO
-
-ALTER TABLE	Cuentas.Alumno
-	ADD CONSTRAINT FK_Cuentas_Alumno_idGrado$estaEn$Cuentas_Grado_idGrado
-		FOREIGN KEY (idGrado)
-			REFERENCES Cuentas.Grado(idGrado);
 GO
