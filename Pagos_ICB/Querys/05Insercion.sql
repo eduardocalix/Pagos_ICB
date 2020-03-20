@@ -39,6 +39,16 @@ EXEC SP_AgregarNombreTipoPago 'ABRIL'
 EXEC SP_AgregarNombreTipoPago 'MAYO'
 EXEC SP_AgregarNombreTipoPago 'JUNIO'
 
+EXEC SP_AgregarMora '1 MES',195
+EXEC SP_AgregarMora '2 MESES',360
+EXEC SP_AgregarMora '3 MESES',525
+EXEC SP_AgregarMora '4 MESES',580
+
+EXEC SP_AgregarDescuento '50 % DESCUENTO',50
+EXEC SP_AgregarDescuento '30 % DESCUENTO',30
+EXEC SP_AgregarDescuento '20 % DESCUENTO',20
+
+
 /*
 --SP_AgregarMesero(identidad,nombre, apellido)
 EXEC SP_AgregarMesero '1111-1111-11111','Pedro','Picapiedra'

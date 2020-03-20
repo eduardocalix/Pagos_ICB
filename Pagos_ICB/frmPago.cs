@@ -24,16 +24,20 @@ namespace Pagos_ICB
         {
 
             //CargarDGWPago();
-            //CargarCMBGrados();
+            CargarCMBGrados();
             CargarCMBNombre();
+            CargarCMBMora();
+            CargarCMBDescuentos();
             ResetFormulario();
         }
-        private int id = 0;
-        private void CargarDGWPago()
+        private int idAlumno = 0;
+        private int grado = 0;
+        //private string beca="";
+        private void CargarDGWPago(int alumno)
         {
             try
             {
-                //dgvPago.DataSource = Clases.Pago.GetDataView(1);
+                dgvPago.DataSource = Clases.Pago.GetDataViewFiltroPago1(alumno,1);
             }
             catch (Exception ex)
             {
@@ -71,7 +75,7 @@ namespace Pagos_ICB
             txtIdentidad.Text = "";
             cbBeca.SelectedIndex = 1;
             txtValor.Text = "";
-            CargarDGWPago();
+            //CargarDGWPago();
             dgwPagoEstilo(dgvPago);
 
             btnNuevo.Enabled = true;
@@ -81,8 +85,10 @@ namespace Pagos_ICB
             cbNombre.Enabled = true;
             cbGrado.Enabled = true;
             //txtDescripcion.Enabled = true;
-            this.id = 0;
-            cbNombre.Focus();
+            this.idAlumno = 0;
+            this.grado = 0;
+            //this.beca = "";
+            txtNombre.Focus();
 
         }
 
@@ -106,6 +112,31 @@ namespace Pagos_ICB
             cbGrado.DisplayMember = "nombreGrado";
             cbGrado.ValueMember = "nombreGrado";
             cbGrado.DataSource = dt;
+        }
+
+        private void CargarCMBMora()
+        {
+            DataTable dt = new DataTable();
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = "select * FROM Cuentas.Mora";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            cbMora.DisplayMember = "nombreMora";
+            cbMora.ValueMember = "nombreMora";
+            cbMora.DataSource = dt;
+        }
+        private void CargarCMBDescuentos()
+        {
+            DataTable dt = new DataTable();
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = "select * FROM Cuentas.Descuento";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            cbDescuento.DisplayMember = "nombreDescuento";
+            cbDescuento.ValueMember = "nombreDescuento";
+            cbDescuento.DataSource = dt;
         }
         private void CargarCMBNombre()
         {
@@ -237,6 +268,60 @@ namespace Pagos_ICB
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
             dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno1(txtNombre.Text, 1);
+        }
+
+        private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Clases.Alumnos Alumno = new Clases.Alumnos();
+            Alumno.ObtenerAlumnos(
+                Convert.ToInt32(
+                    dgvAlumnos.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    )
+                );
+            dgvAlumnos.Select();
+            this.idAlumno = Alumno.IdAlumno;
+            txtIdentidad.Text = Alumno.Identidad;
+            txtNombre.Text = Alumno.Nombres;
+            if (Alumno.Beca == "Si")
+            {
+                cbBeca.SelectedIndex = 0;
+            }
+            else
+            {
+                cbBeca.SelectedIndex = 1;
+            }
+            cbGrado.SelectedIndex = Alumno.IdGrado - 1;
+            this.grado = Alumno.IdGrado-1;
+            if (cbNombre.Text=="MATRICULA" )
+            {
+                if (cbGrado.Text == "PREKINDER" || cbGrado.Text == "KINDER" || cbGrado.Text == "PREPARATORIA" || cbGrado.Text == "PRIMERO")
+                {
+                    cbDescuento.SelectedIndex = 0;
+                }
+                else
+                {
+                    DateTime fecha1 = DateTime.Now;
+                    if (fecha1.Month == 6)
+                    {
+                        cbDescuento.SelectedIndex = 1;
+
+                    }
+                    else if(fecha1.Month ==7)
+                    {
+                        cbDescuento.SelectedIndex = 2;
+                    }
+                }
+            }
+            else { cbDescuento.Enabled = false; }
+            Clases.TipoPago pago = new Clases.TipoPago();
+            pago.ObtenerTipoPagosporGrado(this.grado,cbNombre.SelectedIndex-1);
+            txtValor.Text = pago.Valor.ToString();
+            txtNombre.Enabled = false;
+            txtIdentidad.Enabled = false;
+            cbBeca.Enabled = false;
+            cbGrado.Enabled = false;
+            dgvAlumnos.Enabled = false;
+
         }
     }
 }

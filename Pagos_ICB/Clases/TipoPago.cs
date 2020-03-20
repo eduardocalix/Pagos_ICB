@@ -181,6 +181,34 @@ namespace Pagos_ICB.Clases
             {
                 conexion.Cerrar();
             }
+        }
+        public void ObtenerTipoPagosporGrado(int grado, int nombre)
+        {
+            Conexión conexion = new Conexión();
+            string sql = @"SELECT idTipoPago, idNombreTipoPago,idGrado,Valor FROM Cuentas.TipoPago WHERE idTipoPago = '" + grado + "'AND idNombreTipoPago='"+nombre+"';";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            try
+            {
+                conexion.Abrir();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    IdTipoPago = dr.GetInt32(0);
+                    IdNombreTipoPago = dr.GetInt32(1);
+                    IdGrado = dr.GetInt32(2);
+                    Valor = dr.GetDecimal(3);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Clases.Excepcion(
+                   String.Format("{0} \n\n{1}",
+                   "no podemos obtener la informacion del TipoPago", ex.Message), ex, "Clase_TipoPago"); ;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
 
         }
         //Se aplican las funciones de ADO.NET donde usamos un dataAdapter

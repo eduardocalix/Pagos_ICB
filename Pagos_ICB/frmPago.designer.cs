@@ -61,6 +61,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.cbDescuento = new System.Windows.Forms.ComboBox();
+            this.cbMora = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).BeginInit();
             this.grpPago.SuspendLayout();
@@ -77,7 +81,7 @@
             this.pnlBotones.Controls.Add(this.btnAgregar);
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
-            this.pnlBotones.Location = new System.Drawing.Point(570, 343);
+            this.pnlBotones.Location = new System.Drawing.Point(570, 393);
             this.pnlBotones.Name = "pnlBotones";
             this.pnlBotones.Size = new System.Drawing.Size(102, 127);
             this.pnlBotones.TabIndex = 39;
@@ -140,7 +144,7 @@
             this.dgvPago.AllowUserToDeleteRows = false;
             this.dgvPago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPago.Location = new System.Drawing.Point(12, 350);
+            this.dgvPago.Location = new System.Drawing.Point(12, 400);
             this.dgvPago.Name = "dgvPago";
             this.dgvPago.ReadOnly = true;
             this.dgvPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -150,6 +154,10 @@
             // 
             // grpPago
             // 
+            this.grpPago.Controls.Add(this.cbDescuento);
+            this.grpPago.Controls.Add(this.cbMora);
+            this.grpPago.Controls.Add(this.label6);
+            this.grpPago.Controls.Add(this.label7);
             this.grpPago.Controls.Add(this.dateTimePicker1);
             this.grpPago.Controls.Add(this.label5);
             this.grpPago.Controls.Add(this.txtRecibo);
@@ -165,7 +173,7 @@
             this.grpPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grpPago.Location = new System.Drawing.Point(12, 212);
             this.grpPago.Name = "grpPago";
-            this.grpPago.Size = new System.Drawing.Size(672, 132);
+            this.grpPago.Size = new System.Drawing.Size(672, 162);
             this.grpPago.TabIndex = 37;
             this.grpPago.TabStop = false;
             // 
@@ -319,7 +327,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources.base1;
-            this.pictureBox1.Location = new System.Drawing.Point(-53, 487);
+            this.pictureBox1.Location = new System.Drawing.Point(-68, 549);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(779, 94);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -333,6 +341,7 @@
             this.dgvAlumnos.Name = "dgvAlumnos";
             this.dgvAlumnos.Size = new System.Drawing.Size(380, 93);
             this.dgvAlumnos.TabIndex = 40;
+            this.dgvAlumnos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_CellClick);
             // 
             // grpProveedores
             // 
@@ -408,11 +417,47 @@
             this.lblNombre.TabIndex = 9;
             this.lblNombre.Text = "Nombres";
             // 
+            // cbDescuento
+            // 
+            this.cbDescuento.FormattingEnabled = true;
+            this.cbDescuento.Location = new System.Drawing.Point(432, 127);
+            this.cbDescuento.Name = "cbDescuento";
+            this.cbDescuento.Size = new System.Drawing.Size(213, 24);
+            this.cbDescuento.TabIndex = 40;
+            // 
+            // cbMora
+            // 
+            this.cbMora.FormattingEnabled = true;
+            this.cbMora.Location = new System.Drawing.Point(86, 127);
+            this.cbMora.Name = "cbMora";
+            this.cbMora.Size = new System.Drawing.Size(213, 24);
+            this.cbMora.TabIndex = 38;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(11, 131);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 15);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Mora";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(327, 131);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 15);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Descuento";
+            // 
             // frmPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 537);
+            this.ClientSize = new System.Drawing.Size(704, 607);
             this.Controls.Add(this.grpProveedores);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlBotones);
@@ -473,5 +518,9 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ComboBox cbDescuento;
+        private System.Windows.Forms.ComboBox cbMora;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
