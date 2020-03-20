@@ -58,6 +58,12 @@
     <Compile Include="Clases\TipoPago.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Clases\VariablesGlobales.cs" />
+    <Compile Include="frmPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPago.designer.cs">
+      <DependentUpon>frmPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTipoPago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmPago.resx">
+      <DependentUpon>frmPago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTipoPago.resx">
       <DependentUpon>frmTipoPago.cs</DependentUpon>
     </EmbeddedResource>

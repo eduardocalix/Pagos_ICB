@@ -107,5 +107,11 @@ namespace Pagos_ICB
             frmTipoPago tipoPago = new frmTipoPago();
             tipoPago.ShowDialog();
         }
+
+        private void Pagos_Click(object sender, EventArgs e)
+        {
+            frmPago pago = new frmPago();
+            pago.ShowDialog();
+        }
     }
 }

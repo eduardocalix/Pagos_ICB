@@ -104,6 +104,7 @@
             this.Pagos.Name = "Pagos";
             this.Pagos.Size = new System.Drawing.Size(180, 22);
             this.Pagos.Text = "Registrar Pago";
+            this.Pagos.Click += new System.EventHandler(this.Pagos_Click);
             // 
             // Descuentos
             // 

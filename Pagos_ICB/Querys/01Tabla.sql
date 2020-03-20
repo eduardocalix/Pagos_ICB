@@ -115,6 +115,7 @@ ELSE
 			idUsuario INT NOT NULL,
 			total DECIMAL (8,2)NOT NULL,
 			fechaPago DATE NOT NULL,
+			fechaRegistro DATE DEFAULT GETDATE,
 			estado INT DEFAULT 1,
 		);
 	END

@@ -74,3 +74,4 @@ VALUES
 --EXEC SP_AgregarDetallePedido 1, 1, 2
 ----SP_AgregarFactura(idPedido, idUsuario, subTotal, descuento, exento, iva15, iva18, total)
 --EXEC SP_AgregarFactura 1, 1, 1, 100, 0, 0, 10, 0, 110
+select * FROM Cuentas.NombreTipoPago

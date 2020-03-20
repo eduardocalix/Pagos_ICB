@@ -139,7 +139,7 @@
             this.grpProveedores.Controls.Add(this.lblId);
             this.grpProveedores.Controls.Add(this.lblNombre);
             this.grpProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.grpProveedores.Location = new System.Drawing.Point(33, 88);
+            this.grpProveedores.Location = new System.Drawing.Point(33, 92);
             this.grpProveedores.Name = "grpProveedores";
             this.grpProveedores.Size = new System.Drawing.Size(430, 208);
             this.grpProveedores.TabIndex = 20;
