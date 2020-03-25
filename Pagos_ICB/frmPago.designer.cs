@@ -36,6 +36,10 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgvPago = new System.Windows.Forms.DataGridView();
             this.grpPago = new System.Windows.Forms.GroupBox();
+            this.cbDescuento = new System.Windows.Forms.ComboBox();
+            this.cbMora = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txtRecibo = new System.Windows.Forms.TextBox();
@@ -61,10 +65,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.cbDescuento = new System.Windows.Forms.ComboBox();
-            this.cbMora = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).BeginInit();
             this.grpPago.SuspendLayout();
@@ -177,6 +177,43 @@
             this.grpPago.TabIndex = 37;
             this.grpPago.TabStop = false;
             // 
+            // cbDescuento
+            // 
+            this.cbDescuento.Enabled = false;
+            this.cbDescuento.FormattingEnabled = true;
+            this.cbDescuento.Location = new System.Drawing.Point(432, 127);
+            this.cbDescuento.Name = "cbDescuento";
+            this.cbDescuento.Size = new System.Drawing.Size(213, 24);
+            this.cbDescuento.TabIndex = 40;
+            // 
+            // cbMora
+            // 
+            this.cbMora.FormattingEnabled = true;
+            this.cbMora.Location = new System.Drawing.Point(86, 127);
+            this.cbMora.Name = "cbMora";
+            this.cbMora.Size = new System.Drawing.Size(213, 24);
+            this.cbMora.TabIndex = 38;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(11, 131);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 15);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Mora";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(327, 131);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 15);
+            this.label7.TabIndex = 37;
+            this.label7.Text = "Descuento";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(432, 89);
@@ -218,6 +255,7 @@
             this.cbNombre.Name = "cbNombre";
             this.cbNombre.Size = new System.Drawing.Size(213, 24);
             this.cbNombre.TabIndex = 32;
+            this.cbNombre.SelectedIndexChanged += new System.EventHandler(this.cbNombre_SelectedIndexChanged);
             // 
             // cbGrado
             // 
@@ -312,6 +350,7 @@
             this.btnSalir.TabIndex = 30;
             this.btnSalir.TabStop = false;
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
             // 
             // label1
             // 
@@ -416,42 +455,6 @@
             this.lblNombre.Size = new System.Drawing.Size(65, 15);
             this.lblNombre.TabIndex = 9;
             this.lblNombre.Text = "Nombres";
-            // 
-            // cbDescuento
-            // 
-            this.cbDescuento.FormattingEnabled = true;
-            this.cbDescuento.Location = new System.Drawing.Point(432, 127);
-            this.cbDescuento.Name = "cbDescuento";
-            this.cbDescuento.Size = new System.Drawing.Size(213, 24);
-            this.cbDescuento.TabIndex = 40;
-            // 
-            // cbMora
-            // 
-            this.cbMora.FormattingEnabled = true;
-            this.cbMora.Location = new System.Drawing.Point(86, 127);
-            this.cbMora.Name = "cbMora";
-            this.cbMora.Size = new System.Drawing.Size(213, 24);
-            this.cbMora.TabIndex = 38;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(11, 131);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 15);
-            this.label6.TabIndex = 39;
-            this.label6.Text = "Mora";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(327, 131);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 15);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Descuento";
             // 
             // frmPago
             // 

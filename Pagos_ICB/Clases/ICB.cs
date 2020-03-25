@@ -558,5 +558,93 @@ namespace Pagos_ICB.Clases
             }
         }
 
+        /*Modulo NombreTipoPago 2da capa*/
+        private static void ValidarNombreTipoPago
+           (
+           string NombreTipo,
+           string fechaLimite
+           )
+        {
+            if (NombreTipo.Length < 0 || fechaLimite.Length < 0)
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el Nombre TipoPago. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el NombreTipoPago:\n" +
+                    "Nombre TipoPago   : Matricula\n" +
+                    "Fecha Limite : 5/7/2020\n",
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarNombreTipoPago
+            (
+
+             string NombreTipo,
+           string fechaLimite
+            )
+        {
+            try
+            {
+                ValidarNombreTipoPago(NombreTipo,fechaLimite);
+                Clases.NombreTipoPago TipoPago = new Clases.NombreTipoPago(
+                    NombreTipo,
+                    fechaLimite
+                    );
+                TipoPago.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarNombreTipoPago(
+             int idNombreTipoPago,
+             string NombreTipo,
+           string fechaLimite
+            )
+        {
+            try
+            {
+                ValidarNombreTipoPago(NombreTipo, fechaLimite);
+                Clases.NombreTipoPago TipoPago = new Clases.NombreTipoPago(
+                    NombreTipo,
+                    fechaLimite
+                    );
+                TipoPago.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarNombreTipoPago(int idNombreTipoPago)
+        {
+            try
+            {
+                Clases.NombreTipoPago TipoPago = new Clases.NombreTipoPago(idNombreTipoPago);
+                TipoPago.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarNombreTipoPago1(int id, int estado)
+        {
+            try
+            {
+                Clases.NombreTipoPago TipoPago = new Clases.NombreTipoPago(id, estado);
+                TipoPago.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

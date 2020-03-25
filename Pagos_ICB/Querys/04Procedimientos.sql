@@ -883,7 +883,8 @@ GO
 --Nombre de Tipo Pago
 CREATE PROCEDURE SP_AgregarNombreTipoPago
 (
-    @nombreTipoPago NVARCHAR(30)
+    @nombreTipoPago NVARCHAR(30),
+	@fechaLimite DATE
 )
 AS
 BEGIN
@@ -899,8 +900,8 @@ BEGIN
         END
     ELSE
         BEGIN
-            INSERT INTO Cuentas.NombreTipoPago(nombreTipoPago)
-                VALUES(@nombreTipoPago)
+            INSERT INTO Cuentas.NombreTipoPago(nombreTipoPago,fechaLimite)
+                VALUES(@nombreTipoPago,@fechaLimite)
             RETURN 1
         END
 END
@@ -909,7 +910,8 @@ GO
 CREATE PROCEDURE SP_ModificarNombreTipoPago
 (
     @idNombreTipoPago INT,
-    @nombreTipoPago NVARCHAR(30)
+    @nombreTipoPago NVARCHAR(30),
+	@fechaLimite DATE
 )
 AS
 BEGIN
@@ -926,7 +928,8 @@ BEGIN
     ELSE
         BEGIN
             UPDATE Cuentas.NombreTipoPago
-                SET     nombreTipoPago = @nombreTipoPago
+                SET     nombreTipoPago = @nombreTipoPago,
+						fechaLimite = @fechaLimite
                     WHERE idNombreTipoPago = @idNombreTipoPago;
             RETURN 1
         END

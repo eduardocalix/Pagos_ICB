@@ -152,7 +152,7 @@ namespace Pagos_ICB
         }
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            this.Close();
+           
         }
 
         private void btnNuevo_Click_1(object sender, EventArgs e)
@@ -292,36 +292,46 @@ namespace Pagos_ICB
             }
             cbGrado.SelectedIndex = Alumno.IdGrado - 1;
             this.grado = Alumno.IdGrado-1;
-            if (cbNombre.Text=="MATRICULA" )
-            {
-                if (cbGrado.Text == "PREKINDER" || cbGrado.Text == "KINDER" || cbGrado.Text == "PREPARATORIA" || cbGrado.Text == "PRIMERO")
-                {
-                    cbDescuento.SelectedIndex = 0;
-                }
-                else
-                {
-                    DateTime fecha1 = DateTime.Now;
-                    if (fecha1.Month == 6)
-                    {
-                        cbDescuento.SelectedIndex = 1;
-
-                    }
-                    else if(fecha1.Month ==7)
-                    {
-                        cbDescuento.SelectedIndex = 2;
-                    }
-                }
-            }
-            else { cbDescuento.Enabled = false; }
-            Clases.TipoPago pago = new Clases.TipoPago();
-            pago.ObtenerTipoPagosporGrado(this.grado,cbNombre.SelectedIndex-1);
-            txtValor.Text = pago.Valor.ToString();
+            
             txtNombre.Enabled = false;
             txtIdentidad.Enabled = false;
             cbBeca.Enabled = false;
             cbGrado.Enabled = false;
             dgvAlumnos.Enabled = false;
 
+        }
+
+        private void cbNombre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbNombre.SelectedText == "MATRICULA")
+            {
+                if (cbGrado.SelectedText == "PREKINDER" || cbGrado.SelectedText == "KINDER" || cbGrado.SelectedText == "PREPARATORIA" || cbGrado.SelectedText == "PRIMERO")
+                {
+                    cbDescuento.SelectedIndex = 1;
+                }
+                else
+                {
+                    DateTime fecha1 = DateTime.Now;
+                    if (fecha1.Month == 6)
+                    {
+                        cbDescuento.SelectedIndex = 2;
+
+                    }
+                    else if (fecha1.Month == 7)
+                    {
+                        cbDescuento.SelectedIndex = 3;
+                    }
+                }
+            }
+            else { cbDescuento.Enabled = false; }
+            Clases.TipoPago pago = new Clases.TipoPago();
+            pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex - 1);
+            txtValor.Text = pago.Valor.ToString();
+        }
+
+        private void btnSalir_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

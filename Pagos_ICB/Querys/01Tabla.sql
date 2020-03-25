@@ -73,7 +73,7 @@ ELSE
 	BEGIN
 		CREATE TABLE Cuentas.Alumno(
 			idAlumno INT IDENTITY(1,10) NOT NULL,	--index del alumno
-			identidad NVARCHAR(15) NOT NULL,		--identidad del alumno con formato (9999-9999-99999)	
+			identidad NVARCHAR(15),		--identidad del alumno con formato (9999-9999-99999)	
 			nombres NVARCHAR (25) NOT NULL,			--nombres 
 			apellidos NVARCHAR (25) NOT NULL,		--apellidos
 			idGrado INT NOT NULL, --es la relacion del alumno con el grado
@@ -115,6 +115,7 @@ ELSE
 			idUsuario INT NOT NULL,
 			total DECIMAL (8,2)NOT NULL,
 			fechaPago DATE NOT NULL,
+			observacion VARCHAR(100),
 			fechaRegistro DATE DEFAULT GETDATE,
 			estado INT DEFAULT 1,
 		);
@@ -142,6 +143,7 @@ ELSE
 		CREATE TABLE Cuentas.NombreTipoPago(
 			idNombreTipoPago INT IDENTITY (1,1) NOT NULL,
 			nombreTipoPago NVARCHAR(20) NOT NULL,
+			fechaLimite NVARCHAR(15) NOT NULL,
 			estado INT DEFAULT 1		
 		);
 	END

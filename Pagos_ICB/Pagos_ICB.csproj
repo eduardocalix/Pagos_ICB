@@ -55,6 +55,7 @@
     <Compile Include="Clases\Mensaje.cs" />
     <Compile Include="Clases\Mora.cs" />
     <Compile Include="Clases\Pago.cs" />
+    <Compile Include="Clases\NombreTipoPago.cs" />
     <Compile Include="Clases\TipoPago.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Clases\VariablesGlobales.cs" />
@@ -63,6 +64,12 @@
     </Compile>
     <Compile Include="frmPago.designer.cs">
       <DependentUpon>frmPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNombreTipoPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNombreTipoPago.designer.cs">
+      <DependentUpon>frmNombreTipoPago.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTipoPago.cs">
       <SubType>Form</SubType>
@@ -134,6 +141,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmPago.resx">
       <DependentUpon>frmPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNombreTipoPago.resx">
+      <DependentUpon>frmNombreTipoPago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTipoPago.resx">
       <DependentUpon>frmTipoPago.cs</DependentUpon>
