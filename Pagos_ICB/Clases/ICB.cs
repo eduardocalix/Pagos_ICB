@@ -646,5 +646,112 @@ namespace Pagos_ICB.Clases
                 throw ex;
             }
         }
+        //Pago segunda capa de seguridad
+        /*Modulo TipoPago 2da capa*/
+        private static void ValidarPago
+           (
+           string recibo,
+           int idAlumno,
+           int idTipo,
+           int idDescuento,
+           int idMora,
+           int idUsuario,
+           decimal total,
+           string fechaPago,
+           string observacion
+           )
+        {
+            if (recibo.Length==0||idAlumno<0||idTipo<0||idDescuento<0||idMora<0||idUsuario<0||total<0||fechaPago.Length==0||observacion.Length==0)
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el TipoPago. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el TipoPago:\n" +
+                    "Nombre TipoPago   : Matricula\n" +
+                    "Grado : Primero\n" +
+                    "Valor : L.1000.00",
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarPago
+            (
+            string recibo,
+           int idAlumno,
+           int idTipo,
+           int idDescuento,
+           int idMora,
+           int idUsuario,
+           decimal total,
+           string fechaPago,
+           string observacion
+            )
+        {
+            try
+            {
+                ValidarPago(recibo, idAlumno,idTipo,idDescuento,idMora,idUsuario,total, fechaPago, observacion);
+                Clases.Pago pago = new Clases.Pago(
+                   recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago, observacion
+                    );
+                pago.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarTipoPago(
+            int idPago,
+             string recibo,
+           int idAlumno,
+           int idTipo,
+           int idDescuento,
+           int idMora,
+           int idUsuario,
+           decimal total,
+           string fechaPago,
+           string observacion)
+        {
+            try
+            {
+                ValidarPago(recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago, observacion);
+                Clases.Pago pago = new Clases.Pago(
+                    idPago,
+                    recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago, observacion);
+                pago.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarPago(int idPago)
+        {
+            try
+            {
+                Clases.Pago TipoPago = new Clases.Pago(idPago);
+                TipoPago.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarTipoPago1(int id, int estado)
+        {
+            try
+            {
+                Clases.TipoPago TipoPago = new Clases.TipoPago(id, estado);
+                TipoPago.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

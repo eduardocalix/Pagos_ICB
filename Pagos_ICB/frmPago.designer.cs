@@ -65,6 +65,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtObservacion = new System.Windows.Forms.TextBox();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).BeginInit();
             this.grpPago.SuspendLayout();
@@ -81,7 +83,7 @@
             this.pnlBotones.Controls.Add(this.btnAgregar);
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
-            this.pnlBotones.Location = new System.Drawing.Point(570, 393);
+            this.pnlBotones.Location = new System.Drawing.Point(583, 409);
             this.pnlBotones.Name = "pnlBotones";
             this.pnlBotones.Size = new System.Drawing.Size(102, 127);
             this.pnlBotones.TabIndex = 39;
@@ -144,16 +146,18 @@
             this.dgvPago.AllowUserToDeleteRows = false;
             this.dgvPago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPago.Location = new System.Drawing.Point(12, 400);
+            this.dgvPago.Location = new System.Drawing.Point(12, 413);
             this.dgvPago.Name = "dgvPago";
             this.dgvPago.ReadOnly = true;
             this.dgvPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPago.Size = new System.Drawing.Size(525, 123);
+            this.dgvPago.Size = new System.Drawing.Size(565, 123);
             this.dgvPago.TabIndex = 38;
             this.dgvPago.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPago_CellClick_1);
             // 
             // grpPago
             // 
+            this.grpPago.Controls.Add(this.txtObservacion);
+            this.grpPago.Controls.Add(this.label8);
             this.grpPago.Controls.Add(this.cbDescuento);
             this.grpPago.Controls.Add(this.cbMora);
             this.grpPago.Controls.Add(this.label6);
@@ -171,9 +175,9 @@
             this.grpPago.Controls.Add(this.lblId);
             this.grpPago.Controls.Add(this.lblDescripcion);
             this.grpPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.grpPago.Location = new System.Drawing.Point(12, 212);
+            this.grpPago.Location = new System.Drawing.Point(13, 202);
             this.grpPago.Name = "grpPago";
-            this.grpPago.Size = new System.Drawing.Size(672, 162);
+            this.grpPago.Size = new System.Drawing.Size(672, 202);
             this.grpPago.TabIndex = 37;
             this.grpPago.TabStop = false;
             // 
@@ -192,7 +196,7 @@
             this.cbMora.Location = new System.Drawing.Point(86, 127);
             this.cbMora.Name = "cbMora";
             this.cbMora.Size = new System.Drawing.Size(213, 24);
-            this.cbMora.TabIndex = 38;
+            this.cbMora.TabIndex = 8;
             // 
             // label6
             // 
@@ -219,7 +223,7 @@
             this.dtFechaPago.Location = new System.Drawing.Point(432, 89);
             this.dtFechaPago.Name = "dtFechaPago";
             this.dtFechaPago.Size = new System.Drawing.Size(213, 22);
-            this.dtFechaPago.TabIndex = 36;
+            this.dtFechaPago.TabIndex = 7;
             this.dtFechaPago.FormatChanged += new System.EventHandler(this.dtFechaPago_FormatChanged);
             // 
             // label5
@@ -237,7 +241,7 @@
             this.txtRecibo.Location = new System.Drawing.Point(432, 21);
             this.txtRecibo.Name = "txtRecibo";
             this.txtRecibo.Size = new System.Drawing.Size(213, 22);
-            this.txtRecibo.TabIndex = 33;
+            this.txtRecibo.TabIndex = 5;
             // 
             // label4
             // 
@@ -255,7 +259,7 @@
             this.cbNombre.Location = new System.Drawing.Point(432, 51);
             this.cbNombre.Name = "cbNombre";
             this.cbNombre.Size = new System.Drawing.Size(213, 24);
-            this.cbNombre.TabIndex = 32;
+            this.cbNombre.TabIndex = 6;
             this.cbNombre.SelectedIndexChanged += new System.EventHandler(this.cbNombre_SelectedIndexChanged);
             // 
             // cbGrado
@@ -367,7 +371,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources.base1;
-            this.pictureBox1.Location = new System.Drawing.Point(-68, 549);
+            this.pictureBox1.Location = new System.Drawing.Point(-75, 556);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(779, 94);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -380,7 +384,7 @@
             this.dgvAlumnos.Location = new System.Drawing.Point(272, 15);
             this.dgvAlumnos.Name = "dgvAlumnos";
             this.dgvAlumnos.Size = new System.Drawing.Size(380, 93);
-            this.dgvAlumnos.TabIndex = 40;
+            this.dgvAlumnos.TabIndex = 4;
             this.dgvAlumnos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_CellClick);
             // 
             // grpProveedores
@@ -393,7 +397,7 @@
             this.grpProveedores.Controls.Add(this.txtNombre);
             this.grpProveedores.Controls.Add(this.lblNombre);
             this.grpProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.grpProveedores.Location = new System.Drawing.Point(12, 94);
+            this.grpProveedores.Location = new System.Drawing.Point(14, 88);
             this.grpProveedores.Name = "grpProveedores";
             this.grpProveedores.Size = new System.Drawing.Size(672, 112);
             this.grpProveedores.TabIndex = 41;
@@ -408,7 +412,7 @@
             this.cbBeca.Location = new System.Drawing.Point(96, 84);
             this.cbBeca.Name = "cbBeca";
             this.cbBeca.Size = new System.Drawing.Size(161, 24);
-            this.cbBeca.TabIndex = 5;
+            this.cbBeca.TabIndex = 3;
             // 
             // lblBeca
             // 
@@ -425,7 +429,7 @@
             this.txtIdentidad.Location = new System.Drawing.Point(96, 19);
             this.txtIdentidad.Mask = "9999-9999-99999";
             this.txtIdentidad.Name = "txtIdentidad";
-            this.txtIdentidad.Size = new System.Drawing.Size(162, 23);
+            this.txtIdentidad.Size = new System.Drawing.Size(161, 23);
             this.txtIdentidad.TabIndex = 1;
             this.txtIdentidad.TextChanged += new System.EventHandler(this.txtIdentidad_TextChanged);
             // 
@@ -441,9 +445,9 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(97, 52);
+            this.txtNombre.Location = new System.Drawing.Point(96, 52);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(162, 23);
+            this.txtNombre.Size = new System.Drawing.Size(161, 23);
             this.txtNombre.TabIndex = 2;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
@@ -457,11 +461,28 @@
             this.lblNombre.TabIndex = 9;
             this.lblNombre.Text = "Nombres";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(11, 167);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 15);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "Observación";
+            // 
+            // txtObservacion
+            // 
+            this.txtObservacion.Location = new System.Drawing.Point(105, 163);
+            this.txtObservacion.Name = "txtObservacion";
+            this.txtObservacion.Size = new System.Drawing.Size(540, 22);
+            this.txtObservacion.TabIndex = 42;
+            // 
             // frmPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 607);
+            this.ClientSize = new System.Drawing.Size(698, 607);
             this.Controls.Add(this.grpProveedores);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlBotones);
@@ -526,5 +547,7 @@
         private System.Windows.Forms.ComboBox cbMora;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtObservacion;
+        private System.Windows.Forms.Label label8;
     }
 }

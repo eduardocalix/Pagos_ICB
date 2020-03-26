@@ -75,6 +75,7 @@ namespace Pagos_ICB
             txtId.Text = "";
             txtNombre.Text = "";
             txtIdentidad.Text = "";
+            txtObservacion.Text = "";
             cbBeca.SelectedIndex = 1;
             txtValor.Text = "";
             //CargarDGWPago();
