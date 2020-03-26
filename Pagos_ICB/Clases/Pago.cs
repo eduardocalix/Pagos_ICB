@@ -12,17 +12,21 @@ namespace Pagos_ICB.Clases
     {
 
 
-        public static DataView GetDataViewFiltroPago1(int id, int estado)
+        public static DataView GetDataViewFiltroPago1( int idAlumno,int estado)
         {
             Clases.Conexión conexion = new Clases.Conexión();
             string sql = @"SELECT   Cuentas.Pago.idPago         as Código,
                                     Cuentas.Grado.nombreGrado   as Grado,
                                     Cuentas.Alumno.nombres      as Nombre, 
                                     Cuentas.Alumno.apellidos    as Apellidos,
-                                    Cuentas.Pago.total         as Beca
-                            FROM Cuentas.Pago INNER JOIN Cuentas.Grado 
-							ON Cuentas.Pago.idGrado = Cuentas.Grado.idGrado AND
-                            Cuentas.Pago.estado=" + estado + " AND Cuentas.Pago.identidad like '%" + id + "%';";
+                                    Cuentas.Pago.recibo         as Recibo,
+                                    Cuentas.Mora.nombreMora     as Mora,
+                                    Cuentas.Pago.total          as Total
+                            FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
+                            Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
+                            Cuentas.Pago.idMora = Cuentas.Mora.idMora AND
+                            Cuentas.Pago.estado=" + estado + " AND Cuentas.Pago.idAlumno =" + idAlumno + ";";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();

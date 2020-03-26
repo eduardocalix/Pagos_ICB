@@ -40,7 +40,7 @@
             this.cbMora = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtFechaPago = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txtRecibo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -158,7 +158,7 @@
             this.grpPago.Controls.Add(this.cbMora);
             this.grpPago.Controls.Add(this.label6);
             this.grpPago.Controls.Add(this.label7);
-            this.grpPago.Controls.Add(this.dateTimePicker1);
+            this.grpPago.Controls.Add(this.dtFechaPago);
             this.grpPago.Controls.Add(this.label5);
             this.grpPago.Controls.Add(this.txtRecibo);
             this.grpPago.Controls.Add(this.label4);
@@ -214,12 +214,13 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Descuento";
             // 
-            // dateTimePicker1
+            // dtFechaPago
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(432, 89);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(213, 22);
-            this.dateTimePicker1.TabIndex = 36;
+            this.dtFechaPago.Location = new System.Drawing.Point(432, 89);
+            this.dtFechaPago.Name = "dtFechaPago";
+            this.dtFechaPago.Size = new System.Drawing.Size(213, 22);
+            this.dtFechaPago.TabIndex = 36;
+            this.dtFechaPago.FormatChanged += new System.EventHandler(this.dtFechaPago_FormatChanged);
             // 
             // label5
             // 
@@ -518,7 +519,7 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txtRecibo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtFechaPago;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ComboBox cbDescuento;

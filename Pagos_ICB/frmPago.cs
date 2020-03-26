@@ -32,6 +32,8 @@ namespace Pagos_ICB
         }
         private int idAlumno = 0;
         private int grado = 0;
+        private string ddmmyyyy;
+
         //private string beca="";
         private void CargarDGWPago(int alumno)
         {
@@ -82,6 +84,10 @@ namespace Pagos_ICB
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
+            txtIdentidad.Enabled = true;
+            txtNombre.Enabled = true;
+            cbBeca.Enabled = true;
+            dgvAlumnos.Enabled = true;
             cbNombre.Enabled = true;
             cbGrado.Enabled = true;
             //txtDescripcion.Enabled = true;
@@ -260,7 +266,7 @@ namespace Pagos_ICB
             btnEliminar.Enabled = true;*/
         }
         
-            private void txtIdentidad_TextChanged(object sender, EventArgs e)
+        private void txtIdentidad_TextChanged(object sender, EventArgs e)
         {
             dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno2( txtIdentidad.Text,1);
         }
@@ -285,6 +291,8 @@ namespace Pagos_ICB
             if (Alumno.Beca == "Si")
             {
                 cbBeca.SelectedIndex = 0;
+                txtValor.Text = "0";
+                txtValor.Enabled = false;
             }
             else
             {
@@ -307,31 +315,61 @@ namespace Pagos_ICB
             {
                 if (cbGrado.SelectedText == "PREKINDER" || cbGrado.SelectedText == "KINDER" || cbGrado.SelectedText == "PREPARATORIA" || cbGrado.SelectedText == "PRIMERO")
                 {
-                    cbDescuento.SelectedIndex = 1;
+                    MessageBox.Show("Aplica descuento del 50% en el pago de la matricula");
+
+                    cbDescuento.SelectedIndex = 2;
                 }
                 else
                 {
+
                     DateTime fecha1 = DateTime.Now;
                     if (fecha1.Month == 6)
                     {
-                        cbDescuento.SelectedIndex = 2;
+                        MessageBox.Show("Aplica descuento del 30% en el pago de la matricula");
+
+                        cbDescuento.SelectedIndex = 3;
 
                     }
                     else if (fecha1.Month == 7)
                     {
-                        cbDescuento.SelectedIndex = 3;
+                        MessageBox.Show("Aplica descuento del 20% en el pago de la matricula");
+
+                        cbDescuento.SelectedIndex = 4;
                     }
                 }
             }
-            else { cbDescuento.Enabled = false; }
+            else
+            {
+                cbDescuento.Enabled = false;
+            }
             Clases.TipoPago pago = new Clases.TipoPago();
             pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex - 1);
-            txtValor.Text = pago.Valor.ToString();
+            if (cbBeca.SelectedText == "Si")
+            {
+                txtValor.Text = "0.00";
+            }
+            else
+            {
+                txtValor.Text = pago.Valor.ToString();
+            }
         }
 
         private void btnSalir_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dtFechaPago_FormatChanged(object sender, EventArgs e)
+        {
+            Clases.NombreTipoPago pago = new Clases.NombreTipoPago();
+            pago.ObtenerNombreTipoPagos( cbNombre.SelectedIndex - 1);
+            if (dtFechaPago.Value > Convert.ToDateTime( pago.FechaLimite))
+            {
+                cbMora.Enabled = true;
+                cbMora.SelectedIndex = 2;
+                MessageBox.Show("Mora por retraso en el pago");
+            }
+
         }
     }
 }

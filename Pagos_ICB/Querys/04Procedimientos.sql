@@ -254,10 +254,10 @@ BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
 
-	SELECT @existe = COUNT(Cuentas.Alumno.identidad) FROM Cuentas.Alumno WHERE identidad = @identidad;
+	SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE nombres = @nombres AND apellidos = @apellidos;
 	IF (@existe > 0)
 		BEGIN
-			RAISERROR(N'Ya existe Un Alumno con la identidad %s"', 16, 1, @identidad);
+			RAISERROR(N'Ya existe Un Alumno con el mismo nombre %s"', 16, 1, @nombres);
 			RETURN 0		
 		END
 	ELSE
@@ -269,7 +269,7 @@ BEGIN
 END
 GO
 
-Create PROCEDURE SP_ModificarAlumno
+CREATE PROCEDURE SP_ModificarAlumno
 (	
 	@idAlumno INT,
 	@identidad NVARCHAR(15),
@@ -282,16 +282,16 @@ AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Alumno.identidad) FROM Cuentas.Alumno WHERE identidad=@identidad;
+	SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE nombres = @nombres AND apellidos = @apellidos;
 	IF (@existe = 0)
 		BEGIN
-			RAISERROR(N'No existe el Alumno con la identidad %s"', 16, 1, @identidad);
+			RAISERROR(N'No existe el Alumno con el mismo nombre %s"', 16, 1, @nombres);
 			RETURN 0
 		END 	
 	ELSE
 		BEGIN
 			UPDATE Cuentas.Alumno
-				SET 	
+				SET 	identidad = @identidad,
 						nombres = @nombres,
 						apellidos = @apellidos,
 						idGrado = @idGrado,
@@ -666,7 +666,8 @@ CREATE PROCEDURE SP_AgregarPago
     @idMora INT,
 	@idUsuario INT,
 	@total DECIMAL (8,2),
-	@fechaPago DATE 
+	@fechaPago NVARCHAR(15),
+	@observacion NVARCHAR(100)
 )
 AS
 BEGIN
@@ -680,8 +681,8 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			INSERT INTO Cuentas.Pago(recibo, idAlumno, idTipo, idDescuento, idMora,idUsuario,total, fechaPago)
-				VALUES(@recibo,@idAlumno,@idTipoPago,@idDescuento,@idMora,@idUsuario,@total,@fechaPago)
+			INSERT INTO Cuentas.Pago(recibo, idAlumno, idTipo, idDescuento, idMora,idUsuario,total, fechaPago,observacion)
+				VALUES(@recibo,@idAlumno,@idTipoPago,@idDescuento,@idMora,@idUsuario,@total,@fechaPago,@observacion)
 			RETURN 1
 		END
 END
@@ -697,7 +698,8 @@ CREATE PROCEDURE SP_ModificarPago
     @idMora INT,
 	@idUsuario INT,
 	@total DECIMAL (8,2),
-	@fechaPago DATE 
+	@fechaPago NVARCHAR(15),
+	@observacion NVARCHAR(100)
 )
 AS
 BEGIN
@@ -721,7 +723,8 @@ BEGIN
 						idMora = @idMora,
 						idUsuario = @idUsuario,
 						total = @total,
-						fechaPago = @fechaPago
+						fechaPago = @fechaPago,
+						observacion=@observacion
 					WHERE idPago = @idPago;
 			RETURN 1
 		END
@@ -884,7 +887,7 @@ GO
 CREATE PROCEDURE SP_AgregarNombreTipoPago
 (
     @nombreTipoPago NVARCHAR(30),
-	@fechaLimite DATE
+	@fechaLimite NVARCHAR(15)
 )
 AS
 BEGIN
@@ -911,7 +914,7 @@ CREATE PROCEDURE SP_ModificarNombreTipoPago
 (
     @idNombreTipoPago INT,
     @nombreTipoPago NVARCHAR(30),
-	@fechaLimite DATE
+	@fechaLimite NVARCHAR(15)
 )
 AS
 BEGIN
@@ -1599,3 +1602,16 @@ BEGIN
 		VALUES (@Descripcion)
 END
 GO*/
+
+
+SELECT   Cuentas.Pago.idPago         as Código,
+                                    Cuentas.Grado.nombreGrado   as Grado,
+                                    Cuentas.Alumno.nombres      as Nombre, 
+                                    Cuentas.Alumno.apellidos    as Apellidos,
+                                    Cuentas.Pago.recibo         as Recibo,
+                                    Cuentas.Pago.total          as Total
+                             FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
+                            Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
+                            Cuentas.Pago.idMora = Cuentas.Mora.idMora AND
+                            Cuentas.Pago.estado= 1 AND Cuentas.Pago.idAlumno =1;
