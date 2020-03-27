@@ -225,6 +225,7 @@
             this.dtFechaPago.Size = new System.Drawing.Size(213, 22);
             this.dtFechaPago.TabIndex = 7;
             this.dtFechaPago.FormatChanged += new System.EventHandler(this.dtFechaPago_FormatChanged);
+            this.dtFechaPago.ValueChanged += new System.EventHandler(this.dtFechaPago_ValueChanged);
             // 
             // label5
             // 

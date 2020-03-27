@@ -22,7 +22,7 @@ namespace Pagos_ICB
 
         private void frmPago_Load(object sender, EventArgs e)
         {
-
+            idUsuario = Clases.VariablesGlobales.idUsu;
             //CargarDGWPago();
             CargarCMBGrados();
             CargarCMBNombre();
@@ -32,7 +32,8 @@ namespace Pagos_ICB
         }
         private int idAlumno = 0;
         private int grado = 0;
-        private string ddmmyyyy;
+        private int idTipo = 0;
+        private int idUsuario = 0;
 
         //private string beca="";
         private void CargarDGWPago(int alumno)
@@ -169,27 +170,33 @@ namespace Pagos_ICB
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            /*
+            
             try
             {
                 Clases.Grado grado = new Clases.Grado();
                 grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-                Clases.Pago tipo = new Clases.Pago();
-                tipo.ObteneNombrePagosPorNombres(cbNombre.SelectedValue.ToString());
+                Clases.TipoPago tipo = new Clases.TipoPago();
+                //tipo.ObteneNombrePagosPorNombres(cbNombre.SelectedValue.ToString());
                 Clases.ICB.AgregarPago
                     (
-                        tipo.IdNombrePago,
-                        grado.IdGrado,
-                        Convert.ToDecimal(txtValor.Text)
+                        txtNombre.Text,
+                        this.idAlumno,
+                        this.idTipo,
+                        cbDescuento.SelectedIndex+1,
+                        cbMora.SelectedIndex+1,
+                        this.idUsuario,
+                        Convert.ToDecimal(txtValor.Text),
+                        dtFechaPago.Value.ToShortDateString(),
+                        txtObservacion.Text
                     );
-                CargarDGWPago();
+                CargarDGWPago(this.idAlumno);
 
             }
             catch (Exception ex)
             {
 
                 Clases.Mensaje.Advertencia(ex);
-            }*/
+            }
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
@@ -292,7 +299,7 @@ namespace Pagos_ICB
             if (Alumno.Beca == "Si")
             {
                 cbBeca.SelectedIndex = 0;
-                txtValor.Text = "0";
+                //txtValor.Text = "0";
                 txtValor.Enabled = false;
             }
             else
@@ -300,7 +307,7 @@ namespace Pagos_ICB
                 cbBeca.SelectedIndex = 1;
             }
             cbGrado.SelectedIndex = Alumno.IdGrado - 1;
-            this.grado = Alumno.IdGrado-1;
+            this.grado = Alumno.IdGrado;
             
             txtNombre.Enabled = false;
             txtIdentidad.Enabled = false;
@@ -312,7 +319,7 @@ namespace Pagos_ICB
 
         private void cbNombre_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbNombre.SelectedText == "MATRICULA")
+            if (cbNombre.SelectedText.ToString() == "MATRICULA")
             {
                 if (cbGrado.SelectedText == "PREKINDER" || cbGrado.SelectedText == "KINDER" || cbGrado.SelectedText == "PREPARATORIA" || cbGrado.SelectedText == "PRIMERO")
                 {
@@ -343,15 +350,18 @@ namespace Pagos_ICB
             {
                 cbDescuento.Enabled = false;
             }
-            Clases.TipoPago pago = new Clases.TipoPago();
-            pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex - 1);
+            
             if (cbBeca.SelectedText == "Si")
             {
                 txtValor.Text = "0.00";
             }
             else
             {
+                Clases.TipoPago pago = new Clases.TipoPago();
+                pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex+1);
                 txtValor.Text = pago.Valor.ToString();
+                this.idTipo = pago.IdTipoPago;
+               // MessageBox.Show(Convert.ToString(this.grado)+Convert.ToString(cbNombre.SelectedIndex)+pago.Valor);
             }
         }
 
@@ -362,15 +372,20 @@ namespace Pagos_ICB
 
         private void dtFechaPago_FormatChanged(object sender, EventArgs e)
         {
+           
+
+        }
+
+        private void dtFechaPago_ValueChanged(object sender, EventArgs e)
+        {
             Clases.NombreTipoPago pago = new Clases.NombreTipoPago();
-            pago.ObtenerNombreTipoPagos( cbNombre.SelectedIndex - 1);
-            if (dtFechaPago.Value > Convert.ToDateTime( pago.FechaLimite))
+            pago.ObtenerNombreTipoPagos(cbNombre.SelectedIndex - 1);
+            if (dtFechaPago.Value > Convert.ToDateTime(pago.FechaLimite))
             {
                 cbMora.Enabled = true;
                 cbMora.SelectedIndex = 2;
                 MessageBox.Show("Mora por retraso en el pago");
             }
-
         }
     }
 }

@@ -185,7 +185,7 @@ namespace Pagos_ICB.Clases
         public void ObtenerTipoPagosporGrado(int grado, int nombre)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT idTipoPago, idNombreTipoPago,idGrado,Valor FROM Cuentas.TipoPago WHERE idGrado = '" + grado + "'AND idNombreTipoPago='"+nombre+"';";
+            string sql = @"SELECT idTipoPago, idNombreTipoPago,idGrado,Valor FROM Cuentas.TipoPago WHERE idNombreTipoPago = '" + nombre + "'AND idGrado='" + grado + "';";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {

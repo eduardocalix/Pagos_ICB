@@ -91,7 +91,8 @@ namespace Pagos_ICB.Clases
             }
             catch (SqlException ex)
             {
-                throw ex;
+                //Cuando ocurre un error se llama la clase excepcion que dira que fue cerca de NombreTipoPagoss donde ocurrio ese error
+                throw new Clases.Excepcion(ex.Message, ex, "Clase_NombreTipoPago");
             }
             finally
             {

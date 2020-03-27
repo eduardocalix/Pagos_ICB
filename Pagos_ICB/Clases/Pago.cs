@@ -56,14 +56,14 @@ namespace Pagos_ICB.Clases
             Observacion = observacion;
         }
         //Constructor para eliminar un TipoPago
-        public Pago(int idTipoPago)
+        public Pago(int idPago)
         {
-            IdPago= idTipoPago;
+            IdPago= idPago;
         }
 
-        public Pago(int idTipoPago, int estado)
+        public Pago(int idPago, int estado)
         {
-            IdPago= idTipoPago;
+            IdPago= idPago;
             Estado = estado;
         }
         //Funcion para llamar el store Procedure y asignar los parametros que insertaremos
@@ -117,6 +117,8 @@ namespace Pagos_ICB.Clases
             try
             {
                 conexion.Abrir();
+                cmd.Parameters.Add(new SqlParameter("idPago", SqlDbType.Int));
+                cmd.Parameters["idPago"].Value = IdPago;
                 cmd.Parameters.Add(new SqlParameter("recibo", SqlDbType.NVarChar, 15));
                 cmd.Parameters["recibo"].Value = Recibo;
                 cmd.Parameters.Add(new SqlParameter("idAlumno", SqlDbType.Int));
@@ -151,7 +153,7 @@ namespace Pagos_ICB.Clases
         public void Eliminar()
         {
             Clases.Conexión conexion = new Clases.Conexión();
-            SqlCommand cmd = new SqlCommand("SP_EliminarTipoPago", conexion.conexion);
+            SqlCommand cmd = new SqlCommand("SP_EliminarPago", conexion.conexion);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {

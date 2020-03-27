@@ -610,6 +610,7 @@ namespace Pagos_ICB.Clases
             {
                 ValidarNombreTipoPago(NombreTipo, fechaLimite);
                 Clases.NombreTipoPago TipoPago = new Clases.NombreTipoPago(
+                    idNombreTipoPago,
                     NombreTipo,
                     fechaLimite
                     );
@@ -741,11 +742,11 @@ namespace Pagos_ICB.Clases
                 throw ex;
             }
         }
-        public static void EliminarTipoPago1(int id, int estado)
+        public static void EliminarPago1(int id, int estado)
         {
             try
             {
-                Clases.TipoPago TipoPago = new Clases.TipoPago(id, estado);
+                Clases.Pago TipoPago = new Clases.Pago(id, estado);
                 TipoPago.Eliminar1();
             }
             catch (Exception ex)

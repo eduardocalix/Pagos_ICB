@@ -36,6 +36,8 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgvNombreTipoPago = new System.Windows.Forms.DataGridView();
             this.grpNombreNombreNombreNombreNombreTipoPago = new System.Windows.Forms.GroupBox();
+            this.dtFecha = new System.Windows.Forms.DateTimePicker();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblGrado = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.lblId = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.dtFecha = new System.Windows.Forms.DateTimePicker();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNombreTipoPago)).BeginInit();
             this.grpNombreNombreNombreNombreNombreTipoPago.SuspendLayout();
@@ -145,6 +145,21 @@
             this.grpNombreNombreNombreNombreNombreTipoPago.TabIndex = 37;
             this.grpNombreNombreNombreNombreNombreTipoPago.TabStop = false;
             // 
+            // dtFecha
+            // 
+            this.dtFecha.Location = new System.Drawing.Point(127, 94);
+            this.dtFecha.Name = "dtFecha";
+            this.dtFecha.Size = new System.Drawing.Size(234, 22);
+            this.dtFecha.TabIndex = 34;
+            this.dtFecha.Value = new System.DateTime(2020, 3, 25, 0, 0, 0, 0);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(126, 56);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(236, 22);
+            this.txtNombre.TabIndex = 33;
+            // 
             // lblGrado
             // 
             this.lblGrado.AutoSize = true;
@@ -224,22 +239,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Enabled = false;
-            this.txtNombre.Location = new System.Drawing.Point(126, 56);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(236, 22);
-            this.txtNombre.TabIndex = 33;
-            // 
-            // dtFecha
-            // 
-            this.dtFecha.Location = new System.Drawing.Point(127, 94);
-            this.dtFecha.Name = "dtFecha";
-            this.dtFecha.Size = new System.Drawing.Size(234, 22);
-            this.dtFecha.TabIndex = 34;
-            this.dtFecha.Value = new System.DateTime(2020, 3, 25, 0, 0, 0, 0);
             // 
             // frmNombreTipoPago
             // 

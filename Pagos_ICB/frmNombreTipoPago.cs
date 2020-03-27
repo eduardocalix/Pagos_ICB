@@ -111,7 +111,7 @@ namespace Pagos_ICB
                 Clases.ICB.AgregarNombreTipoPago
                     (
                         txtNombre.Text,
-                        dtFecha.Text
+                        dtFecha.Value.ToString()
                     );
                 CargarDGWNombreTipoPago();
 
@@ -132,10 +132,10 @@ namespace Pagos_ICB
                 {
                     Clases.ICB.ModificarNombreTipoPago
                         (
-                            this.id,
+                            Convert.ToInt32(this.id),
                             txtNombre.Text,
-                        dtFecha.Text
-                        );
+                            dtFecha.Value.ToString() 
+                            );
                     ResetFormulario();
                 }
                 catch (Exception ex)
@@ -154,7 +154,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarNombreTipoPago(this.id);
+                    Clases.ICB.EliminarNombreTipoPago(Convert.ToInt32(this.id));
                 }
                 catch (Exception ex)
                 {

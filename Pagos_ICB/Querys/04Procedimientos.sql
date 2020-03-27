@@ -661,7 +661,7 @@ CREATE PROCEDURE SP_AgregarPago
 (
 	@recibo VARCHAR(15),
 	@idAlumno INT,
-	@idTipoPago INT,
+	@idTipo INT,
 	@idDescuento INT,
     @idMora INT,
 	@idUsuario INT,
@@ -682,7 +682,7 @@ BEGIN
 	ELSE
 		BEGIN
 			INSERT INTO Cuentas.Pago(recibo, idAlumno, idTipo, idDescuento, idMora,idUsuario,total, fechaPago,observacion)
-				VALUES(@recibo,@idAlumno,@idTipoPago,@idDescuento,@idMora,@idUsuario,@total,@fechaPago,@observacion)
+				VALUES(@recibo,@idAlumno,@idTipo,@idDescuento,@idMora,@idUsuario,@total,@fechaPago,@observacion)
 			RETURN 1
 		END
 END
@@ -693,7 +693,7 @@ CREATE PROCEDURE SP_ModificarPago
 	@idPago INT,
 	@recibo VARCHAR(15),
 	@idAlumno INT,
-	@idTipoPago INT,
+	@idTipo INT,
 	@idDescuento INT,
     @idMora INT,
 	@idUsuario INT,
@@ -718,7 +718,7 @@ BEGIN
 			UPDATE Cuentas.Pago
 				SET 	recibo = @recibo,
 						idAlumno = @idAlumno,
-						idTipo = @idTipoPago,
+						idTipo = @idTipo,
 						idDescuento = @idDescuento,
 						idMora = @idMora,
 						idUsuario = @idUsuario,

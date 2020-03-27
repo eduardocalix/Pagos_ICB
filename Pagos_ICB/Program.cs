@@ -16,7 +16,7 @@ namespace Pagos_ICB
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMenuNuevo());
+            Application.Run(new frmLogin());
         }
     }
 }
