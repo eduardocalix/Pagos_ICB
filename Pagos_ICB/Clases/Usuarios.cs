@@ -159,7 +159,6 @@ namespace Pagos_ICB.Clases
                 cmd.Parameters.Add(new SqlParameter("clave", SqlDbType.NVarChar, 20));
                 cmd.Parameters["clave"].Value = this.clave;
                 cmd.ExecuteNonQuery();
-
             }
             catch (SqlException ex)
             {

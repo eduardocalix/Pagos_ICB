@@ -222,7 +222,8 @@ namespace Pagos_ICB.Clases
                 while (dr.Read())
                 {
                     IdDescuento = dr.GetInt32(0);
-                    Nombres = dr.GetString(2);
+                    Nombres = dr.GetString(1);
+                    Valor = dr.GetDecimal(2);
                 }
             }
             catch (SqlException excepcion)

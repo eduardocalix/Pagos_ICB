@@ -111,7 +111,7 @@ namespace Pagos_ICB
                 Clases.ICB.AgregarNombreTipoPago
                     (
                         txtNombre.Text,
-                        dtFecha.Value.ToString()
+                        dtFecha.Value.ToShortDateString()
                     );
                 CargarDGWNombreTipoPago();
 

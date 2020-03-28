@@ -26,8 +26,6 @@ namespace Pagos_ICB
             Descuento.ShowDialog();
         }
 
-    
-
         private void Alumno_Click(object sender, EventArgs e)
         {
             frmAlumnos alumnos = new frmAlumnos();

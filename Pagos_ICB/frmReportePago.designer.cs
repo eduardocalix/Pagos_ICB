@@ -1,6 +1,6 @@
 ﻿namespace Pagos_ICB
 {
-    partial class frmPago
+    partial class frmReportePago
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPago));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportePago));
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.dgvPago = new System.Windows.Forms.DataGridView();
-            this.grpPago = new System.Windows.Forms.GroupBox();
-            this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbDescuento = new System.Windows.Forms.ComboBox();
-            this.cbMora = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dtFechaPago = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtRecibo = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbNombre = new System.Windows.Forms.ComboBox();
-            this.cbGrado = new System.Windows.Forms.ComboBox();
-            this.lblGrado = new System.Windows.Forms.Label();
-            this.txtValor = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.lblId = new System.Windows.Forms.Label();
-            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.dgvReportePago = new System.Windows.Forms.DataGridView();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -67,14 +48,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.cbNombre = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtRecibo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtFechaReportePago = new System.Windows.Forms.DateTimePicker();
+            this.grpReportePago = new System.Windows.Forms.GroupBox();
+            this.cbGrado = new System.Windows.Forms.ComboBox();
+            this.lblGrado = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).BeginInit();
-            this.grpPago.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReportePago)).BeginInit();
             this.pnlTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
             this.grpProveedores.SuspendLayout();
+            this.grpReportePago.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBotones
@@ -83,9 +73,9 @@
             this.pnlBotones.Controls.Add(this.btnAgregar);
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
-            this.pnlBotones.Location = new System.Drawing.Point(583, 409);
+            this.pnlBotones.Location = new System.Drawing.Point(459, 42);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(102, 127);
+            this.pnlBotones.Size = new System.Drawing.Size(186, 80);
             this.pnlBotones.TabIndex = 39;
             // 
             // btnModificar
@@ -93,7 +83,7 @@
             this.btnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnModificar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnModificar.Location = new System.Drawing.Point(13, 69);
+            this.btnModificar.Location = new System.Drawing.Point(99, 11);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 25);
             this.btnModificar.TabIndex = 6;
@@ -119,7 +109,7 @@
             this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEliminar.Location = new System.Drawing.Point(13, 98);
+            this.btnEliminar.Location = new System.Drawing.Point(99, 42);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 25);
             this.btnEliminar.TabIndex = 7;
@@ -140,210 +130,19 @@
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click_1);
             // 
-            // dgvPago
+            // dgvReportePago
             // 
-            this.dgvPago.AllowUserToAddRows = false;
-            this.dgvPago.AllowUserToDeleteRows = false;
-            this.dgvPago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPago.Location = new System.Drawing.Point(12, 413);
-            this.dgvPago.Name = "dgvPago";
-            this.dgvPago.ReadOnly = true;
-            this.dgvPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPago.Size = new System.Drawing.Size(565, 123);
-            this.dgvPago.TabIndex = 38;
-            this.dgvPago.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPago_CellClick_1);
-            // 
-            // grpPago
-            // 
-            this.grpPago.Controls.Add(this.txtObservacion);
-            this.grpPago.Controls.Add(this.label8);
-            this.grpPago.Controls.Add(this.cbDescuento);
-            this.grpPago.Controls.Add(this.cbMora);
-            this.grpPago.Controls.Add(this.label6);
-            this.grpPago.Controls.Add(this.label7);
-            this.grpPago.Controls.Add(this.dtFechaPago);
-            this.grpPago.Controls.Add(this.label5);
-            this.grpPago.Controls.Add(this.txtRecibo);
-            this.grpPago.Controls.Add(this.label4);
-            this.grpPago.Controls.Add(this.cbNombre);
-            this.grpPago.Controls.Add(this.cbGrado);
-            this.grpPago.Controls.Add(this.lblGrado);
-            this.grpPago.Controls.Add(this.txtValor);
-            this.grpPago.Controls.Add(this.label2);
-            this.grpPago.Controls.Add(this.txtId);
-            this.grpPago.Controls.Add(this.lblId);
-            this.grpPago.Controls.Add(this.lblDescripcion);
-            this.grpPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.grpPago.Location = new System.Drawing.Point(13, 202);
-            this.grpPago.Name = "grpPago";
-            this.grpPago.Size = new System.Drawing.Size(672, 202);
-            this.grpPago.TabIndex = 37;
-            this.grpPago.TabStop = false;
-            // 
-            // txtObservacion
-            // 
-            this.txtObservacion.Location = new System.Drawing.Point(105, 163);
-            this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(540, 22);
-            this.txtObservacion.TabIndex = 42;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(11, 167);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 15);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "Observación";
-            // 
-            // cbDescuento
-            // 
-            this.cbDescuento.Enabled = false;
-            this.cbDescuento.FormattingEnabled = true;
-            this.cbDescuento.Location = new System.Drawing.Point(432, 127);
-            this.cbDescuento.Name = "cbDescuento";
-            this.cbDescuento.Size = new System.Drawing.Size(213, 24);
-            this.cbDescuento.TabIndex = 40;
-            this.cbDescuento.SelectedIndexChanged += new System.EventHandler(this.cbDescuento_SelectedIndexChanged);
-            // 
-            // cbMora
-            // 
-            this.cbMora.FormattingEnabled = true;
-            this.cbMora.Location = new System.Drawing.Point(86, 127);
-            this.cbMora.Name = "cbMora";
-            this.cbMora.Size = new System.Drawing.Size(213, 24);
-            this.cbMora.TabIndex = 8;
-            this.cbMora.SelectedIndexChanged += new System.EventHandler(this.cbMora_SelectedIndexChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(11, 131);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 15);
-            this.label6.TabIndex = 39;
-            this.label6.Text = "Mora";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(327, 131);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 15);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Descuento";
-            // 
-            // dtFechaPago
-            // 
-            this.dtFechaPago.Location = new System.Drawing.Point(432, 89);
-            this.dtFechaPago.Name = "dtFechaPago";
-            this.dtFechaPago.Size = new System.Drawing.Size(213, 22);
-            this.dtFechaPago.TabIndex = 7;
-            this.dtFechaPago.FormatChanged += new System.EventHandler(this.dtFechaPago_FormatChanged);
-            this.dtFechaPago.ValueChanged += new System.EventHandler(this.dtFechaPago_ValueChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(327, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 15);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Fecha Pago";
-            // 
-            // txtRecibo
-            // 
-            this.txtRecibo.Location = new System.Drawing.Point(432, 21);
-            this.txtRecibo.Name = "txtRecibo";
-            this.txtRecibo.Size = new System.Drawing.Size(213, 22);
-            this.txtRecibo.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(327, 24);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 15);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "N° Recibo";
-            // 
-            // cbNombre
-            // 
-            this.cbNombre.FormattingEnabled = true;
-            this.cbNombre.Location = new System.Drawing.Point(432, 51);
-            this.cbNombre.Name = "cbNombre";
-            this.cbNombre.Size = new System.Drawing.Size(213, 24);
-            this.cbNombre.TabIndex = 6;
-            this.cbNombre.SelectedIndexChanged += new System.EventHandler(this.cbNombre_SelectedIndexChanged);
-            // 
-            // cbGrado
-            // 
-            this.cbGrado.FormattingEnabled = true;
-            this.cbGrado.Location = new System.Drawing.Point(86, 51);
-            this.cbGrado.Name = "cbGrado";
-            this.cbGrado.Size = new System.Drawing.Size(213, 24);
-            this.cbGrado.TabIndex = 30;
-            // 
-            // lblGrado
-            // 
-            this.lblGrado.AutoSize = true;
-            this.lblGrado.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrado.Location = new System.Drawing.Point(11, 55);
-            this.lblGrado.Name = "lblGrado";
-            this.lblGrado.Size = new System.Drawing.Size(47, 15);
-            this.lblGrado.TabIndex = 31;
-            this.lblGrado.Text = "Grado";
-            // 
-            // txtValor
-            // 
-            this.txtValor.Location = new System.Drawing.Point(86, 91);
-            this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(213, 22);
-            this.txtValor.TabIndex = 28;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Valor";
-            // 
-            // txtId
-            // 
-            this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(86, 21);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(213, 22);
-            this.txtId.TabIndex = 24;
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Location = new System.Drawing.Point(11, 24);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(55, 15);
-            this.lblId.TabIndex = 26;
-            this.lblId.Text = "Id Pago";
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(327, 55);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(93, 15);
-            this.lblDescripcion.TabIndex = 27;
-            this.lblDescripcion.Text = "Nombre Pago";
+            this.dgvReportePago.AllowUserToAddRows = false;
+            this.dgvReportePago.AllowUserToDeleteRows = false;
+            this.dgvReportePago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvReportePago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReportePago.Location = new System.Drawing.Point(14, 351);
+            this.dgvReportePago.Name = "dgvReportePago";
+            this.dgvReportePago.ReadOnly = true;
+            this.dgvReportePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReportePago.Size = new System.Drawing.Size(671, 185);
+            this.dgvReportePago.TabIndex = 38;
+            this.dgvReportePago.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePago_CellClick_1);
             // 
             // pnlTitulo
             // 
@@ -382,11 +181,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Britannic Bold", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(125)))));
-            this.label1.Location = new System.Drawing.Point(203, 23);
+            this.label1.Location = new System.Drawing.Point(238, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(321, 37);
+            this.label1.Size = new System.Drawing.Size(258, 37);
             this.label1.TabIndex = 29;
-            this.label1.Text = "Información de Pago";
+            this.label1.Text = "Reporte de Pago";
             // 
             // pictureBox1
             // 
@@ -481,26 +280,114 @@
             this.lblNombre.TabIndex = 9;
             this.lblNombre.Text = "Nombres";
             // 
-            // frmPago
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(32, 18);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(145, 15);
+            this.lblDescripcion.TabIndex = 27;
+            this.lblDescripcion.Text = "Nombre ReportePago";
+            // 
+            // cbNombre
+            // 
+            this.cbNombre.FormattingEnabled = true;
+            this.cbNombre.Location = new System.Drawing.Point(183, 14);
+            this.cbNombre.Name = "cbNombre";
+            this.cbNombre.Size = new System.Drawing.Size(209, 24);
+            this.cbNombre.TabIndex = 6;
+            this.cbNombre.SelectedIndexChanged += new System.EventHandler(this.cbNombre_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(413, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 15);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "N° Recibo";
+            // 
+            // txtRecibo
+            // 
+            this.txtRecibo.Location = new System.Drawing.Point(488, 14);
+            this.txtRecibo.Name = "txtRecibo";
+            this.txtRecibo.Size = new System.Drawing.Size(157, 22);
+            this.txtRecibo.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(32, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(133, 15);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Fecha ReportePago";
+            // 
+            // dtFechaReportePago
+            // 
+            this.dtFechaReportePago.Location = new System.Drawing.Point(183, 66);
+            this.dtFechaReportePago.Name = "dtFechaReportePago";
+            this.dtFechaReportePago.Size = new System.Drawing.Size(213, 22);
+            this.dtFechaReportePago.TabIndex = 7;
+            this.dtFechaReportePago.FormatChanged += new System.EventHandler(this.dtFechaReportePago_FormatChanged);
+            this.dtFechaReportePago.ValueChanged += new System.EventHandler(this.dtFechaReportePago_ValueChanged);
+            // 
+            // grpReportePago
+            // 
+            this.grpReportePago.Controls.Add(this.cbGrado);
+            this.grpReportePago.Controls.Add(this.lblGrado);
+            this.grpReportePago.Controls.Add(this.dtFechaReportePago);
+            this.grpReportePago.Controls.Add(this.label5);
+            this.grpReportePago.Controls.Add(this.pnlBotones);
+            this.grpReportePago.Controls.Add(this.txtRecibo);
+            this.grpReportePago.Controls.Add(this.label4);
+            this.grpReportePago.Controls.Add(this.cbNombre);
+            this.grpReportePago.Controls.Add(this.lblDescripcion);
+            this.grpReportePago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grpReportePago.Location = new System.Drawing.Point(13, 202);
+            this.grpReportePago.Name = "grpReportePago";
+            this.grpReportePago.Size = new System.Drawing.Size(672, 128);
+            this.grpReportePago.TabIndex = 37;
+            this.grpReportePago.TabStop = false;
+            // 
+            // cbGrado
+            // 
+            this.cbGrado.FormattingEnabled = true;
+            this.cbGrado.Location = new System.Drawing.Point(183, 98);
+            this.cbGrado.Name = "cbGrado";
+            this.cbGrado.Size = new System.Drawing.Size(213, 24);
+            this.cbGrado.TabIndex = 40;
+            // 
+            // lblGrado
+            // 
+            this.lblGrado.AutoSize = true;
+            this.lblGrado.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrado.Location = new System.Drawing.Point(108, 102);
+            this.lblGrado.Name = "lblGrado";
+            this.lblGrado.Size = new System.Drawing.Size(47, 15);
+            this.lblGrado.TabIndex = 41;
+            this.lblGrado.Text = "Grado";
+            // 
+            // frmReportePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 607);
             this.Controls.Add(this.grpProveedores);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pnlBotones);
-            this.Controls.Add(this.dgvPago);
-            this.Controls.Add(this.grpPago);
+            this.Controls.Add(this.dgvReportePago);
+            this.Controls.Add(this.grpReportePago);
             this.Controls.Add(this.pnlTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmPago";
+            this.Name = "frmReportePago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTipoProducto";
-            this.Load += new System.EventHandler(this.frmPago_Load);
+            this.Load += new System.EventHandler(this.frmReportePago_Load);
             this.pnlBotones.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPago)).EndInit();
-            this.grpPago.ResumeLayout(false);
-            this.grpPago.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReportePago)).EndInit();
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -508,6 +395,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).EndInit();
             this.grpProveedores.ResumeLayout(false);
             this.grpProveedores.PerformLayout();
+            this.grpReportePago.ResumeLayout(false);
+            this.grpReportePago.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -520,19 +409,10 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.DataGridView dgvPago;
-        private System.Windows.Forms.GroupBox grpPago;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.DataGridView dgvReportePago;
         private System.Windows.Forms.Panel pnlTitulo;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtValor;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbGrado;
-        private System.Windows.Forms.Label lblGrado;
-        private System.Windows.Forms.ComboBox cbNombre;
         private System.Windows.Forms.DataGridView dgvAlumnos;
         private System.Windows.Forms.GroupBox grpProveedores;
         private System.Windows.Forms.ComboBox cbBeca;
@@ -541,16 +421,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox txtRecibo;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtFechaPago;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ComboBox cbDescuento;
-        private System.Windows.Forms.ComboBox cbMora;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtObservacion;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.ComboBox cbNombre;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtRecibo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtFechaReportePago;
+        private System.Windows.Forms.GroupBox grpReportePago;
+        private System.Windows.Forms.ComboBox cbGrado;
+        private System.Windows.Forms.Label lblGrado;
     }
 }

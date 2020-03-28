@@ -240,13 +240,17 @@ namespace Pagos_ICB.Clases
                                     Cuentas.Alumno.nombres      as Nombres, 
                                     Cuentas.Alumno.apellidos    as Apellidos,
                                     Cuentas.Pago.recibo         as Recibo,
+                                    Cuentas.NombreTipoPago.nombreTipoPago   as Pago,
                                     Cuentas.Mora.nombreMora     as Mora,
                                     Cuentas.Pago.total          as Total,
                                     Cuentas.Pago.observacion    as Observación
                             FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
                             Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
 							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
-                            Cuentas.Pago.idMora = Cuentas.Mora.idMora AND
+                            Cuentas.Pago.idMora = Cuentas.Mora.idMora INNER JOIN Cuentas.TipoPago 
+							ON Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago
+                            INNER JOIN Cuentas.NombreTipoPago 
+							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND
                             Cuentas.Pago.estado=" + estado + " AND Cuentas.Pago.idAlumno =" + idAlumno + ";";
             try
             {

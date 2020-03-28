@@ -59,7 +59,8 @@ namespace Pagos_ICB
                     else
                     {
                         Clases.VariablesGlobales.user = txtUsuario.Text;
-                        MessageBox.Show("Bienvenido");
+                       // MessageBox.Show(Clases.VariablesGlobales.user);
+                        MessageBox.Show("Bienvenido","ICB");
                         /* MenuPrincipal menuPrincipal = new MenuPrincipal();
                          menuPrincipal.rol = 1;*/
                         frmMenuNuevo menu = new frmMenuNuevo();
@@ -100,11 +101,10 @@ namespace Pagos_ICB
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            
-            LimpiarFormulario();
+             LimpiarFormulario();
         }
 
-        public void Dolares()
+       /* public void Dolares()
         {
             //Se navega por la pagina web especificada y se captura el dato seleccionado. 
             browser.Navigate("http://www.bch.hn/");
@@ -115,7 +115,7 @@ namespace Pagos_ICB
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         }
-
+        */
         private void LimpiarFormulario()
         {
             txtUsuario.Text = "";

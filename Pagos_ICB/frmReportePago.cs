@@ -11,26 +11,24 @@ using System.Windows.Forms;
 
 namespace Pagos_ICB
 {
-    public partial class frmPago : Form
+    public partial class frmReportePago : Form
     {
-        public frmPago()
+        public frmReportePago()
         {
             InitializeComponent();
         }
 
 
 
-        private void frmPago_Load(object sender, EventArgs e)
+        private void frmReportePago_Load(object sender, EventArgs e)
         {
             this.idUsuario = Clases.Usuarios.ObtenerUsuarioId(Clases.VariablesGlobales.user);
           // MessageBox.Show(Clases.VariablesGlobales.user);
             //MessageBox.Show(Convert.ToString( this.idUsuario));
 
-            //CargarDGWPago();
+            //CargarDGWReportePago();
             CargarCMBGrados();
             CargarCMBNombre();
-            CargarCMBMora();
-            CargarCMBDescuentos();
             ResetFormulario();
         }
         private int idAlumno = 0;
@@ -40,11 +38,11 @@ namespace Pagos_ICB
         private decimal valor = 0;
 
         //private string beca="";
-        private void CargarDGWPago(int alumno)
+        private void CargarDGWReportePago(int alumno)
         {
             try
             {
-                dgvPago.DataSource = Clases.Pago.GetDataViewFiltroPago1(alumno,1);
+                dgvReportePago.DataSource = Clases.Pago.GetDataViewFiltroPago1(alumno,1);
             }
             catch (Exception ex)
             {
@@ -53,7 +51,7 @@ namespace Pagos_ICB
             }
         }
 
-        private void dgwPagoEstilo(DataGridView dgw)
+        private void dgwReportePagoEstilo(DataGridView dgw)
         {
             dgw.DefaultCellStyle.BackColor = Color.LightBlue;
             dgw.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
@@ -70,21 +68,19 @@ namespace Pagos_ICB
           
         }
 
-        private void dgvPago_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvReportePago_CellClick(object sender, DataGridViewCellEventArgs e)
         {
            
         }
 
         private void ResetFormulario()
         {
-            txtId.Text = "";
             txtNombre.Text = "";
             txtIdentidad.Text = "";
-            txtObservacion.Text = "";
             cbBeca.SelectedIndex = 1;
-            txtValor.Text = "";
-            //CargarDGWPago();
-            dgwPagoEstilo(dgvPago);
+        
+            //CargarDGWReportePago();
+            dgwReportePagoEstilo(dgvReportePago);
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;
@@ -96,7 +92,6 @@ namespace Pagos_ICB
             dgvAlumnos.Enabled = true;
             cbNombre.Enabled = true;
             cbGrado.Enabled = true;
-            cbMora.Enabled = true;
             //txtDescripcion.Enabled = true;
             this.idAlumno = 0;
             this.grado = 0;
@@ -127,40 +122,17 @@ namespace Pagos_ICB
             cbGrado.DataSource = dt;
         }
 
-        private void CargarCMBMora()
-        {
-            DataTable dt = new DataTable();
-            Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Mora";
-            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            cbMora.DisplayMember = "nombreMora";
-            cbMora.ValueMember = "nombreMora";
-            cbMora.DataSource = dt;
-        }
-        private void CargarCMBDescuentos()
-        {
-            DataTable dt = new DataTable();
-            Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Descuento";
-            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            cbDescuento.DisplayMember = "nombreDescuento";
-            cbDescuento.ValueMember = "nombreDescuento";
-            cbDescuento.DataSource = dt;
-        }
+     
         private void CargarCMBNombre()
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.NombreTipoPago";
+            string sql = "select * FROM Cuentas.NombreTipoReportePago";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            cbNombre.DisplayMember = "nombreTipoPago";
-            cbNombre.ValueMember = "nombreTipoPago";
+            cbNombre.DisplayMember = "nombreTipoReportePago";
+            cbNombre.ValueMember = "nombreTipoReportePago";
             cbNombre.DataSource = dt;
         }
         private void btnSalir_Click(object sender, EventArgs e)
@@ -175,14 +147,14 @@ namespace Pagos_ICB
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            
+            /*
             try
             {
                 Clases.Grado grado = new Clases.Grado();
                 grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-                Clases.TipoPago tipo = new Clases.TipoPago();
-                //tipo.ObteneNombrePagosPorNombres(cbNombre.SelectedValue.ToString());
-                Clases.ICB.AgregarPago
+                Clases.TipoReportePago tipo = new Clases.TipoReportePago();
+                //tipo.ObteneNombreReportePagosPorNombres(cbNombre.SelectedValue.ToString());
+                Clases.ICB.AgregarReportePago
                     (
                         txtRecibo.Text,
                         this.idAlumno,
@@ -191,35 +163,35 @@ namespace Pagos_ICB
                         cbMora.SelectedIndex+1,
                         this.idUsuario,
                         Convert.ToDecimal(txtValor.Text),
-                        dtFechaPago.Value.ToShortDateString(),
+                        dtFechaReportePago.Value.ToShortDateString(),
                         txtObservacion.Text
                     );
-                CargarDGWPago(this.idAlumno);
+                CargarDGWReportePago(this.idAlumno);
 
             }
             catch (Exception ex)
             {
 
                 Clases.Mensaje.Advertencia(ex);
-            }
+            }*/
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el Pago", "Modificar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el ReportePago", "Modificar ReportePago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
                     Clases.Grado grado = new Clases.Grado();
                     grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-                    Clases.Pago tipo = new Clases.Pago();
-                    tipo.ObteneNombrePagosPorNombres(cbNombre.SelectedValue.ToString());
-                    Clases.ICB.ModificarPago
+                    Clases.ReportePago tipo = new Clases.ReportePago();
+                    tipo.ObteneNombreReportePagosPorNombres(cbNombre.SelectedValue.ToString());
+                    Clases.ICB.ModificarReportePago
                         (
                             this.id,
-                            tipo.IdNombrePago,
+                            tipo.IdNombreReportePago,
                             grado.IdGrado,
                             Convert.ToDecimal(txtValor.Text)
                         );
@@ -236,12 +208,12 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el Pago" , "Eliminar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el ReportePago" , "Eliminar ReportePago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                   // Clases.ICB.EliminarPago(this.id);
+                   // Clases.ICB.EliminarReportePago(this.id);
                 }
                 catch (Exception ex)
                 {
@@ -255,21 +227,21 @@ namespace Pagos_ICB
             }
         }
        
-        private void dgvPago_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dgvReportePago_CellClick_1(object sender, DataGridViewCellEventArgs e)
         { /*
-            Clases.Pago Pago = new Clases.Pago();
-            Pago.ObtenerPagos(
+            Clases.ReportePago ReportePago = new Clases.ReportePago();
+            ReportePago.ObtenerReportePagos(
                 Convert.ToInt32(
-                    dgvPago.Rows[e.RowIndex].Cells["Código"].Value.ToString()
+                    dgvReportePago.Rows[e.RowIndex].Cells["Código"].Value.ToString()
                     )
                 );
-            dgvPago.Select();
-            this.id = Pago.IdPago;
+            dgvReportePago.Select();
+            this.id = ReportePago.IdReportePago;
 
-            txtId.Text = Pago.IdPago.ToString();
-            cbNombre.SelectedIndex = Pago.IdNombrePago-1;
-            cbGrado.SelectedIndex = Pago.IdGrado - 1;
-            txtValor.Text = Pago.Valor.ToString();
+            txtId.Text = ReportePago.IdReportePago.ToString();
+            cbNombre.SelectedIndex = ReportePago.IdNombreReportePago-1;
+            cbGrado.SelectedIndex = ReportePago.IdGrado - 1;
+            txtValor.Text = ReportePago.Valor.ToString();
             cbGrado.Enabled = false;
             cbNombre.Enabled = false;
 
@@ -298,7 +270,7 @@ namespace Pagos_ICB
                     )
                 );
             dgvAlumnos.Select();
-            CargarDGWPago(Alumno.IdAlumno);
+            CargarDGWReportePago(Alumno.IdAlumno);
             this.idAlumno = Alumno.IdAlumno;
             txtIdentidad.Text = Alumno.Identidad;
             txtNombre.Text = Alumno.Nombres;
@@ -306,7 +278,6 @@ namespace Pagos_ICB
             {
                 cbBeca.SelectedIndex = 0;
                 //txtValor.Text = "0";
-                txtValor.Enabled = false;
             }
             else
             {
@@ -325,53 +296,7 @@ namespace Pagos_ICB
 
         private void cbNombre_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbNombre.SelectedText.ToString() == "MATRICULA")
-            {
-                
-                if (cbGrado.SelectedText == "PREKINDER" || cbGrado.SelectedText == "KINDER" || cbGrado.SelectedText == "PREPARATORIA" || cbGrado.SelectedText == "PRIMERO")
-                {
-                    MessageBox.Show("Aplica descuento del 50% en el pago de la matricula");
-
-                    cbDescuento.SelectedIndex = 2;
-                }
-                else
-                {
-
-                    DateTime fecha1 = DateTime.Now;
-                    if (fecha1.Month == 6)
-                    {
-                        MessageBox.Show("Aplica descuento del 30% en el pago de la matricula");
-
-                        cbDescuento.SelectedIndex = 3;
-
-                    }
-                    else if (fecha1.Month == 7)
-                    {
-                        MessageBox.Show("Aplica descuento del 20% en el pago de la matricula");
-
-                        cbDescuento.SelectedIndex = 4;
-                    }
-                }
-            }
-            else
-            {
-                cbDescuento.Enabled = true;
-            }
             
-            if (cbBeca.SelectedIndex == 0)
-            {
-                txtValor.Text = "0.00";
-                cbMora.Enabled = false;
-            }
-            else
-            {
-                Clases.TipoPago pago = new Clases.TipoPago();
-                pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex+1);
-                txtValor.Text = pago.Valor.ToString();
-                this.valor = pago.Valor;
-                this.idTipo = pago.IdTipoPago;
-               // MessageBox.Show(Convert.ToString(this.grado)+Convert.ToString(cbNombre.SelectedIndex)+pago.Valor);
-            }
         }
 
         private void btnSalir_Click_1(object sender, EventArgs e)
@@ -379,65 +304,23 @@ namespace Pagos_ICB
             this.Close();
         }
 
-        private void dtFechaPago_FormatChanged(object sender, EventArgs e)
+        private void dtFechaReportePago_FormatChanged(object sender, EventArgs e)
         {
            
 
         }
 
-        private void dtFechaPago_ValueChanged(object sender, EventArgs e)
+        private void dtFechaReportePago_ValueChanged(object sender, EventArgs e)
         {
             Clases.NombreTipoPago pago = new Clases.NombreTipoPago();
             pago.ObtenerNombreTipoPagos(cbNombre.SelectedIndex - 1);
-            if (dtFechaPago.Value > Convert.ToDateTime(pago.FechaLimite))
+            if (dtFechaReportePago.Value > Convert.ToDateTime(pago.FechaLimite))
             {
-                cbMora.Enabled = true;
-                cbMora.SelectedIndex = 1;
+                
                 MessageBox.Show("Mora por retraso en el pago");
             }
         }
 
-        private void cbMora_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            decimal total = 0;
-            if (cbNombre.SelectedValue.ToString() == "MATRICULA" || cbNombre.SelectedText.ToString() == "BOLSA ESCOLAR")
-            {
-                cbMora.Enabled = false;
-            }
-            else
-            {
-                cbMora.Enabled = true;
-              
-                    Clases.Mora mora = new Clases.Mora();
-                    mora.ObteneMorasPorNombres(cbMora.SelectedValue.ToString());
-                if (mora.Valor > 0)
-                {
-                    total = this.valor + mora.Valor;
-                    txtValor.Text = total.ToString();
-                }
-              
-
-            }
-        }
-
-        private void cbDescuento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            decimal total = 0;
-            Clases.Descuento descuento = new Clases.Descuento();
-            descuento.ObteneDescuentosPorNombres(cbDescuento.SelectedValue.ToString());
-            if (descuento.Valor > 0)
-            {
-                total = this.valor * (descuento.Valor / 100);
-                MessageBox.Show(Convert.ToString(total));
-                txtValor.Text = total.ToString();
-
-            }
-            else if(descuento.Valor==0)
-            {
-                txtValor.Text = this.valor.ToString();
-                cbMora.Enabled = true;
-            }
-
-        }
+       
     }
 }
