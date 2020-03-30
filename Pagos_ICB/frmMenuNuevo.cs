@@ -67,7 +67,8 @@ namespace Pagos_ICB
 
         private void toolStripMenuItem9_Click(object sender, EventArgs e)
         {
-            
+            frmReportePago reportePago = new frmReportePago();
+            reportePago.ShowDialog();
         }
 
         private void toolStripMenuItem10_Click(object sender, EventArgs e)

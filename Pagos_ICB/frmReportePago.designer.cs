@@ -32,7 +32,6 @@
             this.pnlBotones = new System.Windows.Forms.Panel();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgvReportePago = new System.Windows.Forms.DataGridView();
             this.pnlTitulo = new System.Windows.Forms.Panel();
@@ -71,9 +70,8 @@
             // 
             this.pnlBotones.Controls.Add(this.btnModificar);
             this.pnlBotones.Controls.Add(this.btnAgregar);
-            this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
-            this.pnlBotones.Location = new System.Drawing.Point(459, 42);
+            this.pnlBotones.Location = new System.Drawing.Point(429, 42);
             this.pnlBotones.Name = "pnlBotones";
             this.pnlBotones.Size = new System.Drawing.Size(186, 80);
             this.pnlBotones.TabIndex = 39;
@@ -87,7 +85,7 @@
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 25);
             this.btnModificar.TabIndex = 6;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "Reporte";
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
             // 
@@ -98,24 +96,11 @@
             this.btnAgregar.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnAgregar.Location = new System.Drawing.Point(13, 40);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 25);
+            this.btnAgregar.Size = new System.Drawing.Size(161, 25);
             this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Buscar Filtro";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEliminar.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnEliminar.Location = new System.Drawing.Point(99, 42);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 25);
-            this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Deshabilitar";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
             // btnNuevo
             // 
@@ -183,9 +168,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(125)))));
             this.label1.Location = new System.Drawing.Point(238, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(258, 37);
+            this.label1.Size = new System.Drawing.Size(274, 37);
             this.label1.TabIndex = 29;
-            this.label1.Text = "Reporte de Pago";
+            this.label1.Text = "Reporte de Pagos";
             // 
             // pictureBox1
             // 
@@ -232,6 +217,7 @@
             this.cbBeca.Name = "cbBeca";
             this.cbBeca.Size = new System.Drawing.Size(161, 24);
             this.cbBeca.TabIndex = 3;
+            this.cbBeca.SelectedIndexChanged += new System.EventHandler(this.cbBeca_SelectedIndexChanged);
             // 
             // lblBeca
             // 
@@ -284,16 +270,16 @@
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(32, 18);
+            this.lblDescripcion.Location = new System.Drawing.Point(21, 21);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(145, 15);
+            this.lblDescripcion.Size = new System.Drawing.Size(113, 15);
             this.lblDescripcion.TabIndex = 27;
-            this.lblDescripcion.Text = "Nombre ReportePago";
+            this.lblDescripcion.Text = "Nombre de Pago";
             // 
             // cbNombre
             // 
             this.cbNombre.FormattingEnabled = true;
-            this.cbNombre.Location = new System.Drawing.Point(183, 14);
+            this.cbNombre.Location = new System.Drawing.Point(155, 17);
             this.cbNombre.Name = "cbNombre";
             this.cbNombre.Size = new System.Drawing.Size(209, 24);
             this.cbNombre.TabIndex = 6;
@@ -320,17 +306,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(32, 66);
+            this.label5.Location = new System.Drawing.Point(21, 53);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 15);
+            this.label5.Size = new System.Drawing.Size(101, 15);
             this.label5.TabIndex = 35;
-            this.label5.Text = "Fecha ReportePago";
+            this.label5.Text = "Fecha de Pago";
             // 
             // dtFechaReportePago
             // 
-            this.dtFechaReportePago.Location = new System.Drawing.Point(183, 66);
+            this.dtFechaReportePago.Location = new System.Drawing.Point(155, 50);
             this.dtFechaReportePago.Name = "dtFechaReportePago";
-            this.dtFechaReportePago.Size = new System.Drawing.Size(213, 22);
+            this.dtFechaReportePago.Size = new System.Drawing.Size(209, 22);
             this.dtFechaReportePago.TabIndex = 7;
             this.dtFechaReportePago.FormatChanged += new System.EventHandler(this.dtFechaReportePago_FormatChanged);
             this.dtFechaReportePago.ValueChanged += new System.EventHandler(this.dtFechaReportePago_ValueChanged);
@@ -356,16 +342,16 @@
             // cbGrado
             // 
             this.cbGrado.FormattingEnabled = true;
-            this.cbGrado.Location = new System.Drawing.Point(183, 98);
+            this.cbGrado.Location = new System.Drawing.Point(155, 81);
             this.cbGrado.Name = "cbGrado";
-            this.cbGrado.Size = new System.Drawing.Size(213, 24);
+            this.cbGrado.Size = new System.Drawing.Size(209, 24);
             this.cbGrado.TabIndex = 40;
             // 
             // lblGrado
             // 
             this.lblGrado.AutoSize = true;
             this.lblGrado.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrado.Location = new System.Drawing.Point(108, 102);
+            this.lblGrado.Location = new System.Drawing.Point(20, 82);
             this.lblGrado.Name = "lblGrado";
             this.lblGrado.Size = new System.Drawing.Size(47, 15);
             this.lblGrado.TabIndex = 41;
@@ -407,7 +393,6 @@
         private System.Windows.Forms.Panel pnlBotones;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.DataGridView dgvReportePago;
         private System.Windows.Forms.Panel pnlTitulo;

@@ -232,6 +232,8 @@ namespace Pagos_ICB.Clases
             }
         }
 
+        //Filtro de pago por alumno
+
         public static DataView GetDataViewFiltroPago1( int idAlumno,int estado)
         {
             Clases.Conexión conexion = new Clases.Conexión();
@@ -252,6 +254,52 @@ namespace Pagos_ICB.Clases
                             INNER JOIN Cuentas.NombreTipoPago 
 							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND
                             Cuentas.Pago.estado=" + estado + " AND Cuentas.Pago.idAlumno =" + idAlumno + ";";
+            try
+            {
+                SqlDataAdapter data = new SqlDataAdapter();
+                data.SelectCommand = new SqlCommand(sql, conexion.conexion);
+                System.Data.DataSet ds = new System.Data.DataSet();
+                data.Fill(ds, "Cuentas.Pago");
+                DataTable dt = ds.Tables["Cuentas.Pago"];
+                DataView dv = new DataView(dt,
+                    "",
+                    "Código",
+                    DataViewRowState.Unchanged);
+                return dv;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
+
+
+        //Filtro de pago por grados, fecha, tipo pago o numero recibo
+
+        public static DataView GetDataViewFiltroPagoCompleto(int idGrado,int tipo,string fecha,string recibo, int estado)
+        {
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = @"SELECT   Cuentas.Pago.idPago         as Código,
+                                    Cuentas.Grado.nombreGrado   as Grado,
+                                    Cuentas.Alumno.nombres      as Nombres, 
+                                    Cuentas.Alumno.apellidos    as Apellidos,
+                                    Cuentas.Pago.recibo         as Recibo,
+                                    Cuentas.NombreTipoPago.nombreTipoPago   as Pago,
+                                    Cuentas.Mora.nombreMora     as Mora,
+                                    Cuentas.Pago.total          as Total,
+                                    Cuentas.Pago.observacion    as Observación
+                            FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
+                            Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
+                            Cuentas.Pago.idMora = Cuentas.Mora.idMora INNER JOIN Cuentas.TipoPago 
+							ON Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago
+                            INNER JOIN Cuentas.NombreTipoPago 
+							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND
+                            Cuentas.Pago.estado=" + estado + " OR Cuentas.Grado.idGrado =" + idGrado + " OR Cuentas.Pago.idTipo =" + tipo + "  OR Cuentas.Pago.recibo =" + recibo + " OR Cuentas.Pago.fechaPago =" + fecha + ";";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();

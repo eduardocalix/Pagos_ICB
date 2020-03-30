@@ -85,13 +85,15 @@ namespace Pagos_ICB
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
-            btnEliminar.Enabled = false;
+           
             txtIdentidad.Enabled = true;
             txtNombre.Enabled = true;
             cbBeca.Enabled = true;
             dgvAlumnos.Enabled = true;
             cbNombre.Enabled = true;
             cbGrado.Enabled = true;
+            dtFechaReportePago.Enabled = true;
+            txtRecibo.Enabled = true;
             //txtDescripcion.Enabled = true;
             this.idAlumno = 0;
             this.grado = 0;
@@ -127,12 +129,12 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.NombreTipoReportePago";
+            string sql = "select * FROM Cuentas.NombreTipoPago";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            cbNombre.DisplayMember = "nombreTipoReportePago";
-            cbNombre.ValueMember = "nombreTipoReportePago";
+            cbNombre.DisplayMember = "nombreTipoPago";
+            cbNombre.ValueMember = "nombreTipoPago";
             cbNombre.DataSource = dt;
         }
         private void btnSalir_Click(object sender, EventArgs e)
@@ -147,33 +149,20 @@ namespace Pagos_ICB
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-            /*
+
+            if (txtRecibo.Text=="")
+            {
+                txtRecibo.Text = "0000";
+            }
             try
             {
-                Clases.Grado grado = new Clases.Grado();
-                grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-                Clases.TipoReportePago tipo = new Clases.TipoReportePago();
-                //tipo.ObteneNombreReportePagosPorNombres(cbNombre.SelectedValue.ToString());
-                Clases.ICB.AgregarReportePago
-                    (
-                        txtRecibo.Text,
-                        this.idAlumno,
-                        this.idTipo,
-                        cbDescuento.SelectedIndex+1,
-                        cbMora.SelectedIndex+1,
-                        this.idUsuario,
-                        Convert.ToDecimal(txtValor.Text),
-                        dtFechaReportePago.Value.ToShortDateString(),
-                        txtObservacion.Text
-                    );
-                CargarDGWReportePago(this.idAlumno);
-
+                dgvReportePago.DataSource = Clases.Pago.GetDataViewFiltroPagoCompleto(cbGrado.SelectedIndex+1,cbNombre.SelectedIndex+1,dtFechaReportePago.Value.ToShortDateString(),txtRecibo.Text, 1);
             }
             catch (Exception ex)
             {
 
-                Clases.Mensaje.Advertencia(ex);
-            }*/
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
@@ -208,7 +197,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el ReportePago" , "Eliminar ReportePago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el ReportePago" , "Eliminar Reporte Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -260,7 +249,20 @@ namespace Pagos_ICB
         {
             dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno1(txtNombre.Text, 1);
         }
+        private void bloqueo()
+        {
+            txtNombre.Enabled = false;
+            txtIdentidad.Enabled = false;
+            btnAgregar.Enabled = false;
 
+            cbBeca.Enabled = false;
+            cbGrado.Enabled = false;
+            dgvAlumnos.Enabled = false;
+            cbGrado.Enabled = false;
+            cbNombre.Enabled = false;
+            dtFechaReportePago.Enabled = false;
+            txtRecibo.Enabled = false;
+        }
         private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Clases.Alumnos Alumno = new Clases.Alumnos();
@@ -283,15 +285,8 @@ namespace Pagos_ICB
             {
                 cbBeca.SelectedIndex = 1;
             }
-            cbGrado.SelectedIndex = Alumno.IdGrado - 1;
             this.grado = Alumno.IdGrado;
-            
-            txtNombre.Enabled = false;
-            txtIdentidad.Enabled = false;
-            cbBeca.Enabled = false;
-            cbGrado.Enabled = false;
-            dgvAlumnos.Enabled = false;
-
+            bloqueo();
         }
 
         private void cbNombre_SelectedIndexChanged(object sender, EventArgs e)
@@ -321,6 +316,9 @@ namespace Pagos_ICB
             }
         }
 
-       
+        private void cbBeca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(cbBeca.SelectedText.ToString(), 1);
+        }
     }
 }

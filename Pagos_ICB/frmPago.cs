@@ -439,5 +439,11 @@ namespace Pagos_ICB
             }
 
         }
+
+        private void cbBeca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(cbBeca.SelectedValue.ToString(), 1);
+
+        }
     }
 }

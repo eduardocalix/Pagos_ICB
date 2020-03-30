@@ -36,6 +36,7 @@
             this.Descuentos = new System.Windows.Forms.ToolStripMenuItem();
             this.Mora = new System.Windows.Forms.ToolStripMenuItem();
             this.TiposDePago = new System.Windows.Forms.ToolStripMenuItem();
+            this.nombreDeTipoDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ICB = new System.Windows.Forms.ToolStripDropDownButton();
             this.Alumnos = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +58,6 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nombreDeTipoDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -130,6 +130,13 @@
             this.TiposDePago.Text = "Tipos de Pago";
             this.TiposDePago.Click += new System.EventHandler(this.TiposDePago_Click);
             // 
+            // nombreDeTipoDePagoToolStripMenuItem
+            // 
+            this.nombreDeTipoDePagoToolStripMenuItem.Name = "nombreDeTipoDePagoToolStripMenuItem";
+            this.nombreDeTipoDePagoToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.nombreDeTipoDePagoToolStripMenuItem.Text = "Nombre de Tipo de Pago";
+            this.nombreDeTipoDePagoToolStripMenuItem.Click += new System.EventHandler(this.nombreDeTipoDePagoToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -154,7 +161,7 @@
             // 
             this.Alumnos.BackColor = System.Drawing.SystemColors.Menu;
             this.Alumnos.Name = "Alumnos";
-            this.Alumnos.Size = new System.Drawing.Size(180, 22);
+            this.Alumnos.Size = new System.Drawing.Size(122, 22);
             this.Alumnos.Text = "Alumnos";
             this.Alumnos.Click += new System.EventHandler(this.Alumno_Click);
             // 
@@ -162,7 +169,7 @@
             // 
             this.Grados.BackColor = System.Drawing.SystemColors.Menu;
             this.Grados.Name = "Grados";
-            this.Grados.Size = new System.Drawing.Size(180, 22);
+            this.Grados.Size = new System.Drawing.Size(122, 22);
             this.Grados.Text = "Grados";
             this.Grados.Click += new System.EventHandler(this.Grado_Click);
             // 
@@ -196,7 +203,7 @@
             this.toolStripMenuItem9.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem9.Text = "Ventas del dia";
+            this.toolStripMenuItem9.Text = "Reportes de pagos";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
             // 
             // toolStripMenuItem10
@@ -293,7 +300,7 @@
             // 
             this.lblFecha.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.Location = new System.Drawing.Point(683, 24);
+            this.lblFecha.Location = new System.Drawing.Point(828, 0);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(252, 29);
             this.lblFecha.TabIndex = 94;
@@ -312,13 +319,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(1442, 86);
             this.pictureBox1.TabIndex = 70;
             this.pictureBox1.TabStop = false;
-            // 
-            // nombreDeTipoDePagoToolStripMenuItem
-            // 
-            this.nombreDeTipoDePagoToolStripMenuItem.Name = "nombreDeTipoDePagoToolStripMenuItem";
-            this.nombreDeTipoDePagoToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.nombreDeTipoDePagoToolStripMenuItem.Text = "Nombre de Tipo de Pago";
-            this.nombreDeTipoDePagoToolStripMenuItem.Click += new System.EventHandler(this.nombreDeTipoDePagoToolStripMenuItem_Click);
             // 
             // frmMenuNuevo
             // 

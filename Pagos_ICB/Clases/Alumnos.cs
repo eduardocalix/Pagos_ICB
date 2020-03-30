@@ -314,6 +314,43 @@ namespace Pagos_ICB.Clases
             }
         }
 
+        /*Obtener alumnos por filto beca*/
+
+        public static DataView GetDataViewFiltroAlumno3(string beca, int estado)
+        {
+            Clases.Conexión conexion = new Clases.Conexión();
+            string sql = @"SELECT   Cuentas.Alumno.idAlumno     as Código,
+                                    Cuentas.Alumno.identidad    as Identidad,
+                                    Cuentas.Alumno.nombres      as Nombres, 
+                                    Cuentas.Alumno.apellidos    as Apellidos,
+                                    Cuentas.Grado.nombreGrado   as Grado,
+                                    Cuentas.Alumno.beca         as Beca
+                            FROM Cuentas.Alumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado AND
+                            Cuentas.Alumno.estado=" + estado + " AND Cuentas.Alumno.beca ='" + beca + "';";
+            try
+            {
+                SqlDataAdapter data = new SqlDataAdapter();
+                data.SelectCommand = new SqlCommand(sql, conexion.conexion);
+                System.Data.DataSet ds = new System.Data.DataSet();
+                data.Fill(ds, "Cuentas.Alumno");
+                DataTable dt = ds.Tables["Cuentas.Alumno"];
+                DataView dv = new DataView(dt,
+                    "",
+                    "Código",
+                    DataViewRowState.Unchanged);
+                return dv;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
+
         ////////////////////////////////////   
 
         public void ObteneAlumnosPorNombres(string Nombres)
