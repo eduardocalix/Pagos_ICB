@@ -118,5 +118,11 @@ namespace Pagos_ICB
             frmNombreTipoPago nombreTipoPago = new frmNombreTipoPago();
             nombreTipoPago.ShowDialog();
         }
+
+        private void periodoAcadémicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPeriodo periodo = new frmPeriodo();
+            periodo.ShowDialog();
+        }
     }
 }

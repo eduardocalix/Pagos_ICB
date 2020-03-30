@@ -218,6 +218,7 @@
             this.cbBeca.Size = new System.Drawing.Size(161, 24);
             this.cbBeca.TabIndex = 3;
             this.cbBeca.SelectedIndexChanged += new System.EventHandler(this.cbBeca_SelectedIndexChanged);
+            this.cbBeca.SelectedValueChanged += new System.EventHandler(this.cbBeca_SelectedValueChanged);
             // 
             // lblBeca
             // 

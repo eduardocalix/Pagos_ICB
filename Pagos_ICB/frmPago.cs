@@ -362,6 +362,11 @@ namespace Pagos_ICB
             {
                 txtValor.Text = "0.00";
                 cbMora.Enabled = false;
+                cbDescuento.Enabled = false;
+                Clases.TipoPago pago = new Clases.TipoPago();
+                pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex + 1);
+                //this.valor = pago.Valor;
+                this.idTipo = pago.IdTipoPago;
             }
             else
             {
@@ -442,8 +447,23 @@ namespace Pagos_ICB
 
         private void cbBeca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(cbBeca.SelectedValue.ToString(), 1);
+           
 
+        }
+
+        private void cbBeca_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cbBeca.SelectedIndex == 0)
+            {
+                string beca = "Si";
+                dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(beca, 1);
+
+            }
+            else
+            {
+                string beca = "No";
+                dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(beca, 1);
+            }
         }
     }
 }

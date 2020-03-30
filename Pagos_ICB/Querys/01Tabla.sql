@@ -62,7 +62,22 @@ ELSE
 		);
 	END
 GO
+/*
+	Los periodos en que los alumnos cursan los Grados
+	van insertado en esta tabla
+*/
+IF OBJECT_ID('Cuentas.Periodo')	IS NOT NULL
+	DROP TABLE Cuentas.Periodo
+ELSE
+	BEGIN
+		CREATE TABLE Cuentas.Periodo(
+			idPeriodo INT IDENTITY (1, 1) NOT NULL, --index del Periodo
+			nombrePeriodo NVARCHAR(30) NOT NULL, --nombre del Perido
+			estado INT DEFAULT 1
 
+		);
+	END
+GO
 
 /*
 	contiene la informacion de los alumnos matriculados
@@ -77,6 +92,7 @@ ELSE
 			nombres NVARCHAR (25) NOT NULL,			--nombres 
 			apellidos NVARCHAR (25) NOT NULL,		--apellidos
 			idGrado INT NOT NULL, --es la relacion del alumno con el grado
+			idPeriodo INT NOT NULL, --es la relacion del alumno con el periodo
 			beca NVARCHAR(3), --Esta seccion identifica si es becado o no.
 			estado INT DEFAULT 1
 		);

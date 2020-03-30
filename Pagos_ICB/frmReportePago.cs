@@ -318,7 +318,21 @@ namespace Pagos_ICB
 
         private void cbBeca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(cbBeca.SelectedText.ToString(), 1);
+        }
+
+        private void cbBeca_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show(cbBeca.SelectedText);
+            if (cbBeca.SelectedIndex==0)
+            {
+                string beca = "Si";
+                dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(beca, 1);
+
+            }
+            else {
+                string beca = "No";
+                dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(beca, 1);
+            }
         }
     }
 }

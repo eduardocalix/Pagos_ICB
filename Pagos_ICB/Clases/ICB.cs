@@ -42,6 +42,7 @@ namespace Pagos_ICB.Clases
             string nombre,
             string apellido,
             int idGrado,
+            int idPeriodo,
             string beca
             )
         {
@@ -53,6 +54,7 @@ namespace Pagos_ICB.Clases
                     nombre,
                     apellido,
                     idGrado,
+                    idPeriodo,
                     beca
                     );
                 Alumnos.Agregar();
@@ -69,6 +71,7 @@ namespace Pagos_ICB.Clases
             string nombre,
             string apellido,
               int idGrado,
+            int idPeriodo,
             string beca)
         {
             try
@@ -80,6 +83,7 @@ namespace Pagos_ICB.Clases
                     nombre,
                    apellido,
                    idGrado,
+                   idPeriodo,
                     beca);
                 Alumnos.Modificar();
             }
@@ -377,6 +381,90 @@ namespace Pagos_ICB.Clases
                 throw ex;
             }
         }
+
+
+        /*Modulo Periodo 2da capa*/
+        private static void ValidarPeriodo
+           (
+           string nombre
+           )
+        {
+            if (nombre.Length == 0)
+            {
+                throw new Clases.Excepcion
+                    (
+                    "Error al insertar el Periodo. \n\n" +
+                    "Existen datos obligatorios que se necesitan para poder agregar el Periodo:\n" +
+                    "Nombre Periodo   : Periodo 2019-2020\n" ,
+                    new Exception(),
+                    "Clase_ICB"
+                    );
+            }
+        }
+        public static void AgregarPeriodo
+            (
+
+            string nombrePeriodo
+            )
+        {
+            try
+            {
+                ValidarPeriodo(nombrePeriodo);
+                Clases.Periodo Periodo = new Clases.Periodo(
+                    nombrePeriodo
+                    );
+                Periodo.Agregar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ModificarPeriodo(
+            int idPeriodo,
+            string nombrePeriodo)
+        {
+            try
+            {
+                ValidarPeriodo(nombrePeriodo);
+                Clases.Periodo Periodo = new Clases.Periodo(
+                    idPeriodo,
+                    nombrePeriodo
+                    );
+                Periodo.Modificar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static void EliminarPeriodo(int idPeriodo)
+        {
+            try
+            {
+                Clases.Periodo Periodo = new Clases.Periodo(idPeriodo);
+                Periodo.Eliminar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void EliminarPeriodo1(int id, int estado)
+        {
+            try
+            {
+                Clases.Periodo Periodo = new Clases.Periodo(id, estado);
+                Periodo.Eliminar1();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /*Modulo descuento 2da capa*/
         private static void ValidarDescuento
            (
@@ -390,7 +478,7 @@ namespace Pagos_ICB.Clases
                     (
                     "Error al insertar el Descuento. \n\n" +
                     "Existen datos obligatorios que se necesitan para poder agregar el Descuento:\n" +
-                    "Nombre Descuento   : 30 PORCIENTO\n" +
+                    "Nombre Descuento   : 30% DESCUENTO\n" +
                     "Valor : 30%",
                     new Exception(),
                     "Clase_ICB"

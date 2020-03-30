@@ -53,6 +53,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cbPeriodo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlBotones.SuspendLayout();
             this.grpProveedores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
@@ -67,7 +69,7 @@
             this.pnlBotones.Controls.Add(this.btnAgregar);
             this.pnlBotones.Controls.Add(this.btnEliminar);
             this.pnlBotones.Controls.Add(this.btnNuevo);
-            this.pnlBotones.Location = new System.Drawing.Point(480, 104);
+            this.pnlBotones.Location = new System.Drawing.Point(479, 108);
             this.pnlBotones.Name = "pnlBotones";
             this.pnlBotones.Size = new System.Drawing.Size(119, 151);
             this.pnlBotones.TabIndex = 21;
@@ -126,6 +128,8 @@
             // 
             // grpProveedores
             // 
+            this.grpProveedores.Controls.Add(this.cbPeriodo);
+            this.grpProveedores.Controls.Add(this.label3);
             this.grpProveedores.Controls.Add(this.cbBeca);
             this.grpProveedores.Controls.Add(this.lblBeca);
             this.grpProveedores.Controls.Add(this.cbGrado);
@@ -141,7 +145,7 @@
             this.grpProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.grpProveedores.Location = new System.Drawing.Point(33, 92);
             this.grpProveedores.Name = "grpProveedores";
-            this.grpProveedores.Size = new System.Drawing.Size(430, 208);
+            this.grpProveedores.Size = new System.Drawing.Size(430, 242);
             this.grpProveedores.TabIndex = 20;
             this.grpProveedores.TabStop = false;
             // 
@@ -151,7 +155,7 @@
             this.cbBeca.Items.AddRange(new object[] {
             "Si",
             "No"});
-            this.cbBeca.Location = new System.Drawing.Point(153, 178);
+            this.cbBeca.Location = new System.Drawing.Point(153, 207);
             this.cbBeca.Name = "cbBeca";
             this.cbBeca.Size = new System.Drawing.Size(265, 24);
             this.cbBeca.TabIndex = 5;
@@ -161,7 +165,7 @@
             // 
             this.lblBeca.AutoSize = true;
             this.lblBeca.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeca.Location = new System.Drawing.Point(29, 182);
+            this.lblBeca.Location = new System.Drawing.Point(29, 211);
             this.lblBeca.Name = "lblBeca";
             this.lblBeca.Size = new System.Drawing.Size(40, 15);
             this.lblBeca.TabIndex = 25;
@@ -259,9 +263,9 @@
             // dgvAlumnos
             // 
             this.dgvAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAlumnos.Location = new System.Drawing.Point(20, 320);
+            this.dgvAlumnos.Location = new System.Drawing.Point(6, 348);
             this.dgvAlumnos.Name = "dgvAlumnos";
-            this.dgvAlumnos.Size = new System.Drawing.Size(606, 115);
+            this.dgvAlumnos.Size = new System.Drawing.Size(595, 115);
             this.dgvAlumnos.TabIndex = 19;
             this.dgvAlumnos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlumnos_CellClick_1);
             // 
@@ -270,7 +274,7 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnSalir);
-            this.panel1.Location = new System.Drawing.Point(33, 2);
+            this.panel1.Location = new System.Drawing.Point(5, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(606, 75);
             this.panel1.TabIndex = 22;
@@ -310,18 +314,36 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Pagos_ICB.Properties.Resources.base1;
-            this.pictureBox1.Location = new System.Drawing.Point(-42, 449);
+            this.pictureBox1.Location = new System.Drawing.Point(-39, 479);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(690, 81);
+            this.pictureBox1.Size = new System.Drawing.Size(649, 81);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
+            // 
+            // cbPeriodo
+            // 
+            this.cbPeriodo.FormattingEnabled = true;
+            this.cbPeriodo.Location = new System.Drawing.Point(153, 176);
+            this.cbPeriodo.Name = "cbPeriodo";
+            this.cbPeriodo.Size = new System.Drawing.Size(265, 24);
+            this.cbPeriodo.TabIndex = 26;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(29, 180);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 15);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Periodo";
             // 
             // frmAlumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 492);
+            this.ClientSize = new System.Drawing.Size(610, 523);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlBotones);
             this.Controls.Add(this.grpProveedores);
@@ -369,5 +391,7 @@
         private System.Windows.Forms.ComboBox cbBeca;
         private System.Windows.Forms.Label lblBeca;
         private System.Windows.Forms.ComboBox cbGrado;
+        private System.Windows.Forms.ComboBox cbPeriodo;
+        private System.Windows.Forms.Label label3;
     }
 }

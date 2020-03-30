@@ -239,6 +239,103 @@ BEGIN
 			END
 END
 GO
+----------------------------------------------------------
+--Modulo de los periodos
+
+CREATE PROCEDURE SP_AgregarPeriodo
+(
+	@nombrePeriodo NVARCHAR(30)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+	SELECT @existe = COUNT(Cuentas.Periodo.idPeriodo) FROM Cuentas.Periodo WHERE nombrePeriodo = @nombrePeriodo;
+	IF (@existe > 0)
+		BEGIN
+			RAISERROR(N'Ya existe un Periodo con el nombrePeriodo  "%s"', 16, 1, @nombrePeriodo);
+			RETURN 0			
+		END
+	ELSE
+		BEGIN
+			INSERT INTO Cuentas.Periodo(nombrePeriodo)
+				VALUES(@nombrePeriodo)
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_ModificarPeriodo
+(
+	@idPeriodo INT,
+	@nombrePeriodo NVARCHAR(30)
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+
+	SELECT @existe = COUNT(Cuentas.Periodo.idPeriodo) FROM Cuentas.Periodo WHERE idPeriodo = @idPeriodo;
+
+	IF (@existe = 0)
+		BEGIN
+			RAISERROR(N'No existe el Periodo con el id %d"', 16, 1, @idPeriodo);
+			RETURN 0
+		END 	
+	ELSE
+		BEGIN
+			UPDATE Cuentas.Periodo
+				SET 	nombrePeriodo = @nombrePeriodo
+					WHERE idPeriodo = @idPeriodo;
+			RETURN 1
+		END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarPeriodo1
+(
+	@idPeriodo INT,
+	@estado INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Periodo.idPeriodo) FROM Cuentas.Periodo WHERE idPeriodo = @idPeriodo;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Periodo con el id %d"', 16, 1, @idPeriodo);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				UPDATE Cuentas.Periodo SET estado=@estado	WHERE idPeriodo = @idPeriodo;
+				RETURN 1
+			END
+END
+GO
+
+CREATE PROCEDURE SP_EliminarPeriodo
+(
+	@idPeriodo INT
+)
+AS
+BEGIN
+	DECLARE @existe int;
+	SET @existe = 0;
+		SELECT @existe = COUNT(Cuentas.Periodo.idPeriodo) FROM Cuentas.Periodo WHERE idPeriodo = @idPeriodo;
+		IF (@existe = 0)
+			BEGIN
+				RAISERROR(N'No existe el Periodo con el id %d"', 16, 1, @idPeriodo);
+				RETURN 0
+			END 	
+		ELSE
+			BEGIN
+				DELETE FROM Cuentas.Periodo	WHERE idPeriodo = @idPeriodo;
+				RETURN 1
+			END
+END
+GO
 ----------------------------------------------------------------------------------------
 --Modulo Alumnos
 CREATE PROCEDURE SP_AgregarAlumno
@@ -247,6 +344,7 @@ CREATE PROCEDURE SP_AgregarAlumno
 	@nombres NVARCHAR(25),
 	@apellidos NVARCHAR(25),
 	@idGrado INT,
+	@idPeriodo INT,
 	@beca NVARCHAR(3) 
 )
 AS
@@ -262,8 +360,8 @@ BEGIN
 		END
 	ELSE
 		BEGIN
-			INSERT INTO Cuentas.Alumno(identidad, nombres, apellidos, idGrado,beca)
-				VALUES(	@identidad, @nombres, @apellidos, @idGrado,@beca)
+			INSERT INTO Cuentas.Alumno(identidad, nombres, apellidos, idGrado,idPeriodo,beca)
+				VALUES(	@identidad, @nombres, @apellidos, @idGrado,@idPeriodo,@beca)
 			RETURN 1
 		END
 END
@@ -276,6 +374,7 @@ CREATE PROCEDURE SP_ModificarAlumno
 	@nombres NVARCHAR(25),
 	@apellidos NVARCHAR(25),
 	@idGrado INT,
+	@idPeriodo INT,
 	@beca NVARCHAR(3)
 )
 AS
@@ -295,6 +394,7 @@ BEGIN
 						nombres = @nombres,
 						apellidos = @apellidos,
 						idGrado = @idGrado,
+						idPeriodo =@idPeriodo,
 						beca = @beca
 					WHERE identidad = @identidad;
 			RETURN 1
@@ -1601,7 +1701,7 @@ BEGIN
 	INSERT INTO Cuentas.ServicioPublico (Descripcion)
 		VALUES (@Descripcion)
 END
-GO*/
+GO
 
 
 SELECT   Cuentas.Pago.idPago         as Código,
@@ -1614,4 +1714,4 @@ SELECT   Cuentas.Pago.idPago         as Código,
                             Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
 							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
                             Cuentas.Pago.idMora = Cuentas.Mora.idMora AND
-                            Cuentas.Pago.estado= 1 AND Cuentas.Pago.idAlumno =1;
+                            Cuentas.Pago.estado= 1 AND Cuentas.Pago.idAlumno =1;*/

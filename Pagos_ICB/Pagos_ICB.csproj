@@ -50,6 +50,7 @@
     <Compile Include="Clases\Conexión.cs" />
     <Compile Include="Clases\Descuento.cs" />
     <Compile Include="Clases\Excepcion.cs" />
+    <Compile Include="Clases\Periodo.cs" />
     <Compile Include="Clases\Grado.cs" />
     <Compile Include="Clases\ICB.cs" />
     <Compile Include="Clases\Mensaje.cs" />
@@ -59,6 +60,12 @@
     <Compile Include="Clases\TipoPago.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="Clases\VariablesGlobales.cs" />
+    <Compile Include="frmPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPeriodo.designer.cs">
+      <DependentUpon>frmPeriodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportePago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +152,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmPeriodo.resx">
+      <DependentUpon>frmPeriodo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReportePago.resx">
       <DependentUpon>frmReportePago.cs</DependentUpon>
     </EmbeddedResource>

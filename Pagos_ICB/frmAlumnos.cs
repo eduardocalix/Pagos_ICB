@@ -21,6 +21,7 @@ namespace Pagos_ICB
         {
             CargarDGWAlumno();
             CargarCMBGrados();
+            CargarCMBPeriodos();
         }
         private int id = 0;
         private int idGrado = 0;
@@ -42,7 +43,7 @@ namespace Pagos_ICB
             dgw.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
 
         }
-        
+
 
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -50,6 +51,8 @@ namespace Pagos_ICB
             Clases.Grado grado = new Clases.Grado();
             grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
 
+            Clases.Periodo periodo = new Clases.Periodo();
+            periodo.ObtenerPeriodosPorNombres(cbPeriodo.SelectedValue.ToString());
             try
             {
                 Clases.ICB.AgregarAlumnos(
@@ -57,8 +60,9 @@ namespace Pagos_ICB
                     txtNombre.Text,
                     txtApellido.Text,
                     grado.IdGrado,
+                    periodo.IdPeriodo,
                     cbBeca.SelectedItem.ToString()
-                    
+
 
                     );
                 CargarDGWAlumno();
@@ -76,6 +80,8 @@ namespace Pagos_ICB
             {
                 Clases.Grado grado = new Clases.Grado();
                 grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
+                Clases.Periodo periodo = new Clases.Periodo();
+                periodo.ObtenerPeriodosPorNombres(cbPeriodo.SelectedValue.ToString());
                 try
                 {
                     Clases.ICB.ModificarAlumnos(
@@ -84,6 +90,7 @@ namespace Pagos_ICB
                     txtNombre.Text,
                     txtApellido.Text,
                     grado.IdGrado,
+                    periodo.IdPeriodo,
                     cbBeca.SelectedItem.ToString()
                         );
                     ResetFormulario();
@@ -120,7 +127,7 @@ namespace Pagos_ICB
 
         private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void dgvAlumnos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -164,18 +171,18 @@ namespace Pagos_ICB
             cbGrado.ValueMember = "nombreGrado";
             cbGrado.DataSource = dt;
         }
-        /*private void CargarCMBGradosNombre(int id)
+        private void CargarCMBPeriodos()
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Grado Where idGrado = "+id+";";
+            string sql = "select * FROM Cuentas.Periodo";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
-            cbGrado.DisplayMember = "nombreGrado";
-            cbGrado.ValueMember = "nombreGrado";
-            cbGrado.DataSource = dt;
-        }*/
+            cbPeriodo.DisplayMember = "nombrePeriodo";
+            cbPeriodo.ValueMember = "nombrePeriodo";
+            cbPeriodo.DataSource = dt;
+        }
         private void CargarCMBBeca(int id)
         {
             DataTable dt = new DataTable();
@@ -231,6 +238,7 @@ namespace Pagos_ICB
                 cbBeca.SelectedIndex = 1;
             }
             cbGrado.SelectedIndex = Alumno.IdGrado - 1;
+            cbPeriodo.SelectedIndex = Alumno.IdPeriodo - 1;
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;

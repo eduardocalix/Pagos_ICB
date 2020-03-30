@@ -13,6 +13,11 @@ ALTER TABLE Cuentas.Grado
 		PRIMARY KEY NONCLUSTERED (idGrado);
 GO
 
+ALTER TABLE Cuentas.Periodo
+	ADD CONSTRAINT PK_Cuentas_Periodos_id
+		PRIMARY KEY NONCLUSTERED (idPeriodo);
+GO
+
 ALTER TABLE Cuentas.Alumno
 	ADD CONSTRAINT PK_Cuentas_Alumnos_id
 		PRIMARY KEY NONCLUSTERED (idAlumno);
@@ -48,6 +53,11 @@ ALTER TABLE	Cuentas.Alumno
 	ADD CONSTRAINT FK_Cuentas_Alumno_idGrado$estaEn$Cuentas_Grado_idGrado
 		FOREIGN KEY (idGrado)
 			REFERENCES Cuentas.Grado(idGrado);
+GO
+ALTER TABLE	Cuentas.Alumno
+	ADD CONSTRAINT FK_Cuentas_Alumno_idPeriodo$estaEn$Cuentas_Periodo_idPeriodo
+		FOREIGN KEY (idPeriodo)
+			REFERENCES Cuentas.Periodo(idPeriodo);
 GO
 
 ALTER TABLE	Cuentas.TipoPago
