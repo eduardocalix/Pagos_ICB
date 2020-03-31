@@ -81,6 +81,7 @@ namespace Pagos_ICB
             txtNombre.Text = "";
             txtIdentidad.Text = "";
             txtObservacion.Text = "";
+            txtRecibo.Text = "";
             cbBeca.SelectedIndex = 1;
             txtValor.Text = "";
             //CargarDGWPago();
@@ -206,7 +207,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            /*
+            
             DialogResult respuesta = MessageBox.Show("Está seguro de modificar el Pago", "Modificar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -214,16 +215,27 @@ namespace Pagos_ICB
                 {
                     Clases.Grado grado = new Clases.Grado();
                     grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-                    Clases.Pago tipo = new Clases.Pago();
-                    tipo.ObteneNombrePagosPorNombres(cbNombre.SelectedValue.ToString());
+
+                    Clases.TipoPago pago = new Clases.TipoPago();
+                    pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex + 1);
+                    //txtValor.Text = pago.Valor.ToString();
+                    this.valor = pago.Valor;
+                    this.idTipo = pago.IdTipoPago;
                     Clases.ICB.ModificarPago
                         (
-                            this.id,
-                            tipo.IdNombrePago,
-                            grado.IdGrado,
-                            Convert.ToDecimal(txtValor.Text)
-                        );
+                         Convert.ToInt32(this.id),
+                         txtRecibo.Text,
+                        this.idAlumno,
+                        this.idTipo,
+                        cbDescuento.SelectedIndex + 1,
+                        cbMora.SelectedIndex + 1,
+                        this.idUsuario,
+                        Convert.ToDecimal(txtValor.Text),
+                        dtFechaPago.Value.ToShortDateString(),
+                        txtObservacion.Text);
                     ResetFormulario();
+                    CargarDGWPago(this.idAlumno);
+
                 }
                 catch (Exception ex)
                 {
@@ -231,7 +243,7 @@ namespace Pagos_ICB
                     Clases.Mensaje.Advertencia(ex);
                 }
 
-            }*/
+            }
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
@@ -241,7 +253,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                   // Clases.ICB.EliminarPago(this.id);
+                   Clases.ICB.EliminarPago1(this.id,0);
                 }
                 catch (Exception ex)
                 {
@@ -254,9 +266,9 @@ namespace Pagos_ICB
 
             }
         }
-       
+        private int id;
         private void dgvPago_CellClick_1(object sender, DataGridViewCellEventArgs e)
-        { /*
+        { 
             Clases.Pago Pago = new Clases.Pago();
             Pago.ObtenerPagos(
                 Convert.ToInt32(
@@ -267,16 +279,22 @@ namespace Pagos_ICB
             this.id = Pago.IdPago;
 
             txtId.Text = Pago.IdPago.ToString();
-            cbNombre.SelectedIndex = Pago.IdNombrePago-1;
-            cbGrado.SelectedIndex = Pago.IdGrado - 1;
-            txtValor.Text = Pago.Valor.ToString();
+            cbMora.SelectedIndex = Pago.IdMora - 1;
+            cbDescuento.SelectedIndex = Pago.IdDescuento - 1;
+            Clases.TipoPago tipopago = new Clases.TipoPago();
+            tipopago.ObtenerTipoPagos(Pago.IdTipo);
+            cbGrado.SelectedIndex = tipopago.IdGrado - 1;
+            cbNombre.SelectedIndex = tipopago.IdNombreTipoPago - 1;
+            txtValor.Text = Pago.Total.ToString();
+            txtRecibo.Text = Pago.Recibo.ToString();
+            txtObservacion.Text = Pago.Observacion.ToString();
             cbGrado.Enabled = false;
             cbNombre.Enabled = false;
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
-            btnEliminar.Enabled = true;*/
+            btnEliminar.Enabled = true;
         }
         
         private void txtIdentidad_TextChanged(object sender, EventArgs e)

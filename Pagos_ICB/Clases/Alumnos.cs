@@ -215,7 +215,7 @@ namespace Pagos_ICB.Clases
             //Se traen todos los datos de la tabla Alumnoss y los almacena la variable sql
             string sql = @"SELECT   Cuentas.Alumno.idAlumno    as Código,
                                     Cuentas.Alumno.identidad   as Identidad,
-                                    Cuentas.Alumno.Nombres      as Alumnos, 
+                                    Cuentas.Alumno.Nombres      as Nombres, 
                                     Cuentas.Alumno.Apellidos    as Apellidos,
                                     Cuentas.Grado.nombreGrado   as Grado,
                                     Cuentas.Alumno.beca         as Beca
@@ -253,7 +253,7 @@ namespace Pagos_ICB.Clases
             Clases.Conexión conexion = new Clases.Conexión();
             string sql = @"SELECT   Cuentas.Alumno.idAlumno     as Código,
                                     Cuentas.Alumno.identidad    as Identidad,
-                                    Cuentas.Alumno.nombres      as Alumnos, 
+                                    Cuentas.Alumno.nombres      as Nombres, 
                                     Cuentas.Alumno.apellidos    as Apellidos,
                                     Cuentas.Grado.nombreGrado   as Grado,
                                     Cuentas.Alumno.beca         as Beca
@@ -292,7 +292,7 @@ namespace Pagos_ICB.Clases
             Clases.Conexión conexion = new Clases.Conexión();
             string sql = @"SELECT   Cuentas.Alumno.idAlumno     as Código,
                                     Cuentas.Alumno.identidad    as Identidad,
-                                    Cuentas.Alumno.nombres      as Alumnos, 
+                                    Cuentas.Alumno.nombres      as Nombres, 
                                     Cuentas.Alumno.apellidos    as Apellidos,
                                     Cuentas.Grado.nombreGrado   as Grado,
                                     Cuentas.Alumno.beca         as Beca

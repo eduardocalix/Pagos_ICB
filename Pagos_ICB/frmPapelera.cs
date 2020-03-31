@@ -18,12 +18,13 @@ namespace Pagos_ICB
             InitializeComponent();
         }
         private string usuario;
-        private int idmesero;
-        private int idproveedor;
-        private int idinventario;
-        private int idinsumo;
-       private int idcategoria;
-        private int idtipo;
+        private int idAlumno;
+        private int idGrado;
+        private int idMora;
+        private int idDescuento;
+       private int idNombreTipoPago;
+       private int idNTipoPago;
+        private int idPago;
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -31,7 +32,7 @@ namespace Pagos_ICB
 
         private void ventana_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*
+           
             if (ventana.SelectedIndex == 0)
             {
                 try
@@ -42,7 +43,7 @@ namespace Pagos_ICB
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            } /*
             else
             {
                 if (ventana.SelectedIndex == 1)

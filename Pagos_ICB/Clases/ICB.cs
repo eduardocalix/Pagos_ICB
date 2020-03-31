@@ -746,19 +746,24 @@ namespace Pagos_ICB.Clases
            int idMora,
            int idUsuario,
            decimal total,
-           string fechaPago,
-           string observacion
+           string fechaPago
            )
         {
-            if (recibo.Length==0||idAlumno<0||idTipo<0||idDescuento<0||idMora<0||idUsuario<0||total<0||fechaPago.Length==0||observacion.Length==0)
+            if (recibo.Length == 0 || idAlumno < 0 || idTipo < 0 || idDescuento < 0 || idMora < 0 || idUsuario < 0 || total < 0 || fechaPago.Length == 0 )
             {
                 throw new Clases.Excepcion
                     (
                     "Error al insertar el TipoPago. \n\n" +
                     "Existen datos obligatorios que se necesitan para poder agregar el TipoPago:\n" +
+                    "Recibo de pago   : 12345789\n" +
+                    "Alumno   : Pedro\n" +
                     "Nombre TipoPago   : Matricula\n" +
-                    "Grado : Primero\n" +
-                    "Valor : L.1000.00",
+                    "Descuento   : Ninguno\n" +
+                    "Mora   : Ninguna\n" +
+                    "Usuario   : Pablo\n" +
+                    "Fecha Pago: Primero\n" +
+                    "Total : L.1000.00 \n"+
+                    "Observaciones: opcionales",
                     new Exception(),
                     "Clase_ICB"
                     );
@@ -779,7 +784,7 @@ namespace Pagos_ICB.Clases
         {
             try
             {
-                ValidarPago(recibo, idAlumno,idTipo,idDescuento,idMora,idUsuario,total, fechaPago, observacion);
+                ValidarPago(recibo, idAlumno,idTipo,idDescuento,idMora,idUsuario,total, fechaPago);
                 Clases.Pago pago = new Clases.Pago(
                    recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago, observacion
                     );
@@ -791,7 +796,7 @@ namespace Pagos_ICB.Clases
             }
         }
 
-        public static void ModificarTipoPago(
+        public static void ModificarPago(
             int idPago,
              string recibo,
            int idAlumno,
@@ -805,7 +810,7 @@ namespace Pagos_ICB.Clases
         {
             try
             {
-                ValidarPago(recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago, observacion);
+                ValidarPago(recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago);
                 Clases.Pago pago = new Clases.Pago(
                     idPago,
                     recibo, idAlumno, idTipo, idDescuento, idMora, idUsuario, total, fechaPago, observacion);

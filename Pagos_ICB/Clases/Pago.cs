@@ -196,7 +196,7 @@ namespace Pagos_ICB.Clases
             }
         }
         //Funcion para Consultar los datos de un Pago determinado
-        public void ObtenerTipoPagos(int idPago)
+        public void ObtenerPagos(int idPago)
         {
             Conexión conexion = new Conexión();
             string sql = @"SELECT * FROM Cuentas.Pago WHERE idPago= '" + idPago+ "';";
@@ -253,7 +253,7 @@ namespace Pagos_ICB.Clases
 							ON Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago
                             INNER JOIN Cuentas.NombreTipoPago 
 							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND
-                            Cuentas.Pago.estado=" + estado + " AND Cuentas.Pago.idAlumno =" + idAlumno + ";";
+                            Cuentas.Pago.estado=" + estado + " AND Cuentas.Pago.idAlumno =" + idAlumno + " ORDER BY Cuentas.Pago.idPago DESC;";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();
@@ -280,7 +280,7 @@ namespace Pagos_ICB.Clases
 
         //Filtro de pago por grados, fecha, tipo pago o numero recibo
 
-        public static DataView GetDataViewFiltroPagoCompleto(int idGrado,int tipo,string fecha,string recibo, int estado)
+        public static DataView GetDataViewFiltroPagoCompleto(int tipo,int periodo,string recibo, int estado)
         {
             Clases.Conexión conexion = new Clases.Conexión();
             string sql = @"SELECT   Cuentas.Pago.idPago         as Código,
@@ -299,7 +299,7 @@ namespace Pagos_ICB.Clases
 							ON Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago
                             INNER JOIN Cuentas.NombreTipoPago 
 							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND
-                            Cuentas.Pago.estado=" + estado + " OR Cuentas.Grado.idGrado =" + idGrado + " OR Cuentas.Pago.idTipo =" + tipo + "  OR Cuentas.Pago.recibo =" + recibo + " OR Cuentas.Pago.fechaPago =" + fecha + ";";
+                            Cuentas.Pago.estado=" + estado + " and Cuentas.Alumno.idPeriodo="+periodo+" AND Cuentas.Pago.idTipo =" + tipo + "  OR Cuentas.Pago.recibo =" + recibo +"; ";
             try
             {
                 SqlDataAdapter data = new SqlDataAdapter();

@@ -52,10 +52,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtRecibo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dtFechaReportePago = new System.Windows.Forms.DateTimePicker();
             this.grpReportePago = new System.Windows.Forms.GroupBox();
             this.cbGrado = new System.Windows.Forms.ComboBox();
             this.lblGrado = new System.Windows.Forms.Label();
+            this.cbPeriodo = new System.Windows.Forms.ComboBox();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportePago)).BeginInit();
             this.pnlTitulo.SuspendLayout();
@@ -271,7 +271,7 @@
             // 
             this.lblDescripcion.AutoSize = true;
             this.lblDescripcion.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(21, 21);
+            this.lblDescripcion.Location = new System.Drawing.Point(21, 53);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(113, 15);
             this.lblDescripcion.TabIndex = 27;
@@ -280,7 +280,7 @@
             // cbNombre
             // 
             this.cbNombre.FormattingEnabled = true;
-            this.cbNombre.Location = new System.Drawing.Point(155, 17);
+            this.cbNombre.Location = new System.Drawing.Point(155, 49);
             this.cbNombre.Name = "cbNombre";
             this.cbNombre.Size = new System.Drawing.Size(209, 24);
             this.cbNombre.TabIndex = 6;
@@ -307,26 +307,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Raleway Black", 9.74F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 53);
+            this.label5.Location = new System.Drawing.Point(21, 21);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 15);
+            this.label5.Size = new System.Drawing.Size(57, 15);
             this.label5.TabIndex = 35;
-            this.label5.Text = "Fecha de Pago";
-            // 
-            // dtFechaReportePago
-            // 
-            this.dtFechaReportePago.Location = new System.Drawing.Point(155, 50);
-            this.dtFechaReportePago.Name = "dtFechaReportePago";
-            this.dtFechaReportePago.Size = new System.Drawing.Size(209, 22);
-            this.dtFechaReportePago.TabIndex = 7;
-            this.dtFechaReportePago.FormatChanged += new System.EventHandler(this.dtFechaReportePago_FormatChanged);
-            this.dtFechaReportePago.ValueChanged += new System.EventHandler(this.dtFechaReportePago_ValueChanged);
+            this.label5.Text = "Periodo";
             // 
             // grpReportePago
             // 
+            this.grpReportePago.Controls.Add(this.cbPeriodo);
             this.grpReportePago.Controls.Add(this.cbGrado);
             this.grpReportePago.Controls.Add(this.lblGrado);
-            this.grpReportePago.Controls.Add(this.dtFechaReportePago);
             this.grpReportePago.Controls.Add(this.label5);
             this.grpReportePago.Controls.Add(this.pnlBotones);
             this.grpReportePago.Controls.Add(this.txtRecibo);
@@ -339,6 +330,7 @@
             this.grpReportePago.Size = new System.Drawing.Size(672, 128);
             this.grpReportePago.TabIndex = 37;
             this.grpReportePago.TabStop = false;
+            this.grpReportePago.Enter += new System.EventHandler(this.grpReportePago_Enter);
             // 
             // cbGrado
             // 
@@ -357,6 +349,14 @@
             this.lblGrado.Size = new System.Drawing.Size(47, 15);
             this.lblGrado.TabIndex = 41;
             this.lblGrado.Text = "Grado";
+            // 
+            // cbPeriodo
+            // 
+            this.cbPeriodo.FormattingEnabled = true;
+            this.cbPeriodo.Location = new System.Drawing.Point(155, 17);
+            this.cbPeriodo.Name = "cbPeriodo";
+            this.cbPeriodo.Size = new System.Drawing.Size(209, 24);
+            this.cbPeriodo.TabIndex = 42;
             // 
             // frmReportePago
             // 
@@ -413,9 +413,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtRecibo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dtFechaReportePago;
         private System.Windows.Forms.GroupBox grpReportePago;
         private System.Windows.Forms.ComboBox cbGrado;
         private System.Windows.Forms.Label lblGrado;
+        private System.Windows.Forms.ComboBox cbPeriodo;
     }
 }
