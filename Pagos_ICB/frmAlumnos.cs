@@ -112,7 +112,7 @@ namespace Pagos_ICB
 
                 try
                 {
-                    Clases.ICB.EliminarAlumnos(this.id);
+                    Clases.ICB.EliminarAlumnos1(this.id,0);
                 }
                 catch (Exception ex)
                 {

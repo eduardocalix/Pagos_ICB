@@ -154,7 +154,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarNombreTipoPago(Convert.ToInt32(this.id));
+                    Clases.ICB.EliminarNombreTipoPago1(Convert.ToInt32(this.id),0);
                 }
                 catch (Exception ex)
                 {

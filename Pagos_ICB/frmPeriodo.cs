@@ -173,7 +173,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarPeriodo(this.id);
+                    Clases.ICB.EliminarPeriodo1(this.id,0);
                 }
                 catch (Exception ex)
                 {

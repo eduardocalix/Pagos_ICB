@@ -42,7 +42,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtGradoTipoPago = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtIdTipoPago = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.button16 = new System.Windows.Forms.Button();
@@ -264,7 +264,7 @@
             this.tabPage2.Controls.Add(this.txtNombrePago);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.txtGradoTipoPago);
-            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.txtIdTipoPago);
             this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.button16);
@@ -285,14 +285,14 @@
             this.txtGradoTipoPago.Size = new System.Drawing.Size(213, 20);
             this.txtGradoTipoPago.TabIndex = 29;
             // 
-            // textBox4
+            // txtIdTipoPago
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(152, 17);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(213, 20);
-            this.textBox4.TabIndex = 28;
+            this.txtIdTipoPago.Enabled = false;
+            this.txtIdTipoPago.Location = new System.Drawing.Point(152, 17);
+            this.txtIdTipoPago.Name = "txtIdTipoPago";
+            this.txtIdTipoPago.ReadOnly = true;
+            this.txtIdTipoPago.Size = new System.Drawing.Size(213, 20);
+            this.txtIdTipoPago.TabIndex = 28;
             // 
             // label18
             // 
@@ -1213,7 +1213,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox txtGradoTipoPago;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtIdTipoPago;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button16;

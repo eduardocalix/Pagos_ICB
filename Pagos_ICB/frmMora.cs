@@ -187,7 +187,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarMora(this.id);
+                    Clases.ICB.EliminarMora1(this.id,0);
                 }
                 catch (Exception ex)
                 {

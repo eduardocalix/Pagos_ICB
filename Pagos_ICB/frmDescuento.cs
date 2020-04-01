@@ -142,7 +142,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarDescuento(this.id);
+                    Clases.ICB.EliminarDescuento1(this.id,0);
                 }
                 catch (Exception ex)
                 {

@@ -11,8 +11,6 @@ namespace Pagos_ICB.Clases
     class Pago
     {
         private int idUsuario = Clases.VariablesGlobales.idUsu;
-
-
         public int IdPago{ set; get; }
         public string Recibo { set; get; }
         public int IdAlumno{ set; get; }
@@ -232,6 +230,57 @@ namespace Pagos_ICB.Clases
             }
         }
 
+        //Pago para la papelera
+        public void ObtenerPagos1(int idPago)
+        {
+            Conexión conexion = new Conexión();
+            string sql = @"SELECT   Cuentas.Pago.idPago         as Código,
+                                    Cuentas.Grado.nombreGrado   as Grado,
+                                    Cuentas.Alumno.nombres      as Nombres, 
+                                    Cuentas.Alumno.apellidos    as Apellidos,
+                                    Cuentas.Pago.recibo         as Recibo,
+                                    Cuentas.NombreTipoPago.nombreTipoPago   as Pago,
+                                    Cuentas.Mora.nombreMora     as Mora,
+                                    Cuentas.Pago.total          as Total,
+                                    Cuentas.Pago.observacion    as Observación
+                            FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
+                            Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
+                            Cuentas.Pago.idMora = Cuentas.Mora.idMora INNER JOIN Cuentas.TipoPago 
+							ON Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago
+                            INNER JOIN Cuentas.NombreTipoPago 
+							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND Cuentas.Pago.idPago= '" + idPago + "';";
+            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
+            try
+            {
+                conexion.Abrir();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    IdPago = dr.GetInt32(0);
+                    Recibo = dr.GetString(1);
+                    IdAlumno = dr.GetInt32(2);
+                    IdTipo = dr.GetInt32(3);
+                    IdDescuento = dr.GetInt32(4);
+                    IdMora = dr.GetInt32(5);
+                    IdUsuario = dr.GetInt32(6);
+                    Total = dr.GetDecimal(7);
+                    FechaPago = dr.GetString(8);
+                    Observacion = dr.GetString(9);
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Clases.Excepcion(
+                   String.Format("{0} \n\n{1}",
+                   "no podemos obtener la informacion del Pago", ex.Message), ex, "Clase_Pago"); ;
+            }
+            finally
+            {
+                conexion.Cerrar();
+            }
+        }
         //Filtro de pago por alumno
 
         public static DataView GetDataViewFiltroPago1( int idAlumno,int estado)

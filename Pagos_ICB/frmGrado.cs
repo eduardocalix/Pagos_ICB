@@ -173,7 +173,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarGrado(this.id);
+                    Clases.ICB.EliminarGrado1(this.id,0);
                 }
                 catch (Exception ex)
                 {

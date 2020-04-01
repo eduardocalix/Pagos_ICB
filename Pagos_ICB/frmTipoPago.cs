@@ -188,7 +188,7 @@ namespace Pagos_ICB
             {
                 try
                 {
-                    Clases.ICB.EliminarTipoPago(this.id);
+                    Clases.ICB.EliminarTipoPago1(this.id,0);
                 }
                 catch (Exception ex)
                 {

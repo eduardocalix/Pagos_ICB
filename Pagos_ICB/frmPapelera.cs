@@ -25,6 +25,7 @@ namespace Pagos_ICB
        private int idNombreTipoPago;
        private int idNTipoPago;
         private int idPago;
+        private int idPeriodo;
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -67,10 +68,7 @@ namespace Pagos_ICB
                 default:
                     MessageBox.Show("No se ha seleccionado ninguna ventana", "ICB");
                     break;
-            }
-
- 
-                      
+            } 
         }
                
     
@@ -175,93 +173,21 @@ namespace Pagos_ICB
                     dgvTodo.DataSource = Clases.TipoPago.GetDataView(0);
                     break;
                 case 8:
-                    txtIDT.Text = "";
-                    txtDescripcionT.Text = "";
+                    txtIdPeriodo.Text = "";
+                    txtNombrePeriodo.Text = "";
                     dgvTodo.DataSource = Clases.Periodo.GetDataView(0);
                     break;
                 default:
                     MessageBox.Show("No se ha seleccionado ninguna ventana", "ICB");
                     break;
             }
-            /*
-            if (ventana.SelectedIndex == 0)
-            {
-                
-                txtNombre.Text = "";
-                txtApellido.Text = "";
-                txtClave.Text = "";
-            }
-            else
-            {
-                if (ventana.SelectedIndex == 1)
-                {
-                  
-                    
-
-                }
-                else
-                {
-                    if (ventana.SelectedIndex == 2)
-                    {
-                       
-                    }
-                    else
-                    {
-                        if (ventana.SelectedIndex == 3)
-                        {
-                            
-                            txtIdI.Text ="";
-                            txtDescripcion.Text = "";
-                            txtCosto.Text = "";
-                            txtPrecioVenta.Text = "";
-                            txtCantidad.Text = "";
-                            txtCantMinima.Text = "";
-                        }
-                        else
-                        {
-                            if (ventana.SelectedIndex == 4)
-                            {
-                                
-
-                                txtIdIn.Text = "";
-                                txtNombreI.Text = "";
-                                txtCostoI.Text = "";
-                                txtCantidadI.Text = "";
-                                txtMinima.Text = "";
-
-                                txtDescripcionI.Text = "";
-
-                            }
-                            else
-                            {
-                                if (ventana.SelectedIndex == 5)
-                                {
-                                   
-
-                                    txtIDC.Text = "";
-                                    txtDescripcionC.Text = "";
-                                }
-                                else
-                                {
-                                    if (ventana.SelectedIndex == 6)
-                                    {
-                                    
-
-                                        txtIDT.Text = "";
-                                        txtDescripcionT.Text ="";
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }*/
+           
         }
 
 
         private void dgvTodo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (e.RowIndex != -1)
             {
                 int ventanaIndex = ventana.SelectedIndex;
@@ -275,194 +201,112 @@ namespace Pagos_ICB
                         txtNombre.Text = usuario.nombre;
                         txtApellido.Text = usuario.apellido;
                         txtClave.Text = usuario.clave;
-                        dgvTodo.DataSource = Clases.Usuarios.GetDataView(0);
                         break;
                     case 1:
-                        txtIdentidad.Text = "";
-                        txtNombre2.Text = "";
-                        txtApellido2.Text = "";
-                        dgvTodo.DataSource = Clases.Alumnos.GetDataView(0);
+                        Clases.Alumnos alumno = new Clases.Alumnos();
+                        alumno.ObtenerAlumnos(
+                            Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idAlumno = alumno.IdAlumno;
+                        txtIdentidad.Text = Convert.ToString(alumno.Identidad);
+                        txtNombre2.Text = alumno.Nombres;
+                        txtApellido2.Text = alumno.Apellidos;
                         break;
                     case 2:
-                        txtId.Text = "";
-                        txtNombreGrado.Text = "";
-                        dgvTodo.DataSource = Clases.Grado.GetDataView(0);
+                        Clases.Grado grado = new Clases.Grado();
+                        grado.ObtenerGrados(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idGrado = grado.IdGrado;
+                        txtId.Text = grado.IdGrado.ToString();
+                        txtNombreGrado.Text = grado.NombreGrado;
                         break;
                     case 3:
-                        txtIdPago.Text = "";
-                        txtNombreAlumnoPago.Text = "";
-                        txtApellidoAlumnoPago.Text = "";
-                        txtRecibo.Text = "";
-                        txtTipoPagoPago.Text = "";
-                        txtTotal.Text = "";
-                        txtObservacion.Text = "";
-                        dgvTodo.DataSource = Clases.Pago.GetDataViewFiltroPago(0);
+                        Clases.Pago pago = new Clases.Pago();
+                        pago.ObtenerPagos(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+
+                        Clases.Alumnos alumnos = new Clases.Alumnos();
+                        alumnos.ObtenerAlumnos(pago.IdAlumno);
+                        this.idPago = pago.IdPago;
+                        txtIdPago.Text = pago.IdPago.ToString();
+                        txtNombreAlumnoPago.Text = alumnos.Nombres;
+                        txtApellidoAlumnoPago.Text = alumnos.Apellidos;
+                        txtRecibo.Text = pago.Recibo;
+                        Clases.TipoPago tipo = new Clases.TipoPago();
+                        tipo.ObtenerTipoPagos(pago.IdTipo);
+                        Clases.NombreTipoPago nombre = new Clases.NombreTipoPago();
+                        nombre.ObtenerNombreTipoPagos(tipo.IdNombreTipoPago);
+                        txtTipoPagoPago.Text = nombre.NombreTipo;
+                        txtTotal.Text = pago.Total.ToString();
+                        txtObservacion.Text = pago.Observacion;
                         break;
                     case 4:
-                        txtIdMora.Text = "";
-                        txtNombreMora.Text = "";
-                        txtValorMora.Text = "";
-                        dgvTodo.DataSource = Clases.Mora.GetDataView(0);
+                        Clases.Mora mora = new Clases.Mora();
+                        mora.ObtenerMoras(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idMora = mora.IdMora;
+                        txtIdMora.Text = mora.IdMora.ToString();
+                        txtNombreMora.Text = mora.NombreMora;
+                        txtValorMora.Text = mora.Valor.ToString();
                         break;
                     case 5:
-                        txtIdDescuento.Text = "";
-                        txtNombreDescuento.Text = "";
-                        txtValorDescuento.Text = "";
-                        dgvTodo.DataSource = Clases.Descuento.GetDataView(0);
+                        Clases.Descuento descuento = new Clases.Descuento();
+                        descuento.ObtenerDescuentos(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idDescuento = descuento.IdDescuento;
+                        txtIdDescuento.Text = descuento.IdDescuento.ToString();
+                        txtNombreDescuento.Text = descuento.NombreDescuento;
+                        txtValorDescuento.Text = descuento.Valor.ToString();
                         break;
                     case 6:
-                        txtIdNombreTipo.Text = "";
-                        txtNombreNombreTipoPago.Text = "";
-                        txtFechaLimite.Text = "";
-                        
-                        dgvTodo.DataSource = Clases.NombreTipoPago.GetDataView(0);
+                        Clases.NombreTipoPago nombreTipo = new Clases.NombreTipoPago();
+                        nombreTipo.ObtenerNombreTipoPagos(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idNombreTipoPago = nombreTipo.IdNombreTipoPago;
+                        txtIdNombreTipo.Text = nombreTipo.IdNombreTipoPago.ToString();
+                        txtNombreNombreTipoPago.Text = nombreTipo.NombreTipo;
+                        txtFechaLimite.Text = nombreTipo.FechaLimite;
+
                         break;
                     case 7:
-                        txtIdTipoPago.Text = "";
-                        txtNom.Text = "";
-                        dgvTodo.DataSource = Clases.TipoPago.GetDataView(0);
+                        Clases.TipoPago tipoPago = new Clases.TipoPago();
+                        tipoPago.ObtenerTipoPagos(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idNTipoPago = tipoPago.IdTipoPago;
+                        Clases.Grado grado1 = new Clases.Grado();
+                        grado1.ObtenerGrados(tipoPago.IdGrado);
+                        Clases.NombreTipoPago nombreTipo1 = new Clases.NombreTipoPago();
+                        nombreTipo1.ObtenerNombreTipoPagos(tipoPago.IdNombreTipoPago);
+                        txtIdTipoPago.Text = tipoPago.IdTipoPago.ToString();
+                        txtNombrePago.Text = nombreTipo1.NombreTipo;
+                        txtGradoTipoPago.Text = grado1.NombreGrado;
+                        txtValorTipo.Text = tipoPago.Valor.ToString();
                         break;
                     case 8:
-                        txtIDT.Text = "";
-                        txtDescripcionT.Text = "";
-                        dgvTodo.DataSource = Clases.Periodo.GetDataView(0);
+                        Clases.Periodo periodo = new Clases.Periodo();
+                        periodo.ObtenerPeriodos(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
+                        dgvTodo.Select();
+                        this.idPeriodo = periodo.IdPeriodo;
+                        txtIdPeriodo.Text = periodo.IdPeriodo.ToString();
+                        txtNombrePeriodo.Text = periodo.NombrePeriodo;
                         break;
                     default:
-                        MessageBox.Show("No se ha seleccionado ninguna ventana", "ICB");
+                        MessageBox.Show("No hay objeto eliminado", "ICB");
                         break;
                 }
 
-                if (ventana.SelectedIndex == 0)
-                {
-                    
-                }
-                else
-                {
-                    if (ventana.SelectedIndex == 1)
-                    {
-                        Clases.Mesero mesero = new Clases.Mesero();
-                        mesero.ObtenerMesero(
-                            Convert.ToInt32(
-                                dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                                )
-                            );
-                        dgvTodo.Select();
-                        this.idmesero = mesero.Id;
-                        txtIdentidad.Text = Convert.ToString(mesero.Identidad);
-                        txtNombre2.Text = mesero.Nombre;
-                        txtApellido2.Text = mesero.Apellido;
-
-                    }
-                    else
-                    {
-                        if (ventana.SelectedIndex == 2)
-                        {
-                            Clases.Proveedores proveedor = new Clases.Proveedores();
-                            proveedor.ObtenerProveedor(
-                                Convert.ToInt32(
-                                    dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                                    )
-                                );
-                            dgvTodo.Select();
-                            this.idproveedor = proveedor.Id;
-                            txtId.Text = Convert.ToString(proveedor.Id);
-                            txtNombre3.Text = proveedor.Nombre;
-                            txtTelefono.Text = proveedor.Telefono;
-                            txtDireccion.Text = proveedor.Direccion;
-                        }
-                        else
-                        {
-                            if (ventana.SelectedIndex == 3)
-                            {
-                                Clases.Inventario inventario = new Clases.Inventario();
-                                inventario.ObtenerInventario(
-                                    Convert.ToInt32(
-                                        dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                                        )
-                                    );
-                                dgvTodo.Select();
-                                this.idinventario = inventario.IdInventario;
-                                //CargarDGWInsumosInventario();
-
-                                txtIdPago.Text = inventario.IdInventario.ToString();
-                                txtNombreAlumnoPago.Text = inventario.Descripcion.ToString();
-                                txtApellidoAlumnoPago.Text = inventario.Costo.ToString();
-                                txtTipoPagoPago.Text = inventario.PrecioVenta.ToString();
-                                txtRecibo.Text = inventario.Cantidad.ToString();
-                                txtTotal.Text = inventario.CantidadMinima.ToString();
-                            }
-                            else
-                            {
-                                if (ventana.SelectedIndex == 4)
-                                {
-                                    Clases.Insumos insumos = new Clases.Insumos();
-                                    insumos.ObtenerInsumo(
-                                        Convert.ToInt32(
-                                            dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                                            )
-                                        );
-                                    dgvTodo.Select();
-                                    this.idinsumo = insumos.Id;
-
-                                    txtIdIn.Text = insumos.Id.ToString();
-                                    txtNombreI.Text = insumos.Nombre;
-                                    txtCostoI.Text = insumos.Costo.ToString();
-                                    txtCantidadI.Text = insumos.Cantidad.ToString();
-                                    txtMinima.Text = insumos.CantidadMinima.ToString();
-
-                                    txtDescripcionI.Text = insumos.Descripcion;
-
-                                }
-                                else
-                                {
-                                    if (ventana.SelectedIndex == 5)
-                                    {
-                                        Clases.CategoriaProducto categoriaproducto = new Clases.CategoriaProducto();
-                                        categoriaproducto.ObtenerCategoriaProducto(
-                                            Convert.ToInt32(
-                                                dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                                                )
-                                            );
-                                        dgvTodo.Select();
-                                        this.idcategoria = categoriaproducto.Id;
-
-                                        txtIDC.Text = categoriaproducto.Id.ToString();
-                                        txtDescripcionC.Text = categoriaproducto.Descripcion;
-                                    }
-                                    else
-                                    {
-                                        if (ventana.SelectedIndex == 6)
-                                        {
-                                            Clases.TipoUnidad tipounidad = new Clases.TipoUnidad();
-                                            tipounidad.ObtenerTipoUnidad(
-                                                Convert.ToInt32(
-                                                    dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()
-                                                    )
-                                                );
-                                            dgvTodo.Select();
-                                            this.idtipo = tipounidad.Id;
-
-                                            txtIDT.Text = tipounidad.Id.ToString();
-                                            txtDescripcionT.Text = tipounidad.Descripcion;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
 
   private void button1_Click(object sender, EventArgs e)
         {
             /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Mesero " + txtNombre.Text, " Eliminar Mesero", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Alumno " + txtNombre.Text, " Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarMesero1(this.idmesero, 1);
+                    Clases.ICB.EliminarAlumno1(this.idalumno, 1);
                 }
                 catch (Exception ex)
                 {
@@ -478,12 +322,12 @@ namespace Pagos_ICB
         private void button2_Click(object sender, EventArgs e)
         {
             /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Mesero " + txtNombre.Text, " Eliminar Mesero", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Alumno " + txtNombre.Text, " Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarMesero(this.idmesero);
+                    Clases.ICB.EliminarAlumno(this.idalumno);
                 }
                 catch (Exception ex)
                 {
