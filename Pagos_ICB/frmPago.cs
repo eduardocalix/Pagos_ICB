@@ -98,6 +98,7 @@ namespace Pagos_ICB
             cbNombre.Enabled = true;
             cbGrado.Enabled = true;
             cbMora.Enabled = true;
+            cbDescuento.Enabled = true;
             //txtDescripcion.Enabled = true;
             this.idAlumno = 0;
             this.grado = 0;
@@ -413,18 +414,26 @@ namespace Pagos_ICB
             pago.ObtenerNombreTipoPagos(cbNombre.SelectedIndex - 1);
             if (dtFechaPago.Value > Convert.ToDateTime(pago.FechaLimite))
             {
-                cbMora.Enabled = true;
-                cbMora.SelectedIndex = 1;
-                MessageBox.Show("Mora por retraso en el pago","ICB");
+                if (cbNombre.SelectedValue.ToString() != "MATRICULA" || cbNombre.SelectedValue.ToString() != "BOLSA ESCOLAR")
+                {
+                    cbMora.Enabled = true;
+                    cbMora.SelectedIndex = 1;
+                    MessageBox.Show("Mora por retraso en el pago", "ICB");
+                }
             }
         }
 
         private void cbMora_SelectedIndexChanged(object sender, EventArgs e)
         {
             decimal total = 0;
-            if (cbNombre.SelectedValue.ToString() == "MATRICULA" || cbNombre.SelectedText.ToString() == "BOLSA ESCOLAR")
+            if (cbNombre.SelectedValue.ToString() == "MATRICULA" || cbNombre.SelectedValue.ToString() == "BOLSA ESCOLAR")
             {
-                cbMora.Enabled = false;
+                if (cbMora.SelectedValue.ToString() != "NINGUNA")
+                {
+                    MessageBox.Show("Para la Matricula no aplica mora", "ICB");
+
+                }
+                cbMora.Enabled = true;
             }
             else
             {
@@ -449,7 +458,7 @@ namespace Pagos_ICB
             descuento.ObteneDescuentosPorNombres(cbDescuento.SelectedValue.ToString());
             if (descuento.Valor > 0)
             {
-                total = this.valor * (descuento.Valor / 100);
+                total = this.valor -(this.valor * (descuento.Valor / 100));
                 //MessageBox.Show(Convert.ToString(total));
                 txtValor.Text = total.ToString();
 

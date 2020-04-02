@@ -384,7 +384,7 @@ BEGIN
 	SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE idAlumno=@idAlumno;
 	IF (@existe = 0)
 		BEGIN
-			RAISERROR(N'No existe el Alumno con el mismo nombre %s"', 16, 1, @nombres);
+			RAISERROR(N'No existe el Alumno con el mismo id %d"', 16, 1, @idAlumno);
 			RETURN 0
 		END 	
 	ELSE
@@ -396,7 +396,7 @@ BEGIN
 						idGrado = @idGrado,
 						idPeriodo =@idPeriodo,
 						beca = @beca
-					WHERE identidad = @identidad;
+					WHERE idAlumno = @idAlumno;
 			RETURN 1
 		END
 END
