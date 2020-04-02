@@ -108,7 +108,7 @@ namespace Pagos_ICB
                         txtNombre.Text
                     );
                 CargarDGWGrado();
-
+                ResetFormulario();
             }
             catch (Exception ex)
             {
@@ -119,7 +119,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el grado", "Modificar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar el grado" + txtNombre.Text + "?", "Modificar Grado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -155,10 +155,8 @@ namespace Pagos_ICB
                 );
             dgvGrado.Select();
             this.id = Grado.IdGrado;
-
             txtId.Text = Grado.IdGrado.ToString();
             txtNombre.Text = Grado.NombreGrado;
-
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
@@ -168,7 +166,7 @@ namespace Pagos_ICB
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
 
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtNombre.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar el grado " + txtNombre.Text+"?", "Deshabilitar Grado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try

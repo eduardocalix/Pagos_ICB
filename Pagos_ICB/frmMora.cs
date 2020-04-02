@@ -147,7 +147,7 @@ namespace Pagos_ICB
                         Convert.ToDecimal(txtValor.Text)
                     );
                 CargarDGWMora();
-
+                ResetFormulario();
             }
             catch (Exception ex)
             {
@@ -158,7 +158,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar la mora", "Modificar Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar la mora?", "Modificar Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -173,7 +173,6 @@ namespace Pagos_ICB
                 }
                 catch (Exception ex)
                 {
-
                     Clases.Mensaje.Advertencia(ex);
                 }
 
@@ -182,7 +181,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de deshabilitar la mora" + txtDescripcion.Text, "Eliminar Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar la mora " + txtDescripcion.Text+"?", "Eliminar Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try

@@ -28,7 +28,6 @@ namespace Pagos_ICB
         private void ResetFormulario()
         {
             this.usuario = null;
-
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtClave.Text = "";
@@ -72,6 +71,7 @@ namespace Pagos_ICB
                     txtNombre.Text,
                     txtApellido.Text,
                     txtClave.Text);
+                CargarDGWUsuarios();
                 ResetFormulario();
             }
             catch (SqlException ex)
@@ -83,7 +83,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar al usuario", "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar al usuario?", "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -164,7 +164,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al usuario " + this.usuario, "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar al usuario " + this.usuario+ "?", "Deshabilitar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try

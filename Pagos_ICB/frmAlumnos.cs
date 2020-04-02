@@ -66,6 +66,7 @@ namespace Pagos_ICB
 
                     );
                 CargarDGWAlumno();
+                ResetFormulario();
             }
             catch (Exception ex)
             {
@@ -75,7 +76,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar al Alumno", "Modificar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar al Alumno ?", "Modificar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 Clases.Grado grado = new Clases.Grado();
@@ -84,9 +85,11 @@ namespace Pagos_ICB
                 periodo.ObtenerPeriodosPorNombres(cbPeriodo.SelectedValue.ToString());
                 try
                 {
+                    MessageBox.Show(txtIdentidad.Text);
+
                     Clases.ICB.ModificarAlumnos(
                    Convert.ToInt32(this.id),
-                     txtIdentidad.Text,
+                    txtIdentidad.Text,
                     txtNombre.Text,
                     txtApellido.Text,
                     grado.IdGrado,
@@ -94,7 +97,6 @@ namespace Pagos_ICB
                     cbBeca.SelectedItem.ToString()
                         );
                     ResetFormulario();
-
                 }
                 catch (Exception ex)
                 {
@@ -106,7 +108,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Alumno" + txtNombre.Text, "Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar al Alumno " + txtNombre.Text+"?", "Deshabilitar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
 
@@ -163,7 +165,7 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Grado";
+            string sql = "select * FROM Cuentas.Grado Where estado=1";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -175,7 +177,7 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Periodo";
+            string sql = "select * FROM Cuentas.Periodo Where estado=1";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -183,24 +185,7 @@ namespace Pagos_ICB
             cbPeriodo.ValueMember = "nombrePeriodo";
             cbPeriodo.DataSource = dt;
         }
-        private void CargarCMBBeca(int id)
-        {
-            DataTable dt = new DataTable();
-            Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select beca FROM Cuentas.Alumno Where idAlumno ="+id+";";
-            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //da.Fill(dt);
-            MessageBox.Show(cmd.ToString());
-
-           // cbBeca.DisplayMember = "beca";
-
-           // cbBeca.ValueMember = "beca";
-            //cbBeca.DataSource = dt;
-            MessageBox.Show(dt.ToString());
-
-
-        }
+      
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -226,6 +211,7 @@ namespace Pagos_ICB
                 );
             dgvAlumnos.Select();
             this.id = Alumno.IdAlumno;
+            txtId.Text = Alumno.IdAlumno.ToString();
             txtIdentidad.Text = Alumno.Identidad;
             txtNombre.Text = Alumno.Nombres;
             txtApellido.Text = Alumno.Apellidos;

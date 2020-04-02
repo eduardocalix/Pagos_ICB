@@ -57,7 +57,7 @@ namespace Pagos_ICB
                         Convert.ToDecimal(txtValor.Text)
                     );
                 CargarDGWDescuento();
-
+                ResetFormulario();
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el descuento", "Modificar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar el descuento?", "Modificar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -100,15 +100,14 @@ namespace Pagos_ICB
                 );
             dgvDescuento.Select();
             this.id = Descuento.IdDescuento;
-
             txtId.Text = Descuento.IdDescuento.ToString();
             txtDescripcion.Text = Descuento.NombreDescuento;
+            txtValor.Text = Descuento.Valor.ToString();
 
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
             btnEliminar.Enabled = true;
-
         }
 
         private void ResetFormulario()
@@ -118,16 +117,13 @@ namespace Pagos_ICB
             txtValor.Text = "";
             CargarDGWDescuento();
             dgwDescuentoEstilo(dgvDescuento);
-
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnEliminar.Enabled = false;
-
             txtDescripcion.Enabled = true;
             this.id = 0;
             txtDescripcion.Focus();
-
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -137,7 +133,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el descuento" + txtDescripcion.Text, "Eliminar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar el descuento " + txtDescripcion.Text+"?", "Deshabilitar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try

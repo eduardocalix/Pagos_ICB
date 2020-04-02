@@ -36,6 +36,9 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.dgvTipoPago = new System.Windows.Forms.DataGridView();
             this.grpTipoPago = new System.Windows.Forms.GroupBox();
+            this.cbNombre = new System.Windows.Forms.ComboBox();
+            this.cbGrado = new System.Windows.Forms.ComboBox();
+            this.lblGrado = new System.Windows.Forms.Label();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -45,9 +48,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbGrado = new System.Windows.Forms.ComboBox();
-            this.lblGrado = new System.Windows.Forms.Label();
-            this.cbNombre = new System.Windows.Forms.ComboBox();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTipoPago)).BeginInit();
             this.grpTipoPago.SuspendLayout();
@@ -74,7 +74,7 @@
             this.btnModificar.Location = new System.Drawing.Point(13, 69);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 25);
-            this.btnModificar.TabIndex = 6;
+            this.btnModificar.TabIndex = 7;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
@@ -87,7 +87,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(13, 40);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 25);
-            this.btnAgregar.TabIndex = 5;
+            this.btnAgregar.TabIndex = 6;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
@@ -100,7 +100,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(13, 98);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 25);
-            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.TabIndex = 8;
             this.btnEliminar.Text = "Deshabilitar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
@@ -113,7 +113,7 @@
             this.btnNuevo.Location = new System.Drawing.Point(13, 11);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 25);
-            this.btnNuevo.TabIndex = 4;
+            this.btnNuevo.TabIndex = 5;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click_1);
@@ -149,12 +149,38 @@
             this.grpTipoPago.TabIndex = 37;
             this.grpTipoPago.TabStop = false;
             // 
+            // cbNombre
+            // 
+            this.cbNombre.FormattingEnabled = true;
+            this.cbNombre.Location = new System.Drawing.Point(116, 56);
+            this.cbNombre.Name = "cbNombre";
+            this.cbNombre.Size = new System.Drawing.Size(213, 24);
+            this.cbNombre.TabIndex = 2;
+            // 
+            // cbGrado
+            // 
+            this.cbGrado.FormattingEnabled = true;
+            this.cbGrado.Location = new System.Drawing.Point(116, 94);
+            this.cbGrado.Name = "cbGrado";
+            this.cbGrado.Size = new System.Drawing.Size(213, 24);
+            this.cbGrado.TabIndex = 3;
+            // 
+            // lblGrado
+            // 
+            this.lblGrado.AutoSize = true;
+            this.lblGrado.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGrado.Location = new System.Drawing.Point(11, 98);
+            this.lblGrado.Name = "lblGrado";
+            this.lblGrado.Size = new System.Drawing.Size(47, 15);
+            this.lblGrado.TabIndex = 31;
+            this.lblGrado.Text = "Grado";
+            // 
             // txtValor
             // 
             this.txtValor.Location = new System.Drawing.Point(116, 131);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(213, 22);
-            this.txtValor.TabIndex = 28;
+            this.txtValor.TabIndex = 4;
             // 
             // label2
             // 
@@ -172,7 +198,7 @@
             this.txtId.Location = new System.Drawing.Point(116, 21);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(213, 22);
-            this.txtId.TabIndex = 24;
+            this.txtId.TabIndex = 1;
             // 
             // lblId
             // 
@@ -213,6 +239,7 @@
             this.btnSalir.TabIndex = 30;
             this.btnSalir.TabStop = false;
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click_1);
             // 
             // label1
             // 
@@ -234,32 +261,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
-            // 
-            // cbGrado
-            // 
-            this.cbGrado.FormattingEnabled = true;
-            this.cbGrado.Location = new System.Drawing.Point(116, 94);
-            this.cbGrado.Name = "cbGrado";
-            this.cbGrado.Size = new System.Drawing.Size(213, 24);
-            this.cbGrado.TabIndex = 30;
-            // 
-            // lblGrado
-            // 
-            this.lblGrado.AutoSize = true;
-            this.lblGrado.Font = new System.Drawing.Font("Raleway Black", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrado.Location = new System.Drawing.Point(11, 98);
-            this.lblGrado.Name = "lblGrado";
-            this.lblGrado.Size = new System.Drawing.Size(47, 15);
-            this.lblGrado.TabIndex = 31;
-            this.lblGrado.Text = "Grado";
-            // 
-            // cbNombre
-            // 
-            this.cbNombre.FormattingEnabled = true;
-            this.cbNombre.Location = new System.Drawing.Point(116, 56);
-            this.cbNombre.Name = "cbNombre";
-            this.cbNombre.Size = new System.Drawing.Size(213, 24);
-            this.cbNombre.TabIndex = 32;
             // 
             // frmTipoPago
             // 

@@ -101,7 +101,7 @@ GO
 CREATE PROCEDURE SP_EliminarUsuario1
 (
     @usuario NVARCHAR(26),
-	@estado BIT
+	@estado INT
 )
 AS
 BEGIN
@@ -381,7 +381,7 @@ AS
 BEGIN
 	DECLARE @existe int;
 	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE nombres = @nombres AND apellidos = @apellidos;
+	SELECT @existe = COUNT(Cuentas.Alumno.idAlumno) FROM Cuentas.Alumno WHERE idAlumno=@idAlumno;
 	IF (@existe = 0)
 		BEGIN
 			RAISERROR(N'No existe el Alumno con el mismo nombre %s"', 16, 1, @nombres);
@@ -419,7 +419,7 @@ BEGIN
 			END 	
 		ELSE
 			BEGIN
-				UPDATE Cuentas.Alumno SET estado=@estado	WHERE idAlumno=@idAlumno;
+				UPDATE Cuentas.Alumno SET estado=@estado WHERE idAlumno=@idAlumno;
 				RETURN 1
 			END
 END
@@ -939,22 +939,22 @@ GO
 
 CREATE PROCEDURE SP_EliminarTipoPago1
 (
-    @idNombreTipoPago INT,
+    @idTipoPago INT,
 	@estado INT
 )
 AS
 BEGIN
     DECLARE @existe int;
     SET @existe = 0;
-        SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE idNombreTipoPago = @idNombreTipoPago;
+        SELECT @existe = COUNT(Cuentas.TipoPago.idTipoPago) FROM Cuentas.TipoPago WHERE idTipoPago = @idTipoPago;
         IF (@existe = 0)
             BEGIN
-                RAISERROR(N'No existe el NombreTipoPago con el id %d"', 16, 1, @idNombreTipoPago);
+                RAISERROR(N'No existe el NombreTipoPago con el id %d"', 16, 1, @idTipoPago);
                 RETURN 0
             END     
         ELSE
             BEGIN
-                UPDATE Cuentas.NombreTipoPago SET estado=@estado WHERE idNombreTipoPago = @idNombreTipoPago;
+                UPDATE Cuentas.TipoPago SET estado=@estado WHERE idTipoPago = @idTipoPago;
                 RETURN 1
             END
 END

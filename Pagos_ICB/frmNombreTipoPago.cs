@@ -22,9 +22,7 @@ namespace Pagos_ICB
 
         private void frmNombreTipoPago_Load(object sender, EventArgs e)
         {
-
-            CargarDGWNombreTipoPago();
-           
+            CargarDGWNombreTipoPago();           
             ResetFormulario();
         }
         private int id = 0;
@@ -66,11 +64,9 @@ namespace Pagos_ICB
         private void ResetFormulario()
         {
             txtId.Text = "";
-          
             txtNombre.Text = "";
             CargarDGWNombreTipoPago();
             dgwNombreTipoPagoEstilo(dgvNombreTipoPago);
-
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
@@ -114,7 +110,7 @@ namespace Pagos_ICB
                         dtFecha.Value.ToShortDateString()
                     );
                 CargarDGWNombreTipoPago();
-
+                ResetFormulario();
             }
             catch (Exception ex)
             {
@@ -125,7 +121,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el NombreTipoPago", "Modificar NombreTipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar el Nombre TipoPago?", "Modificar NombreTipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -134,7 +130,7 @@ namespace Pagos_ICB
                         (
                             Convert.ToInt32(this.id),
                             txtNombre.Text,
-                            dtFecha.Value.ToString() 
+                            dtFecha.Value.ToShortDateString() 
                             );
                     ResetFormulario();
                 }
@@ -149,7 +145,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el NombreTipoPago" , "Eliminar NombreTipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar el Nombre TipoPago?" , "Deshabilitar NombreTipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -180,8 +176,8 @@ namespace Pagos_ICB
             this.id = NombreTipoPago.IdNombreTipoPago;
 
             txtId.Text = NombreTipoPago.IdNombreTipoPago.ToString();
-            txtNombre.Text = NombreTipoPago.NombreTipo.ToString();
-            dtFecha.Text = NombreTipoPago.FechaLimite.ToString();
+            txtNombre.Text = NombreTipoPago.NombreTipo;
+            dtFecha.Text = NombreTipoPago.FechaLimite;
             
 
             btnNuevo.Enabled = true;

@@ -21,7 +21,7 @@ namespace Pagos_ICB
 
         private void frmPeriodo_Load(object sender, EventArgs e)
         {
-
+            dgwPeriodoEstilo(dgvPeriodo);
             CargarDGWPeriodo();
             ResetFormulario();
         }
@@ -119,7 +119,7 @@ namespace Pagos_ICB
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el grado", "Modificar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar el periodo" + txtNombre.Text + "?", "Modificar Periodo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -155,10 +155,8 @@ namespace Pagos_ICB
                 );
             dgvPeriodo.Select();
             this.id = Periodo.IdPeriodo;
-
             txtId.Text = Periodo.IdPeriodo.ToString();
             txtNombre.Text = Periodo.NombrePeriodo;
-
             btnNuevo.Enabled = true;
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
@@ -168,7 +166,7 @@ namespace Pagos_ICB
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
 
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtNombre.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("Está seguro de deshabilitar el periodo " + txtNombre.Text + "?", "Deshabilitar Periodo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try

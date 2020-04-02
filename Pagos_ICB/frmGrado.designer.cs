@@ -134,7 +134,7 @@
             this.grpGrado.Controls.Add(this.txtId);
             this.grpGrado.Controls.Add(this.lblId);
             this.grpGrado.Controls.Add(this.lblDescripcion);
-            this.grpGrado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grpGrado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.grpGrado.Location = new System.Drawing.Point(15, 85);
             this.grpGrado.Name = "grpGrado";
             this.grpGrado.Size = new System.Drawing.Size(340, 130);
@@ -143,34 +143,38 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(116, 60);
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtNombre.Location = new System.Drawing.Point(128, 71);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(213, 22);
+            this.txtNombre.Size = new System.Drawing.Size(202, 22);
             this.txtNombre.TabIndex = 25;
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(116, 21);
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtId.Location = new System.Drawing.Point(128, 32);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(213, 22);
+            this.txtId.Size = new System.Drawing.Size(202, 22);
             this.txtId.TabIndex = 24;
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(11, 24);
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblId.Location = new System.Drawing.Point(12, 35);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(19, 16);
+            this.lblId.Size = new System.Drawing.Size(68, 16);
             this.lblId.TabIndex = 26;
-            this.lblId.Text = "Id";
+            this.lblId.Text = "Id Grado";
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(11, 65);
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblDescripcion.Location = new System.Drawing.Point(12, 76);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(98, 16);
+            this.lblDescripcion.Size = new System.Drawing.Size(110, 16);
             this.lblDescripcion.TabIndex = 27;
             this.lblDescripcion.Text = "Nombre Grado";
             // 

@@ -143,34 +143,36 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(116, 60);
+            this.txtNombre.Location = new System.Drawing.Point(140, 69);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(213, 22);
-            this.txtNombre.TabIndex = 25;
+            this.txtNombre.Size = new System.Drawing.Size(191, 22);
+            this.txtNombre.TabIndex = 2;
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(116, 21);
+            this.txtId.Location = new System.Drawing.Point(140, 31);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(213, 22);
-            this.txtId.TabIndex = 24;
+            this.txtId.Size = new System.Drawing.Size(191, 22);
+            this.txtId.TabIndex = 1;
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(11, 24);
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblId.Location = new System.Drawing.Point(13, 34);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(70, 16);
+            this.lblId.Size = new System.Drawing.Size(80, 16);
             this.lblId.TabIndex = 26;
             this.lblId.Text = "Id Periodo";
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(10, 65);
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblDescripcion.Location = new System.Drawing.Point(12, 75);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(108, 16);
+            this.lblDescripcion.Size = new System.Drawing.Size(122, 16);
             this.lblDescripcion.TabIndex = 27;
             this.lblDescripcion.Text = "Nombre Periodo";
             // 

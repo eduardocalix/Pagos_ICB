@@ -668,7 +668,6 @@ namespace Pagos_ICB.Clases
         }
         public static void AgregarNombreTipoPago
             (
-
              string NombreTipo,
            string fechaLimite
             )

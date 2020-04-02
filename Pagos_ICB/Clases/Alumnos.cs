@@ -154,7 +154,7 @@ namespace Pagos_ICB.Clases
         public void Eliminar1()
         {
             Clases.Conexión conexion = new Clases.Conexión();
-            SqlCommand cmd = new SqlCommand("SP_EliminarAlumnos1", conexion.conexion);
+            SqlCommand cmd = new SqlCommand("SP_EliminarAlumno1", conexion.conexion);
             cmd.CommandType = CommandType.StoredProcedure;
             try
             {

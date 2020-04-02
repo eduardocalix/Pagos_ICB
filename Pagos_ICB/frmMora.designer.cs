@@ -155,9 +155,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(11, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 16);
+            this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 29;
             this.label2.Text = "Valor";
             // 
@@ -179,18 +180,20 @@
             // lblId
             // 
             this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblId.Location = new System.Drawing.Point(11, 24);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(19, 16);
+            this.lblId.Size = new System.Drawing.Size(60, 16);
             this.lblId.TabIndex = 26;
-            this.lblId.Text = "Id";
+            this.lblId.Text = "Id Mora";
             // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblDescripcion.Location = new System.Drawing.Point(11, 65);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(80, 16);
+            this.lblDescripcion.Size = new System.Drawing.Size(91, 16);
             this.lblDescripcion.TabIndex = 27;
             this.lblDescripcion.Text = "Descripción";
             // 

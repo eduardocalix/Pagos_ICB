@@ -45,10 +45,10 @@ namespace Pagos_ICB
                     dgvTodo.DataSource = Clases.Alumnos.GetDataView(0);
                     break;
                 case 2:
-                            dgvTodo.DataSource = Clases.Grado.GetDataView(0);
+                    dgvTodo.DataSource = Clases.Grado.GetDataView(0);
                     break;
                 case 3:
-                            dgvTodo.DataSource = Clases.Pago.GetDataViewFiltroPago(0);
+                    dgvTodo.DataSource = Clases.Pago.GetDataViewFiltroPago(0);
                     break;
                 case 4:
                     dgvTodo.DataSource = Clases.Mora.GetDataView(0);
@@ -75,7 +75,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            /*
+            
             DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al usuario " + this.usuario, "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
@@ -92,12 +92,12 @@ namespace Pagos_ICB
                     this.usuario = null;
                     ResetFormulario();
                 }
-            }*/
+            }
         }
 
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al usuario " + this.usuario, "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar al usuario " + this.usuario+"?", "Modificar Usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -164,6 +164,9 @@ namespace Pagos_ICB
                     dgvTodo.DataSource = Clases.Descuento.GetDataView(0);
                     break;
                 case 6:
+                    txtIdNombreTipo.Text = "";
+                    txtNombreNombreTipoPago.Text = "";
+                    txtFechaLimite.Text = "";
                     dgvTodo.DataSource = Clases.NombreTipoPago.GetDataView(0);
                     break;
                 case 7:
@@ -198,6 +201,7 @@ namespace Pagos_ICB
                         Clases.Usuarios usuario = new Clases.Usuarios();
                         usuario.ObtenerUsuario(dgvTodo.Rows[e.RowIndex].Cells["Usuario"].Value.ToString());
                         dgvTodo.Select();
+                        this.usuario = usuario.usuario;
                         txtNombre.Text = usuario.nombre;
                         txtApellido.Text = usuario.apellido;
                         txtClave.Text = usuario.clave;
@@ -207,10 +211,13 @@ namespace Pagos_ICB
                         alumno.ObtenerAlumnos(
                             Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
                         dgvTodo.Select();
+                        Clases.Grado grado1 = new Clases.Grado();
+                        grado1.ObtenerGrados(alumno.IdGrado);
                         this.idAlumno = alumno.IdAlumno;
                         txtIdentidad.Text = Convert.ToString(alumno.Identidad);
                         txtNombre2.Text = alumno.Nombres;
                         txtApellido2.Text = alumno.Apellidos;
+                        txtGrado.Text = grado1.NombreGrado;
                         break;
                     case 2:
                         Clases.Grado grado = new Clases.Grado();
@@ -273,13 +280,13 @@ namespace Pagos_ICB
                         tipoPago.ObtenerTipoPagos(Convert.ToInt32(dgvTodo.Rows[e.RowIndex].Cells["Código"].Value.ToString()));
                         dgvTodo.Select();
                         this.idNTipoPago = tipoPago.IdTipoPago;
-                        Clases.Grado grado1 = new Clases.Grado();
-                        grado1.ObtenerGrados(tipoPago.IdGrado);
+                        Clases.Grado grado2 = new Clases.Grado();
+                        grado2.ObtenerGrados(tipoPago.IdGrado);
                         Clases.NombreTipoPago nombreTipo1 = new Clases.NombreTipoPago();
                         nombreTipo1.ObtenerNombreTipoPagos(tipoPago.IdNombreTipoPago);
                         txtIdTipoPago.Text = tipoPago.IdTipoPago.ToString();
                         txtNombrePago.Text = nombreTipo1.NombreTipo;
-                        txtGradoTipoPago.Text = grado1.NombreGrado;
+                        txtGradoTipoPago.Text = grado2.NombreGrado;
                         txtValorTipo.Text = tipoPago.Valor.ToString();
                         break;
                     case 8:
@@ -294,19 +301,17 @@ namespace Pagos_ICB
                         MessageBox.Show("No hay objeto eliminado", "ICB");
                         break;
                 }
-
             }
         }
-
-  private void button1_Click(object sender, EventArgs e)
-        {
-            /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Alumno " + txtNombre.Text, " Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        //Restaurar Alumno
+        private void button1_Click(object sender, EventArgs e)
+        {            
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar el Alumno " + txtNombre.Text + " ?", " Restaurar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarAlumno1(this.idalumno, 1);
+                    Clases.ICB.EliminarAlumnos1(this.idAlumno, 1);
                 }
                 catch (Exception ex)
                 {
@@ -316,18 +321,17 @@ namespace Pagos_ICB
                 {
                    ResetFormulario();
                 }
-            }*/
+            }
         }
-
+        //Eliminar Alumno
         private void button2_Click(object sender, EventArgs e)
-        {
-            /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Alumno " + txtNombre.Text, " Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {            
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar el Alumno " + txtNombre.Text + " ?", " Eliminar Alumno", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarAlumno(this.idalumno);
+                    Clases.ICB.EliminarAlumnos(this.idAlumno);
                 }
                 catch (Exception ex)
                 {
@@ -337,13 +341,13 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }*/
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar el Insumo", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar el Insumo?", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -365,7 +369,7 @@ namespace Pagos_ICB
 
         private void button9_Click(object sender, EventArgs e)
         {
-           /* DialogResult respuesta = MessageBox.Show("Está seguro de Eliminar el Insumo", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           /* DialogResult respuesta = MessageBox.Show("¿Está seguro de Eliminar el Insumo?", "Eliminar Insumo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -384,16 +388,15 @@ namespace Pagos_ICB
 
             }*/
         }
-
+        //Restaurar Grado
         private void button4_Click(object sender, EventArgs e)
         {
-            /*DialogResult respuesta = MessageBox.Show("Está seguro de restaurar al Proveedor" + txtNombre.Text, "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar el Grado" + txtNombreGrado.Text + " ?", "Restaurar Grado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
-
                 try
                 {
-                    Clases.ICB.EliminarProveedor1(this.idproveedor,1);
+                    Clases.ICB.EliminarGrado1(this.idGrado,1);
                 }
                 catch (Exception ex)
                 {
@@ -403,19 +406,17 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }*/
+            }
         }
-
+        //Eliminar Grado 
         private void button5_Click(object sender, EventArgs e)
-        {
-            /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar al Proveedor" + txtNombre.Text, "Modificar Proveedor", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {            
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar el Grado" + txtNombre.Text+" ?", "Eliminar Grado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
-
                 try
                 {
-                    Clases.ICB.EliminarProveedor(this.idproveedor);
+                    Clases.ICB.EliminarGrado(this.idGrado);
                 }
                 catch (Exception ex)
                 {
@@ -425,17 +426,17 @@ namespace Pagos_ICB
                 {
                    ResetFormulario();
                 }
-            }*/
+            }
         }
-
+        //Restaurar Pago
         private void button6_Click(object sender, EventArgs e)
-        {/*
-            DialogResult respuesta = MessageBox.Show("Está seguro de Restaurar el Inventario", "Eliminar Inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de Restaurar el Pago?", "Restaurar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarInventario1(this.idinventario,1);
+                    Clases.ICB.EliminarPago1(this.idPago,1);
                 }
                 catch (Exception ex)
                 {
@@ -445,18 +446,17 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-
-            }*/
+            }
         }
-
+        //Eliminar pago
         private void button7_Click(object sender, EventArgs e)
-        {/*
-            DialogResult respuesta = MessageBox.Show("Está seguro de Eliminar el Inventario", "Eliminar Inventario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de Eliminar el Pago?", "Eliminar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarInventario(this.idinventario);
+                    Clases.ICB.EliminarPago(this.idPago);
                 }
                 catch (Exception ex)
                 {
@@ -467,17 +467,17 @@ namespace Pagos_ICB
                    ResetFormulario();
                 }
 
-            }*/
+            }
         }
-
+        //Restaurar Descuento
         private void button12_Click(object sender, EventArgs e)
-        {/*
-            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar el descuento" + txtNombreDescuento.Text +" ?", "Restaurar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarTipoUnidad1(this.idtipo,1);
+                    Clases.ICB.EliminarDescuento1(this.idDescuento,1);
                 }
                 catch (Exception ex)
                 {
@@ -488,17 +488,17 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }*/
+            }
         }
-
+        //Eliminar Descuento
         private void button13_Click(object sender, EventArgs e)
-        {/*
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el tipo de unidad" + txtDescripcion.Text, "Eliminar Tipo Unidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar el Descuento " + txtNombreDescuento.Text+" ?", "Eliminar Descuento", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarTipoUnidad(this.idtipo);
+                    Clases.ICB.EliminarDescuento(this.idDescuento);
                 }
                 catch (Exception ex)
                 {
@@ -509,17 +509,17 @@ namespace Pagos_ICB
                     ResetFormulario();
                 }
 
-            }*/
+            }
         }
-
+        //Restaurar Mora
         private void button10_Click(object sender, EventArgs e)
-        {/*
-            DialogResult respuesta = MessageBox.Show("Está seguro de restaurar la categoria del Producto" + txtDescripcion.Text, "Eliminar la categoria Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar la Mora " + txtNombreMora.Text+" ?", "Restaurar la Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarCategoriaProducto1(this.idcategoria,1);
+                    Clases.ICB.EliminarMora1(this.idMora,1);
                 }
                 catch (Exception ex)
                 {
@@ -529,17 +529,17 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }*/
+            }
         }
 
         private void button11_Click(object sender, EventArgs e)
-        {/*
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar la categoria del Producto" + txtDescripcion.Text, "Eliminar la categoria Producto", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar la Mora" + txtNombreMora.Text+" ?", "Eliminar la Mora", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
-                    Clases.ICB.EliminarCategoriaProducto(this.idcategoria);
+                    Clases.ICB.EliminarMora(this.idMora);
                 }
                 catch (Exception ex)
                 {
@@ -549,12 +549,133 @@ namespace Pagos_ICB
                 {
                     ResetFormulario();
                 }
-            }*/
+            }
         }
 
         private void frmPapelera_Load(object sender, EventArgs e)
         {
 
+        }
+        //Restaurar NombreTipoPago
+        private void btnRestaurarNombreTipo_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar la NombreTipoPago " + txtNombreNombreTipoPago.Text + " ?", "Restaurar la NombreTipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.EliminarNombreTipoPago1(this.idNombreTipoPago, 1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ResetFormulario();
+                }
+            }
+        }
+        //Eliminar NombreTipoPago
+        private void button15_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar la NombreTipoPago" + txtNombreNombreTipoPago.Text + " ?", "Eliminar la NombreTipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.EliminarNombreTipoPago(this.idNombreTipoPago);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ResetFormulario();
+                }
+            }
+
+        }
+        //Restaurar Tipo Pago
+        private void button16_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar la TipoPago " + txtNombrePago.Text + " ?", "Restaurar la TipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.EliminarTipoPago1(this.idNTipoPago, 1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ResetFormulario();
+                }
+            }
+        }
+        //Eliminar Tipo Pago
+        private void button17_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar la TipoPago" + txtNombrePago.Text + " ?", "Eliminar la TipoPago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.EliminarTipoPago(this.idNTipoPago);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ResetFormulario();
+                }
+            }
+        }
+        //Restaurar Periodo
+        private void btnRestaurarPeriodo_Click(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de restaurar la Periodo " + txtNombrePeriodo.Text + " ?", "Restaurar la Periodo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.EliminarPeriodo1(this.idPeriodo, 1);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ResetFormulario();
+                }
+            }
+        }
+        //Eliminar Periodo
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar la Periodo" + txtNombrePeriodo.Text + " ?", "Eliminar la Periodo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (respuesta.ToString() == "Yes")
+            {
+                try
+                {
+                    Clases.ICB.EliminarPeriodo(this.idPeriodo);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    ResetFormulario();
+                }
+            }
         }
     }
 }

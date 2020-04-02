@@ -119,7 +119,7 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Grado";
+            string sql = "select * FROM Cuentas.Grado Where estado=1";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -132,7 +132,7 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Mora";
+            string sql = "select * FROM Cuentas.Mora Where estado=1";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -144,7 +144,7 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Descuento";
+            string sql = "select * FROM Cuentas.Descuento Where estado=1";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -156,7 +156,7 @@ namespace Pagos_ICB
         {
             DataTable dt = new DataTable();
             Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.NombreTipoPago";
+            string sql = "select * FROM Cuentas.NombreTipoPago Where estado=1";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
@@ -196,7 +196,7 @@ namespace Pagos_ICB
                         txtObservacion.Text
                     );
                 CargarDGWPago(this.idAlumno);
-
+                ResetFormulario();
             }
             catch (Exception ex)
             {
@@ -208,14 +208,13 @@ namespace Pagos_ICB
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el Pago", "Modificar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de modificar el Pago?", "Modificar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
                 {
                     Clases.Grado grado = new Clases.Grado();
                     grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-
                     Clases.TipoPago pago = new Clases.TipoPago();
                     pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex + 1);
                     //txtValor.Text = pago.Valor.ToString();
@@ -248,7 +247,7 @@ namespace Pagos_ICB
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("Está seguro de eliminar el Pago" , "Eliminar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de deshabilitar el Pago?" , "Deshabilitar Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
                 try
@@ -348,7 +347,7 @@ namespace Pagos_ICB
                 
                 if (cbGrado.SelectedText == "PREKINDER" || cbGrado.SelectedText == "KINDER" || cbGrado.SelectedText == "PREPARATORIA" || cbGrado.SelectedText == "PRIMERO")
                 {
-                    MessageBox.Show("Aplica descuento del 50% en el pago de la matricula");
+                    MessageBox.Show("Aplica descuento del 50% en el pago de la matricula","ICB");
 
                     cbDescuento.SelectedIndex = 2;
                 }
@@ -358,14 +357,14 @@ namespace Pagos_ICB
                     DateTime fecha1 = DateTime.Now;
                     if (fecha1.Month == 6)
                     {
-                        MessageBox.Show("Aplica descuento del 30% en el pago de la matricula");
+                        MessageBox.Show("Aplica descuento del 30% en el pago de la matricula","ICB");
 
                         cbDescuento.SelectedIndex = 3;
 
                     }
                     else if (fecha1.Month == 7)
                     {
-                        MessageBox.Show("Aplica descuento del 20% en el pago de la matricula");
+                        MessageBox.Show("Aplica descuento del 20% en el pago de la matricula","ICB");
 
                         cbDescuento.SelectedIndex = 4;
                     }
@@ -416,7 +415,7 @@ namespace Pagos_ICB
             {
                 cbMora.Enabled = true;
                 cbMora.SelectedIndex = 1;
-                MessageBox.Show("Mora por retraso en el pago");
+                MessageBox.Show("Mora por retraso en el pago","ICB");
             }
         }
 
@@ -451,7 +450,7 @@ namespace Pagos_ICB
             if (descuento.Valor > 0)
             {
                 total = this.valor * (descuento.Valor / 100);
-                MessageBox.Show(Convert.ToString(total));
+                //MessageBox.Show(Convert.ToString(total));
                 txtValor.Text = total.ToString();
 
             }
@@ -482,6 +481,11 @@ namespace Pagos_ICB
                 string beca = "No";
                 dgvAlumnos.DataSource = Clases.Alumnos.GetDataViewFiltroAlumno3(beca, 1);
             }
+        }
+
+        private void grpPago_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

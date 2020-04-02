@@ -168,7 +168,7 @@
             this.lblGrado.Name = "lblGrado";
             this.lblGrado.Size = new System.Drawing.Size(91, 15);
             this.lblGrado.TabIndex = 31;
-            this.lblGrado.Text = "Fecha Limite";
+            this.lblGrado.Text = "Fecha Límite";
             // 
             // txtId
             // 

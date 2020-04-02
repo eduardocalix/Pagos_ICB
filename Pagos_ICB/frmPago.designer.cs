@@ -96,7 +96,7 @@
             this.btnModificar.Location = new System.Drawing.Point(13, 69);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 25);
-            this.btnModificar.TabIndex = 6;
+            this.btnModificar.TabIndex = 14;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click_1);
@@ -109,7 +109,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(13, 40);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 25);
-            this.btnAgregar.TabIndex = 5;
+            this.btnAgregar.TabIndex = 13;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
@@ -122,7 +122,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(13, 98);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 25);
-            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.TabIndex = 15;
             this.btnEliminar.Text = "Deshabilitar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
@@ -135,7 +135,7 @@
             this.btnNuevo.Location = new System.Drawing.Point(13, 11);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 25);
-            this.btnNuevo.TabIndex = 4;
+            this.btnNuevo.TabIndex = 12;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click_1);
@@ -151,7 +151,7 @@
             this.dgvPago.ReadOnly = true;
             this.dgvPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPago.Size = new System.Drawing.Size(565, 123);
-            this.dgvPago.TabIndex = 38;
+            this.dgvPago.TabIndex = 11;
             this.dgvPago.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPago_CellClick_1);
             // 
             // grpPago
@@ -180,13 +180,14 @@
             this.grpPago.Size = new System.Drawing.Size(672, 202);
             this.grpPago.TabIndex = 37;
             this.grpPago.TabStop = false;
+            this.grpPago.Enter += new System.EventHandler(this.grpPago_Enter);
             // 
             // txtObservacion
             // 
             this.txtObservacion.Location = new System.Drawing.Point(105, 163);
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(540, 22);
-            this.txtObservacion.TabIndex = 42;
+            this.txtObservacion.TabIndex = 10;
             // 
             // label8
             // 
@@ -205,7 +206,7 @@
             this.cbDescuento.Location = new System.Drawing.Point(432, 127);
             this.cbDescuento.Name = "cbDescuento";
             this.cbDescuento.Size = new System.Drawing.Size(213, 24);
-            this.cbDescuento.TabIndex = 40;
+            this.cbDescuento.TabIndex = 9;
             this.cbDescuento.SelectedIndexChanged += new System.EventHandler(this.cbDescuento_SelectedIndexChanged);
             // 
             // cbMora
