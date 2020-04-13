@@ -73,8 +73,8 @@ namespace Pagos_ICB
 
         private void toolStripMenuItem10_Click(object sender, EventArgs e)
         {
-           // Restaurante.Reportes.Inventario reportes = new Reportes.Inventario();
-            //reportes.ShowDialog();
+            frmReporteVista vista = new frmReporteVista();
+            vista.Show();
         }
 
         private void resumenMensualToolStripMenuItem_Click(object sender, EventArgs e)

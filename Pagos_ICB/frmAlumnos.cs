@@ -24,7 +24,7 @@ namespace Pagos_ICB
             CargarCMBPeriodos();
         }
         private int id = 0;
-        private int idGrado = 0;
+        //private int idGrado = 0;
         private void CargarDGWAlumno()
         {
             try

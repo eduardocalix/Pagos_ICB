@@ -48,7 +48,7 @@ namespace Pagos_ICB.Clases
         public void ObtenerUsuario(string usuarioRe)
         {
             Conexión conexion = new Conexión();
-            string sql = @"SELECT idUsuario, nombre, apellido, usuario, clave FROM Acceso.Usuario WHERE usuario = '" + usuarioRe + "';";
+            string sql = @"SELECT idUsuario, nombre, apellido, usuario, clave FROM Acceso.Usuario WHERE usuario = '" + usuarioRe + "' AND estado=1;";
             SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
             try
             {

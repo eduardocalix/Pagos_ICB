@@ -23,7 +23,7 @@ namespace Pagos_ICB.Clases
         public Conexión()
         {
             //Cambiar la instancia del servidor local de SQL Server.
-            this.con = new SqlConnection(@"server = CALIX-PC\CALIX;
+            this.con = new SqlConnection(@"server = 127.0.0.1;
             integrated security = true; database = DBICB; ");
             //this.con = new SqlConnection("data source=127.0.0.1,1433; initial catalog=DBICB; user id=Restaurante; password=abc123;");
 
@@ -40,7 +40,7 @@ namespace Pagos_ICB.Clases
                 Exception ex = new Exception(
                     String.Format("{0} \n\n{1}",
                     error, excepcion.Message));
-                ex.HelpLink = "EduardoCalix.com";
+                ex.HelpLink = "eduardocalix11xtra@gmail.com";
                 ex.Source = "Clase_Conexion";
                 throw ex;
             }
@@ -58,7 +58,7 @@ namespace Pagos_ICB.Clases
                 Exception ex = new Exception(
                     String.Format("{0} \n\n{1}",
                     error, excepcion.Message));
-                ex.HelpLink = "EduardoCalix.com";
+                ex.HelpLink = "eduardocalix11xtra@gmail.com";
                 ex.Source = "Clase_Conexion";
                 throw ex;
             }

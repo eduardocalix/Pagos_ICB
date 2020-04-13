@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Excel.Exceptions;
+
 
 namespace Pagos_ICB
 {
@@ -174,6 +176,7 @@ namespace Pagos_ICB
             try
             {
                 dgvReportePago.DataSource = Clases.Pago.GetDataViewFiltroPagoCompleto(this.idTipo,cbPeriodo.SelectedIndex+1,txtRecibo.Text, 1);
+                btnModificar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -184,32 +187,29 @@ namespace Pagos_ICB
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            /*
-            DialogResult respuesta = MessageBox.Show("Está seguro de modificar el ReportePago", "Modificar ReportePago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de generar un reporte en excel?", "Reporte Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
-                try
+                if (dgvReportePago.Rows.Count > 0)
                 {
-                    Clases.Grado grado = new Clases.Grado();
-                    grado.ObteneGradosPorNombres(cbGrado.SelectedValue.ToString());
-                    Clases.ReportePago tipo = new Clases.ReportePago();
-                    tipo.ObteneNombreReportePagosPorNombres(cbNombre.SelectedValue.ToString());
-                    Clases.ICB.ModificarReportePago
-                        (
-                            this.id,
-                            tipo.IdNombreReportePago,
-                            grado.IdGrado,
-                            Convert.ToDecimal(txtValor.Text)
-                        );
-                    ResetFormulario();
-                }
-                catch (Exception ex)
-                {
+                    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                    excel.Application.Workbooks.Add(Type.Missing);
+                    for (int i = 1; i < dgvReportePago.Columns.Count + 1; i++)
+                    {
+                        excel.Cells[1, i] = dgvReportePago.Columns[i - 1].HeaderText;
+                    }
 
-                    Clases.Mensaje.Advertencia(ex);
+                    for (int i = 0; i < dgvReportePago.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgvReportePago.Columns.Count; j++)
+                        {
+                            excel.Cells[i + 2, j + 1] = dgvReportePago.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+                    excel.Columns.AutoFit();
+                    excel.Visible = true;
                 }
-
-            }*/
+            }
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
@@ -271,6 +271,7 @@ namespace Pagos_ICB
             txtNombre.Enabled = false;
             txtIdentidad.Enabled = false;
             btnAgregar.Enabled = false;
+            btnModificar.Enabled = true;
 
             cbBeca.Enabled = false;
             cbGrado.Enabled = false;

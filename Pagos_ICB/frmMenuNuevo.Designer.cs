@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenuNuevo));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.PAG = new System.Windows.Forms.ToolStripDropDownButton();
             this.Pagos = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,15 +51,13 @@
             this.Seguridad = new System.Windows.Forms.ToolStripDropDownButton();
             this.Usuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.Papelera = new System.Windows.Forms.ToolStripMenuItem();
+            this.periodoAcadémicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Ayuda = new System.Windows.Forms.ToolStripDropDownButton();
             this.CerrarSesión = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblFecha = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.periodoAcadémicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -203,7 +200,7 @@
             this.toolStripMenuItem9.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem9.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(177, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(186, 22);
             this.toolStripMenuItem9.Text = "Reportes de pagos";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
             // 
@@ -212,8 +209,8 @@
             this.toolStripMenuItem10.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem10.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(177, 22);
-            this.toolStripMenuItem10.Text = "Inventario";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(186, 22);
+            this.toolStripMenuItem10.Text = "Reporte de alumnos";
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
             // toolStripMenuItem11
@@ -221,20 +218,20 @@
             this.toolStripMenuItem11.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem11.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(177, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(186, 22);
             this.toolStripMenuItem11.Text = "Insumos";
             // 
             // resumenMensualToolStripMenuItem
             // 
             this.resumenMensualToolStripMenuItem.Name = "resumenMensualToolStripMenuItem";
-            this.resumenMensualToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.resumenMensualToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.resumenMensualToolStripMenuItem.Text = "Resumen Mensual";
             this.resumenMensualToolStripMenuItem.Click += new System.EventHandler(this.resumenMensualToolStripMenuItem_Click);
             // 
             // pagosRealizadosToolStripMenuItem
             // 
             this.pagosRealizadosToolStripMenuItem.Name = "pagosRealizadosToolStripMenuItem";
-            this.pagosRealizadosToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.pagosRealizadosToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.pagosRealizadosToolStripMenuItem.Text = "Pagos Realizados";
             // 
             // toolStripSeparator4
@@ -273,6 +270,13 @@
             this.Papelera.Text = "Papelera de Reciclaje";
             this.Papelera.Click += new System.EventHandler(this.Papelera_Click);
             // 
+            // periodoAcadémicoToolStripMenuItem
+            // 
+            this.periodoAcadémicoToolStripMenuItem.Name = "periodoAcadémicoToolStripMenuItem";
+            this.periodoAcadémicoToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.periodoAcadémicoToolStripMenuItem.Text = "Periodo Académico";
+            this.periodoAcadémicoToolStripMenuItem.Click += new System.EventHandler(this.periodoAcadémicoToolStripMenuItem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -304,7 +308,7 @@
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.Location = new System.Drawing.Point(828, 0);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(252, 29);
+            this.lblFecha.Size = new System.Drawing.Size(252, 25);
             this.lblFecha.TabIndex = 94;
             // 
             // timer1
@@ -312,22 +316,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-14, 701);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1442, 86);
-            this.pictureBox1.TabIndex = 70;
-            this.pictureBox1.TabStop = false;
-            // 
-            // periodoAcadémicoToolStripMenuItem
-            // 
-            this.periodoAcadémicoToolStripMenuItem.Name = "periodoAcadémicoToolStripMenuItem";
-            this.periodoAcadémicoToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.periodoAcadémicoToolStripMenuItem.Text = "Periodo Académico";
-            this.periodoAcadémicoToolStripMenuItem.Click += new System.EventHandler(this.periodoAcadémicoToolStripMenuItem_Click);
             // 
             // frmMenuNuevo
             // 
@@ -337,18 +325,16 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1080, 720);
             this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.toolStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmMenuNuevo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmMenuNuevo";
+            this.Text = "Sistema de control de pagos ICB";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMenuNuevo_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,7 +365,6 @@
         private System.Windows.Forms.ToolStripMenuItem Papelera;
         private System.Windows.Forms.ToolStripMenuItem resumenMensualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagosRealizadosToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem TiposDePago;
