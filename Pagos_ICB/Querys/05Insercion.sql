@@ -48,7 +48,7 @@ EXEC SP_AgregarDescuento '30 % DESCUENTO',30
 EXEC SP_AgregarDescuento '20 % DESCUENTO',20
 EXEC SP_AgregarDescuento '25 % DESCUENTO',25
 --Periodo
-EXEC SP_AgregarPeriodo 'Periodo 2019-2020'
+EXEC SP_AgregarPeriodo 'PERIODO 2019-2020'
 
 --Tipo Pago
 --nombre,grado, valor

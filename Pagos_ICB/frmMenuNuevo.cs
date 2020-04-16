@@ -124,5 +124,16 @@ namespace Pagos_ICB
             frmPeriodo periodo = new frmPeriodo();
             periodo.ShowDialog();
         }
+
+        private void Reportes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            frmReporteRecargo recargo = new frmReporteRecargo();
+            recargo.Show();
+        }
     }
 }

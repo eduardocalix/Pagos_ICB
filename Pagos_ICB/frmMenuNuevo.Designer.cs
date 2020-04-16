@@ -194,6 +194,7 @@
             this.Reportes.Size = new System.Drawing.Size(84, 22);
             this.Reportes.Text = "Reportes";
             this.Reportes.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.Reportes.Click += new System.EventHandler(this.Reportes_Click);
             // 
             // toolStripMenuItem9
             // 
@@ -218,8 +219,9 @@
             this.toolStripMenuItem11.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem11.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(186, 22);
-            this.toolStripMenuItem11.Text = "Insumos";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItem11.Text = "Reporte de recargos";
+            this.toolStripMenuItem11.Click += new System.EventHandler(this.toolStripMenuItem11_Click);
             // 
             // resumenMensualToolStripMenuItem
             // 

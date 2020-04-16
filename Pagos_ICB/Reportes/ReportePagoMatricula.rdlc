@@ -6,16 +6,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.8175cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>3.16146cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>3.29375cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.10313cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.19057cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -37,11 +43,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ID</Value>
-                              <Style>
-                                <FontFamily>Palatino Linotype</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Value>GRADO</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -70,11 +73,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>IDENTIDAD</Value>
-                              <Style>
-                                <FontFamily>Palatino Linotype</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Value>NOMBRES</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -103,11 +103,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>NOMBRES</Value>
-                              <Style>
-                                <FontFamily>Palatino Linotype</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Value>APELLIDOS</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -136,11 +133,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>APELLIDOS</Value>
-                              <Style>
-                                <FontFamily>Palatino Linotype</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Value>TOTAL</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -169,11 +163,8 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>GRADO</Value>
-                              <Style>
-                                <FontFamily>Palatino Linotype</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Value>RECIBO</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -202,17 +193,74 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>BECA</Value>
-                              <Style>
-                                <FontFamily>Palatino Linotype</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
+                              <Value>FECHA DE PAGO</Value>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox12</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox14">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>DESCUENTO</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox14</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox16">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox16</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -233,51 +281,21 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="idAlumno">
+                    <Textbox Name="nombreGrado">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!idAlumno.Value</Value>
+                              <Value>=Fields!nombreGrado.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>idAlumno</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="identidad">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!identidad.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>identidad</rd:DefaultName>
+                      <rd:DefaultName>nombreGrado</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -353,21 +371,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="nombreGrado">
+                    <Textbox Name="total">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!nombreGrado.Value</Value>
+                              <Value>=Fields!total.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>nombreGrado</rd:DefaultName>
+                      <rd:DefaultName>total</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -383,21 +401,111 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="beca">
+                    <Textbox Name="recibo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!beca.Value</Value>
+                              <Value>=Fields!recibo.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>beca</rd:DefaultName>
+                      <rd:DefaultName>recibo</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="FechadePago">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Fecha de Pago.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>FechadePago</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="nombreDescuento">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!nombreDescuento.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>nombreDescuento</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox17">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox17</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -423,6 +531,8 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -435,11 +545,11 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSetALUMNOS</DataSetName>
-        <Top>0.57891cm</Top>
-        <Left>0.28787cm</Left>
+        <DataSetName>DataSetMatricula</DataSetName>
+        <Top>0.65828cm</Top>
+        <Left>0.31167cm</Left>
         <Height>1.2cm</Height>
-        <Width>15cm</Width>
+        <Width>22.0664cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -447,13 +557,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.94792in</Height>
+    <Height>0.97917in</Height>
     <Style />
   </Body>
-  <Width>6.79501in</Width>
+  <Width>8.81027in</Width>
   <Page>
     <PageHeader>
-      <Height>2.77812cm</Height>
+      <Height>2.54cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -492,8 +602,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.29669cm</Top>
-          <Left>0.68475cm</Left>
+          <Top>0.18362cm</Top>
+          <Left>0.31167cm</Left>
           <Height>2.17276cm</Height>
           <Width>15.88666cm</Width>
           <Style>
@@ -514,7 +624,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.97896cm</Height>
+      <Height>1.32292cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -533,8 +643,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>OverallPageNumber</rd:DefaultName>
-          <Top>0.17639cm</Top>
-          <Left>6.70308cm</Left>
+          <Top>0.30854cm</Top>
+          <Left>7.41227cm</Left>
           <Height>0.6cm</Height>
           <Width>3.58479cm</Width>
           <Style>
@@ -570,22 +680,18 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>0d78c4c0-6aa4-4791-bfc7-ab102a7125a0</rd:DataSourceID>
+      <rd:DataSourceID>5b7ac926-15e2-4ea6-a5e8-f974a2638837</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSetALUMNOS">
+    <DataSet Name="DataSetMatricula">
       <Query>
         <DataSourceName>DBICBDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="idAlumno">
-          <DataField>idAlumno</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="identidad">
-          <DataField>identidad</DataField>
+        <Field Name="nombreGrado">
+          <DataField>nombreGrado</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nombres">
@@ -596,25 +702,37 @@
           <DataField>apellidos</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="nombreGrado">
-          <DataField>nombreGrado</DataField>
+        <Field Name="total">
+          <DataField>total</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="recibo">
+          <DataField>recibo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="beca">
-          <DataField>beca</DataField>
+        <Field Name="Fecha de Pago">
+          <DataField>Fecha de Pago</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nombreDescuento">
+          <DataField>nombreDescuento</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="observacion">
+          <DataField>observacion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DBICBDataSet</rd:DataSetName>
         <rd:SchemaPath>D:\Practica\Proyectos\ICB\Pagos\Pagos_ICB\Pagos_ICB\DBICBDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>VistaAlumnos</rd:TableName>
+        <rd:TableName>VistaMatricula</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>VistaAlumnosTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>VistaMatriculaTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>14410725-3ca2-4045-adbb-51ccede22d93</rd:ReportID>
+  <rd:ReportID>76ab557f-b2e7-45a7-b99a-13a401288351</rd:ReportID>
 </Report>

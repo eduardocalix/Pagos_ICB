@@ -98,6 +98,12 @@
     <Compile Include="frmPeriodo.designer.cs">
       <DependentUpon>frmPeriodo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteMaricula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteMaricula.Designer.cs">
+      <DependentUpon>frmReporteMaricula.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportePago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="frmNombreTipoPago.designer.cs">
       <DependentUpon>frmNombreTipoPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteRecargo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteRecargo.Designer.cs">
+      <DependentUpon>frmReporteRecargo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReporteVista.cs">
       <SubType>Form</SubType>
@@ -194,6 +206,9 @@
     <EmbeddedResource Include="frmPeriodo.resx">
       <DependentUpon>frmPeriodo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteMaricula.resx">
+      <DependentUpon>frmReporteMaricula.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReportePago.resx">
       <DependentUpon>frmReportePago.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNombreTipoPago.resx">
       <DependentUpon>frmNombreTipoPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteRecargo.resx">
+      <DependentUpon>frmReporteRecargo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReporteVista.resx">
       <DependentUpon>frmReporteVista.cs</DependentUpon>
@@ -247,6 +265,8 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Reportes\ReporteAlumnos.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteMoraDescuento.rdlc" />
+    <EmbeddedResource Include="Reportes\ReportePagoMatricula.rdlc" />
     <None Include="DBICBDataSet.xsc">
       <DependentUpon>DBICBDataSet.xsd</DependentUpon>
     </None>
@@ -259,7 +279,6 @@
       <DependentUpon>DBICBDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Pagos_ICB.Reportes.DataSet1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -278,6 +297,7 @@
     <Content Include="Querys\02Restricciones.sql" />
     <Content Include="Querys\03Funciones.sql" />
     <Content Include="Querys\04Procedimientos.sql" />
+    <Content Include="Querys\06Vistas.sql" />
     <Content Include="Querys\05Insercion.sql" />
     <Content Include="Resources\1486504314-check-list-item-item-list-to-do-ui-shopping_81331.png" />
     <Content Include="Resources\1486505266-dish-food-dome-dish-kitchen-restaurant_81412.ico" />
@@ -327,6 +347,8 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

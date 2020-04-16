@@ -1,6 +1,6 @@
 ﻿namespace Pagos_ICB
 {
-    partial class frmReporteVista
+    partial class frmReporteMaricula
     {
         /// <summary>
         /// Required designer variable.
@@ -31,52 +31,51 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.VistaAlumnosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
-            this.VistaAlumnosTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaAlumnosTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.VistaAlumnosBindingSource)).BeginInit();
+            this.VistaMatriculaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.VistaMatriculaTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaMatriculaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VistaMatriculaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSetALUMNOS";
-            reportDataSource1.Value = this.VistaAlumnosBindingSource;
+            reportDataSource1.Name = "DataSetMatricula";
+            reportDataSource1.Value = this.VistaMatriculaBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Pagos_ICB.Reportes.ReporteAlumnos.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Pagos_ICB.Reportes.ReportePagoMatricula.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(404, 218);
+            this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
-            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
-            // 
-            // VistaAlumnosBindingSource
-            // 
-            this.VistaAlumnosBindingSource.DataMember = "VistaAlumnos";
-            this.VistaAlumnosBindingSource.DataSource = this.DBICBDataSet;
             // 
             // DBICBDataSet
             // 
             this.DBICBDataSet.DataSetName = "DBICBDataSet";
             this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // VistaAlumnosTableAdapter
+            // VistaMatriculaBindingSource
             // 
-            this.VistaAlumnosTableAdapter.ClearBeforeFill = true;
+            this.VistaMatriculaBindingSource.DataMember = "VistaMatricula";
+            this.VistaMatriculaBindingSource.DataSource = this.DBICBDataSet;
             // 
-            // frmReporteVista
+            // VistaMatriculaTableAdapter
+            // 
+            this.VistaMatriculaTableAdapter.ClearBeforeFill = true;
+            // 
+            // frmReporteMaricula
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 218);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "frmReporteVista";
-            this.Text = "Reporte Vista";
-            this.Load += new System.EventHandler(this.frmReporteVista_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.VistaAlumnosBindingSource)).EndInit();
+            this.Name = "frmReporteMaricula";
+            this.Text = "frmReporteMaricula";
+            this.Load += new System.EventHandler(this.frmReporteMaricula_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VistaMatriculaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,8 +83,8 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource VistaAlumnosBindingSource;
+        private System.Windows.Forms.BindingSource VistaMatriculaBindingSource;
         private DBICBDataSet DBICBDataSet;
-        private DBICBDataSetTableAdapters.VistaAlumnosTableAdapter VistaAlumnosTableAdapter;
+        private DBICBDataSetTableAdapters.VistaMatriculaTableAdapter VistaMatriculaTableAdapter;
     }
 }

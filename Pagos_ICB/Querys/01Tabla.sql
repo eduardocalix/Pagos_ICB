@@ -129,7 +129,7 @@ ELSE
 			idDescuento INT,
 			idMora INT,
 			idUsuario INT NOT NULL,
-			total DECIMAL (8,2)NOT NULL,
+			total DECIMAL (8,2) NULL,
 			fechaPago VARCHAR(15) NOT NULL,
 			observacion VARCHAR(100),
 			fechaRegistro DATE DEFAULT GETDATE(),
