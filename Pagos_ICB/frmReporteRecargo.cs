@@ -20,13 +20,11 @@ namespace Pagos_ICB
         private void frmReporteRecargo_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'dBICBDataSet.VistaDescuento' Puede moverla o quitarla según sea necesario.
-            this.vistaDescuentoTableAdapter.Fill(this.DBICBDataSet.VistaDescuento);
+            //this.vistaDescuentoTableAdapter.Fill(this.DBICBDataSet.VistaDescuento);
             // TODO: esta línea de código carga datos en la tabla 'dBICBDataSet.VistaMora' Puede moverla o quitarla según sea necesario.
             this.vistaMoraTableAdapter.Fill(this.DBICBDataSet.VistaMora);
           //  this.VistaAlumnosTableAdapter.Fill(this.DBICBDataSet.VistaMora);
-            this.reportViewer1.RefreshReport();
-
-          
+            this.reportViewer1.RefreshReport();         
 
         }
 

@@ -1086,301 +1086,7 @@ GO
 --------------------------------------------------------------------------------------------
 /*
 --------------------------------------------------------------------------------------
---Modulo Pago
-CREATE PROCEDURE SP_AgregarPago
-(
-@idPedido INT,
-@idCaja INT,
-@idUsuario INT,
-@descuento DECIMAL(6,4),
-@exento DECIMAL(6,4),
-@isv15 DECIMAL(6,4),
-@isv18 DECIMAL(6,4),
-@total DECIMAL(8,4),
-@tipoPago INT,
-@subTotal DECIMAL(8,4)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.Pagos.idPedido) FROM Cuentas.Pagos WHERE idPedido=@idPedido;
-	IF (@existe > 0)
-		BEGIN
-			RAISERROR(N'Ya existe un pedido con el id "%d"', 16, 1,@idPedido);
-			RETURN 0
-			
-		END
-	ELSE
-		BEGIN
-			INSERT INTO Cuentas.Pagos
-			(
-			    idPedido,
-				idCaja,
-			    idUsuario,			    
-			    descuento,
-			    exento,
-			    iva15,
-			    iva18,
-			    total,
-				tipoPago,
-				subTotal
-			)
-			VALUES
-			(  @idPedido,@idCaja,@idUsuario,@descuento,@exento,@isv15,@isv18,@total,@tipoPago,@subTotal
-			    )
-			RETURN 1
-		END
-END
-GO--Modulo Tipo de Unidad
-CREATE PROCEDURE SP_InsertarTipoUnidad
-(
-    @descripcion NVARCHAR(100)
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-
-    SELECT @existe = COUNT(Cuentas.TipoUnidad.idTipoUnidad) FROM Cuentas.TipoUnidad WHERE descripcion=@descripcion;
-    IF (@existe > 0)
-        BEGIN
-            RAISERROR(N'Ya existe un Tipo de Unidad con el nombrePago "%s"', 16, 1,@descripcion);
-            RETURN 0          
-        END
-    ELSE
-        BEGIN
-            INSERT INTO Cuentas.TipoUnidad(descripcion)
-                VALUES(@descripcion)
-            RETURN 1
-        END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarTipoUnidad
-(
-    @idTipoUnidad INT,
-    @descripcion NVARCHAR(100)
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-    SELECT @existe = COUNT(Cuentas.TipoUnidad.idTipoUnidad) FROM Cuentas.TipoUnidad WHERE idTipoUnidad=@idTipoUnidad;
-    IF (@existe = 0)
-        BEGIN
-            RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idTipoUnidad);
-            RETURN 0
-        END     
-    ELSE
-        BEGIN
-            UPDATE Cuentas.TipoUnidad
-                SET     descripcion = @descripcion
-                    WHERE idTipoUnidad = @idTipoUnidad;
-            RETURN 1
-        END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarTipoUnidad1
-(
-    @idTipoUnidad INT,
-	@estado BIT
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-    SELECT @existe = COUNT(Cuentas.TipoUnidad.idTipoUnidad) FROM Cuentas.TipoUnidad WHERE idTipoUnidad=@idTipoUnidad;
-    IF (@existe = 0)
-        BEGIN
-            RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idTipoUnidad);
-            RETURN 0
-        END     
-    ELSE
-        BEGIN
-            UPDATE Cuentas.TipoUnidad SET estado=@estado WHERE idTipoUnidad = @idTipoUnidad;
-            RETURN 1
-        END
-END
-GO
-CREATE PROCEDURE SP_EliminarTipoUnidad
-(
-    @idTipoUnidad INT
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-    SELECT @existe = COUNT(Cuentas.TipoUnidad.idTipoUnidad) FROM Cuentas.TipoUnidad WHERE idTipoUnidad=@idTipoUnidad;
-    IF (@existe = 0)
-        BEGIN
-            RAISERROR(N'No existe ningún Tipo de Unidad con el id "%d"', 16, 1, @idTipoUnidad);
-            RETURN 0
-        END     
-    ELSE
-        BEGIN
-            DELETE FROM Cuentas.TipoUnidad  WHERE idTipoUnidad = @idTipoUnidad;
-            RETURN 1
-        END
-END
-GO
----------------------------------------------------------------------------------
---Modulo mesas
-
-CREATE PROCEDURE SP_AgregarMesa
-(
-@estado NVARCHAR(21)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Mesas.estado) FROM Cuentas.Mesas WHERE estado=@estado;
-	IF (@existe > 0)
-		BEGIN
-			RAISERROR(N'Ya existe una area con el nombrePago "%s"', 16, 1,@estado);
-			RETURN 0
-		END
-	ELSE
-		BEGIN
-			INSERT INTO Cuentas.Mesas(estado)
-				VALUES(@estado)
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarMesa
-(
-@id INT,
-@estado NVARCHAR(21)
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-	SELECT @existe = COUNT(Cuentas.Mesas.id) FROM Cuentas.Mesas WHERE id=@id;
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe ninguna Mesa con el id "%d"', 16, 1, @id);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			UPDATE Cuentas.Mesas
-				SET estado = @estado
-					WHERE id = @id;
-			RETURN 1
-		END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarMesa
-(
-@id INT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Mesas.id) FROM Cuentas.Mesas WHERE id=@id;
-		IF (@existe = 0)
-			BEGIN
-				RAISERROR(N'No existe ninguna Mesa con el id "%d"', 16, 1);
-				RETURN 0
-			END 	
-		ELSE
-			BEGIN
-				UPDATE Cuentas.Mesas SET estado=0 WHERE id=@id;
-				RETURN 1
-			END
-END
-GO
-----------------------------------------------------------------------------------
---Modulo Pedidos de Comida
-
-CREATE PROCEDURE SP_AgregarPedido
-(
-@fecha NVARCHAR(19),
-@idMesa INT,
-@RTN NVARCHAR(14),
-@nombre NVARCHAR(50),
-@IdAlumno INT
-)
-AS
-BEGIN
-	--DECLARE @existe int;
-	--SET @existe = 0;
-
-	--SELECT @existe = COUNT(Cuentas.Pedidos.id) FROM Cuentas.Pedidos WHERE id=@id;
-	--IF (@existe > 0)
-	--	BEGIN
-	--		RAISERROR(N'No existe ninguna Mesa con el id "%d"', 16, 1,@idMesa);
-	--		RETURN 0
-			
-	--	END
-	--ELSE
-		--BEGIN
-			INSERT INTO Cuentas.Pedidos(Fecha,idMesa,RTN,NombreCliente,idAlumno)
-				VALUES(@fecha,@idMesa,@RTN,@nombre,@IdAlumno)
-
-			
-			RETURN 1
-
-		--END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarPedido
-(
-@id INT,
-@estado INT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-
-	SELECT @existe = COUNT(Cuentas.Pedidos.id) FROM Cuentas.Pedidos WHERE id=@id;
-
-	IF (@existe = 0)
-		BEGIN
-			RAISERROR(N'No existe ningun pedido con el id "%d"', 16, 1,@id);
-			RETURN 0
-		END 	
-	ELSE
-		BEGIN
-			UPDATE Cuentas.Pedidos
-				SET estado=@estado
-					WHERE id=@id;
-			RETURN 1
-		END	
-END
-GO
-
-CREATE PROCEDURE SP_EliminarPedido
-(
-@id INT
-)
-AS
-BEGIN
-	DECLARE @existe int;
-	SET @existe = 0;
-		SELECT @existe = COUNT(Cuentas.Pedidos.id) FROM Cuentas.Pedidos WHERE id=@id;
-		IF (@existe = 0)
-			BEGIN
-				RAISERROR(N'No se encuentra el pedido "%d"', 16, 1,@id);
-				RETURN 0
-			END 	
-		ELSE
-			BEGIN
-				UPDATE Cuentas.Pedidos SET estado=0	WHERE id=@id;
-				RETURN 1
-			END
-END
-GO
+-
 -----------------------------------------------------------------------------------
 --Modulo DetallePedido
 
@@ -1687,31 +1393,73 @@ BEGIN
 	INSERT INTO Cuentas.OtrasSalidas(Descripcion, Monto, fecha, Usuario)
 		VALUES (@Descripcion, @Monto, GETDATE(), @Usuario)
 END
-GO
+GO*/
 
---Insertar Servicios Publicos
--- OJO!!!! Este SP esta funcional. Hay que agregarlo a la Base de Datos. Lo comente porque aqui da un error y para
--- que no lo de, lo comente. Si se omite este, no se podra hacer el cierre de caja.
-CREATE PROCEDURE SP_Agregar_ServicioPublico
+CREATE PROCEDURE SP_MostrarReporte
 (
-	@Descripcion NVARCHAR (30)
+	@fechaDe VARCHAR,
+	@fechaHasta VARCHAR,
+	@idNombre INT
 )
 AS
 BEGIN
-	INSERT INTO Cuentas.ServicioPublico (Descripcion)
-		VALUES (@Descripcion)
+    DECLARE @existe int;
+    SET @existe = 0;
+
+    SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago;
+
+    IF (@existe = 0)
+        BEGIN
+            RAISERROR(N'No existe el pago ', 16, 1);
+            RETURN 0
+        END     
+    ELSE
+        BEGIN
+            SELECT        Cuentas.Grado.nombreGrado AS GRADO, Cuentas.Alumno.nombres AS NOMBRES, Cuentas.Alumno.apellidos AS APELLIDOS, Cuentas.Pago.total AS TOTAL, 
+						  Cuentas.Pago.recibo AS RECIBO, Cuentas.Pago.fechaPago AS FECHA,Cuentas.Mora.nombreMora AS RECARGO, Cuentas.Descuento.nombreDescuento AS DESCUENTO, 
+                         Cuentas.Pago.observacion AS OBSERVACIÓN
+			FROM         Cuentas.Alumno INNER JOIN
+                         Cuentas.Grado ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN
+                         Cuentas.Pago ON Cuentas.Alumno.idAlumno = Cuentas.Pago.idAlumno INNER JOIN
+                         Cuentas.Descuento ON Cuentas.Pago.idDescuento = Cuentas.Descuento.idDescuento INNER JOIN
+                         Cuentas.Periodo AS Periodo_1 ON Cuentas.Alumno.idPeriodo = Periodo_1.idPeriodo INNER JOIN
+                         Cuentas.TipoPago ON Cuentas.Grado.idGrado = Cuentas.TipoPago.idGrado AND Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago INNER JOIN
+                         Cuentas.Mora ON Cuentas.Pago.idMora = Cuentas.Mora.idMora
+			WHERE        (Cuentas.Pago.fechaPago >= @fechaDE AND Cuentas.Pago.fechaPago >= @fechaHasta) AND (Cuentas.TipoPago.idNombreTipoPago = @idNombre) AND (Cuentas.Alumno.estado = 1)
+        END
 END
 GO
 
+--EXEC SP_MostrarReporte '13/4/2020','15/4/2020',1
+--EXEC SP_MostrarSumaReporte '13/4/2020','15/4/2020',1
+--SELECT * FROM Cuentas.Pago
 
-SELECT   Cuentas.Pago.idPago         as Código,
-                                    Cuentas.Grado.nombreGrado   as Grado,
-                                    Cuentas.Alumno.nombres      as Nombre, 
-                                    Cuentas.Alumno.apellidos    as Apellidos,
-                                    Cuentas.Pago.recibo         as Recibo,
-                                    Cuentas.Pago.total          as Total
-                             FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
-                            Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
-							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
-                            Cuentas.Pago.idMora = Cuentas.Mora.idMora AND
-                            Cuentas.Pago.estado= 1 AND Cuentas.Pago.idAlumno =1;*/
+CREATE PROCEDURE SP_MostrarSumaReporte
+(
+	@fechaDe VARCHAR,
+	@fechaHasta VARCHAR,
+	@idNombre INT
+)
+AS
+BEGIN
+    DECLARE @existe int;
+    SET @existe = 0;
+
+    SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago;
+
+    IF (@existe = 0)
+        BEGIN
+            RAISERROR(N'No existe el pago ', 16, 1);
+            RETURN 0
+        END     
+    ELSE
+        BEGIN
+            SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago AS PAGO
+			FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+			WHERE       (Cuentas.Pago.fechaPago >= @fechaDE AND Cuentas.Pago.fechaPago >= @fechaHasta) AND (Cuentas.TipoPago.idNombreTipoPago = @idNombre)
+			GROUP BY Cuentas.NombreTipoPago.nombreTipoPago			 
+        END
+END
+GO

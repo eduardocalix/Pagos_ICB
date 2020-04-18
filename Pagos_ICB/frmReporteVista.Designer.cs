@@ -30,13 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.VistaAlumnosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.VistaAlumnosTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaAlumnosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.VistaAlumnosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // VistaAlumnosBindingSource
+            // 
+            this.VistaAlumnosBindingSource.DataMember = "VistaAlumnos";
+            this.VistaAlumnosBindingSource.DataSource = this.DBICBDataSet;
+            // 
+            // DBICBDataSet
+            // 
+            this.DBICBDataSet.DataSetName = "DBICBDataSet";
+            this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -52,16 +62,6 @@
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
-            // VistaAlumnosBindingSource
-            // 
-            this.VistaAlumnosBindingSource.DataMember = "VistaAlumnos";
-            this.VistaAlumnosBindingSource.DataSource = this.DBICBDataSet;
-            // 
-            // DBICBDataSet
-            // 
-            this.DBICBDataSet.DataSetName = "DBICBDataSet";
-            this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // VistaAlumnosTableAdapter
             // 
             this.VistaAlumnosTableAdapter.ClearBeforeFill = true;
@@ -73,7 +73,7 @@
             this.ClientSize = new System.Drawing.Size(404, 218);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmReporteVista";
-            this.Text = "Reporte Vista";
+            this.Text = "Reporte Alumnos";
             this.Load += new System.EventHandler(this.frmReporteVista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.VistaAlumnosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();

@@ -437,14 +437,17 @@ namespace Pagos_ICB
             }
             else
             {
-                cbMora.Enabled = true;
-              
-                    Clases.Mora mora = new Clases.Mora();
-                    mora.ObteneMorasPorNombres(cbMora.SelectedValue.ToString());
+                cbMora.Enabled = true;              
+                Clases.Mora mora = new Clases.Mora();
+                mora.ObteneMorasPorNombres(cbMora.SelectedValue.ToString());
                 if (mora.Valor > 0)
                 {
                     total = this.valor + mora.Valor;
                     txtValor.Text = total.ToString();
+                }
+                else
+                {
+                    txtValor.Text = this.valor.ToString();
                 }
               
 

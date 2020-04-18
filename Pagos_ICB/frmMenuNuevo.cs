@@ -79,8 +79,8 @@ namespace Pagos_ICB
 
         private void resumenMensualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Restaurante.Reportes.reportecaja reportecaja = new Reportes.reportecaja();
-            //reportecaja.ShowDialog();
+            frmReporteMaricula maricula = new frmReporteMaricula();
+            maricula.Show();
         }
 
         private void Ayuda_Click(object sender, EventArgs e)
@@ -134,6 +134,18 @@ namespace Pagos_ICB
         {
             frmReporteRecargo recargo = new frmReporteRecargo();
             recargo.Show();
+        }
+
+        private void pagosRealizadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportePagosMes reporte = new ReportePagosMes();
+            reporte.Show();
+        }
+
+        private void totalPagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTotalPagos pagos = new frmTotalPagos();
+            pagos.Show();
         }
     }
 }

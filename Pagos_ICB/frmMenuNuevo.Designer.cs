@@ -57,6 +57,7 @@
             this.CerrarSesión = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblFecha = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.totalPagosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,7 +185,8 @@
             this.toolStripMenuItem10,
             this.toolStripMenuItem11,
             this.resumenMensualToolStripMenuItem,
-            this.pagosRealizadosToolStripMenuItem});
+            this.pagosRealizadosToolStripMenuItem,
+            this.totalPagosToolStripMenuItem});
             this.Reportes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.Reportes.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Reportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -201,7 +203,7 @@
             this.toolStripMenuItem9.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem9.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(186, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItem9.Text = "Reportes de pagos";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
             // 
@@ -210,7 +212,7 @@
             this.toolStripMenuItem10.BackColor = System.Drawing.SystemColors.Menu;
             this.toolStripMenuItem10.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(186, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(188, 22);
             this.toolStripMenuItem10.Text = "Reporte de alumnos";
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
@@ -226,15 +228,16 @@
             // resumenMensualToolStripMenuItem
             // 
             this.resumenMensualToolStripMenuItem.Name = "resumenMensualToolStripMenuItem";
-            this.resumenMensualToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.resumenMensualToolStripMenuItem.Text = "Resumen Mensual";
+            this.resumenMensualToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.resumenMensualToolStripMenuItem.Text = "Resumen Matricula";
             this.resumenMensualToolStripMenuItem.Click += new System.EventHandler(this.resumenMensualToolStripMenuItem_Click);
             // 
             // pagosRealizadosToolStripMenuItem
             // 
             this.pagosRealizadosToolStripMenuItem.Name = "pagosRealizadosToolStripMenuItem";
-            this.pagosRealizadosToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.pagosRealizadosToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.pagosRealizadosToolStripMenuItem.Text = "Pagos Realizados";
+            this.pagosRealizadosToolStripMenuItem.Click += new System.EventHandler(this.pagosRealizadosToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -319,6 +322,13 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // totalPagosToolStripMenuItem
+            // 
+            this.totalPagosToolStripMenuItem.Name = "totalPagosToolStripMenuItem";
+            this.totalPagosToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.totalPagosToolStripMenuItem.Text = "Total Pagos";
+            this.totalPagosToolStripMenuItem.Click += new System.EventHandler(this.totalPagosToolStripMenuItem_Click);
+            // 
             // frmMenuNuevo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,5 +382,6 @@
         private System.Windows.Forms.ToolStripMenuItem TiposDePago;
         private System.Windows.Forms.ToolStripMenuItem nombreDeTipoDePagoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem periodoAcadémicoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem totalPagosToolStripMenuItem;
     }
 }

@@ -34,7 +34,7 @@
             this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
             this.vistaMoraTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaMoraTableAdapter();
             this.VistaDescuentobindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.vistaDescuentoTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaDescuentoTableAdapter();
+           /// this.vistaDescuentoTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaDescuentoTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.VistaMorabindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VistaDescuentobindingSource)).BeginInit();
@@ -72,7 +72,7 @@
             // 
             // vistaDescuentoTableAdapter
             // 
-            this.vistaDescuentoTableAdapter.ClearBeforeFill = true;
+            //this.vistaDescuentoTableAdapter.ClearBeforeFill = true;
             // 
             // frmReporteRecargo
             // 
@@ -81,7 +81,7 @@
             this.ClientSize = new System.Drawing.Size(628, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmReporteRecargo";
-            this.Text = "frmReporteRecargo";
+            this.Text = "Reporte Recargos";
             this.Load += new System.EventHandler(this.frmReporteRecargo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.VistaMorabindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
@@ -95,7 +95,7 @@
         private DBICBDataSet DBICBDataSet;
         private DBICBDataSetTableAdapters.VistaMoraTableAdapter vistaMoraTableAdapter;
         private System.Windows.Forms.BindingSource VistaDescuentobindingSource;
-        private DBICBDataSetTableAdapters.VistaDescuentoTableAdapter vistaDescuentoTableAdapter;
+        //private DBICBDataSetTableAdapters.VistaDescuentoTableAdapter vistaDescuentoTableAdapter;
 
         #endregion
         //   private Pagos_ICB.DBICBDataSetMoraTableAdapters.MoraTableAdapter moraTableAdapter1;

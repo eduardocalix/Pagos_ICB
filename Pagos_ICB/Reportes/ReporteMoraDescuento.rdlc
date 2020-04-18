@@ -45,26 +45,30 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="ID">
-          <DataField>ID</DataField>
+        <Field Name="idDescuento">
+          <DataField>idDescuento</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="RECARGO">
-          <DataField>RECARGO</DataField>
+        <Field Name="nombreDescuento">
+          <DataField>nombreDescuento</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="VALOR">
-          <DataField>VALOR</DataField>
+        <Field Name="valor">
+          <DataField>valor</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="estado">
+          <DataField>estado</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DBICBDataSet</rd:DataSetName>
         <rd:SchemaPath>D:\Practica\Proyectos\ICB\Pagos\Pagos_ICB\Pagos_ICB\DBICBDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>VistaDescuento</rd:TableName>
+        <rd:TableName>Descuento</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>VistaDescuentoTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>DescuentoTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -92,7 +96,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
             <Top>0.10583cm</Top>
-            <Left>6.71662cm</Left>
+            <Left>9.25662cm</Left>
             <Height>0.84377cm</Height>
             <Width>3.61125cm</Width>
             <Style>
@@ -455,7 +459,7 @@
             </ChartNoDataMessage>
             <DataSetName>DataSetMora</DataSetName>
             <Top>3.10981cm</Top>
-            <Left>3.8862cm</Left>
+            <Left>6.4262cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
             <ZIndex>1</ZIndex>
@@ -488,7 +492,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
             <Top>8.2862cm</Top>
-            <Left>6.05516cm</Left>
+            <Left>8.59516cm</Left>
             <Height>0.84377cm</Height>
             <Width>3.61125cm</Width>
             <ZIndex>2</ZIndex>
@@ -508,22 +512,22 @@
                 <ChartMember>
                   <Group Name="Chart3_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!RECARGO.Value</GroupExpression>
+                      <GroupExpression>=Fields!nombreDescuento.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!RECARGO.Value</Value>
+                      <Value>=Fields!nombreDescuento.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!RECARGO.Value</Label>
+                  <Label>=Fields!nombreDescuento.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>VALOR</Label>
+                  <Label>valor</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -533,7 +537,7 @@
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!VALOR.Value)</Y>
+                        <Y>=Sum(Fields!valor.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -848,7 +852,7 @@
             </ChartNoDataMessage>
             <DataSetName>DataSetDescuento</DataSetName>
             <Top>11.8146cm</Top>
-            <Left>3.8862cm</Left>
+            <Left>6.4262cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
             <ZIndex>3</ZIndex>
@@ -1101,7 +1105,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSetMora</DataSetName>
             <Top>1.3371cm</Top>
-            <Left>3.51578cm</Left>
+            <Left>6.05578cm</Left>
             <Height>1.2cm</Height>
             <Width>7.5cm</Width>
             <ZIndex>4</ZIndex>
@@ -1118,7 +1122,7 @@
                   <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>3.16146cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.5cm</Width>
@@ -1170,7 +1174,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>RECARGO</Value>
+                                  <Value>DESCUENTO</Value>
                                   <Style>
                                     <FontFamily>raleway</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1234,21 +1238,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ID1">
+                        <Textbox Name="idDescuento">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ID.Value</Value>
+                                  <Value>=Fields!idDescuento.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ID1</rd:DefaultName>
+                          <rd:DefaultName>idDescuento</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1264,21 +1268,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="RECARGO1">
+                        <Textbox Name="nombreDescuento">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!RECARGO.Value</Value>
+                                  <Value>=Fields!nombreDescuento.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>RECARGO1</rd:DefaultName>
+                          <rd:DefaultName>nombreDescuento</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1294,21 +1298,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="VALOR1">
+                        <Textbox Name="valor">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!VALOR.Value</Value>
+                                  <Value>=Fields!valor.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>VALOR1</rd:DefaultName>
+                          <rd:DefaultName>valor</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1345,9 +1349,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSetDescuento</DataSetName>
             <Top>9.75085cm</Top>
-            <Left>4.66641cm</Left>
+            <Left>6.09516cm</Left>
             <Height>1.2cm</Height>
-            <Width>7.5cm</Width>
+            <Width>8.16146cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1359,7 +1363,7 @@
         <Height>6.94284in</Height>
         <Style />
       </Body>
-      <Width>6.69109in</Width>
+      <Width>21.1cm</Width>
       <Page>
         <PageHeader>
           <Height>2.68139cm</Height>
@@ -1378,6 +1382,7 @@
                         <FontFamily>raleway</FontFamily>
                         <FontSize>26pt</FontSize>
                         <FontWeight>Bold</FontWeight>
+                        <Color>WhiteSmoke</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1392,6 +1397,7 @@
                       <Style>
                         <FontFamily>raleway</FontFamily>
                         <FontSize>26pt</FontSize>
+                        <Color>WhiteSmoke</Color>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1402,7 +1408,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.26141cm</Top>
-              <Left>0.31167cm</Left>
+              <Left>2.24668cm</Left>
               <Height>2.17276cm</Height>
               <Width>15.88666cm</Width>
               <Style>
@@ -1420,14 +1426,15 @@
             <Border>
               <Style>None</Style>
             </Border>
+            <BackgroundColor>#005080</BackgroundColor>
           </Style>
         </PageHeader>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
-        <LeftMargin>2cm</LeftMargin>
-        <RightMargin>2cm</RightMargin>
-        <TopMargin>2cm</TopMargin>
-        <BottomMargin>2cm</BottomMargin>
+        <PageHeight>27.94cm</PageHeight>
+        <PageWidth>21.59cm</PageWidth>
+        <LeftMargin>1cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
+        <TopMargin>1cm</TopMargin>
+        <BottomMargin>1cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>

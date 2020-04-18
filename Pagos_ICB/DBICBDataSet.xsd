@@ -316,10 +316,11 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VistaMatriculaTableAdapter" GeneratorDataComponentClassName="VistaMatriculaTableAdapter" Name="VistaMatricula" UserDataComponentName="VistaMatriculaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.VistaMatricula" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.VistaMatricula" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT nombreGrado, nombres, apellidos, total, recibo, [Fecha de Pago], nombreDescuento, observacion FROM dbo.VistaMatricula</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        nombreGrado, nombres, apellidos, total, recibo, fechaPago, nombreDescuento, observacion
+FROM            VistaMatricula</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -331,9 +332,9 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
               <Mapping SourceColumn="apellidos" DataSetColumn="apellidos" />
               <Mapping SourceColumn="total" DataSetColumn="total" />
               <Mapping SourceColumn="recibo" DataSetColumn="recibo" />
-              <Mapping SourceColumn="Fecha de Pago" DataSetColumn="Fecha de Pago" />
               <Mapping SourceColumn="nombreDescuento" DataSetColumn="nombreDescuento" />
               <Mapping SourceColumn="observacion" DataSetColumn="observacion" />
+              <Mapping SourceColumn="fechaPago" DataSetColumn="fechaPago" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -439,39 +440,90 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VistaDescuentoTableAdapter" GeneratorDataComponentClassName="VistaDescuentoTableAdapter" Name="VistaDescuento" UserDataComponentName="VistaDescuentoTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VistaMoraTableAdapter" GeneratorDataComponentClassName="VistaMoraTableAdapter" Name="VistaMora" UserDataComponentName="VistaMoraTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.VistaDescuento" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.VistaMora" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, RECARGO, VALOR FROM dbo.VistaDescuento</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID AS Expr1, RECARGO AS Expr2, VALOR AS Expr3
+FROM            VistaMora</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
-              <Mapping SourceColumn="RECARGO" DataSetColumn="RECARGO" />
-              <Mapping SourceColumn="VALOR" DataSetColumn="VALOR" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
+              <Mapping SourceColumn="Expr3" DataSetColumn="Expr3" />
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VistaMoraTableAdapter" GeneratorDataComponentClassName="VistaMoraTableAdapter" Name="VistaMora" UserDataComponentName="VistaMoraTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SP_MostrarReporteTableAdapter" GeneratorDataComponentClassName="SP_MostrarReporteTableAdapter" Name="SP_MostrarReporte" UserDataComponentName="SP_MostrarReporteTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.VistaMora" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.SP_MostrarReporte" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.SP_MostrarReporte</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@fechaDe" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@fechaHasta" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idNombre" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="GRADO" DataSetColumn="GRADO" />
+              <Mapping SourceColumn="NOMBRES" DataSetColumn="NOMBRES" />
+              <Mapping SourceColumn="APELLIDOS" DataSetColumn="APELLIDOS" />
+              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="RECIBO" DataSetColumn="RECIBO" />
+              <Mapping SourceColumn="FECHA" DataSetColumn="FECHA" />
+              <Mapping SourceColumn="RECARGO" DataSetColumn="RECARGO" />
+              <Mapping SourceColumn="DESCUENTO" DataSetColumn="DESCUENTO" />
+              <Mapping SourceColumn="OBSERVACIÓN" DataSetColumn="OBSERVACIÓN" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SP_MostrarSumaReporteTableAdapter" GeneratorDataComponentClassName="SP_MostrarSumaReporteTableAdapter" Name="SP_MostrarSumaReporte" UserDataComponentName="SP_MostrarSumaReporteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.SP_MostrarSumaReporte" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.SP_MostrarSumaReporte</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@fechaDe" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@fechaHasta" Precision="0" ProviderType="VarChar" Scale="0" Size="1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idNombre" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="PAGO" DataSetColumn="PAGO" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VistaTotalPagosTableAdapter" GeneratorDataComponentClassName="VistaTotalPagosTableAdapter" Name="VistaTotalPagos" UserDataComponentName="VistaTotalPagosTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBICBConnectionString (Settings)" DbObjectName="DBICB.dbo.VistaTotalPagos" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ID, RECARGO, VALOR FROM dbo.VistaMora</CommandText>
+                    <CommandText>SELECT Total, nombreTipoPago FROM dbo.VistaTotalPagos</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
-              <Mapping SourceColumn="RECARGO" DataSetColumn="RECARGO" />
-              <Mapping SourceColumn="VALOR" DataSetColumn="VALOR" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="nombreTipoPago" DataSetColumn="nombreTipoPago" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -944,13 +996,6 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Fecha_x0020_de_x0020_Pago" msprop:Generator_ColumnVarNameInTable="columnFecha_de_Pago" msprop:Generator_ColumnPropNameInRow="Fecha_de_Pago" msprop:Generator_ColumnPropNameInTable="Fecha_de_PagoColumn" msprop:Generator_UserColumnName="Fecha de Pago">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="15" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
               <xs:element name="nombreDescuento" msprop:Generator_ColumnVarNameInTable="columnnombreDescuento" msprop:Generator_ColumnPropNameInRow="nombreDescuento" msprop:Generator_ColumnPropNameInTable="nombreDescuentoColumn" msprop:Generator_UserColumnName="nombreDescuento" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -962,6 +1007,13 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fechaPago" msprop:Generator_ColumnVarNameInTable="columnfechaPago" msprop:Generator_ColumnPropNameInRow="fechaPago" msprop:Generator_ColumnPropNameInTable="fechaPagoColumn" msprop:Generator_UserColumnName="fechaPago">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -1160,25 +1212,60 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="VistaDescuento" msprop:Generator_TableClassName="VistaDescuentoDataTable" msprop:Generator_TableVarName="tableVistaDescuento" msprop:Generator_TablePropName="VistaDescuento" msprop:Generator_RowDeletingName="VistaDescuentoRowDeleting" msprop:Generator_RowChangingName="VistaDescuentoRowChanging" msprop:Generator_RowEvHandlerName="VistaDescuentoRowChangeEventHandler" msprop:Generator_RowDeletedName="VistaDescuentoRowDeleted" msprop:Generator_UserTableName="VistaDescuento" msprop:Generator_RowChangedName="VistaDescuentoRowChanged" msprop:Generator_RowEvArgName="VistaDescuentoRowChangeEvent" msprop:Generator_RowClassName="VistaDescuentoRow">
+        <xs:element name="VistaMora" msprop:Generator_TableClassName="VistaMoraDataTable" msprop:Generator_TableVarName="tableVistaMora" msprop:Generator_TablePropName="VistaMora" msprop:Generator_RowDeletingName="VistaMoraRowDeleting" msprop:Generator_RowChangingName="VistaMoraRowChanging" msprop:Generator_RowEvHandlerName="VistaMoraRowChangeEventHandler" msprop:Generator_RowDeletedName="VistaMoraRowDeleted" msprop:Generator_UserTableName="VistaMora" msprop:Generator_RowChangedName="VistaMoraRowChanged" msprop:Generator_RowEvArgName="VistaMoraRowChangeEvent" msprop:Generator_RowClassName="VistaMoraRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="RECARGO" msprop:Generator_ColumnVarNameInTable="columnRECARGO" msprop:Generator_ColumnPropNameInRow="RECARGO" msprop:Generator_ColumnPropNameInTable="RECARGOColumn" msprop:Generator_UserColumnName="RECARGO" minOccurs="0">
+              <xs:element name="Expr1" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1" type="xs:int" />
+              <xs:element name="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_UserColumnName="Expr2">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr3" msprop:Generator_ColumnVarNameInTable="columnExpr3" msprop:Generator_ColumnPropNameInRow="Expr3" msprop:Generator_ColumnPropNameInTable="Expr3Column" msprop:Generator_UserColumnName="Expr3" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SP_MostrarReporte" msprop:Generator_TableClassName="SP_MostrarReporteDataTable" msprop:Generator_TableVarName="tableSP_MostrarReporte" msprop:Generator_TablePropName="SP_MostrarReporte" msprop:Generator_RowDeletingName="SP_MostrarReporteRowDeleting" msprop:Generator_RowChangingName="SP_MostrarReporteRowChanging" msprop:Generator_RowEvHandlerName="SP_MostrarReporteRowChangeEventHandler" msprop:Generator_RowDeletedName="SP_MostrarReporteRowDeleted" msprop:Generator_UserTableName="SP_MostrarReporte" msprop:Generator_RowChangedName="SP_MostrarReporteRowChanged" msprop:Generator_RowEvArgName="SP_MostrarReporteRowChangeEvent" msprop:Generator_RowClassName="SP_MostrarReporteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GRADO" msprop:Generator_ColumnVarNameInTable="columnGRADO" msprop:Generator_ColumnPropNameInRow="GRADO" msprop:Generator_ColumnPropNameInTable="GRADOColumn" msprop:Generator_UserColumnName="GRADO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="VALOR" msprop:Generator_ColumnVarNameInTable="columnVALOR" msprop:Generator_ColumnPropNameInRow="VALOR" msprop:Generator_ColumnPropNameInTable="VALORColumn" msprop:Generator_UserColumnName="VALOR" type="xs:decimal" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="VistaMora" msprop:Generator_TableClassName="VistaMoraDataTable" msprop:Generator_TableVarName="tableVistaMora" msprop:Generator_TablePropName="VistaMora" msprop:Generator_RowDeletingName="VistaMoraRowDeleting" msprop:Generator_RowChangingName="VistaMoraRowChanging" msprop:Generator_RowEvHandlerName="VistaMoraRowChangeEventHandler" msprop:Generator_RowDeletedName="VistaMoraRowDeleted" msprop:Generator_UserTableName="VistaMora" msprop:Generator_RowChangedName="VistaMoraRowChanged" msprop:Generator_RowEvArgName="VistaMoraRowChangeEvent" msprop:Generator_RowClassName="VistaMoraRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="NOMBRES" msprop:Generator_ColumnVarNameInTable="columnNOMBRES" msprop:Generator_ColumnPropNameInRow="NOMBRES" msprop:Generator_ColumnPropNameInTable="NOMBRESColumn" msprop:Generator_UserColumnName="NOMBRES">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="APELLIDOS" msprop:Generator_ColumnVarNameInTable="columnAPELLIDOS" msprop:Generator_ColumnPropNameInRow="APELLIDOS" msprop:Generator_ColumnPropNameInTable="APELLIDOSColumn" msprop:Generator_UserColumnName="APELLIDOS">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RECIBO" msprop:Generator_ColumnVarNameInTable="columnRECIBO" msprop:Generator_ColumnPropNameInRow="RECIBO" msprop:Generator_ColumnPropNameInTable="RECIBOColumn" msprop:Generator_UserColumnName="RECIBO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FECHA" msprop:Generator_ColumnVarNameInTable="columnFECHA" msprop:Generator_ColumnPropNameInRow="FECHA" msprop:Generator_ColumnPropNameInTable="FECHAColumn" msprop:Generator_UserColumnName="FECHA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="RECARGO" msprop:Generator_ColumnVarNameInTable="columnRECARGO" msprop:Generator_ColumnPropNameInRow="RECARGO" msprop:Generator_ColumnPropNameInTable="RECARGOColumn" msprop:Generator_UserColumnName="RECARGO">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -1186,7 +1273,48 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="VALOR" msprop:Generator_ColumnVarNameInTable="columnVALOR" msprop:Generator_ColumnPropNameInRow="VALOR" msprop:Generator_ColumnPropNameInTable="VALORColumn" msprop:Generator_UserColumnName="VALOR" type="xs:decimal" />
+              <xs:element name="DESCUENTO" msprop:Generator_ColumnVarNameInTable="columnDESCUENTO" msprop:Generator_ColumnPropNameInRow="DESCUENTO" msprop:Generator_ColumnPropNameInTable="DESCUENTOColumn" msprop:Generator_UserColumnName="DESCUENTO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OBSERVACIÓN" msprop:Generator_ColumnVarNameInTable="columnOBSERVACIÓN" msprop:Generator_ColumnPropNameInRow="OBSERVACIÓN" msprop:Generator_ColumnPropNameInTable="OBSERVACIÓNColumn" msprop:Generator_UserColumnName="OBSERVACIÓN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SP_MostrarSumaReporte" msprop:Generator_TableClassName="SP_MostrarSumaReporteDataTable" msprop:Generator_TableVarName="tableSP_MostrarSumaReporte" msprop:Generator_RowChangedName="SP_MostrarSumaReporteRowChanged" msprop:Generator_TablePropName="SP_MostrarSumaReporte" msprop:Generator_RowDeletingName="SP_MostrarSumaReporteRowDeleting" msprop:Generator_RowChangingName="SP_MostrarSumaReporteRowChanging" msprop:Generator_RowEvHandlerName="SP_MostrarSumaReporteRowChangeEventHandler" msprop:Generator_RowDeletedName="SP_MostrarSumaReporteRowDeleted" msprop:Generator_RowClassName="SP_MostrarSumaReporteRow" msprop:Generator_UserTableName="SP_MostrarSumaReporte" msprop:Generator_RowEvArgName="SP_MostrarSumaReporteRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Total" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAGO" msprop:Generator_ColumnVarNameInTable="columnPAGO" msprop:Generator_ColumnPropNameInRow="PAGO" msprop:Generator_ColumnPropNameInTable="PAGOColumn" msprop:Generator_UserColumnName="PAGO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VistaTotalPagos" msprop:Generator_TableClassName="VistaTotalPagosDataTable" msprop:Generator_TableVarName="tableVistaTotalPagos" msprop:Generator_TablePropName="VistaTotalPagos" msprop:Generator_RowDeletingName="VistaTotalPagosRowDeleting" msprop:Generator_RowChangingName="VistaTotalPagosRowChanging" msprop:Generator_RowEvHandlerName="VistaTotalPagosRowChangeEventHandler" msprop:Generator_RowDeletedName="VistaTotalPagosRowDeleted" msprop:Generator_UserTableName="VistaTotalPagos" msprop:Generator_RowChangedName="VistaTotalPagosRowChanged" msprop:Generator_RowEvArgName="VistaTotalPagosRowChangeEvent" msprop:Generator_RowClassName="VistaTotalPagosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nombreTipoPago" msprop:Generator_ColumnVarNameInTable="columnnombreTipoPago" msprop:Generator_ColumnPropNameInRow="nombreTipoPago" msprop:Generator_ColumnPropNameInTable="nombreTipoPagoColumn" msprop:Generator_UserColumnName="nombreTipoPago">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1204,13 +1332,9 @@ SELECT idMora, nombreMora, valor, estado FROM Cuentas.Mora WHERE (idMora = @idMo
       <xs:selector xpath=".//mstns:Mora" />
       <xs:field xpath="mstns:idMora" />
     </xs:unique>
-    <xs:unique name="VistaDescuento_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:VistaDescuento" />
-      <xs:field xpath="mstns:ID" />
-    </xs:unique>
     <xs:unique name="VistaMora_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:VistaMora" />
-      <xs:field xpath="mstns:ID" />
+      <xs:field xpath="mstns:Expr1" />
     </xs:unique>
   </xs:element>
 </xs:schema>

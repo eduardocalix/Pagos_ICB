@@ -13,7 +13,7 @@ GO
 --Vista Matricula
 CREATE VIEW [dbo].[VistaMatricula]
 AS
-SELECT        Cuentas.Grado.nombreGrado, Cuentas.Alumno.nombres, Cuentas.Alumno.apellidos, Cuentas.Pago.total, Cuentas.Pago.recibo, Cuentas.Pago.fechaPago AS [Fecha de Pago], Cuentas.Descuento.nombreDescuento, 
+SELECT        Cuentas.Grado.nombreGrado, Cuentas.Alumno.nombres, Cuentas.Alumno.apellidos, Cuentas.Pago.total, Cuentas.Pago.recibo, Cuentas.Pago.fechaPago, Cuentas.Descuento.nombreDescuento, 
                          Cuentas.Pago.observacion
 FROM            Cuentas.Alumno INNER JOIN
                          Cuentas.Grado ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN
@@ -378,7 +378,196 @@ GO
 --VISTA DESCUENTO
 CREATE VIEW [dbo].[VistaDescuento]
 AS
-SELECT        Cuentas.Descuento.idDescuento AS ID, Cuentas.Descuento.nombreDescuento AS RECARGO, Cuentas.Descuento.valor AS VALOR
+SELECT        Cuentas.Descuento.idDescuento AS ID, Cuentas.Descuento.nombreDescuento AS DESCUENTO, Cuentas.Descuento.valor AS VALOR
 FROM            Cuentas.Descuento 
 WHERE         (Cuentas.Descuento.estado = 1)
 GO
+
+--CREAR VISTAS PARA RESUMEN FINAL
+CREATE VIEW [dbo].[VistaTotalPagos]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 1)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 2)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 3)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 4)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 5)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 6)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 7)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 8)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 9)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 10)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 11)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 12)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+/*
+CREATE VIEW [dbo].[VistaTotal2]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 2)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal3]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 3)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal4]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 4)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal5]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 5)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal6]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 6)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal7]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 7)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal8]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 8)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal9]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 9)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal10]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 10)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+
+CREATE VIEW [dbo].[VistaTotal11]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 11)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO
+CREATE VIEW [dbo].[VistaTotal12]
+AS
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 12)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+GO*/
