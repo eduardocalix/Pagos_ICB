@@ -29,37 +29,41 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.vistaTotalPagosTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.VistaTotalPagosTableAdapter();
             this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
-            this.VistaTotalPagosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SP_TotalPagosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SP_TotalPagosTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.SP_TotalPagosTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VistaTotalPagosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SP_TotalPagosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Pagos_ICB.Reportes.ReportePagosGeneral.rdlc";
+            reportDataSource1.Name = "DataSetPagos";
+            reportDataSource1.Value = this.SP_TotalPagosBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Pagos_ICB.Reportes.ReporteTotalPagos.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // vistaTotalPagosTableAdapter
-            // 
-            this.vistaTotalPagosTableAdapter.ClearBeforeFill = true;
-            // 
             // DBICBDataSet
             // 
             this.DBICBDataSet.DataSetName = "DBICBDataSet";
             this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // VistaTotalPagosBindingSource
+            // SP_TotalPagosBindingSource
             // 
-            this.VistaTotalPagosBindingSource.DataMember = "VistaTotalPagos";
-            this.VistaTotalPagosBindingSource.DataSource = this.DBICBDataSet;
+            this.SP_TotalPagosBindingSource.DataMember = "SP_TotalPagos";
+            this.SP_TotalPagosBindingSource.DataSource = this.DBICBDataSet;
+            // 
+            // SP_TotalPagosTableAdapter
+            // 
+            this.SP_TotalPagosTableAdapter.ClearBeforeFill = true;
             // 
             // frmTotalPagos
             // 
@@ -68,10 +72,10 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "frmTotalPagos";
-            this.Text = "frmTotalPagos";
+            this.Text = "Total Pagos";
             this.Load += new System.EventHandler(this.frmTotalPagos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.VistaTotalPagosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SP_TotalPagosBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -79,8 +83,8 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource VistaTotalPagosBindingSource;
+        private System.Windows.Forms.BindingSource SP_TotalPagosBindingSource;
         private DBICBDataSet DBICBDataSet;
-        private DBICBDataSetTableAdapters.VistaTotalPagosTableAdapter vistaTotalPagosTableAdapter;
+        private DBICBDataSetTableAdapters.SP_TotalPagosTableAdapter SP_TotalPagosTableAdapter;
     }
 }

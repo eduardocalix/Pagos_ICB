@@ -19,10 +19,9 @@ namespace Pagos_ICB
 
         private void frmTotalPagos_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'DBICBDataSet.SP_MostrarReporte' Puede moverla o quitarla según sea necesario.
-            this.vistaTotalPagosTableAdapter.Fill(this.DBICBDataSet.VistaTotalPagos);
-            // TODO: esta línea de código carga datos en la tabla 'DBICBDataSet.SP_MostrarSumaReporte' Puede moverla o quitarla según sea necesario.
-           
+            // TODO: esta línea de código carga datos en la tabla 'DBICBDataSet.SP_TotalPagos' Puede moverla o quitarla según sea necesario.
+            this.SP_TotalPagosTableAdapter.Fill(this.DBICBDataSet.SP_TotalPagos);
+
             this.reportViewer1.RefreshReport();
         }
     }

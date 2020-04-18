@@ -132,8 +132,7 @@ namespace Pagos_ICB
 
         private void toolStripMenuItem11_Click(object sender, EventArgs e)
         {
-            frmReporteRecargo recargo = new frmReporteRecargo();
-            recargo.Show();
+           
         }
 
         private void pagosRealizadosToolStripMenuItem_Click(object sender, EventArgs e)

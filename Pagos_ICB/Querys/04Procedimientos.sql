@@ -1463,3 +1463,105 @@ BEGIN
         END
 END
 GO
+CREATE PROCEDURE SP_TotalPagos
+AS
+BEGIN
+ DECLARE @existe int;
+    SET @existe = 0;
+
+    SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago;
+
+    IF (@existe = 0)
+        BEGIN
+            RAISERROR(N'No existe el pago ', 16, 1);
+            RETURN 0
+        END     
+    ELSE
+        BEGIN
+
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 1)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 2)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 3)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 4)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 5)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 6)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 7)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 8)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 9)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 10)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 11)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 12)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+END
+END
+GO
