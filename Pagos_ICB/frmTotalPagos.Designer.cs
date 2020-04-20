@@ -30,13 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTotalPagos));
             this.SP_TotalPagosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SP_TotalPagosTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.SP_TotalPagosTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TotalPagosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SP_TotalPagosBindingSource
+            // 
+            this.SP_TotalPagosBindingSource.DataMember = "SP_TotalPagos";
+            this.SP_TotalPagosBindingSource.DataSource = this.DBICBDataSet;
+            // 
+            // DBICBDataSet
+            // 
+            this.DBICBDataSet.DataSetName = "DBICBDataSet";
+            this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -51,16 +62,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // DBICBDataSet
-            // 
-            this.DBICBDataSet.DataSetName = "DBICBDataSet";
-            this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // SP_TotalPagosBindingSource
-            // 
-            this.SP_TotalPagosBindingSource.DataMember = "SP_TotalPagos";
-            this.SP_TotalPagosBindingSource.DataSource = this.DBICBDataSet;
-            // 
             // SP_TotalPagosTableAdapter
             // 
             this.SP_TotalPagosTableAdapter.ClearBeforeFill = true;
@@ -71,11 +72,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTotalPagos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Total Pagos";
             this.Load += new System.EventHandler(this.frmTotalPagos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SP_TotalPagosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

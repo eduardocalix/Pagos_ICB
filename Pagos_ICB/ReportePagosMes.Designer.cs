@@ -30,8 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportePagosMes));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.SP_MostrarReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
+            this.SP_MostrarSumaReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSalir = new System.Windows.Forms.Button();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,20 +50,32 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.DBICBDataSet = new Pagos_ICB.DBICBDataSet();
-            this.SP_MostrarReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SP_MostrarReporteTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.SP_MostrarReporteTableAdapter();
-            this.SP_MostrarSumaReporteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SP_MostrarSumaReporteTableAdapter = new Pagos_ICB.DBICBDataSetTableAdapters.SP_MostrarSumaReporteTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarReporteBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarSumaReporteBindingSource)).BeginInit();
             this.pnlTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarReporteBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarSumaReporteBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // SP_MostrarReporteBindingSource
+            // 
+            this.SP_MostrarReporteBindingSource.DataMember = "SP_MostrarReporte";
+            this.SP_MostrarReporteBindingSource.DataSource = this.DBICBDataSet;
+            // 
+            // DBICBDataSet
+            // 
+            this.DBICBDataSet.DataSetName = "DBICBDataSet";
+            this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // SP_MostrarSumaReporteBindingSource
+            // 
+            this.SP_MostrarSumaReporteBindingSource.DataMember = "SP_MostrarSumaReporte";
+            this.SP_MostrarSumaReporteBindingSource.DataSource = this.DBICBDataSet;
             // 
             // btnSalir
             // 
@@ -186,6 +201,7 @@
             // 
             this.btnNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(76)))), ((int)(((byte)(126)))));
             this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevo.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnNuevo.Location = new System.Drawing.Point(12, 18);
             this.btnNuevo.Name = "btnNuevo";
@@ -198,12 +214,12 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource5.Name = "DataSetGeneral";
-            reportDataSource5.Value = this.SP_MostrarReporteBindingSource;
-            reportDataSource6.Name = "DataSetResultado";
-            reportDataSource6.Value = this.SP_MostrarSumaReporteBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource6);
+            reportDataSource1.Name = "DataSetGeneral";
+            reportDataSource1.Value = this.SP_MostrarReporteBindingSource;
+            reportDataSource2.Name = "DataSetResultado";
+            reportDataSource2.Value = this.SP_MostrarSumaReporteBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Pagos_ICB.Reportes.ReporteGeneral.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(183, 79);
             this.reportViewer1.Name = "reportViewer1";
@@ -222,24 +238,9 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // DBICBDataSet
-            // 
-            this.DBICBDataSet.DataSetName = "DBICBDataSet";
-            this.DBICBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // SP_MostrarReporteBindingSource
-            // 
-            this.SP_MostrarReporteBindingSource.DataMember = "SP_MostrarReporte";
-            this.SP_MostrarReporteBindingSource.DataSource = this.DBICBDataSet;
-            // 
             // SP_MostrarReporteTableAdapter
             // 
             this.SP_MostrarReporteTableAdapter.ClearBeforeFill = true;
-            // 
-            // SP_MostrarSumaReporteBindingSource
-            // 
-            this.SP_MostrarSumaReporteBindingSource.DataMember = "SP_MostrarSumaReporte";
-            this.SP_MostrarSumaReporteBindingSource.DataSource = this.DBICBDataSet;
             // 
             // SP_MostrarSumaReporteTableAdapter
             // 
@@ -260,6 +261,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportePagosMes";
             this.Load += new System.EventHandler(this.agregarAlumno_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarReporteBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarSumaReporteBindingSource)).EndInit();
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -267,9 +271,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlBotones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DBICBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarReporteBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SP_MostrarSumaReporteBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

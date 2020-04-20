@@ -126,4 +126,73 @@
   <metadata name="SP_TotalPagosTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>354, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAHh4AAAEAIACwDgAAFgAAACgAAAAeAAAAPAAAAAEAIAAAAAAAEA4AAAAAAAAAAAAAAAAAAAAA
+        AAD50Gf/+dBj//nQZv/50GP/+dF2//rOS//6zTz/+s9c//rPV//6z1f/+s04//rPV//50Xb/+dBl//rO
+        Tf/6zTz/+s5G//rOTv/6z1L/+s5N//rNOP/50Gr/+s9X//rOTf/6zlD/+s5L//nQaP/6z17/+s9h//nQ
+        av/50Gb/+s9V//rPXv/50GL/+s9c//nQaf/50GH/+s9W//rORf/6zT3/+s5K//nRcv/50Xn/+dBp//rP
+        Wv/6z1r/+s9f//rPYP/50GP/+dBl//nQaP/50G//+dBj//nQZ//50Gf/+s9W//rOTv/6z1P/+dBi//rO
+        T//6z1//+s9X//rPVv/6z1P/+s9b//nQYv/50GT/+s5I//rPX//50G3/+dFz//nReP/50Xf/+dF6//nR
+        ff/50Xv/+dF6//nRe//50Xv/+dF7//nRe//50XT/+dFx//nQaP/50XD/+dBi//rPXP/6zkr/+dBk//rP
+        Vv/50XL/+dBj//rPXP/50GL/+s9Y//nRdP/6z1X/+s5O//nRfP/50Xr/+dF4//nRd//50Xf/+dF3//fR
+        dv/40Xb/+dF2//nRdv/50Xb/+dF2//nRdv/50Xj/+dF3//nRfP/6z1P/+s1C//nRev/50GT/+s5S//rO
+        Tf/50Xj/+dF6//nRcv/50GP/+dBl//nRe//50XH/+dF3//nReP/50Xb/+dF3//nRd//50Xf/+NF2///S
+        d//+0Xb/+NF3//nRd//50Xf/+dF3//nRd//50Xb/+dF4//nRcP/6zTr/+s9T//nSgv/50XT/+s9V//nR
+        df/50Xf/+dF2//nReP/50Xr/+dF5//nRdv/50Xj/+dF3//nRd//50Xf/+dF3//nRd//30Xf//9Fz/7Hn
+        3P/V3q3//89u//jRef/50Xf/+dF3//nRd//50Xf/+dF3//nRdf/50Gb/+s9a//rPYf/6z1b/+dBo//nR
+        fP/50Xf/+dF3//nRd//50Xb/+dF2//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//10Hf//9R2/2nm
+        +P+x3sH//9Bs//bRef/50Xf/+dF3//nRd//50Xf/+dF3//nReP/50Xv/+dF1//nQbP/50XL/+dF5//nR
+        dv/50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//10Hf//9N1/3bo
+        9f+3377//89s//fRef/50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xb/+dF3//nRev/50Xj/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nReP/20Xf//9R0/23b
+        5/+027j//9Jt//bRev/50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+NB4//rSd//3z3T/7cqh/9ng
+        3//dz7f/9sp0//zUdf/70nX/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf//NR1//fOdP/qzav/+vr/////
+        ////////7tnD/+zGg//yzoD/+tN4//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//60nf/6sWL/+vVw//n0cL/7NjI////
+        ///kzb7/69TL/8vIvf+32rj//9aD//fQdP/50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//60nX/7suP/+LKvv/hyrv/8+/r////
+        ///+/v3/38i7/+nHi//83I7/+NB2//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Hf//NV1/+e/jP/30rb//+DJ/+3j
+        3P/98Ov//t/O///OeP/60HD/+dF4//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//40nn//c5u/+Xhsv9q6P3/buT1/zPU
+        7/9K0ef/Y9/3/47q8f/+1oP/+NB0//nReP/50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xj/+tB0//TWiv/P3rH/4t+r/2Dn
+        +v+a5df/3t2l/9rbpv/70nr/+dF2//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//rQc//+zm3//9Fq/3Xk
+        7f+627T//81i//3PcP/50Xb/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+tJ5//nSef/00nv//9R2/3rp
+        9/+74r3//9Jv//bTff/50nn/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nRd//50HX/98xu//jOcP/3zXD/+cxs/+3X
+        kv/lwoP/8cNr//jObv/4zW7/+tJ1//nReP/50Xf/+dF3//nRd//50Xf/+dF3//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50Xf/+dJ4//rSef/50Xj/+NB3//rSdv/uw3X/4Lya/9mtgP/UpXr/1qqD/9Oc
+        b//WsJ3/3Lqi/9+3jf/as5L/5Ld2//vSdf/40Hf/+NB3//nReP/603j/+tJ4//nRd//50Xf/+dF3//nR
+        d//50Xf/+dF3//nRd//50nj/+M50//bLb//703T/+9N1//3Wdf/vx37/5NDL/82giP/NoZD/0KSM/9+7
+        mf/hvJT/2K+P/8mXfv/eu5v/6sKB//zUdP/81Xn/+9N1//rQcv/1ynL/9sxz//rSd//50Xf/+dF3//nR
+        d//50Xf/+dF5//nRef/70nT/7cR+/9Wqi//Wo23/5bh4/+3Bcv/qu2v/6bxy/+e2ZP/ls2P/7Ltj//jM
+        af/60XD/8MFk/+e1YP/zxGL/9Mht//DEcv/mt2v/47Z4/92xff/atZn/6Mab//nPcP/50Xj/+dF3//nR
+        d//50Xj/+dBv//nRcv/60XT/5b+Q/9m3pP/auKT/1bGk/9StnP/UrJP/1qyL/968oP/asIf/27KL/+S+
+        jf/twnb/4r2U/961jP/buJ//1KqO/928pv/Xs6P/1rOm/9q0lv/ft4n/78uL//nQc//50Xj/+dF3//nR
+        d//6z1b/+s9d//rPXP/60F7/8MVv//PIcP/1zXf/7cJ4/+C6j//Sp4v/3ryi/9Oje//auKX/1rGb/+C5
+        kP/rxYn/2rab/9Gfc//kxan/3rud/9yxgv/cs4r/1aR0//PIc//60XX/+dF1//nReP/50Xb/+dF3//nR
+        d//6z1z/+dKB//nRc//6zTr//NFV//rTe//60nb//NR2//fMcP/wxG//88dv//nPb//uwnH/8MRv//fM
+        cP/3znb/68eO//TLd//4zW7/88hv//TIcP/0x2X/+dB0//rScf/6z13/+dBq//nRdP/50Xr/+dF3//nR
+        d//6z1X/+dF3//nQZf/7zTf/+dBw//nRev/50Xf/+NB3//rSeP/71Hj/+tN4//nSeP/703f/+9N3//rS
+        d//50nf/+tFx//rSd//50nv/+tN///vSaf/7z0P/+dFu//nPYv/6z17/+s9d//rPXv/50GX/+dF2//nR
+        ef/6z1X/+s5P//nQY//50Gf/+dBu//nQbP/50XL/+dF3//nRe//50Xr/+dF6//nRev/40Xr/+dF7//nR
+        ff/50Xf/+dF5//nRd//50Gn/+dBo//rOS//5z1f/+dBr//rPWv/6z1r/+s9R//rPWP/6z1X/+dF1//rP
+        Vv/6z1r/+s5P//rOTv/50GL/+dBq//nQYv/50Gn/+dBu//nQaP/50Gb/+dBi//rPX//6z1n/+s9X//rP
+        WP/50XX/+dF4//nQYv/6zTn/+s1C//rOTf/6z13/+s9h//nQZP/6z13/+dBl//rPWP/50GL/+s9Y//rO
+        Sf/6z1f/+dBs//rPVv/6zkn/+s9V//rOUP/50G7/+s5O//rNOf/6zk3/+s5J//rOTf/6zkX/+s5L//rP
+        XP/50XT/+dBp//rNQP/6zkb/+tBf//rPVf/6zk7/+s09//nQZv/50XP/+dBj//nQZ//6z13/+dBj//rO
+        Uv/6z1//+dBm//rNRP/6z1r/+dBq//nQZv/50Gn/+dBm//nQZP/50Gb/+dBl//rPVP/50GT/+dBv//nQ
+        bP/50Xb/+s5P//rNOP/6z1f/+dBi//rOUf/6zUT/+dBj//nQaP/6zUD/+dBp//nQYf/6zk7/+s9f//rP
+        U/8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAA=
+</value>
+  </data>
 </root>
