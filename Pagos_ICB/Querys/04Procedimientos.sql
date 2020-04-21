@@ -1425,14 +1425,14 @@ BEGIN
                          Cuentas.Periodo AS Periodo_1 ON Cuentas.Alumno.idPeriodo = Periodo_1.idPeriodo INNER JOIN
                          Cuentas.TipoPago ON Cuentas.Grado.idGrado = Cuentas.TipoPago.idGrado AND Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago INNER JOIN
                          Cuentas.Mora ON Cuentas.Pago.idMora = Cuentas.Mora.idMora
-			WHERE        (Cuentas.Pago.fechaPago >= @fechaDE AND Cuentas.Pago.fechaPago <= @fechaHasta) AND (Cuentas.TipoPago.idNombreTipoPago = @idNombre) AND (Cuentas.Alumno.estado = 1)
+			WHERE        (Cuentas.Pago.fechaPago > @fechaDE AND Cuentas.Pago.fechaPago <= @fechaHasta) AND (Cuentas.TipoPago.idNombreTipoPago = @idNombre) AND (Cuentas.Alumno.estado = 1)
         END
 END
 GO
 
---EXEC SP_MostrarReporte '13/4/2020','15/4/2020',1
+--EXEC SP_MostrarReporte '13/4/2020','19/4/2020',1
 --EXEC SP_MostrarSumaReporte '13/4/2020','15/4/2020',1
---SELECT * FROM Cuentas.Pago
+--SELECT * FROM Cuentas.Pago WHERE (Cuentas.Pago.fechaPago > '13/4/2020' AND Cuentas.Pago.fechaPago <='15/4/2020')
 
 CREATE PROCEDURE SP_MostrarSumaReporte
 (
@@ -1458,7 +1458,7 @@ BEGIN
 			FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
-			WHERE       (Cuentas.Pago.fechaPago >= @fechaDE AND Cuentas.Pago.fechaPago <= @fechaHasta) AND (Cuentas.TipoPago.idNombreTipoPago = @idNombre)
+			WHERE       (Cuentas.Pago.fechaPago > @fechaDE AND Cuentas.Pago.fechaPago <= @fechaHasta) AND (Cuentas.TipoPago.idNombreTipoPago = @idNombre)
 			GROUP BY Cuentas.NombreTipoPago.nombreTipoPago			 
         END
 END

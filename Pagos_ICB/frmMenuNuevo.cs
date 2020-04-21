@@ -85,9 +85,9 @@ namespace Pagos_ICB
 
         private void Ayuda_Click(object sender, EventArgs e)
         {
-          //  string pdfPath = Path.Combine(Application.StartupPath, @"Fotos2\Las_Marias3.pdf");
+          string pdfPath = Path.Combine(Application.StartupPath, @"Fotos2\ManualUsuarioICB.pdf");
 
-          //  Process.Start(pdfPath);
+          Process.Start(pdfPath);
         }
 
         private void frmMenuNuevo_Load(object sender, EventArgs e)

@@ -48,6 +48,8 @@ namespace Pagos_ICB
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show(dtDeFechaPago.Value.ToShortDateString(),"DE");
+            //MessageBox.Show(dtHasta.Value.ToShortDateString(),"HASTA");
             if (cbNombre.SelectedIndex<0)
             {
                 MessageBox.Show("Tiene que elegir", "ICB");
