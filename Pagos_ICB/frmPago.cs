@@ -319,7 +319,7 @@ namespace Pagos_ICB
             CargarDGWPago(Alumno.IdAlumno);
             this.idAlumno = Alumno.IdAlumno;
             txtIdentidad.Text = Alumno.Identidad;
-            txtNombre.Text = Alumno.Nombres;
+            txtNombre.Text = Alumno.Nombres+" "+Alumno.Apellidos;
             if (Alumno.Beca == "Si")
             {
                 cbBeca.SelectedIndex = 0;

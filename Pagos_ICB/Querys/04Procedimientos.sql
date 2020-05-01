@@ -1,7 +1,6 @@
 USE DBICB
 GO
 
-
 --Procedimientos Almacenados para cada modulo
 --Modulo Usuarios
 CREATE PROCEDURE SP_BuscarUsuario
@@ -1084,316 +1083,7 @@ BEGIN
 END
 GO
 --------------------------------------------------------------------------------------------
-/*
---------------------------------------------------------------------------------------
--
------------------------------------------------------------------------------------
---Modulo DetallePedido
-
-CREATE PROCEDURE SP_AgregarDetallePedido
-(
-	@idPedido INT,
-    @idPago INT,
-    @cantidad INT,
-	@subtotal DECIMAL
-)
-AS
-BEGIN
-            INSERT INTO Cuentas.DetallePedidos
-            (
-                idPedido,
-                idPago,
-                cantidad,
-				subTotal
-            )
-            VALUES
-            ( @idPedido,@idPago,@cantidad,@subtotal)
-                
-            RETURN 1
-        --END
-END
-GO
-
-CREATE PROCEDURE SP_ModificarDetallePedido
-(
-	@idDetalle INT,
-	@estado INT
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-
-    SELECT @existe = COUNT(Cuentas.DetallePedidos.idDetallePedido) FROM Cuentas.DetallePedidos WHERE idDetallePedido=@idDetalle;
-
-    IF (@existe = 0)
-        BEGIN
-            RAISERROR(N'No existe un pedido con el id "%d"', 16, 1, @idDetalle);
-            RETURN 0
-        END     
-    ELSE
-        BEGIN
-            UPDATE Cuentas.DetallePedidos
-					SET estado=@estado
-                    WHERE idDetallePedido=@idDetalle;
-            RETURN 1
-        END
-END
-GO
-
-CREATE PROCEDURE SP_EliminarDetallePedido
-(
-    @idDetalle INT
-)
-AS
-BEGIN
-    DECLARE @existe int;
-    SET @existe = 0;
-        SELECT @existe = COUNT(Cuentas.DetallePedidos.idDetallePedido) FROM Cuentas.DetallePedidos WHERE idDetallePedido=@idDetalle;
-        IF (@existe = 0)
-            BEGIN
-                RAISERROR(N'No existe el Detalle Pedido con el id %d"', 16, 1, @idDetalle);
-                RETURN 0
-            END     
-        ELSE
-            BEGIN
-                UPDATE Cuentas.DetallePedidos SET estado=0 WHERE idDetallePedido=@idDetalle;
-                RETURN 1
-            END
-END
-GO*/
-
---------------------------------------------------------------------------------------------------------
-
-/*
-----------------------------------------------------------------------------------------------------------------
---SP para actualizar el stock dela Tabla Pago.Articulos 
-CREATE PROCEDURE Pago.SPActualizarArticulos(
-	@CodigoArticulo VARCHAR(15),
-	@Stock INT
-  )
-AS
-BEGIN
-	DECLARE @Codigo INT
-	DECLARE @CodigoProducto VARCHAR(15) = @CodigoArticulo
-
-	EXEC @Codigo = Pago.SPEstadoDelArticulo @CodigoProducto
-	IF @Codigo = 1
-		PRINT 'Debe ingresar el codigo del Articulo'
-	ELSE
-		IF @Codigo = 2
-			PRINT 'El Codigo del producto ingresado no es válido'
-		ELSE
-			IF @Codigo = 3
-				PRINT 'No hay existencia de este producto'
-			ELSE
-				IF @Codigo = 0
-					PRINT 'Producto encontrado'
-
-	DECLARE @Stock1 INT 
-	SELECT @Stock1 = Stock FROM Pago.Articulos
-			WHERE Codigo = @CodigoProducto
-
-UPDATE Pago.Articulos
-SET Stock = @Stock1 + @Stock
-FROM Pago.Articulos
-WHERE Codigo = @CodigoProducto
-
-END
---Probando con valores Incorrectos
-EXEC Pago.SPActualizarArticulos '3 154141 194108';
---Probando Valores Correctos
-EXEC Pago.SPActualizarArticulos '3 154141 194108',4;
-GO
-------------------------------------------------------------------------------------------------
-	-- Creación de un Stored Procedure que se encarga de ingresar
-	-- valores a la tabla Pago 
-CREATE PROCEDURE SP_sPagos(
-	@IdCliente CHAR(15)=NULL ,
-	@IdVendedor INT = NULL
-)
-AS
-BEGIN
-	IF (@IdVendedor IS NULL) OR (@IdCliente IS NULL) 
-		BEGIN
-			RAISERROR('El Codigo de Vendedor, Cliente son requeridos.', 16, 1)
-			RETURN 0
-		END
-	ELSE
-		BEGIN
-		--Declaramos las Variables las cuales nos serviran al momento de la inserción
-		DECLARE @Vendedor INT  = @IdVendedor
-		DECLARE @Cliente CHAR (15) = @IdCliente
-		DECLARE @ImporteISV DECIMAL(10,2) = 0
-		DECLARE @Impuesto DECIMAL(10,2) = 0
-		DECLARE @Total DECIMAL(10,2) = 0
-		INSERT INTO Pagocion.Pago(IdVendedor,IdCliente, ImporteISV,Impuesto,Total )
-				VALUES(@Vendedor,@Cliente,@ImporteISV,@Impuesto,@Total)
-			RETURN 1
-		END
-END
-GO
-
-
-
----------------------------------------------------------------------------------------
-    -- Creación de un Stored Procedure que se encarga de ingresar
-	-- valores a la tabla Detalle Pago 
-CREATE PROCEDURE Pagocion.SPDetallePagos(
-	@CodigoArticulo VARCHAR (15) = NULL, 
-	@CantidadArticulo INT = NULL
-)
-AS
-BEGIN
-	IF (@CodigoArticulo IS NULL) OR (@CantidadArticulo IS NULL)
-		BEGIN
-			RAISERROR('El Codigo de Producto e igual que la Cantidad son requeridos.', 16, 1)
-			RETURN 0
-		END
-	ELSE
---Declaramos las variables a utilizar
-	DECLARE @NumeroPago INT
-	DECLARE @Codigo INT
-	DECLARE @CodigoArticulo1 VARCHAR(15) = @CodigoArticulo
-	DECLARE @PrecioUnitario DECIMAL (10,2)
-	DECLARE @SubTotal DECIMAL (10,2)
-
--- Verificar Codigo de Producto
-	EXEC @Codigo = Pago.SPEstadoDelArticulo @CodigoArticulo1
-	IF @Codigo = 1
-		PRINT 'Debe ingresar el codigo del Articulo'
-	ELSE
-		IF @Codigo = 2
-			PRINT 'El Codigo del producto ingresado no es válido'
-		ELSE
-			IF @Codigo = 3
-				PRINT 'No hay existencia de este producto'
-			ELSE
-				IF @Codigo = 0
-					PRINT 'Producto encontrado'
---BUSCANDO VALORES
-		SET @NumeroPago = (SELECT MAX(Numero) FROM Pagocion.Pago)
-		SELECT @PrecioUnitario = PrecioVenta FROM Pago.Articulos
-		WHERE Codigo = @CodigoArticulo
-		SET @SubTotal = @PrecioUnitario * @CantidadArticulo
-		DECLARE @Impuesto DECIMAL(10,2)
-		DECLARE @Importe DECIMAL(10,2)
---Ejecutamos los Stored Procedure de calculo de impuesto e importe
-		EXEC Pagocion.SPCalculoImporte @CodigoArticulo,@SubTotal,@Importe OUTPUT
-		EXEC Pagocion.SPExcentoImpuesto @CodigoArticulo,@Importe,@Impuesto OUTPUT
---Insertamos los datos en la tabla Detalle Pago
-		INSERT INTO Pagocion.DetallePago(NumeroPago,CodigoArticulo,CantidadArticulo,PrecioUnitario,Subtotal) 
-			VALUES (@NumeroPago,@CodigoArticulo1,@CantidadArticulo,@PrecioUnitario,@SubTotal)
-		
-				IF ((SELECT Stock FROM Pago.Articulos 
-					WHERE Codigo = @CodigoArticulo1)<=(SELECT CantidadMinima FROM Pago.Articulos
-					WHERE Codigo = @CodigoArticulo1))
-				BEGIN
-					PRINT 'Se ha alcanzado el Pago minimo para el producto '+ @CodigoArticulo1 +'. Considere contactar a su Grado.'
-				END
---Actualizamos nuestro encabezado en la Tabla Pago para los campos
---IMPUESTO,IMPORTEISV,TOTAL		
-		UPDATE Pagocion.Pago
-		SET ImporteISV=@Importe,Impuesto = @Impuesto, Total = @SubTotal
-		FROM Pagocion.Pago
-		INNER JOIN Pagocion.DetallePago
-		ON @NumeroPago=Numero
-		WHERE Numero= @NumeroPago
-END
-GO
-
-
---Insertar Apertura de Caja
-CREATE PROCEDURE SP_Agregar_AperturaCaja
-(
-	--@Apertura decimal(18,0),
-	@Dolares DECIMAL(6,2),
-	@POS DECIMAL(6,2),
-	@Fiveh int,
-	@Hundred int,
-	@Fifty int,
-	@Twenty int,
-	@Ten int,
-	@Five int,
-	@Two int,
-	@One int,
-	@Estado INT,
-	@Monto DECIMAL(6,2),
-	@User nvarchar(20)
-)
-AS
-BEGIN
-	INSERT INTO Cuentas.Caja( dolares, POS, quinientos, cien, cincuenta,
-								  veinte, diez, cinco, dos, uno, fecha,estado,Monto, Usuario)
-		VALUES ( @Dolares, @POS,@Fiveh, @Hundred, @Fifty, @Twenty, @Ten, 
-				@Five, @Two, @One,GETDATE(),@Estado, @Monto, @User)
-END
-GO
-
---Insertar Cierre de Caja
--- OJO!!!! Este SP esta funcional. Hay que agregarlo a la Base de Datos. Lo comente porque aqui da un error y para
--- que no lo de, lo comente. Si se omite este, no se podra hacer el cierre de caja.
-CREATE PROCEDURE SP_AgregarCierreCaja
-(
-	--@Cierre decimal(18,0),
-	@Dolares DECIMAL(6,2),
-	@POS DECIMAL(6,2),
-	@Fiveh int,
-	@Hundred int,
-	@Fifty int,
-	@Twenty int,
-	@Ten int,
-	@Five int,
-	@Two int,
-	@One int,
-	@Estado INT,
-	@Monto DECIMAL(6,2),
-	@User nvarchar(20)
-)
-AS
-BEGIN
-	INSERT INTO Cuentas.Caja( dolares, POS, quinientos, cien, cincuenta,
-								  veinte, diez, cinco, dos, uno, fecha,estado,Monto, Usuario)
-		VALUES ( @Dolares, @POS,@Fiveh, @Hundred, @Fifty, @Twenty, @Ten, 
-				@Five, @Two, @One,GETDATE(),@Estado, @Monto, @User)
-END
-GO
-
---Insertar Pago de Servicio Publico
--- OJO!!!! Este SP esta funcional. Hay que agregarlo a la Base de Datos. Lo comente porque aqui da un error y para
--- que no lo de, lo comente. Si se omite este, no se podra hacer el cierre de caja.
-CREATE PROCEDURE SP_InsertarPago_ServicioPublico
-(
-	@ServicioPublico nvarchar(50),
-	@Monto decimal(8,2),
-	@Usuario nvarchar(20)
-)
-AS
-BEGIN
-	DECLARE @id int
-	SET @id = (SELECT id
-	FROM Cuentas.ServicioPublico
-	WHERE Descripcion = @ServicioPublico)
-
-	INSERT INTO Cuentas.DetalleServicioPublico( Monto, fecha, Usuario,idServicioPublico)
-		VALUES ( @Monto, GETDATE(), @Usuario,@id)
-END
-GO
---Insertar Salidas Varias
--- OJO!!!! Este SP esta funcional. Hay que agregarlo a la Base de Datos. Lo comente porque aqui da un error y para
--- que no lo de, lo comente. Si se omite este, no se podra hacer el cierre de caja.
-CREATE PROCEDURE SP_InsertarPago_OtrasSalidas
-(
-	@Descripcion nvarchar(200),
-	@Monto decimal(8,2),
-	@Usuario nvarchar(20)
-)
-AS
-BEGIN
-	INSERT INTO Cuentas.OtrasSalidas(Descripcion, Monto, fecha, Usuario)
-		VALUES (@Descripcion, @Monto, GETDATE(), @Usuario)
-END
-GO*/
+--Reportes
 
 CREATE PROCEDURE SP_MostrarReporte
 (
@@ -1429,7 +1119,46 @@ BEGIN
         END
 END
 GO
+--EXEC SP_MostrarReporteAlumnoPago 2
+--Para nuevo reporte
+CREATE PROCEDURE SP_MostrarReporteAlumnoPago
+(
+	@idAlumno INT
+)
+AS
+BEGIN
+    DECLARE @existe int;
+    SET @existe = 0;
 
+    SELECT @existe = COUNT(Cuentas.Pago.idPago) FROM Cuentas.Pago;
+
+    IF (@existe = 0)
+        BEGIN
+            RAISERROR(N'No existe el pago ', 16, 1);
+            RETURN 0
+        END     
+    ELSE
+        BEGIN
+			SELECT					Cuentas.Pago.idPago         as Código,
+                                    Cuentas.Grado.nombreGrado   as Grado,
+                                    Cuentas.Alumno.nombres      as Nombres, 
+                                    Cuentas.Alumno.apellidos    as Apellidos,
+                                    Cuentas.Pago.recibo         as Recibo,
+                                    Cuentas.NombreTipoPago.nombreTipoPago   as Pago,
+                                    Cuentas.Mora.nombreMora     as Mora,
+                                    Cuentas.Pago.total          as Total,
+                                    Cuentas.Pago.observacion    as Observación
+                            FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
+                            Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 
+							ON Cuentas.Alumno.idGrado = Cuentas.Grado.idGrado INNER JOIN Cuentas.Mora ON
+                            Cuentas.Pago.idMora = Cuentas.Mora.idMora INNER JOIN Cuentas.TipoPago 
+							ON Cuentas.Pago.idTipo = Cuentas.TipoPago.idTipoPago
+                            INNER JOIN Cuentas.NombreTipoPago 
+							ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago AND
+                            Cuentas.Pago.estado = 1 AND Cuentas.Pago.idAlumno =@idAlumno ORDER BY Cuentas.Pago.idPago DESC
+		END
+END
+GO
 --EXEC SP_MostrarReporte '13/4/2020','19/4/2020',1
 --EXEC SP_MostrarSumaReporte '13/4/2020','15/4/2020',1
 --SELECT * FROM Cuentas.Pago WHERE (Cuentas.Pago.fechaPago > '13/4/2020' AND Cuentas.Pago.fechaPago <='15/4/2020')
@@ -1480,88 +1209,102 @@ BEGIN
     ELSE
         BEGIN
 
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT       COUNT(Cuentas.Pago.idPago) AS Cantidad, SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 1)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 2)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 3)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 4)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 5)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 6)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 7)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 8)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 9)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 10)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT        COUNT(Cuentas.Pago.idPago) AS Cantidad,SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 11)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 UNION
-SELECT        SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+SELECT     COUNT(Cuentas.Pago.idPago) AS Cantidad, SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
 FROM            Cuentas.TipoPago INNER JOIN
                          Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
                          Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
 WHERE        (Cuentas.TipoPago.idNombreTipoPago = 12)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT     COUNT(Cuentas.Pago.idPago) AS Cantidad, SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 13)
+GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
+UNION
+SELECT     COUNT(Cuentas.Pago.idPago) AS Cantidad, SUM(Cuentas.Pago.total) AS Total, Cuentas.NombreTipoPago.nombreTipoPago
+FROM            Cuentas.TipoPago INNER JOIN
+                         Cuentas.Pago ON Cuentas.TipoPago.idTipoPago = Cuentas.Pago.idTipo INNER JOIN
+                         Cuentas.NombreTipoPago ON Cuentas.TipoPago.idNombreTipoPago = Cuentas.NombreTipoPago.idNombreTipoPago
+WHERE        (Cuentas.TipoPago.idNombreTipoPago = 14)
 GROUP BY Cuentas.NombreTipoPago.nombreTipoPago
 END
 END

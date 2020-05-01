@@ -1,6 +1,6 @@
 USE DBICB
 GO
-
+--Funciones
 
 CREATE FUNCTION Utilidad.NombrePropios
 (

@@ -293,7 +293,7 @@ namespace Pagos_ICB.Clases
                                     Cuentas.Pago.recibo         as Recibo,
                                     Cuentas.NombreTipoPago.nombreTipoPago   as Pago,
                                     Cuentas.Mora.nombreMora     as Mora,
-                                    Cuentas.Pago.total          as Total,
+                                    CONCAT('L. ',Cuentas.Pago.total)   as Total,
                                     Cuentas.Pago.observacion    as Observación
                             FROM Cuentas.Pago  INNER JOIN  Cuentas.Alumno ON 
                             Cuentas.Pago.idAlumno = Cuentas.Alumno.idAlumno INNER JOIN Cuentas.Grado 

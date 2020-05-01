@@ -183,7 +183,7 @@ namespace Pagos_ICB.Clases
             //Se traen todos los datos de la tabla Morass y los almacena la variable sql
             string sql = @"SELECT   Cuentas.Mora.idMora       as Código,
                                     Cuentas.Mora.nombreMora   as NombreMora,
-                                    Cuentas.Mora.valor        as Valor
+                                    CONCAT('L. ',Cuentas.Mora.valor)       as Valor
                             FROM Cuentas.Mora
                             WHERE estado=" + estado + ";";
             try

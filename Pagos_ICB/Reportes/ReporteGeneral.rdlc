@@ -465,6 +465,8 @@
                               <Value>=Fields!TOTAL.Value</Value>
                               <Style>
                                 <FontFamily>raleway</FontFamily>
+                                <Format>'L'#,0.00;('L'#,0.00)</Format>
+                                <rd:FormatSymbolCulture>es-HN</rd:FormatSymbolCulture>
                               </Style>
                             </TextRun>
                           </TextRuns>

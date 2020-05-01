@@ -4,7 +4,7 @@ GO
 --Agregando Roles
 
 --SP_InsertarUsuario(nombre, apellido, usuario, clave, tipoArea)
-EXEC SP_InsertarUsuario 'eduardo','calix','nose'
+EXEC SP_InsertarUsuario 'eduardo','calix','icb1'
 --Agregar Categorias 
 
 EXEC SP_AgregarGrado 'PREKINDER'
@@ -21,6 +21,8 @@ EXEC SP_AgregarGrado 'OCTAVO'
 EXEC SP_AgregarGrado 'NOVENO'
 EXEC SP_AgregarGrado 'DECIMO'
 EXEC SP_AgregarGrado 'UNDECIMO'
+EXEC SP_AgregarGrado 'GRADUADOS'
+
 
 --Agregar NombreTipoPagos
 EXEC SP_AgregarNombreTipoPago 'MATRICULA','30/8/2020'
@@ -35,6 +37,9 @@ EXEC SP_AgregarNombreTipoPago 'MARZO','5/4/2020'
 EXEC SP_AgregarNombreTipoPago 'ABRIL','5/5/2020'
 EXEC SP_AgregarNombreTipoPago 'MAYO','5/6/2020'
 EXEC SP_AgregarNombreTipoPago 'JUNIO','5/7/2020'
+EXEC SP_AgregarNombreTipoPago 'GRADUACION','20/7/2020'
+EXEC SP_AgregarNombreTipoPago 'PAGOS POR MORA','5/7/2020'
+
 --Mora
 EXEC SP_AgregarMora 'NINGUNA',0
 EXEC SP_AgregarMora '1 MES',195
@@ -251,7 +256,7 @@ EXEC SP_AgregarAlumno '','Anthony Jafeth ','Chavarria Duarte',4,1,'No'
 EXEC SP_AgregarAlumno '','Diego José ','Ruiz Andino',4,1,'No'
 EXEC SP_AgregarAlumno '','Francisco André',' Lazo Barralaga',4,1,'No'
 EXEC SP_AgregarAlumno '','Kelvin Francisco',' Argueta Castillo',4,1,'No'
- EXEC SP_AgregarAlumno '','Alejandro Mateo ','Cerro',5,1,'No'
+EXEC SP_AgregarAlumno '','Alejandro Mateo ','Cerro',5,1,'No'
 EXEC SP_AgregarAlumno '','Diego Alejandro ','Alvarez',5,1,'No'
 EXEC SP_AgregarAlumno '','Emily Dayana ','Orellana Recarte',5,1,'No'
 EXEC SP_AgregarAlumno '','Henry Isac ','Bonilla',5,1,'No'
@@ -282,7 +287,7 @@ EXEC SP_AgregarAlumno '','Sarah Francel ','Lazo Barralaga',9,1,'No'
 EXEC SP_AgregarAlumno '','Fabricio Josimar ','Palma Castillo',9,1,'No'
 EXEC SP_AgregarAlumno '','Gracia Maria ','Machado Ramirez',9,1,'No'
 EXEC SP_AgregarAlumno '','Maria Regina ','Benitez Puerto',9,1,'No'
-EXEC SP_AgregarAlumno '','Nelson Jose Chevez Cruz',9,1,'No'
+EXEC SP_AgregarAlumno '','Nelson Jose ','Chevez Cruz',9,1,'No'
 EXEC SP_AgregarAlumno '','Reniery David ','Almendarez Ramos',9,1,'No'
 EXEC SP_AgregarAlumno '','Aldrin Leonel Santos',10,1,'No'
 EXEC SP_AgregarAlumno '','Emy Dayana ','Hernández Fuentes',10,1,'No'
@@ -312,7 +317,7 @@ EXEC SP_AgregarAlumno '','Liliana Isabel ','Meza Delcid',13,1,'No'
 EXEC SP_AgregarAlumno '','Marjorie Nicole ','Acosta Cooper',13,1,'No'
 EXEC SP_AgregarAlumno '','Wilger Eduardo ','Flores Velasquez',13,1,'No'
 EXEC SP_AgregarAlumno '','Ana Jose ','Santamaria Orellana',14,1,'No'
-EXEC SP_AgregarAlumno '','Andrea Gisselle Rodriguez David',14,1,'No'
+EXEC SP_AgregarAlumno '','Andrea Gisselle', 'Rodriguez David',14,1,'No'
 EXEC SP_AgregarAlumno '','Angie Johanna ','Irias Doblado',14,1,'No'
 EXEC SP_AgregarAlumno '','Anielska Marcela',' Villeda Aguilar',14,1,'No'
 EXEC SP_AgregarAlumno '','Aldrina ','Santos Lagos',14,1,'No'

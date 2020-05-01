@@ -219,7 +219,7 @@ namespace Pagos_ICB.Clases
             string sql = @"SELECT   Cuentas.TipoPago.idTipoPago                 as Código,
                                     Cuentas.NombreTipoPago.NombreTipoPago       as NombreTipoPago,
                                     Cuentas.Grado.nombreGrado                   as Grado, 
-                                    Cuentas.TipoPago.valor                      as Valor
+                                    CONCAT('L. ',Cuentas.TipoPago.valor)        as Valor
                             FROM Cuentas.TipoPago INNER JOIN Cuentas.Grado 
 							ON Cuentas.TipoPago.idGrado = Cuentas.Grado.idGrado 
                             INNER JOIN Cuentas.NombreTipoPago 

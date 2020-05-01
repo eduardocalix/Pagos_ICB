@@ -29,28 +29,16 @@ namespace Pagos_ICB
             //MessageBox.Show(Convert.ToString( this.idUsuario));
 
             //CargarDGWReportePago();
-            CargarCMBGrados();
-            CargarCMBNombre();
+           
             ResetFormulario();
-            CargarCMBPeriodos();
+           
         }
         private int idAlumno = 0;
         private int grado = 0;
-        private int idTipo = 0;
+        //private int idTipo = 0;
         private int idUsuario = 0;
-        private decimal valor = 0;
-        private void CargarCMBPeriodos()
-        {
-            DataTable dt = new DataTable();
-            Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Periodo";
-            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            cbPeriodo.DisplayMember = "nombrePeriodo";
-            cbPeriodo.ValueMember = "nombrePeriodo";
-            cbPeriodo.DataSource = dt;
-        }
+      //  private decimal valor = 0;
+       
         //private string beca="";
         private void CargarDGWReportePago(int alumno)
         {
@@ -97,17 +85,13 @@ namespace Pagos_ICB
             dgwReportePagoEstilo(dgvReportePago);
 
             btnNuevo.Enabled = true;
-            btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
            
             txtIdentidad.Enabled = true;
             txtNombre.Enabled = true;
             cbBeca.Enabled = true;
             dgvAlumnos.Enabled = true;
-            cbNombre.Enabled = true;
-            cbGrado.Enabled = true;
-            cbPeriodo.Enabled = true;
-            txtRecibo.Enabled = true;
+           
             //txtDescripcion.Enabled = true;
             this.idAlumno = 0;
             this.grado = 0;
@@ -125,32 +109,7 @@ namespace Pagos_ICB
         {
            
         }
-        private void CargarCMBGrados()
-        {
-            DataTable dt = new DataTable();
-            Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.Grado";
-            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            cbGrado.DisplayMember = "nombreGrado";
-            cbGrado.ValueMember = "nombreGrado";
-            cbGrado.DataSource = dt;
-        }
-
-     
-        private void CargarCMBNombre()
-        {
-            DataTable dt = new DataTable();
-            Clases.Conexión conexion = new Clases.Conexión();
-            string sql = "select * FROM Cuentas.NombreTipoPago";
-            SqlCommand cmd = new SqlCommand(sql, conexion.conexion);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(dt);
-            cbNombre.DisplayMember = "nombreTipoPago";
-            cbNombre.ValueMember = "nombreTipoPago";
-            cbNombre.DataSource = dt;
-        }
+        
         private void btnSalir_Click(object sender, EventArgs e)
         {
            
@@ -162,7 +121,7 @@ namespace Pagos_ICB
         }
 
         private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
+        {/*
             this.grado = cbGrado.SelectedIndex + 1;
             Clases.TipoPago pago = new Clases.TipoPago();
             pago.ObtenerTipoPagosporGrado(this.grado, cbNombre.SelectedIndex + 1);
@@ -182,14 +141,17 @@ namespace Pagos_ICB
             {
 
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
 
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("¿Está seguro de generar un reporte en excel?", "Reporte Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show("¿Está seguro de generar un reporte del alumno?", "Reporte Pago", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta.ToString() == "Yes")
             {
+                frmEstadoCuenta estadoCuenta = new frmEstadoCuenta(idAlumno);
+                estadoCuenta.ShowDialog();
+                /*
                 if (dgvReportePago.Rows.Count > 0)
                 {
                     Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
@@ -208,7 +170,7 @@ namespace Pagos_ICB
                     }
                     excel.Columns.AutoFit();
                     excel.Visible = true;
-                }
+                }*/
             }
         }
 
@@ -270,16 +232,11 @@ namespace Pagos_ICB
         {
             txtNombre.Enabled = false;
             txtIdentidad.Enabled = false;
-            btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
 
             cbBeca.Enabled = false;
-            cbGrado.Enabled = false;
             dgvAlumnos.Enabled = false;
-            cbGrado.Enabled = false;
-            cbNombre.Enabled = false;
-            cbPeriodo.Enabled = false;
-            txtRecibo.Enabled = false;
+         
         }
         private void dgvAlumnos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -293,7 +250,7 @@ namespace Pagos_ICB
             CargarDGWReportePago(Alumno.IdAlumno);
             this.idAlumno = Alumno.IdAlumno;
             txtIdentidad.Text = Alumno.Identidad;
-            txtNombre.Text = Alumno.Nombres;
+            txtNombre.Text = Alumno.Nombres+" "+Alumno.Apellidos;
             if (Alumno.Beca == "Si")
             {
                 cbBeca.SelectedIndex = 0;
@@ -345,6 +302,11 @@ namespace Pagos_ICB
         }
 
         private void grpReportePago_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIdentidad_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
